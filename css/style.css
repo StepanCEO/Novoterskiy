@@ -273,6 +273,8 @@ img, svg { display: block; max-width: 100%; }
   line-height: 1.04;
   letter-spacing: -0.03em;
   color: var(--deep);
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 .hero-sub {
   margin: 1.6rem auto 0;
