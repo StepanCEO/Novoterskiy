@@ -34,6 +34,25 @@
   var threadPath = document.querySelector(".thread-path");
   var THREAD_LEN = 1400;
 
+  /* ---- Water's-path timeline: line fills as the section scrolls ---- */
+  var pathSteps = document.querySelector(".path-steps");
+  var pathLineFill = document.querySelector(".path-line-fill");
+
+  function updatePathFlow() {
+    if (!pathSteps || !pathLineFill) return;
+    var rect = pathSteps.getBoundingClientRect();
+    var vh = window.innerHeight;
+    // 0 when the list top reaches mid-screen, 1 when its bottom passes mid-screen
+    var start = vh * 0.62;
+    var end = vh * 0.32;
+    var p = (start - rect.top) / (rect.height - (start - end));
+    p = Math.max(0, Math.min(1, p));
+    var pct = (p * 100).toFixed(2) + "%";
+    pathLineFill.style.height = pct;
+    pathSteps.style.setProperty("--flow", pct);
+    pathSteps.classList.toggle("flowing", p > 0.01 && p < 0.99);
+  }
+
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
     if (header) header.classList.toggle("scrolled", y > 24);
@@ -42,6 +61,7 @@
       var p = docH > 0 ? Math.min(1, y / docH) : 0;
       threadPath.style.setProperty("--thread-offset", (THREAD_LEN * (1 - p)).toFixed(1));
     }
+    if (!reduceMotion) updatePathFlow();
   }
   var ticking = false;
   window.addEventListener("scroll", function () {
