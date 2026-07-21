@@ -82,48 +82,47 @@
 <main>
 <!-- ============ 1 · HERO ============ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <div class="hero-sky" aria-hidden="true">
-    <span class="cloud cloud-1"></span>
-    <span class="cloud cloud-2"></span>
-    <span class="cloud cloud-3"></span>
-  </div>
-  <div class="hero-peaks" aria-hidden="true"></div>
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-steam" aria-hidden="true"></div>
+  <svg class="hero-topo" viewBox="0 0 600 600" aria-hidden="true" preserveAspectRatio="xMaxYMin meet">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <ellipse cx="360" cy="240" rx="58" ry="46" />
+      <ellipse cx="352" cy="236" rx="108" ry="90" />
+      <ellipse cx="344" cy="232" rx="162" ry="138" />
+      <ellipse cx="336" cy="228" rx="222" ry="190" />
+      <ellipse cx="330" cy="226" rx="286" ry="246" />
+    </g>
+  </svg>
 
-  <div class="hero-inner">
-    <p class="eyebrow reveal" data-en="Natural mineral water · Elbrus">Природная минеральная вода · Эльбрус</p>
-    <h1 class="hero-title reveal" id="hero-title" data-en="Born of glaciers. Tempered by the heart of the earth.">Рожденная ледниками.<br />Закаленная сердцем земли.</h1>
-    <p class="hero-sub reveal" data-en="Every drop begins on the summits of Elbrus and continues deep in the earth, where cold, heat and mountain rock create a natural balance.">
-      Путь каждой капли начинается на вершинах Эльбруса и продолжается в глубинах земли, где холод, тепло и горные породы создают природный баланс.
-    </p>
-    <div class="hero-cta reveal">
-      <a class="btn btn-primary" href="#elements" data-en="Begin the journey">Начать путешествие</a>
-      <a class="btn btn-ghost" href="#origin" data-en="Discover the story">Узнать историю</a>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal" data-en="Natural mineral water · Elbrus">Природная минеральная вода · Эльбрус</p>
+      <h1 class="hero-title reveal" id="hero-title" data-en="Born of glaciers.<br />Tempered by the heart of the earth.">Рожденная ледниками.<br />Закаленная сердцем земли.</h1>
+      <p class="hero-sub reveal" data-en="Every drop begins on the summits of Elbrus and continues deep in the earth, where cold, heat and mountain rock create a natural balance.">
+        Путь каждой капли начинается на вершинах Эльбруса и продолжается в глубинах земли, где холод, тепло и горные породы создают природный баланс.
+      </p>
+      <div class="hero-cta reveal">
+        <a class="btn-play" href="#origin" aria-label="Узнать историю">
+          <span class="btn-play-pin" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
+          </span>
+          <span class="btn-play-label" data-en="Discover the story">Узнать историю</span>
+        </a>
+      </div>
     </div>
+
+    <!-- The bottle: real photo over a mountain medallion + shine sweep + splash + mist -->
+    <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
+      <div class="hero-medallion" aria-hidden="true">
+        <img src="assets/photos/hero-mountain.webp" width="1672" height="941" alt="" loading="eager" />
+      </div>
+      <div class="bottle">
+        <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
+        <div class="bottle-shine"></div>
+      </div>
+      <span class="splash splash-a" aria-hidden="true"></span>
+      <span class="splash splash-b" aria-hidden="true"></span>
+      <div class="hero-mist" aria-hidden="true"></div>
+    </figure>
   </div>
-
-  <!-- The bottle: real photo over a mountain medallion + shine sweep + ripple splashes -->
-  <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
-    <div class="hero-medallion" aria-hidden="true">
-      <img src="assets/photos/hero-mountain.webp" width="1672" height="941" alt="" loading="eager" />
-    </div>
-    <div class="bottle">
-      <img class="bottle-photo" src="assets/products/celebnaya-glass-elita-05.webp" width="225" height="763" alt="Новотерская Целебная" />
-      <div class="bottle-shine"></div>
-    </div>
-    <span class="splash splash-a" aria-hidden="true"></span>
-    <span class="splash splash-b" aria-hidden="true"></span>
-  </figure>
-
-  <div class="hero-elements" aria-hidden="true">
-    <span data-en="Air">Воздух</span><i></i>
-    <span data-en="Ice">Лёд</span><i></i>
-    <span data-en="Earth">Земля</span><i></i>
-    <span data-en="Fire">Огонь</span>
-  </div>
-
-  <a class="scroll-hint" href="#elements" aria-label="Пролистать вниз"><span></span></a>
 </section>
 
 <!-- ============ 2 · FOUR ELEMENTS ============ -->
