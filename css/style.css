@@ -670,6 +670,128 @@ img, svg { display: block; max-width: 100%; }
   margin: 0.5rem 0 2rem;
   letter-spacing: -0.01em;
 }
+.origin-fact {
+  max-width: 720px;
+  margin: -0.6rem auto 2rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.86);
+}
+
+/* ---------- 1.5 · ABOUT COMPANY ---------- */
+.about {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  background: linear-gradient(180deg, var(--paper), var(--paper-2));
+}
+.about-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+.about-lede {
+  font-family: var(--ff-serif);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--deep);
+  margin: 1rem 0 1.2rem;
+}
+.about-mission { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+.about-facts {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.about-fact {
+  padding: 1.4rem 1.2rem;
+  background: #fff;
+  border: 1px solid rgba(20,49,63,0.06);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-card);
+}
+.about-fact-num {
+  display: block;
+  font-family: var(--ff-serif);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  color: var(--deep);
+}
+.about-fact-cap {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+/* ---------- 7.5 · WHERE TO BUY ---------- */
+.where { padding: clamp(4.5rem, 8vw, 7rem) 0; }
+.where-grid {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+.dist {
+  padding: 2rem 1.8rem;
+  background: linear-gradient(180deg, #ffffff, #f6f9fc);
+  border: 1px solid rgba(20,49,63,0.06);
+  border-left: 3px solid var(--glacier-d);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.35s;
+}
+.dist:hover { transform: translateY(-4px); }
+.dist h3 {
+  font-family: var(--ff-display);
+  font-size: 1.2rem;
+  color: var(--deep);
+  margin: 0 0 0.9rem;
+}
+.dist-line { margin: 0.3rem 0; font-size: 0.98rem; color: var(--muted); }
+.dist-line a { color: var(--glacier-d); }
+.dist-line a:hover { text-decoration: underline; }
+
+/* ---------- 7.6 · CONTACTS ---------- */
+.contacts {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  background: linear-gradient(180deg, var(--paper-2), var(--paper));
+}
+.contacts-grid {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.contact-block {
+  padding: 1.5rem 1.4rem;
+  background: #fff;
+  border: 1px solid rgba(20,49,63,0.06);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-card);
+}
+.contact-label {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.contact-val { font-size: 0.98rem; line-height: 1.5; color: var(--deep); margin: 0; }
+.contact-val a { color: var(--glacier-d); }
+.contact-val a:hover { text-decoration: underline; }
+.contact-social { display: flex; flex-wrap: wrap; gap: 1rem; }
 
 /* ---------- 6 · TRUST ---------- */
 .trust { padding: clamp(5rem, 9vw, 8rem) 0; }
@@ -1031,6 +1153,7 @@ img, svg { display: block; max-width: 100%; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-stats { grid-template-columns: repeat(3, 1fr); }
   .docs-grid { grid-template-columns: repeat(2, 1fr); }
+  .contacts-grid { grid-template-columns: repeat(2, 1fr); }
   .collection-track { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -1047,6 +1170,9 @@ img, svg { display: block; max-width: 100%; }
   .trust-grid { grid-template-columns: 1fr; }
   .trust-stats { grid-template-columns: 1fr 1fr; }
   .docs-grid { grid-template-columns: 1fr; }
+  .about-inner { grid-template-columns: 1fr; }
+  .where-grid { grid-template-columns: 1fr; }
+  .contacts-grid { grid-template-columns: 1fr; }
   .collection-track {
     grid-auto-flow: column;
     grid-template-columns: none;
