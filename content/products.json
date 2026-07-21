@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "id": "celebnaya-glass-elita-05",
+      "title": "Целебная 0.5",
+      "type": "Газированная · стекло «Элита»",
+      "type_en": "Sparkling · glass «Elita»",
+      "photo": "assets/products/celebnaya-glass-elita-05.webp"
+    },
+    {
+      "id": "celebnaya-glass-euro-05",
+      "title": "Целебная 0.5",
+      "type": "Газированная · стекло «Евро»",
+      "type_en": "Sparkling · glass «Euro»",
+      "photo": "assets/products/celebnaya-glass-euro-05.webp"
+    },
+    {
+      "id": "celebnaya-pet-05",
+      "title": "Целебная 0.5",
+      "type": "Газированная · ПЭТ",
+      "type_en": "Sparkling · PET",
+      "photo": "assets/products/celebnaya-pet-05.webp"
+    },
+    {
+      "id": "celebnaya-pet-10",
+      "title": "Целебная 1.0",
+      "type": "Газированная · ПЭТ",
+      "type_en": "Sparkling · PET",
+      "photo": "assets/products/celebnaya-pet-10.webp"
+    },
+    {
+      "id": "celebnaya-pet-15",
+      "title": "Целебная 1.5",
+      "type": "Газированная · ПЭТ",
+      "type_en": "Sparkling · PET",
+      "photo": "assets/products/celebnaya-pet-15.webp"
+    }
+  ]
+}

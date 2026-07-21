@@ -7,27 +7,35 @@
   /* ---- Hero load sequence ---- */
   var hero = document.getElementById("hero");
   if (hero) {
-    requestAnimationFrame(function () { hero.classList.add("loaded"); });
+    var startHero = function () { hero.classList.add("loaded"); };
+    requestAnimationFrame(startHero);
+    // Fallback: rAF is throttled in background tabs — guarantee the reveal fires.
+    setTimeout(startHero, 200);
   }
 
   /* ---- Scroll reveals ---- */
-  var revealEls = document.querySelectorAll(".reveal:not(.hero .reveal)");
-  if ("IntersectionObserver" in window && !reduceMotion) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
+  function applyReveals(scope) {
+    var els = (scope || document).querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      if (!applyReveals._io) {
+        applyReveals._io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              applyReveals._io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+      }
+      els.forEach(function (el) {
+        // hero children are driven by CSS keyframes, skip them
+        if (!el.classList.contains("in") && !el.closest(".hero")) applyReveals._io.observe(el);
       });
-    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
-    revealEls.forEach(function (el) {
-      // hero children are driven by CSS keyframes, skip them
-      if (!el.closest(".hero")) io.observe(el);
-    });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add("in"); });
+    } else {
+      els.forEach(function (el) { el.classList.add("in"); });
+    }
   }
+  applyReveals(document);
 
   /* ---- Header scrolled state + water-thread progress ---- */
   var header = document.querySelector(".site-header");
@@ -116,4 +124,59 @@
       try { localStorage.setItem("novo-cookie", "1"); } catch (e) {}
     });
   }
+
+  /* ---- Analytics ----
+     Цели (п.14 ТЗ): просмотр легенды «Баланс стихий», клики по продукции,
+     открытие документов. Работает через единый track(): пишет в dataLayer
+     (GA4/GTM) и вызывает ym-цель Яндекс.Метрики, если счётчики подключены.
+     Чтобы включить сбор — вставьте ID ниже (см. index.html подключение gtag/ym). */
+  var YM_ID = window.NOVO_YM_ID || null;   // напр. 12345678
+  window.dataLayer = window.dataLayer || [];
+
+  function track(goal, params) {
+    var payload = params || {};
+    try { window.dataLayer.push(Object.assign({ event: goal }, payload)); } catch (e) {}
+    if (typeof window.gtag === "function") {
+      try { window.gtag("event", goal, payload); } catch (e) {}
+    }
+    if (YM_ID && typeof window.ym === "function") {
+      try { window.ym(YM_ID, "reachGoal", goal, payload); } catch (e) {}
+    }
+  }
+
+  // Клики: продукция («Купить») и документы — по data-analytics
+  document.addEventListener("click", function (ev) {
+    var t = ev.target.closest("[data-analytics]");
+    if (!t) return;
+    var goal = t.getAttribute("data-analytics");
+    if (goal === "product-buy") {
+      track("product_click", { product: t.getAttribute("data-product") || "" });
+    } else if (goal === "doc-open") {
+      track("document_open", { document: t.getAttribute("data-doc") || "" });
+    }
+  });
+
+  // Просмотр легенды «Баланс четырёх стихий»
+  var legend = document.getElementById("elements");
+  if (legend && "IntersectionObserver" in window) {
+    var legendSeen = false;
+    var legendIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !legendSeen) {
+          legendSeen = true;
+          track("legend_view", {});
+          legendIo.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+    legendIo.observe(legend);
+  }
+
+  /* ---- CMS re-hydration hook ----
+     Когда cms.js перерисовал секции из JSON, заново вешаем reveal-анимации
+     и применяем текущий язык к новым узлам. */
+  document.addEventListener("novo:hydrated", function () {
+    applyReveals(document);
+    if (htmlEl.getAttribute("lang") === "en") setLang("en");
+  });
 })();

@@ -1,0 +1,21 @@
+{
+  "company": "АО «Кавминводы»",
+  "address": "357242, Ставропольский край, Минераловодский р-н, пос. Новотерский, ул. Бештаугорская, 1",
+  "phone": "8 (87922) 7-14-09",
+  "email": "zavod@novoterskaya.ru",
+  "telegram": "https://t.me/novoterskayaru",
+  "vk": "https://vk.com/novoterskayaru",
+  "ok": "https://m.ok.ru/group/70000009159562",
+  "distributors": [
+    {
+      "name": "ООО «Велнесс Фонтейн Премиум»",
+      "phone": "+7 (495) 133-59-41",
+      "emails": ["sales@wfpremium.ru", "oper@wfpremium.ru"]
+    },
+    {
+      "name": "ООО «Велнесс Фонтейн»",
+      "phone": "+7 (495) 133-59-41",
+      "emails": ["oper@kmv-m.ru"]
+    }
+  ]
+}

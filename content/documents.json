@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "id": "FSSC 22000",
+      "anchor": "fssc",
+      "name": "FSSC 22000",
+      "name_en": "FSSC 22000",
+      "desc": "Сертификация системы менеджмента безопасности пищевой продукции, 2020",
+      "desc_en": "Food safety management certification, 2020",
+      "file": ""
+    },
+    {
+      "id": "ГОСТ Р 54316",
+      "anchor": "gost",
+      "name": "ГОСТ Р 54316",
+      "name_en": "GOST R 54316",
+      "desc": "Природные минеральные воды — государственный стандарт",
+      "desc_en": "Natural mineral waters — state standard",
+      "file": ""
+    },
+    {
+      "id": "Госрегистрация ЕАЭС",
+      "anchor": "eaes",
+      "name": "Госрегистрация ЕАЭС",
+      "name_en": "EAEU registration",
+      "desc": "RU.77.99.32.006.R.002711.08.22",
+      "desc_en": "RU.77.99.32.006.R.002711.08.22",
+      "file": ""
+    },
+    {
+      "id": "Сертификат соответствия",
+      "anchor": "conformity",
+      "name": "Сертификат соответствия",
+      "name_en": "Certificate of conformity",
+      "desc": "№ РОСС RU.11АБ45.00317",
+      "desc_en": "№ РОСС RU.11АБ45.00317",
+      "file": ""
+    },
+    {
+      "id": "Российский знак качества",
+      "anchor": "quality-mark",
+      "name": "Российский знак качества",
+      "name_en": "Russian Quality Mark",
+      "desc": "Национальная оценка качества",
+      "desc_en": "National quality assessment",
+      "file": ""
+    },
+    {
+      "id": "Декларация ЕАЭС",
+      "anchor": "conformity",
+      "name": "Декларация ЕАЭС",
+      "name_en": "EAEU declaration",
+      "desc": "N RU Д-RU.РА02.В.96742/22",
+      "desc_en": "N RU Д-RU.РА02.В.96742/22",
+      "file": ""
+    }
+  ]
+}

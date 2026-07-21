@@ -1,0 +1,75 @@
+backend:
+  name: github
+  repo: StepanCEO/Novoterskiy
+  branch: main
+
+# Локаль интерфейса админки
+locale: ru
+
+# Загруженные через админку файлы (например сканы документов, фото продукции)
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+collections:
+  # ---- Продукция ----
+  - name: products
+    label: Продукция
+    label_singular: Продукт
+    files:
+      - name: products
+        label: Список продукции
+        file: content/products.json
+        fields:
+          - name: items
+            label: Продукты
+            widget: list
+            fields:
+              - { name: id, label: "ID (латиницей, без пробелов)", widget: string }
+              - { name: title, label: Название, widget: string }
+              - { name: type, label: "Тип (RU)", widget: string }
+              - { name: type_en, label: "Тип (EN)", widget: string, required: false }
+              - { name: photo, label: Фото, widget: image }
+
+  # ---- Документы и сертификаты ----
+  - name: documents
+    label: Документы
+    files:
+      - name: documents
+        label: Документы и сертификаты
+        file: content/documents.json
+        fields:
+          - name: items
+            label: Документы
+            widget: list
+            fields:
+              - { name: id, label: "ID / метка аналитики", widget: string }
+              - { name: anchor, label: "Якорь на documents.html", widget: string, required: false }
+              - { name: name, label: Название, widget: string }
+              - { name: desc, label: Описание, widget: text }
+              - { name: file, label: "Файл (PDF/скан) — если есть", widget: file, required: false }
+
+  # ---- Контакты и дистрибьюторы ----
+  - name: contacts
+    label: Контакты
+    files:
+      - name: contacts
+        label: Контакты и дистрибуция
+        file: content/contacts.json
+        fields:
+          - { name: company, label: Производитель, widget: string }
+          - { name: address, label: Адрес, widget: text }
+          - { name: phone, label: Телефон, widget: string }
+          - { name: email, label: E-mail, widget: string }
+          - { name: telegram, label: Telegram, widget: string, required: false }
+          - { name: vk, label: VK, widget: string, required: false }
+          - { name: ok, label: OK, widget: string, required: false }
+          - name: distributors
+            label: Дистрибьюторы
+            widget: list
+            fields:
+              - { name: name, label: Название, widget: string }
+              - { name: phone, label: Телефон, widget: string, required: false }
+              - name: emails
+                label: E-mail адреса
+                widget: list
+                field: { name: email, label: E-mail, widget: string }

@@ -374,6 +374,51 @@ img, svg { display: block; max-width: 100%; }
   50%     { opacity: 1; transform: translateY(0) scale(1.04); }
 }
 
+/* Cinematic hero layers (0–6s narrative) */
+.hero-clouds,
+.hero-glint {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-clouds {
+  z-index: 1;
+  opacity: 0;
+  background:
+    radial-gradient(40% 24% at 30% 30%, rgba(255,255,255,0.92), transparent 70%),
+    radial-gradient(46% 28% at 66% 22%, rgba(255,255,255,0.75), transparent 72%),
+    radial-gradient(38% 22% at 50% 16%, rgba(255,255,255,0.82), transparent 70%);
+}
+.hero-glint {
+  z-index: 2;
+  opacity: 0;
+  background: linear-gradient(115deg, transparent 40%, rgba(214,236,244,0.9) 50%, transparent 60%);
+  background-size: 250% 100%;
+  background-position: 130% 0;
+}
+@keyframes cloudDrift {
+  0%,100% { transform: translateX(-3%); }
+  50%     { transform: translateX(3%); }
+}
+/* golden underground warmth rising from the base */
+.hero-glow {
+  grid-area: 1 / 1;
+  align-self: end;
+  width: 120%;
+  height: 48%;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 82% at 50% 100%, rgba(214,150,80,0.5), rgba(217,184,118,0.22) 45%, transparent 75%);
+  filter: blur(14px);
+  mix-blend-mode: multiply;
+}
+@keyframes glowFloat {
+  0%,100% { transform: translateY(6%) scale(1); }
+  50%     { transform: translateY(0) scale(1.05); }
+}
+
 /* ---------- 2 · FOUR ELEMENTS ---------- */
 .elements { padding: clamp(5rem, 9vw, 8rem) 0; }
 .elements-grid {
@@ -929,12 +974,14 @@ img, svg { display: block; max-width: 100%; }
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
-.doc {
+.doc { list-style: none; }
+.doc-link {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   column-gap: 0.9rem;
   align-items: center;
+  height: 100%;
   padding: 1.3rem 1.4rem;
   background: #fff;
   border: 1px solid rgba(20,49,63,0.07);
@@ -943,7 +990,8 @@ img, svg { display: block; max-width: 100%; }
   box-shadow: var(--shadow-card);
   transition: transform 0.35s, box-shadow 0.35s;
 }
-.doc:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -24px rgba(20,49,63,0.3); }
+.doc-link:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -24px rgba(20,49,63,0.3); }
+.doc-link:focus-visible { outline: 2px solid var(--glacier-d); outline-offset: 3px; }
 .doc-mark {
   grid-row: 1 / 3;
   display: grid;
@@ -1127,9 +1175,34 @@ img, svg { display: block; max-width: 100%; }
 .hero.loaded .hero-title { animation: heroIn 1s 0.3s forwards cubic-bezier(.2,.7,.3,1); }
 .hero.loaded .hero-sub   { animation: heroIn 1s 0.8s forwards cubic-bezier(.2,.7,.3,1); }
 .hero.loaded .hero-cta   { animation: heroIn 1s 1.2s forwards cubic-bezier(.2,.7,.3,1); }
-.hero.loaded .hero-bottle{ animation: bottleIn 1.6s 0.8s forwards cubic-bezier(.2,.7,.3,1); }
+.hero.loaded .hero-bottle{ animation: heroIn 1.2s 0.2s forwards cubic-bezier(.2,.7,.3,1); }
 @keyframes heroIn { to { opacity: 1; transform: none; } }
-@keyframes bottleIn { from { opacity: 0; transform: translateY(40px) scale(0.94); } to { opacity: 1; transform: none; } }
+
+/* 0–1.5s · sky, peaks, drifting clouds */
+.hero.loaded .hero-medallion {
+  animation:
+    medallionfloat 9s ease-in-out 6s infinite,
+    medIn 1.4s 0.2s ease-out backwards;
+}
+@keyframes medIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+.hero.loaded .hero-clouds { animation: cloudIn 1.6s 0.4s ease-out forwards, cloudDrift 16s ease-in-out 2s infinite; }
+@keyframes cloudIn { from { opacity: 0; } to { opacity: 0.85; } }
+
+/* 1.5–3s · ice & water — silvery-turquoise glint */
+.hero.loaded .hero-glint { animation: glintSweep 2s 1.5s ease-in-out forwards; }
+@keyframes glintSweep {
+  0%   { opacity: 0; background-position: 130% 0; }
+  40%  { opacity: 1; }
+  100% { opacity: 0; background-position: -30% 0; }
+}
+
+/* 3–4.5s · the bottle emerges from the mist */
+.hero.loaded .bottle { animation: bottleEmerge 1.6s 3s cubic-bezier(.2,.7,.3,1) backwards; }
+@keyframes bottleEmerge { from { opacity: 0; filter: blur(8px) drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)); } to { opacity: 1; } }
+
+/* 4.5–6s · golden underground warmth, then calm loop */
+.hero.loaded .hero-glow { animation: glowIn 1.6s 4.5s ease-out forwards, glowFloat 9s ease-in-out 6s infinite; }
+@keyframes glowIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---------- Responsive ---------- */
 /* laptop 1024–1439 */
@@ -1197,6 +1270,10 @@ img, svg { display: block; max-width: 100%; }
     transition-duration: 0.001ms !important;
   }
   .reveal, .hero .reveal { opacity: 1 !important; transform: none !important; }
+  .hero-clouds { opacity: 0.85 !important; }
+  .hero-glow { opacity: 1 !important; }
+  .hero-glint { opacity: 0 !important; }
+  .bottle { opacity: 1 !important; filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)) !important; }
   .thread { display: none; }
 }
 

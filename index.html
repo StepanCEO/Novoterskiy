@@ -34,10 +34,77 @@
   "logo": "https://stepanceo.github.io/Novoterskiy/assets/logo-kmv.png",
   "description": "Природная минеральная вода с вершин Эльбруса, регион Кавказских Минеральных Вод.",
   "areaServed": "RU",
-  "email": "info@novoterskaya.ru",
-  "telephone": "+7-87922-7-14-09"
+  "email": "zavod@novoterskaya.ru",
+  "telephone": "+7-87922-7-14-09",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ул. Бештаугорская, 1",
+    "addressLocality": "пос. Новотерский",
+    "addressRegion": "Ставропольский край",
+    "postalCode": "357242",
+    "addressCountry": "RU"
+  }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Новотерская Целебная",
+  "category": "Минеральная вода природная лечебно-столовая",
+  "image": "https://stepanceo.github.io/Novoterskiy/assets/products/celebnaya-pet-05.webp",
+  "description": "Природная лечебно-столовая гидрокарбонатно-сульфатная кальциево-натриевая минеральная вода из скважины №72 Змейкинского месторождения, глубина 1482 м. Минерализация 4,0–5,5 г/л.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Новотерская"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "АО «Кавминводы»"
+  },
+  "material": "Стекло, ПЭТ",
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Минерализация", "value": "4,0–5,5 г/л" },
+    { "@type": "PropertyValue", "name": "Источник", "value": "Скважина №72, Змейкинское месторождение" },
+    { "@type": "PropertyValue", "name": "Глубина скважины", "value": "1482 м" }
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "RUB",
+    "seller": {
+      "@type": "Organization",
+      "name": "ООО «Велнесс Фонтейн Премиум»",
+      "telephone": "+7-495-133-59-41",
+      "email": "sales@wfpremium.ru"
+    }
+  }
+}
+</script>
+
+<!-- ============================================================
+     АНАЛИТИКА (п.14 ТЗ) — цели: просмотр легенды, клики по продукции,
+     открытие документов. Обработчики целей уже в js/main.js.
+     Чтобы включить сбор, раскомментируйте нужный блок и подставьте ID.
+
+  Google Analytics 4 / GTM:
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
+
+  Яндекс.Метрика:
+  <script>window.NOVO_YM_ID = 00000000;</script>
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+    ym(00000000, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });
+  </script>
+============================================================ -->
 </head>
 <body>
 
@@ -114,12 +181,15 @@
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="hero-medallion" aria-hidden="true">
         <img src="assets/photos/hero-mountain.webp" width="1672" height="941" alt="" loading="eager" />
+        <span class="hero-clouds"></span>
+        <span class="hero-glint"></span>
       </div>
       <div class="bottle">
         <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
         <div class="bottle-shine"></div>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
     </figure>
   </div>
 </section>
@@ -171,6 +241,7 @@
   <div class="elements-grid">
     <article class="el el-air reveal" tabindex="0">
       <img class="el-photo" src="assets/photos/element-air.webp" width="1672" height="941" loading="lazy" alt="Воздух — небо и облака над Эльбрусом" />
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 2 L30 26 L2 26 Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
       <div class="el-body">
         <h3 data-en="Air">Воздух</h3>
         <p data-en="The purity of heights. The path begins at the summits of Elbrus.">Чистота высоты. Путь начинается у вершин Эльбруса.</p>
@@ -178,6 +249,7 @@
     </article>
     <article class="el el-ice reveal" tabindex="0">
       <img class="el-photo" src="assets/photos/element-ice.webp" width="1672" height="941" loading="lazy" alt="Лёд — голубой ледник" />
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 2 L30 26 L2 26 Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
       <div class="el-body">
         <h3 data-en="Ice">Лёд</h3>
         <p data-en="Meltwater slowly passes through ice and mountain strata.">Талая вода медленно проходит сквозь лёд и горные слои.</p>
@@ -185,6 +257,7 @@
     </article>
     <article class="el el-earth reveal" tabindex="0">
       <img class="el-photo" src="assets/photos/element-earth.webp" width="1672" height="941" loading="lazy" alt="Земля — слои горных пород" />
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 2 L30 26 L2 26 Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
       <div class="el-body">
         <h3 data-en="Earth">Земля</h3>
         <p data-en="Mountain rock saturates the water with natural minerals.">Горные породы насыщают воду природными минералами.</p>
@@ -192,6 +265,7 @@
     </article>
     <article class="el el-fire reveal" tabindex="0">
       <img class="el-photo" src="assets/photos/element-fire.webp" width="1672" height="941" loading="lazy" alt="Огонь — вулканическое тепло и лава" />
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 2 L30 26 L2 26 Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
       <div class="el-body">
         <h3 data-en="Fire">Огонь</h3>
         <p data-en="Underground heat and thermal springs complete the natural process.">Подземное тепло и термальные источники завершают природный процесс.</p>
@@ -370,7 +444,7 @@
       <span class="trust-num">04</span>
       <h3 data-en="Compliance with standards">Соблюдение стандартов</h3>
       <p data-en="FSSC 22000, EAEU state registration and Russian Quality Mark — the documents are below.">FSSC 22000, государственная регистрация ЕАЭС и Российский знак качества — документы ниже.</p>
-      <a class="trust-link" href="#docs" data-en="Open documents">Открыть документы</a>
+      <a class="trust-link" href="documents.html" data-en="Open documents">Открыть документы</a>
     </li>
     <li class="trust-card reveal">
       <span class="trust-num">05</span>
@@ -384,34 +458,46 @@
     <h3 class="docs-title" data-en="Documents and certificates">Документы и сертификаты</h3>
     <ul class="docs-grid">
       <li class="doc reveal">
-        <span class="doc-mark" aria-hidden="true">✓</span>
-        <span class="doc-name">FSSC 22000</span>
-        <span class="doc-desc" data-en="Food safety management certification, 2020">Сертификация системы менеджмента безопасности пищевой продукции, 2020</span>
+        <a class="doc-link" href="documents.html#fssc" data-analytics="doc-open" data-doc="FSSC 22000">
+          <span class="doc-mark" aria-hidden="true">✓</span>
+          <span class="doc-name">FSSC 22000</span>
+          <span class="doc-desc" data-en="Food safety management certification, 2020">Сертификация системы менеджмента безопасности пищевой продукции, 2020</span>
+        </a>
       </li>
       <li class="doc reveal">
-        <span class="doc-mark" aria-hidden="true">✓</span>
-        <span class="doc-name">ГОСТ Р 54316</span>
-        <span class="doc-desc" data-en="Natural mineral waters — state standard">Природные минеральные воды — государственный стандарт</span>
+        <a class="doc-link" href="documents.html#gost" data-analytics="doc-open" data-doc="ГОСТ Р 54316">
+          <span class="doc-mark" aria-hidden="true">✓</span>
+          <span class="doc-name">ГОСТ Р 54316</span>
+          <span class="doc-desc" data-en="Natural mineral waters — state standard">Природные минеральные воды — государственный стандарт</span>
+        </a>
       </li>
       <li class="doc reveal">
-        <span class="doc-mark" aria-hidden="true">✓</span>
-        <span class="doc-name" data-en="EAEU registration">Госрегистрация ЕАЭС</span>
-        <span class="doc-desc">RU.77.99.32.006.R.002711.08.22</span>
+        <a class="doc-link" href="documents.html#eaes" data-analytics="doc-open" data-doc="Госрегистрация ЕАЭС">
+          <span class="doc-mark" aria-hidden="true">✓</span>
+          <span class="doc-name" data-en="EAEU registration">Госрегистрация ЕАЭС</span>
+          <span class="doc-desc">RU.77.99.32.006.R.002711.08.22</span>
+        </a>
       </li>
       <li class="doc reveal">
-        <span class="doc-mark" aria-hidden="true">✓</span>
-        <span class="doc-name" data-en="Certificate of conformity">Сертификат соответствия</span>
-        <span class="doc-desc">№ РОСС RU.11АБ45.00317</span>
+        <a class="doc-link" href="documents.html#conformity" data-analytics="doc-open" data-doc="Сертификат соответствия">
+          <span class="doc-mark" aria-hidden="true">✓</span>
+          <span class="doc-name" data-en="Certificate of conformity">Сертификат соответствия</span>
+          <span class="doc-desc">№ РОСС RU.11АБ45.00317</span>
+        </a>
       </li>
       <li class="doc reveal">
-        <span class="doc-mark" aria-hidden="true">✓</span>
-        <span class="doc-name" data-en="Russian Quality Mark">Российский знак качества</span>
-        <span class="doc-desc" data-en="National quality assessment">Национальная оценка качества</span>
+        <a class="doc-link" href="documents.html#quality-mark" data-analytics="doc-open" data-doc="Российский знак качества">
+          <span class="doc-mark" aria-hidden="true">✓</span>
+          <span class="doc-name" data-en="Russian Quality Mark">Российский знак качества</span>
+          <span class="doc-desc" data-en="National quality assessment">Национальная оценка качества</span>
+        </a>
       </li>
       <li class="doc reveal">
-        <span class="doc-mark" aria-hidden="true">✓</span>
-        <span class="doc-name" data-en="EAEU declaration">Декларация ЕАЭС</span>
-        <span class="doc-desc">N RU Д-RU.РА02.В.96742/22</span>
+        <a class="doc-link" href="documents.html#conformity" data-analytics="doc-open" data-doc="Декларация ЕАЭС">
+          <span class="doc-mark" aria-hidden="true">✓</span>
+          <span class="doc-name" data-en="EAEU declaration">Декларация ЕАЭС</span>
+          <span class="doc-desc">N RU Д-RU.РА02.В.96742/22</span>
+        </a>
       </li>
     </ul>
     <p class="docs-note" data-en="Data based on the manufacturer's specifications; exact values for each batch are shown on the label.">Данные приведены по документации производителя; точные значения по партии указаны на этикетке.</p>
@@ -432,7 +518,7 @@
       </div>
       <h3>Целебная <em>0.5</em></h3>
       <p class="product-type" data-en="Sparkling · glass «Elita»">Газированная · стекло «Элита»</p>
-      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+      <a class="btn btn-outline" href="#where" data-analytics="product-buy" data-product="celebnaya-glass-elita-05" data-en="Buy">Купить</a>
     </article>
     <article class="product reveal">
       <div class="product-photo">
@@ -440,7 +526,7 @@
       </div>
       <h3>Целебная <em>0.5</em></h3>
       <p class="product-type" data-en="Sparkling · glass «Euro»">Газированная · стекло «Евро»</p>
-      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+      <a class="btn btn-outline" href="#where" data-analytics="product-buy" data-product="celebnaya-glass-euro-05" data-en="Buy">Купить</a>
     </article>
     <article class="product reveal">
       <div class="product-photo">
@@ -448,7 +534,7 @@
       </div>
       <h3>Целебная <em>0.5</em></h3>
       <p class="product-type" data-en="Sparkling · PET">Газированная · ПЭТ</p>
-      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+      <a class="btn btn-outline" href="#where" data-analytics="product-buy" data-product="celebnaya-pet-05" data-en="Buy">Купить</a>
     </article>
     <article class="product reveal">
       <div class="product-photo">
@@ -456,7 +542,7 @@
       </div>
       <h3>Целебная <em>1.0</em></h3>
       <p class="product-type" data-en="Sparkling · PET">Газированная · ПЭТ</p>
-      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+      <a class="btn btn-outline" href="#where" data-analytics="product-buy" data-product="celebnaya-pet-10" data-en="Buy">Купить</a>
     </article>
     <article class="product reveal">
       <div class="product-photo">
@@ -464,7 +550,7 @@
       </div>
       <h3>Целебная <em>1.5</em></h3>
       <p class="product-type" data-en="Sparkling · PET">Газированная · ПЭТ</p>
-      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+      <a class="btn btn-outline" href="#where" data-analytics="product-buy" data-product="celebnaya-pet-15" data-en="Buy">Купить</a>
     </article>
   </div>
 </section>
@@ -575,5 +661,6 @@
 </div>
 
 <script src="js/main.js"></script>
+<script src="js/cms.js"></script>
 </body>
 </html>
