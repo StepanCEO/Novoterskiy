@@ -290,51 +290,32 @@ img, svg { display: block; max-width: 100%; }
 }
 .bottle {
   position: relative;
-  width: 92px; height: 260px;
+  width: auto; height: 340px;
   margin: 0 auto;
-  border-radius: 40px 40px 26px 26px / 60px 60px 26px 26px;
-  background: linear-gradient(100deg, rgba(255,255,255,0.65), rgba(220,235,245,0.5));
-  border: 1px solid rgba(255,255,255,0.8);
-  box-shadow: var(--shadow-soft), inset 0 0 30px rgba(255,255,255,0.6);
-  overflow: hidden;
-  backdrop-filter: blur(2px);
+  filter: drop-shadow(0 24px 34px rgba(60,105,130,0.28));
 }
-.bottle::before {
-  content: "";
-  position: absolute;
-  top: -26px; left: 50%;
-  width: 26px; height: 40px;
-  transform: translateX(-50%);
-  background: linear-gradient(#eef5fa, #cfe0ea);
-  border-radius: 6px 6px 0 0;
+.bottle-photo {
+  display: block;
+  height: 100%;
+  width: auto;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: bottlefloat 6s ease-in-out infinite;
 }
-.bottle-water {
-  position: absolute;
-  inset: 30% 0 0 0;
-  background: linear-gradient(to top, var(--glacier), rgba(143,195,216,0.7));
-  animation: sway 6s ease-in-out infinite;
-}
-@keyframes sway {
-  0%,100% { clip-path: polygon(0 12%, 25% 6%, 55% 12%, 80% 5%, 100% 11%, 100% 100%, 0 100%); }
-  50%     { clip-path: polygon(0 6%, 25% 13%, 55% 5%, 80% 12%, 100% 6%, 100% 100%, 0 100%); }
-}
-.bottle-label {
-  position: absolute;
-  top: 46%; left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 2;
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
-  text-align: center;
-  color: #fff;
-  line-height: 1.4;
+@keyframes bottlefloat {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-10px); }
 }
 .bottle-shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.75) 50%, transparent 60%);
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.55) 50%, transparent 58%);
   background-size: 250% 100%;
+  -webkit-mask: url("../assets/products/celebnaya-glass-elita-05.webp") center/auto 100% no-repeat;
+          mask: url("../assets/products/celebnaya-glass-elita-05.webp") center/auto 100% no-repeat;
   animation: shine 5.5s ease-in-out infinite;
 }
 @keyframes shine {
