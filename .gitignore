@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Local tooling
+.claude/
+
+# Private spec — contains pricing / contract details, keep out of public repo
+ТЗ.md
+

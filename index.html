@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Novoterskaya — Рожденная ледниками. Закаленная сердцем земли</title>
+<meta name="description" content="Природная минеральная вода Novoterskaya. Путь каждой капли начинается на вершинах Эльбруса: лёд, горные породы и подземное тепло создают природный баланс четырёх стихий." />
+<meta name="theme-color" content="#FBFCFE" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Novoterskaya — Баланс четырёх стихий" />
+<meta property="og:description" content="Рожденная ледниками. Закаленная сердцем земли. Природная минеральная вода с вершин Эльбруса." />
+<meta property="og:image" content="assets/og-cover.jpg" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:locale:alternate" content="en_US" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=cyrillic,latin" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Novoterskaya",
+  "url": "https://novoterskaya.example",
+  "logo": "https://novoterskaya.example/assets/logo.svg",
+  "description": "Природная минеральная вода с вершин Эльбруса, регион Кавказских Минеральных Вод.",
+  "areaServed": "RU"
+}
+</script>
+</head>
+<body>
+
+<!-- Water thread — the signature line traveling the whole page -->
+<svg class="thread" aria-hidden="true" viewBox="0 0 40 1000" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="threadGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EAF3F9" />
+      <stop offset="22%" stop-color="#8FC3D8" />
+      <stop offset="48%" stop-color="#6FA8C4" />
+      <stop offset="70%" stop-color="#5E8B6A" />
+      <stop offset="100%" stop-color="#D08A45" />
+    </linearGradient>
+  </defs>
+  <path class="thread-path" d="M20 0 C 10 120, 30 200, 20 320 S 8 520, 22 660 S 30 840, 20 1000" fill="none" stroke="url(#threadGrad)" stroke-width="2" />
+</svg>
+
+<header class="site-header" id="top">
+  <a class="brand" href="#top" aria-label="Novoterskaya — на главную">
+    <svg class="brand-mark" viewBox="0 0 32 28" aria-hidden="true">
+      <path d="M16 2 L30 26 L2 26 Z" fill="none" stroke="currentColor" stroke-width="1.4" />
+      <path d="M16 10 L23 23 L9 23 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55" />
+    </svg>
+    <span class="brand-name">Novoterskaya</span>
+  </a>
+
+  <nav class="site-nav" aria-label="Основная навигация">
+    <a href="#elements" data-en="Four elements">Четыре стихии</a>
+    <a href="#path" data-en="Water's path">Путь воды</a>
+    <a href="#minerals" data-en="Composition">Состав</a>
+    <a href="#trust" data-en="Quality">Качество</a>
+    <a href="#collection" data-en="Collection">Коллекция</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Сменить язык / Switch language">
+      <span class="lang-opt is-active" data-lang="ru">RU</span>
+      <span class="lang-sep">·</span>
+      <span class="lang-opt" data-lang="en">EN</span>
+    </button>
+    <a class="btn btn-sm" href="#collection" data-en="Buy">Купить</a>
+  </div>
+</header>
+
+<main>
+<!-- ============ 1 · HERO ============ -->
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="hero-sky" aria-hidden="true">
+    <span class="cloud cloud-1"></span>
+    <span class="cloud cloud-2"></span>
+    <span class="cloud cloud-3"></span>
+  </div>
+  <div class="hero-peaks" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-steam" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="eyebrow reveal" data-en="Natural mineral water · Elbrus">Природная минеральная вода · Эльбрус</p>
+    <h1 class="hero-title reveal" id="hero-title" data-en="Born of glaciers. Tempered by the heart of the earth.">Рожденная ледниками.<br />Закаленная&nbsp;сердцем&nbsp;земли.</h1>
+    <p class="hero-sub reveal" data-en="Every drop begins on the summits of Elbrus and continues deep in the earth, where cold, heat and mountain rock create a natural balance.">
+      Путь каждой капли начинается на вершинах Эльбруса и продолжается в глубинах земли, где холод, тепло и горные породы создают природный баланс.
+    </p>
+    <div class="hero-cta reveal">
+      <a class="btn btn-primary" href="#elements" data-en="Begin the journey">Начать путешествие</a>
+      <a class="btn btn-ghost" href="#origin" data-en="Discover the story">Узнать историю</a>
+    </div>
+  </div>
+
+  <!-- The bottle: water column + label shimmer -->
+  <figure class="hero-bottle reveal" aria-label="Бутылка Novoterskaya">
+    <div class="bottle">
+      <div class="bottle-water"></div>
+      <div class="bottle-label"><span>NOVO<br>TERSKAYA</span></div>
+      <div class="bottle-shine"></div>
+    </div>
+    <span class="splash splash-a" aria-hidden="true"></span>
+    <span class="splash splash-b" aria-hidden="true"></span>
+  </figure>
+
+  <div class="hero-elements" aria-hidden="true">
+    <span data-en="Air">Воздух</span><i></i>
+    <span data-en="Ice">Лёд</span><i></i>
+    <span data-en="Earth">Земля</span><i></i>
+    <span data-en="Fire">Огонь</span>
+  </div>
+
+  <a class="scroll-hint" href="#elements" aria-label="Пролистать вниз"><span></span></a>
+</section>
+
+<!-- ============ 2 · FOUR ELEMENTS ============ -->
+<section class="elements" id="elements" aria-labelledby="elements-title">
+  <div class="section-head">
+    <p class="eyebrow" data-en="The legend">Легенда</p>
+    <h2 class="section-title" id="elements-title" data-en="The balance of four elements">Баланс четырёх стихий</h2>
+    <p class="section-lede" data-en="Air, ice, earth and fire — one continuous natural panorama, not four separate stories.">
+      Воздух, Лёд, Земля и Огонь — единая природная панорама, а не четыре отдельных истории.
+    </p>
+  </div>
+
+  <div class="elements-grid">
+    <article class="el el-air reveal" tabindex="0">
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      <h3 data-en="Air">Воздух</h3>
+      <p data-en="The purity of heights. The path begins at the summits of Elbrus.">Чистота высоты. Путь начинается у вершин Эльбруса.</p>
+    </article>
+    <article class="el el-ice reveal" tabindex="0">
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      <h3 data-en="Ice">Лёд</h3>
+      <p data-en="Meltwater slowly passes through ice and mountain strata.">Талая вода медленно проходит сквозь лёд и горные слои.</p>
+    </article>
+    <article class="el el-earth reveal" tabindex="0">
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      <h3 data-en="Earth">Земля</h3>
+      <p data-en="Mountain rock saturates the water with natural minerals.">Горные породы насыщают воду природными минералами.</p>
+    </article>
+    <article class="el el-fire reveal" tabindex="0">
+      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      <h3 data-en="Fire">Огонь</h3>
+      <p data-en="Underground heat and thermal springs complete the natural process.">Подземное тепло и термальные источники завершают природный процесс.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 3 · WATER'S PATH ============ -->
+<section class="path" id="path" aria-labelledby="path-title">
+  <div class="section-head">
+    <p class="eyebrow" data-en="The process">Процесс</p>
+    <h2 class="section-title" id="path-title" data-en="The water's path">Путь воды</h2>
+    <p class="section-lede" data-en="Follow a single drop: summit, glacier, rock, underground heat, natural spring.">
+      Следуйте за каплей: вершина, ледник, горная порода, подземное тепло, природный источник.
+    </p>
+  </div>
+
+  <ol class="path-steps">
+    <li class="path-step reveal" data-stage="air">
+      <span class="path-dot"></span>
+      <div class="path-body">
+        <h3 data-en="Summit · Air">Вершина · Воздух</h3>
+        <p data-en="Clouds gather over Elbrus; the first meltwater appears.">Облака сгущаются над Эльбрусом; появляется первая талая вода.</p>
+      </div>
+    </li>
+    <li class="path-step reveal" data-stage="ice">
+      <span class="path-dot"></span>
+      <div class="path-body">
+        <h3 data-en="Glacier · Ice">Ледник · Лёд</h3>
+        <p data-en="The stream slips into a fissure and descends through the rock.">Поток уходит в трещину и опускается сквозь породу.</p>
+      </div>
+    </li>
+    <li class="path-step reveal" data-stage="earth">
+      <span class="path-dot"></span>
+      <div class="path-body">
+        <h3 data-en="Rock · Earth">Порода · Земля</h3>
+        <p data-en="Deep layers give the water its natural mineral character.">Глубокие слои придают воде природный минеральный характер.</p>
+      </div>
+    </li>
+    <li class="path-step reveal" data-stage="fire">
+      <span class="path-dot"></span>
+      <div class="path-body">
+        <h3 data-en="Depth · Fire">Глубина · Огонь</h3>
+        <p data-en="Underground warmth and thermal steam meet the flow.">Подземное тепло и термальный пар встречают поток.</p>
+      </div>
+    </li>
+    <li class="path-step reveal" data-stage="spring">
+      <span class="path-dot"></span>
+      <div class="path-body">
+        <h3 data-en="Rise · Spring">Подъём · Источник</h3>
+        <p data-en="The water surfaces among green forest, moss and a clear stream.">Вода выходит на поверхность среди зелёного леса, мха и чистого ручья.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+<!-- ============ 4 · MINERAL COMPOSITION ============ -->
+<section class="minerals" id="minerals" aria-labelledby="minerals-title">
+  <div class="section-head">
+    <p class="eyebrow" data-en="What's inside">Что внутри</p>
+    <h2 class="section-title" id="minerals-title" data-en="Natural mineral composition">Природный минеральный состав</h2>
+  </div>
+
+  <div class="mineral-grid">
+    <article class="mineral cold reveal">
+      <span class="mineral-sym">Si</span>
+      <h3 data-en="Silicon">Кремний</h3>
+      <p data-en="A natural component of the water. Supports tissues and the skeletal system.*">Природный компонент воды. Поддерживает ткани и костную систему.*</p>
+    </article>
+    <article class="mineral warm reveal">
+      <span class="mineral-sym">Ca</span>
+      <h3 data-en="Calcium">Кальций</h3>
+      <p data-en="The foundation of strong bones and teeth.*">Основа прочности костей и зубов.*</p>
+    </article>
+    <article class="mineral cold reveal">
+      <span class="mineral-sym">Mg</span>
+      <h3 data-en="Magnesium">Магний</h3>
+      <p data-en="Supports the nervous system and heart rhythm.*">Поддержка нервной системы и сердечного ритма.*</p>
+    </article>
+    <article class="mineral warm reveal">
+      <span class="mineral-sym">HCO₃</span>
+      <h3 data-en="Bicarbonates">Гидрокарбонаты</h3>
+      <p data-en="Help maintain the acid–base balance.*">Помогают сохранять кислотно-щелочной баланс.*</p>
+    </article>
+  </div>
+  <p class="mineral-note" data-en="* Final wording on physiological effects is published only after review by a technologist, lawyer and labeling specialist. Until then — neutral wording about composition.">
+    * Финальные формулировки о физиологическом воздействии публикуются только после проверки технологом, юристом и специалистом по маркировке. До согласования — нейтральные формулировки о составе.
+  </p>
+</section>
+
+<!-- ============ 5 · ORIGIN STORY ============ -->
+<section class="origin" id="origin" aria-labelledby="origin-title">
+  <div class="origin-veil" aria-hidden="true"></div>
+  <div class="origin-inner">
+    <p class="eyebrow light" data-en="Origin">Происхождение</p>
+    <h2 class="origin-title" id="origin-title" data-en="Decades of passage. Thousands of meters through the earth. One perfect drop.">
+      Десятилетия пути. Тысячи метров сквозь землю. Одна совершенная капля.
+    </h2>
+    <a class="btn btn-primary" href="#trust" data-en="Read the origin story">Читать историю происхождения</a>
+  </div>
+</section>
+
+<!-- ============ 6 · TRUST & QUALITY ============ -->
+<section class="trust" id="trust" aria-labelledby="trust-title">
+  <div class="section-head">
+    <p class="eyebrow" data-en="Proof">Доказательства</p>
+    <h2 class="section-title" id="trust-title" data-en="Trust and quality">Доверие и качество</h2>
+    <p class="section-lede" data-en="The rational case behind the legend: preparation, materials, control and standards.">
+      Рациональная опора легенды: подготовка, материалы, контроль и стандарты.
+    </p>
+  </div>
+
+  <div class="trust-grid">
+    <article class="trust-card reveal">
+      <span class="trust-num">01</span>
+      <h3 data-en="Careful water preparation">Бережная подготовка воды</h3>
+      <p data-en="Stages of preparation and purification, consistent with the actual process.">Этапы подготовки и очистки в соответствии с фактическим процессом.</p>
+    </article>
+    <article class="trust-card reveal">
+      <span class="trust-num">02</span>
+      <h3 data-en="Stainless steel">Нержавеющая сталь</h3>
+      <p data-en="Equipment and materials that keep the water's character intact.">Оборудование и материалы, сохраняющие характер воды.</p>
+    </article>
+    <article class="trust-card reveal">
+      <span class="trust-num">03</span>
+      <h3 data-en="Quality control">Контроль качества</h3>
+      <p data-en="Laboratory testing, regular checks and safety indicators.">Лаборатория, регулярные проверки и показатели безопасности.</p>
+    </article>
+    <article class="trust-card reveal">
+      <span class="trust-num">04</span>
+      <h3 data-en="Compliance with standards">Соблюдение стандартов</h3>
+      <p data-en="Certificates and norms, with documents available to open.">Сертификаты и нормативы с возможностью открыть документы.</p>
+      <a class="trust-link" href="#" data-en="Open documents">Открыть документы</a>
+    </article>
+    <article class="trust-card reveal">
+      <span class="trust-num">05</span>
+      <h3 data-en="Flawless process">Безупречность процесса</h3>
+      <p data-en="Clean production, precise bottling, preserved composition.">Чистота производства, точность розлива, сохранение состава.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 7 · COLLECTION ============ -->
+<section class="collection" id="collection" aria-labelledby="collection-title">
+  <div class="section-head">
+    <p class="eyebrow" data-en="The range">Линейка</p>
+    <h2 class="section-title" id="collection-title" data-en="The collection">Коллекция</h2>
+  </div>
+
+  <div class="collection-track">
+    <article class="product reveal">
+      <div class="product-bottle"><span class="pb-water"></span></div>
+      <h3>Novoterskaya <em>0.5</em></h3>
+      <p class="product-type" data-en="Sparkling · glass">Газированная · стекло</p>
+      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+    </article>
+    <article class="product reveal">
+      <div class="product-bottle tall"><span class="pb-water"></span></div>
+      <h3>Novoterskaya <em>0.75</em></h3>
+      <p class="product-type" data-en="Still · glass">Негазированная · стекло</p>
+      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+    </article>
+    <article class="product reveal">
+      <div class="product-bottle"><span class="pb-water"></span></div>
+      <h3>Novoterskaya <em>1.0</em></h3>
+      <p class="product-type" data-en="Sparkling · PET">Газированная · PET</p>
+      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+    </article>
+    <article class="product reveal">
+      <div class="product-bottle short"><span class="pb-water"></span></div>
+      <h3>Novoterskaya <em>0.33</em></h3>
+      <p class="product-type" data-en="Still · glass">Негазированная · стекло</p>
+      <a class="btn btn-outline" href="#" data-en="Buy">Купить</a>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 8 · FINAL BRAND SCREEN ============ -->
+<section class="final" id="final" aria-labelledby="final-title">
+  <div class="final-quadrants" aria-hidden="true">
+    <span class="q q-air"></span><span class="q q-ice"></span>
+    <span class="q q-earth"></span><span class="q q-fire"></span>
+  </div>
+  <div class="final-inner">
+    <svg class="final-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 2 L30 26 L2 26 Z" fill="none" stroke="currentColor" stroke-width="1.1"/></svg>
+    <blockquote class="final-quote" id="final-title" data-en="We do not create water. We only carefully preserve the path that nature travelled for decades.">
+      Мы не создаем воду. Мы лишь бережно сохраняем путь, который природа проходила десятилетиями.
+    </blockquote>
+    <p class="final-accent" data-en="The purity of nature. The perfection of production.">Чистота природы. Безупречность производства.</p>
+    <a class="btn btn-primary btn-lg" href="#collection" data-en="Taste the balance of nature">Попробовать баланс природы</a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-name">Novoterskaya</span>
+      <p data-en="Born of glaciers. Tempered by the heart of the earth.">Рожденная ледниками. Закаленная сердцем земли.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Подвал">
+      <a href="#elements" data-en="Four elements">Четыре стихии</a>
+      <a href="#path" data-en="Water's path">Путь воды</a>
+      <a href="#minerals" data-en="Composition">Состав</a>
+      <a href="#trust" data-en="Quality">Качество</a>
+      <a href="#collection" data-en="Collection">Коллекция</a>
+    </nav>
+    <div class="footer-legal">
+      <a href="#" data-en="Privacy policy">Политика конфиденциальности</a>
+      <span data-en="© 2026 AO Kavminvody. КМВ.">© 2026 АО «Кавминводы». КМВ.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie banner -->
+<div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie">
+  <p data-en="We use cookies to keep the site working and to understand how it is used.">Мы используем cookie, чтобы сайт работал и чтобы понимать, как им пользуются.</p>
+  <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
