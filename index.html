@@ -20,7 +20,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=cyrillic,latin" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap&subset=cyrillic,latin" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 
 <!-- Structured data -->
@@ -82,22 +82,23 @@
 <main>
 <!-- ============ 1 · HERO ============ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <svg class="hero-topo" viewBox="0 0 600 600" aria-hidden="true" preserveAspectRatio="xMaxYMin meet">
-    <g fill="none" stroke="currentColor" stroke-width="1.4">
-      <ellipse cx="360" cy="240" rx="58" ry="46" />
-      <ellipse cx="352" cy="236" rx="108" ry="90" />
-      <ellipse cx="344" cy="232" rx="162" ry="138" />
-      <ellipse cx="336" cy="228" rx="222" ry="190" />
-      <ellipse cx="330" cy="226" rx="286" ry="246" />
+  <!-- Topographic contour lines, top-right corner -->
+  <svg class="hero-topo" viewBox="0 0 420 300" aria-hidden="true" preserveAspectRatio="xMaxYMin meet">
+    <g fill="none" stroke="currentColor" stroke-width="1.1">
+      <path d="M420 18 C 360 6, 300 34, 268 78 C 244 112, 258 150, 300 162 C 348 176, 402 154, 420 118" />
+      <path d="M420 44 C 372 32, 322 54, 296 88 C 276 116, 288 146, 322 156 C 360 166, 404 148, 420 122" />
+      <path d="M420 68 C 384 58, 344 74, 324 100 C 310 120, 318 142, 344 150 C 372 158, 406 144, 420 124" />
+      <path d="M420 90 C 396 84, 366 94, 352 110 C 342 124, 348 138, 366 144 C 386 150, 410 140, 420 126" />
+      <path d="M268 14 C 236 30, 218 62, 230 92 C 240 116, 268 126, 292 114" />
+      <path d="M244 0 C 210 20, 190 60, 204 98 C 214 126, 246 140, 276 128" />
     </g>
   </svg>
 
   <div class="hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow reveal" data-en="Natural mineral water · Elbrus">Природная минеральная вода · Эльбрус</p>
-      <h1 class="hero-title reveal" id="hero-title" data-en="Born of glaciers.<br />Tempered by the heart of the earth.">Рожденная ледниками.<br />Закаленная сердцем земли.</h1>
-      <p class="hero-sub reveal" data-en="Every drop begins on the summits of Elbrus and continues deep in the earth, where cold, heat and mountain rock create a natural balance.">
-        Путь каждой капли начинается на вершинах Эльбруса и продолжается в глубинах земли, где холод, тепло и горные породы создают природный баланс.
+      <h1 class="hero-title reveal" id="hero-title" data-en="<span class='hero-line'>Born of glaciers.</span> <span class='hero-line'>Tempered by the heart of the earth.</span>"><span class="hero-line">Рожденная ледниками.</span> <span class="hero-line">Закаленная сердцем земли.</span></h1>
+      <p class="hero-sub reveal" data-en="Every drop of Novoterskaya begins its journey on the summits of Elbrus and passes through the depths of the earth, joining the power of nature in perfect balance.">
+        Каждая капля Novoterskaya начинает свой путь на вершинах Эльбруса и проходит через глубины земли, соединяя силу природы в идеальном балансе.
       </p>
       <div class="hero-cta reveal">
         <a class="btn-play" href="#origin" aria-label="Узнать историю">
@@ -109,7 +110,7 @@
       </div>
     </div>
 
-    <!-- The bottle: real photo over a mountain medallion + shine sweep + splash + mist -->
+    <!-- The bottle: tilted photo over a circular mountain medallion + mist + rocks -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="hero-medallion" aria-hidden="true">
         <img src="assets/photos/hero-mountain.webp" width="1672" height="941" alt="" loading="eager" />
@@ -118,10 +119,19 @@
         <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
         <div class="bottle-shine"></div>
       </div>
-      <span class="splash splash-a" aria-hidden="true"></span>
-      <span class="splash splash-b" aria-hidden="true"></span>
+      <div class="hero-rocks" aria-hidden="true">
+        <img src="assets/photos/element-earth.webp" width="1672" height="941" alt="" loading="eager" />
+      </div>
       <div class="hero-mist" aria-hidden="true"></div>
     </figure>
+  </div>
+
+  <!-- Dot pagination, right edge -->
+  <div class="hero-dots" aria-hidden="true">
+    <span class="dot is-active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
   </div>
 </section>
 
