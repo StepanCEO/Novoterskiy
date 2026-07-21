@@ -166,7 +166,7 @@ img, svg { display: block; max-width: 100%; }
   box-shadow: 0 6px 24px -18px rgba(20,49,63,0.4);
 }
 .brand { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--deep); }
-.brand-mark { width: 26px; height: auto; color: var(--glacier-d); }
+.brand-mark { height: 40px; width: auto; display: block; }
 .brand-name {
   font-family: var(--ff-display);
   font-size: 1.5rem;
