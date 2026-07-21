@@ -20,7 +20,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=cyrillic,latin" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=cyrillic,latin" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 
 <!-- Structured data -->
@@ -103,8 +103,11 @@
     </div>
   </div>
 
-  <!-- The bottle: real photo + shine sweep + ripple splashes -->
+  <!-- The bottle: real photo over a mountain medallion + shine sweep + ripple splashes -->
   <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
+    <div class="hero-medallion" aria-hidden="true">
+      <img src="assets/photos/hero-mountain.webp" width="1672" height="941" alt="" loading="eager" />
+    </div>
     <div class="bottle">
       <img class="bottle-photo" src="assets/products/celebnaya-glass-elita-05.webp" width="225" height="763" alt="Новотерская Целебная" />
       <div class="bottle-shine"></div>
@@ -135,24 +138,32 @@
 
   <div class="elements-grid">
     <article class="el el-air reveal" tabindex="0">
-      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-      <h3 data-en="Air">Воздух</h3>
-      <p data-en="The purity of heights. The path begins at the summits of Elbrus.">Чистота высоты. Путь начинается у вершин Эльбруса.</p>
+      <img class="el-photo" src="assets/photos/element-air.webp" width="1672" height="941" loading="lazy" alt="Воздух — небо и облака над Эльбрусом" />
+      <div class="el-body">
+        <h3 data-en="Air">Воздух</h3>
+        <p data-en="The purity of heights. The path begins at the summits of Elbrus.">Чистота высоты. Путь начинается у вершин Эльбруса.</p>
+      </div>
     </article>
     <article class="el el-ice reveal" tabindex="0">
-      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-      <h3 data-en="Ice">Лёд</h3>
-      <p data-en="Meltwater slowly passes through ice and mountain strata.">Талая вода медленно проходит сквозь лёд и горные слои.</p>
+      <img class="el-photo" src="assets/photos/element-ice.webp" width="1672" height="941" loading="lazy" alt="Лёд — голубой ледник" />
+      <div class="el-body">
+        <h3 data-en="Ice">Лёд</h3>
+        <p data-en="Meltwater slowly passes through ice and mountain strata.">Талая вода медленно проходит сквозь лёд и горные слои.</p>
+      </div>
     </article>
     <article class="el el-earth reveal" tabindex="0">
-      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-      <h3 data-en="Earth">Земля</h3>
-      <p data-en="Mountain rock saturates the water with natural minerals.">Горные породы насыщают воду природными минералами.</p>
+      <img class="el-photo" src="assets/photos/element-earth.webp" width="1672" height="941" loading="lazy" alt="Земля — слои горных пород" />
+      <div class="el-body">
+        <h3 data-en="Earth">Земля</h3>
+        <p data-en="Mountain rock saturates the water with natural minerals.">Горные породы насыщают воду природными минералами.</p>
+      </div>
     </article>
     <article class="el el-fire reveal" tabindex="0">
-      <svg class="el-mark" viewBox="0 0 32 28" aria-hidden="true"><path d="M16 3 L29 25 L3 25 Z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
-      <h3 data-en="Fire">Огонь</h3>
-      <p data-en="Underground heat and thermal springs complete the natural process.">Подземное тепло и термальные источники завершают природный процесс.</p>
+      <img class="el-photo" src="assets/photos/element-fire.webp" width="1672" height="941" loading="lazy" alt="Огонь — вулканическое тепло и лава" />
+      <div class="el-body">
+        <h3 data-en="Fire">Огонь</h3>
+        <p data-en="Underground heat and thermal springs complete the natural process.">Подземное тепло и термальные источники завершают природный процесс.</p>
+      </div>
     </article>
   </div>
 </section>
@@ -214,21 +225,25 @@
 
   <div class="mineral-grid">
     <article class="mineral cold reveal">
+      <div class="mineral-photo"><img src="assets/photos/mineral-si.webp" width="1672" height="941" loading="lazy" alt="Кремний — природный минерал" /></div>
       <span class="mineral-sym">Si</span>
       <h3 data-en="Silicon">Кремний</h3>
       <p data-en="A natural component of the water. Supports tissues and the skeletal system.*">Природный компонент воды. Поддерживает ткани и костную систему.*</p>
     </article>
     <article class="mineral warm reveal">
+      <div class="mineral-photo"><img src="assets/photos/mineral-ca.webp" width="1672" height="941" loading="lazy" alt="Кальций — природный минерал" /></div>
       <span class="mineral-sym">Ca</span>
       <h3 data-en="Calcium">Кальций</h3>
       <p data-en="The foundation of strong bones and teeth.*">Основа прочности костей и зубов.*</p>
     </article>
     <article class="mineral cold reveal">
+      <div class="mineral-photo"><img src="assets/photos/mineral-mg.webp" width="1672" height="941" loading="lazy" alt="Магний — природный минерал" /></div>
       <span class="mineral-sym">Mg</span>
       <h3 data-en="Magnesium">Магний</h3>
       <p data-en="Supports the nervous system and heart rhythm.*">Поддержка нервной системы и сердечного ритма.*</p>
     </article>
     <article class="mineral warm reveal">
+      <div class="mineral-photo"><img src="assets/photos/mineral-hco3.webp" width="1672" height="941" loading="lazy" alt="Гидрокарбонаты — природный минерал" /></div>
       <span class="mineral-sym">HCO₃</span>
       <h3 data-en="Bicarbonates">Гидрокарбонаты</h3>
       <p data-en="Help maintain the acid–base balance.*">Помогают сохранять кислотно-щелочной баланс.*</p>
