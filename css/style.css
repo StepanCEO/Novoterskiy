@@ -380,7 +380,8 @@ img, svg { display: block; max-width: 100%; }
 .hero-rocks-ridge {
   position: absolute;
   z-index: 2;
-  right: -7%;
+  /* The ridge begins behind the bottle base, as in the reference composition. */
+  right: 22%;
   bottom: 4%;
   width: min(66%, 360px);
   height: auto;
