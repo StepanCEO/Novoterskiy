@@ -1496,18 +1496,8 @@ img, svg { display: block; max-width: 100%; }
     radial-gradient(28% 30% at 76% 66%, rgba(194, 227, 231, 0.3), transparent 76%);
   animation: none;
 }
-.hero-bg { display: none; }
-.hero-ember {
-  position: absolute;
-  z-index: 1;
-  right: 12%;
-  bottom: 6%;
-  width: min(44vw, 520px);
-  height: min(18vw, 190px);
-  pointer-events: none;
-  background: radial-gradient(ellipse at 54% 64%, rgba(239, 173, 93, 0.25), rgba(244, 204, 153, 0.12) 34%, transparent 72%);
-  filter: blur(12px);
-}
+.hero-bg { display: block; }
+.hero-ember { display: none; }
 .hero-topo { top: 4.5rem; width: min(24vw, 330px); color: rgba(72, 124, 142, 0.17); }
 .hero-grid {
   max-width: 1180px;
@@ -1527,18 +1517,7 @@ img, svg { display: block; max-width: 100%; }
 .btn-play-pin { width: 42px; height: 42px; background: #17656a; }
 .hero-bottle { min-height: clamp(490px, 48vw, 610px); isolation: isolate; }
 .hero-bottle::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  left: 50%;
-  top: 2%;
-  width: min(80%, 520px);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: url("../assets/photos/hero-mountain.webp") 56% 34% / cover no-repeat;
-  filter: saturate(0.48) brightness(1.24) contrast(0.83);
-  box-shadow: inset 0 0 72px rgba(255,255,255,0.72), 0 14px 34px rgba(77, 130, 143, 0.08);
+  display: none;
 }
 .bottle { height: clamp(420px, 43vw, 590px); transform: rotate(17deg) translate(9%, 1%); }
 .bottle-video { mix-blend-mode: multiply; }
@@ -1575,9 +1554,7 @@ img, svg { display: block; max-width: 100%; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-cta { justify-content: center; }
   .hero-bottle { min-height: 348px; margin-top: -0.15rem; }
-  .hero-bottle::before { width: min(82%, 330px); top: 0; }
   .bottle { height: clamp(295px, 76vw, 365px); }
-  .hero-ember { right: 4%; bottom: 2%; width: 82vw; height: 135px; }
   .elements-grid { grid-template-columns: 1fr; height: auto; }
   .el { min-height: clamp(260px, 56svh, 420px); }
   .el-cap { padding: 1.5rem 0.8rem 0; }
