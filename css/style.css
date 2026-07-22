@@ -424,17 +424,6 @@ img, svg { display: block; max-width: 100%; }
   z-index: 5;
   pointer-events: none;
 }
-.hero-water::before,
-.hero-water::after {
-  content: "";
-  position: absolute;
-  left: 50%; top: 60%;
-  width: 100%; aspect-ratio: 3 / 1;
-  transform: translate(-50%, -50%) scale(0.4);
-  border-radius: 50%;
-  border: 1.5px solid rgba(94,178,196,0.5);
-  opacity: 0;
-}
 .hero-water .drop {
   position: absolute;
   bottom: 42%;
@@ -446,11 +435,6 @@ img, svg { display: block; max-width: 100%; }
 .hero-water .drop:nth-child(1) { left: 32%; }
 .hero-water .drop:nth-child(2) { left: 52%; width: 4px; height: 4px; }
 .hero-water .drop:nth-child(3) { left: 66%; }
-@keyframes ripple {
-  0%   { transform: translate(-50%,-50%) scale(0.4); opacity: 0; }
-  28%  { opacity: 0.65; }
-  100% { transform: translate(-50%,-50%) scale(1.18); opacity: 0; }
-}
 @keyframes splash {
   0%   { transform: translateY(0) scale(0.6); opacity: 0; }
   22%  { opacity: 0.9; }
@@ -485,24 +469,6 @@ img, svg { display: block; max-width: 100%; }
   0%,100% { transform: translateX(-3%); }
   50%     { transform: translateX(3%); }
 }
-/* golden underground warmth rising from the base */
-.hero-glow {
-  grid-area: 1 / 1;
-  align-self: end;
-  width: 120%;
-  height: 48%;
-  z-index: 5;
-  opacity: 0;
-  pointer-events: none;
-  background: radial-gradient(58% 84% at 50% 100%, rgba(224,146,66,0.62), rgba(230,178,96,0.3) 44%, transparent 76%);
-  filter: blur(14px);
-  mix-blend-mode: multiply;
-}
-@keyframes glowFloat {
-  0%,100% { transform: translateY(6%) scale(1); }
-  50%     { transform: translateY(0) scale(1.05); }
-}
-
 /* ---------- 2 · FOUR ELEMENTS ---------- */
 .elements { padding: clamp(5rem, 9vw, 8rem) 0; }
 .elements-grid {
@@ -1286,15 +1252,13 @@ img, svg { display: block; max-width: 100%; }
 .hero.loaded .hero-clouds { animation: cloudIn 1.6s 0.4s ease-out forwards, cloudDrift 16s ease-in-out 2s infinite; }
 @keyframes cloudIn { from { opacity: 0; } to { opacity: 0.85; } }
 
-/* 1.5–3s · ice & water appear — stream ripples + cold silvery-turquoise glint */
+/* 1.5–3s · ice & water appear — cold silvery-turquoise glint + splash drops */
 .hero.loaded .hero-glint { animation: glintSweep 2s 1.5s ease-in-out forwards; }
 @keyframes glintSweep {
   0%   { opacity: 0; background-position: 130% 0; }
   40%  { opacity: 1; }
   100% { opacity: 0; background-position: -30% 0; }
 }
-.hero.loaded .hero-water::before { animation: ripple 3.6s 1.6s ease-out infinite; }
-.hero.loaded .hero-water::after  { animation: ripple 3.6s 3.4s ease-out infinite; }
 .hero.loaded .hero-water .drop:nth-child(1) { animation: splash 3.6s 1.9s ease-out infinite; }
 .hero.loaded .hero-water .drop:nth-child(2) { animation: splash 3.6s 2.8s ease-out infinite; }
 .hero.loaded .hero-water .drop:nth-child(3) { animation: splash 3.6s 3.6s ease-out infinite; }
@@ -1306,10 +1270,6 @@ img, svg { display: block; max-width: 100%; }
 /* 3–4.5s · the bottle emerges from the mist, water flowing around it */
 .hero.loaded .bottle { animation: bottleEmerge 1.6s 3s cubic-bezier(.2,.7,.3,1) backwards; }
 @keyframes bottleEmerge { from { opacity: 0; filter: blur(8px) drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)); } to { opacity: 1; } }
-
-/* 4.5–6s · golden underground warmth, then calm loop */
-.hero.loaded .hero-glow { animation: glowIn 1.6s 4.5s ease-out forwards, glowFloat 9s ease-in-out 6s infinite; }
-@keyframes glowIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* 6s+ · calm loop — slow clouds, weak water, label shimmer, faint steam.
    (clouds/water/steam keep their infinite loops; label shine joins here) */
@@ -1382,10 +1342,9 @@ img, svg { display: block; max-width: 100%; }
   }
   .reveal, .hero .reveal { opacity: 1 !important; transform: none !important; }
   .hero-clouds { opacity: 0.85 !important; }
-  .hero-glow { opacity: 1 !important; }
   .hero-glint { opacity: 0 !important; }
   .hero-mist { opacity: 0.85 !important; }
-  .hero-water::before, .hero-water::after, .hero-water .drop { opacity: 0 !important; }
+  .hero-water .drop { opacity: 0 !important; }
   .hero::before { transform: none !important; }
   .bottle { opacity: 1 !important; filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)) !important; }
   .thread { display: none; }
