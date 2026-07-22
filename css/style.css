@@ -1540,7 +1540,6 @@ img, svg { display: block; max-width: 100%; }
   min-height: 178px;
   background: linear-gradient(180deg, rgba(251,247,242,0.98) 0%, rgba(251,247,242,0.92) 68%, rgba(251,247,242,0) 100%);
 }
-.el-earth .el-photo { object-position: center 65%; }
 .el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.86) 0%, rgba(251,247,242,0.32) 46%, rgba(251,247,242,0.04) 72%); }
 .el-fire .el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.92) 0%, rgba(247,222,192,0.58) 46%, rgba(170,112,70,0.22) 100%); }
 
