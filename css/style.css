@@ -99,7 +99,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* ---------- Buttons ---------- */
 .btn {
-  --_pad: 0.9em 1.6em;
+  --_pad: 0.8em 1.5em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +107,7 @@ img, svg { display: block; max-width: 100%; }
   padding: var(--_pad);
   font-family: var(--ff-body);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   letter-spacing: 0.01em;
   border-radius: 100px;
   border: 1px solid transparent;
@@ -116,7 +116,7 @@ img, svg { display: block; max-width: 100%; }
   will-change: transform;
 }
 .btn-sm { --_pad: 0.62em 1.2em; font-size: 0.82rem; }
-.btn-lg { --_pad: 1.05em 2.2em; font-size: 1rem; }
+.btn-lg { --_pad: 0.95em 2em; font-size: 0.95rem; }
 
 .btn-primary {
   color: #fff;
@@ -174,7 +174,7 @@ img, svg { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 0.9rem var(--gutter);
   background: rgba(251,252,254,0.72);
   backdrop-filter: blur(14px);
@@ -188,28 +188,29 @@ img, svg { display: block; max-width: 100%; }
 }
 .brand { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--deep); }
 .brand-mark { height: 40px; width: auto; display: block; }
-.brand-col { display: flex; flex-direction: column; line-height: 1.15; }
+.brand-col { display: flex; flex-direction: column; line-height: 1.15; white-space: nowrap; }
 .brand-name {
   font-family: var(--ff-serif);
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 .brand-tag {
-  font-size: 0.55rem;
+  font-size: 0.5rem;
   font-weight: 500;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
   margin-top: 2px;
 }
-.site-nav { display: flex; gap: 1.7rem; }
+.site-nav { display: flex; flex-wrap: nowrap; gap: clamp(0.9rem, 1.6vw, 1.6rem); }
 .site-nav a {
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--ink);
   position: relative;
   padding: 0.2rem 0;
@@ -1338,6 +1339,12 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 1439px) {
   :root { --wrap: 1080px; }
   .collection-track { grid-template-columns: repeat(3, 1fr); }
+}
+/* узкие ноутбуки: шапке тесно — компактнее бренд и меню */
+@media (max-width: 1279px) {
+  .brand-tag { display: none; }
+  .site-nav { gap: 0.9rem; }
+  .site-nav a { font-size: 0.66rem; letter-spacing: 0.07em; }
 }
 /* tablet 768–1023 */
 @media (max-width: 1023px) {
