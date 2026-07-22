@@ -377,6 +377,18 @@ img, svg { display: block; max-width: 100%; }
   z-index: 1;
   animation: bottlefloat 6s ease-in-out infinite;
 }
+.hero-rocks {
+  position: absolute;
+  left: 50%;
+  bottom: -1.2%;
+  z-index: 5;
+  width: min(112%, 650px);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 12px 14px rgba(20, 32, 36, 0.24));
+}
 @keyframes bottlefloat {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
@@ -426,7 +438,7 @@ img, svg { display: block; max-width: 100%; }
   width: 48%;
   height: 18%;
   margin-bottom: 5%;
-  z-index: 5;
+  z-index: 6;
   pointer-events: none;
 }
 .hero-water .drop {
@@ -1441,8 +1453,13 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 767px) {
   :root { --gutter: 20px; }
   .header-actions .btn { display: none; }
-  .hero { padding-top: 6.5rem; }
-  .bottle { height: clamp(320px, 84vw, 430px); transform: rotate(12deg) translate(4%, 2%); }
+  .hero { padding-top: 5.5rem; padding-bottom: 1rem; }
+  .hero-grid { gap: 0.75rem; }
+  .hero-title { font-size: 1.68rem; line-height: 1.25; }
+  .hero-sub { margin-top: 1rem; line-height: 1.6; }
+  .hero-cta { margin-top: 1.35rem; }
+  .bottle { height: clamp(290px, 76vw, 390px); transform: rotate(12deg) translate(4%, 2%); }
+  .hero-rocks { width: 138%; bottom: -0.4%; }
   .elements-grid { grid-template-columns: 1fr; gap: 2rem; }
   .el-photo-wrap { height: clamp(220px, 52vw, 300px); }
   .mineral-grid { grid-template-columns: 1fr; gap: 1.8rem; }
