@@ -360,14 +360,12 @@ img, svg { display: block; max-width: 100%; }
   transform: rotate(17deg) translate(10%, 2%);
   filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35));
 }
-/* Видео бутылки: белый фон ролика растворяется в странице (multiply),
-   как у камней-минералов; после последнего кадра видео застывает */
+/* Видео бутылки: настоящий альфа-канал (VP9), фон вырезан в самом файле */
 .bottle-video {
   display: block;
   height: 100%;
   width: auto;
   margin: 0 auto;
-  mix-blend-mode: multiply;
   animation: bottlefloat 6s ease-in-out infinite;
 }
 .bottle-photo {
