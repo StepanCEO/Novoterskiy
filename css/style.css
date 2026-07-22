@@ -549,14 +549,16 @@ img, svg { display: block; max-width: 100%; }
   max-width: 230px;
   margin: 0 auto;
 }
-.el-brand-mark {
-  display: block;
-  width: 38px;
-  height: auto;
-  margin: 0.1rem auto 0.75rem;
-  opacity: 0.6;
-  mix-blend-mode: multiply;
+.el-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin: 0.1rem auto 0.85rem;
+  color: #155861;
+  filter: drop-shadow(0 1px 5px rgba(255,255,255,0.92));
 }
+.el-icon svg { width: 100%; height: 100%; }
 
 .el-photo-wrap {
   position: relative;
@@ -1531,9 +1533,9 @@ img, svg { display: block; max-width: 100%; }
 .el { min-height: 0; overflow: hidden; }
 .el + .el { border-left: 1px solid rgba(255,255,255,0.38); }
 .el-photo-wrap { position: absolute; inset: 0; height: auto; margin: 0; }
-.el-cap { position: relative; z-index: 3; padding: clamp(1.8rem, 3.2vw, 2.7rem) 1rem 0; color: #1c4b50; }
-.el-cap h3 { font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: 0.11em; margin: 0 0 0.7rem; }
-.el-cap p { max-width: 190px; font-size: 0.72rem; line-height: 1.45; color: rgba(28, 75, 80, 0.86); }
+.el-cap { position: relative; z-index: 3; padding: clamp(1.8rem, 3.2vw, 2.7rem) 1rem 0; color: #123f46; text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
+.el-cap h3 { font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: 0.11em; margin: 0 0 0.7rem; color: #0d3f47; text-shadow: 0 1px 8px rgba(255,255,255,0.96); }
+.el-cap p { max-width: 190px; font-size: 0.74rem; font-weight: 600; line-height: 1.5; color: #123f46; text-shadow: 0 1px 8px rgba(255,255,255,0.96); }
 .el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.86) 0%, rgba(251,247,242,0.32) 46%, rgba(251,247,242,0.04) 72%); }
 .el-fire .el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.92) 0%, rgba(247,222,192,0.58) 46%, rgba(170,112,70,0.22) 100%); }
 
