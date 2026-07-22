@@ -462,6 +462,16 @@ img, svg { display: block; max-width: 100%; }
     linear-gradient(90deg, rgba(244,249,252,0.94) 0%, rgba(244,249,252,0.72) 32%, rgba(244,249,252,0.16) 58%, rgba(244,249,252,0.3) 100%),
     linear-gradient(180deg, rgba(244,249,252,0.28) 0%, rgba(244,249,252,0.06) 45%, rgba(247,247,242,0.9) 100%);
 }
+/* 4.5–6s · Огонь: тёплое золото сквозь дымку у основания — деликатно, без multiply */
+.hero-warmth {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(70% 46% at 58% 102%, rgba(233,178,98,0.4), rgba(238,196,128,0.16) 46%, transparent 72%);
+  filter: blur(6px);
+}
 
 /* Cinematic hero layers (0–6s narrative) */
 .hero-clouds,
@@ -1380,6 +1390,14 @@ img, svg { display: block; max-width: 100%; }
 .hero.loaded .bottle { animation: bottleEmerge 1.6s 3s cubic-bezier(.2,.7,.3,1) backwards; }
 @keyframes bottleEmerge { from { opacity: 0; filter: blur(8px) drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)); } to { opacity: 1; } }
 
+/* 4.5–6s · тёплое золотистое свечение снизу (Огонь), затем едва заметное дыхание */
+.hero.loaded .hero-warmth { animation: warmthIn 1.6s 4.5s ease-out forwards, warmthBreath 10s ease-in-out 6.5s infinite; }
+@keyframes warmthIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes warmthBreath {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.72; }
+}
+
 /* 6s+ · calm loop — slow clouds, weak water, label shimmer, faint steam.
    (clouds/water/steam keep their infinite loops; label shine joins here) */
 .hero.loaded .bottle-shine { animation: shine 5.5s ease-in-out 6s infinite; }
@@ -1465,6 +1483,7 @@ img, svg { display: block; max-width: 100%; }
   .hero-clouds { opacity: 0.85 !important; }
   .hero-glint { opacity: 0 !important; }
   .hero-mist { opacity: 0.85 !important; }
+  .hero-warmth { opacity: 1 !important; }
   .hero-water .drop { opacity: 0 !important; }
   .hero::before { transform: none !important; }
   .bottle { opacity: 1 !important; filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)) !important; }
