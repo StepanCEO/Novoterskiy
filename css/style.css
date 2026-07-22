@@ -302,7 +302,7 @@ img, svg { display: block; max-width: 100%; }
   overflow-wrap: break-word;
 }
 .hero-line { display: block; }
-.hero-line + .hero-line { margin-top: 0.55em; }
+.hero-line + .hero-line { margin-top: 0.15em; }
 .hero-sub {
   margin: 1.6rem 0 0;
   max-width: 340px;
