@@ -46,6 +46,28 @@
   var pathSteps = document.querySelector(".path-steps");
   var pathLineFill = document.querySelector(".path-line-fill");
 
+  /* Сцены «Пути воды» (ТЗ п.6): фон секции плавно меняется по мере скролла —
+     светлый лёд → умеренно тёмная порода → тёплый отсвет Огня → зелень источника */
+  var pathSection = document.querySelector(".path");
+  var SCENES = [
+    [0.0,  [246, 250, 252]], // Воздух/Лёд — светлый
+    [0.38, [214, 205, 192]], // Земля — натуральная порода, умеренно темнее
+    [0.66, [236, 215, 188]], // Огонь — тёплый отсвет
+    [1.0,  [223, 235, 221]]  // Источник — мягкая зелень
+  ];
+  function sceneColor(p) {
+    for (var i = 1; i < SCENES.length; i++) {
+      if (p <= SCENES[i][0]) {
+        var a = SCENES[i - 1], b = SCENES[i];
+        var k = (p - a[0]) / (b[0] - a[0]);
+        return "rgb(" + a[1].map(function (c, j) {
+          return Math.round(c + (b[1][j] - c) * k);
+        }).join(",") + ")";
+      }
+    }
+    return "rgb(" + SCENES[SCENES.length - 1][1].join(",") + ")";
+  }
+
   function updatePathFlow() {
     if (!pathSteps || !pathLineFill) return;
     var rect = pathSteps.getBoundingClientRect();
@@ -59,6 +81,18 @@
     pathLineFill.style.height = pct;
     pathSteps.style.setProperty("--flow", pct);
     pathSteps.classList.toggle("flowing", p > 0.01 && p < 0.99);
+    if (pathSection) pathSection.style.background = sceneColor(p);
+  }
+
+  /* Параллакс фото «Истории происхождения»: фон движется медленнее скролла */
+  var originSection = document.querySelector(".origin");
+  function updateOriginParallax() {
+    if (!originSection) return;
+    var r = originSection.getBoundingClientRect();
+    if (r.bottom <= 0 || r.top >= window.innerHeight) return;
+    var p = (window.innerHeight - r.top) / (window.innerHeight + r.height);
+    // первый слой — градиент (center), второй — фото: сдвигаем только фото
+    originSection.style.backgroundPosition = "center, 50% " + (35 + p * 30).toFixed(2) + "%";
   }
 
   function onScroll() {
@@ -69,7 +103,7 @@
       var p = docH > 0 ? Math.min(1, y / docH) : 0;
       threadPath.style.setProperty("--thread-offset", (THREAD_LEN * (1 - p)).toFixed(1));
     }
-    if (!reduceMotion) updatePathFlow();
+    if (!reduceMotion) { updatePathFlow(); updateOriginParallax(); }
   }
   var ticking = false;
   window.addEventListener("scroll", function () {
@@ -79,6 +113,64 @@
     }
   }, { passive: true });
   onScroll();
+
+  /* ---- Счётчики цифр в блоке доверия: накручиваются при появлении ---- */
+  var statVals = document.querySelectorAll(".stat-val[data-count]");
+  if (statVals.length && "IntersectionObserver" in window && !reduceMotion) {
+    var cntIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        cntIo.unobserve(e.target);
+        var el = e.target;
+        var target = parseInt(el.getAttribute("data-count"), 10);
+        if (!isFinite(target)) return;
+        var t0 = null, DUR = 1400;
+        function tick(ts) {
+          if (t0 === null) t0 = ts;
+          var k = Math.min(1, (ts - t0) / DUR);
+          k = 1 - Math.pow(1 - k, 3); // easeOutCubic
+          el.textContent = String(Math.round(target * k));
+          if (k < 1) requestAnimationFrame(tick);
+          else el.textContent = String(target);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    statVals.forEach(function (el) { cntIo.observe(el); });
+  }
+
+  /* ---- Индикатор мобильной карусели коллекции (ТЗ п.10) ---- */
+  function initCollectionDots() {
+    var track = document.querySelector(".collection-track");
+    var section = document.getElementById("collection");
+    if (!track || !section) return;
+    var old = section.querySelector(".collection-dots");
+    if (old) old.remove();
+    var items = track.children.length;
+    if (items < 2) return;
+    var dots = document.createElement("div");
+    dots.className = "collection-dots";
+    dots.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < items; i++) {
+      var d = document.createElement("span");
+      d.className = "cdot" + (i === 0 ? " on" : "");
+      dots.appendChild(d);
+    }
+    section.appendChild(dots);
+    var dotEls = dots.querySelectorAll(".cdot");
+    var dotTick = false;
+    track.addEventListener("scroll", function () {
+      if (dotTick) return;
+      dotTick = true;
+      requestAnimationFrame(function () {
+        var max = track.scrollWidth - track.clientWidth;
+        var idx = max > 0 ? Math.round(track.scrollLeft / max * (items - 1)) : 0;
+        dotEls.forEach(function (el, j) { el.classList.toggle("on", j === idx); });
+        dotTick = false;
+      });
+    }, { passive: true });
+  }
+  initCollectionDots();
 
   /* ---- Language toggle (RU <-> EN, no reload) ---- */
   var langToggle = document.getElementById("langToggle");
@@ -177,6 +269,7 @@
      и применяем текущий язык к новым узлам. */
   document.addEventListener("novo:hydrated", function () {
     applyReveals(document);
+    initCollectionDots(); // карусель перерисована из JSON — пересобираем точки
     if (htmlEl.getAttribute("lang") === "en") setLang("en");
   });
 })();
