@@ -215,7 +215,26 @@ img, svg { display: block; max-width: 100%; }
   align-items: center;
   padding: 6.5rem var(--gutter) 3rem;
   overflow: hidden;
-  background: linear-gradient(115deg, #FAF7F1 0%, #F6F1E8 48%, #F2ECE1 100%);
+  /* Air first: blue sky up top, warming to a soft horizon where fire rises */
+  background: linear-gradient(178deg,
+    #C7E0EC 0%, #D5E8F0 22%, #E6F1F2 46%, #F2F4EC 72%, #FBF6EE 100%);
+}
+/* Ambient sky: slow-drifting clouds behind the content (Air) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(34% 18% at 16% 20%, rgba(255,255,255,0.92), transparent 70%),
+    radial-gradient(28% 15% at 70% 14%, rgba(255,255,255,0.72), transparent 72%),
+    radial-gradient(24% 13% at 44% 28%, rgba(255,255,255,0.66), transparent 70%);
+  animation: skyClouds 44s ease-in-out infinite;
+}
+@keyframes skyClouds {
+  0%,100% { transform: translateX(-1.6%); }
+  50%     { transform: translateX(1.6%); }
 }
 .hero-topo {
   position: absolute;
@@ -255,7 +274,7 @@ img, svg { display: block; max-width: 100%; }
   max-width: 340px;
   font-size: 0.92rem;
   line-height: 1.75;
-  color: #6E7F87;
+  color: #506169; /* darkened for AA contrast over the lighter sky */
 }
 .hero-cta { margin-top: 2.4rem; display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; }
 
@@ -374,6 +393,52 @@ img, svg { display: block; max-width: 100%; }
   50%     { opacity: 1; transform: translateY(0) scale(1.04); }
 }
 
+/* Water movement + splashes at the bottle base (Ice / water element) */
+.hero-water {
+  grid-area: 1 / 1;
+  align-self: end;
+  justify-self: center;
+  position: relative;
+  width: 48%;
+  height: 18%;
+  margin-bottom: 5%;
+  z-index: 5;
+  pointer-events: none;
+}
+.hero-water::before,
+.hero-water::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 60%;
+  width: 100%; aspect-ratio: 3 / 1;
+  transform: translate(-50%, -50%) scale(0.4);
+  border-radius: 50%;
+  border: 1.5px solid rgba(94,178,196,0.5);
+  opacity: 0;
+}
+.hero-water .drop {
+  position: absolute;
+  bottom: 42%;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #eafaff, rgba(120,190,210,0.9));
+  opacity: 0;
+}
+.hero-water .drop:nth-child(1) { left: 32%; }
+.hero-water .drop:nth-child(2) { left: 52%; width: 4px; height: 4px; }
+.hero-water .drop:nth-child(3) { left: 66%; }
+@keyframes ripple {
+  0%   { transform: translate(-50%,-50%) scale(0.4); opacity: 0; }
+  28%  { opacity: 0.65; }
+  100% { transform: translate(-50%,-50%) scale(1.18); opacity: 0; }
+}
+@keyframes splash {
+  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+  22%  { opacity: 0.9; }
+  55%  { transform: translateY(-26px) scale(1); opacity: 0.9; }
+  100% { transform: translateY(6px) scale(0.7); opacity: 0; }
+}
+
 /* Cinematic hero layers (0–6s narrative) */
 .hero-clouds,
 .hero-glint {
@@ -410,7 +475,7 @@ img, svg { display: block; max-width: 100%; }
   z-index: 5;
   opacity: 0;
   pointer-events: none;
-  background: radial-gradient(60% 82% at 50% 100%, rgba(214,150,80,0.5), rgba(217,184,118,0.22) 45%, transparent 75%);
+  background: radial-gradient(58% 84% at 50% 100%, rgba(224,146,66,0.62), rgba(230,178,96,0.3) 44%, transparent 76%);
   filter: blur(14px);
   mix-blend-mode: multiply;
 }
@@ -1204,6 +1269,13 @@ img, svg { display: block; max-width: 100%; }
 .hero.loaded .hero-glow { animation: glowIn 1.6s 4.5s ease-out forwards, glowFloat 9s ease-in-out 6s infinite; }
 @keyframes glowIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* Water ripples + splashes settle in after the bottle arrives, then loop */
+.hero.loaded .hero-water::before { animation: ripple 4.6s 4.4s ease-out infinite; }
+.hero.loaded .hero-water::after  { animation: ripple 4.6s 6.7s ease-out infinite; }
+.hero.loaded .hero-water .drop:nth-child(1) { animation: splash 3.8s 4.8s ease-out infinite; }
+.hero.loaded .hero-water .drop:nth-child(2) { animation: splash 3.8s 5.7s ease-out infinite; }
+.hero.loaded .hero-water .drop:nth-child(3) { animation: splash 3.8s 6.5s ease-out infinite; }
+
 /* ---------- Responsive ---------- */
 /* laptop 1024–1439 */
 @media (max-width: 1439px) {
@@ -1273,6 +1345,8 @@ img, svg { display: block; max-width: 100%; }
   .hero-clouds { opacity: 0.85 !important; }
   .hero-glow { opacity: 1 !important; }
   .hero-glint { opacity: 0 !important; }
+  .hero-water::before, .hero-water::after, .hero-water .drop { opacity: 0 !important; }
+  .hero::before { transform: none !important; }
   .bottle { opacity: 1 !important; filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)) !important; }
   .thread { display: none; }
 }
