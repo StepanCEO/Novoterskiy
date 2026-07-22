@@ -188,8 +188,16 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
-        <div class="bottle-shine"></div>
+        <!-- Видео бутылки со стекающей водой: белый фон растворяется multiply-блендом.
+             ТЗ п.14: poster + статичный fallback, первый экран не зависит от видео. -->
+        <video class="bottle-video" id="bottleVideo" width="720" height="1200"
+               muted playsinline preload="auto"
+               poster="assets/video/bottle-hero-poster.webp"
+               aria-label="Новотерская Целебная">
+          <source src="assets/video/bottle-hero.webm" type="video/webm" />
+          <source src="assets/video/bottle-hero.mp4" type="video/mp4" />
+          <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
+        </video>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
       <div class="hero-water" aria-hidden="true">

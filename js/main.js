@@ -13,6 +13,30 @@
     setTimeout(startHero, 200);
   }
 
+  /* ---- Bottle video: играет один раз в момент появления бутылки (3s),
+         застывает на последнем кадре до следующей загрузки страницы ---- */
+  var bottleVideo = document.getElementById("bottleVideo");
+  if (bottleVideo) {
+    bottleVideo.addEventListener("ended", function () {
+      // фиксируемся на последнем кадре
+      bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
+      bottleVideo.pause();
+    });
+    var playBottle = function () {
+      var p = bottleVideo.play();
+      if (p && p.catch) p.catch(function () { /* автоплей запрещён — остаётся постер */ });
+    };
+    if (reduceMotion) {
+      // без анимаций: сразу финальный кадр
+      bottleVideo.addEventListener("loadedmetadata", function () {
+        bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
+      });
+    } else {
+      // старт синхронно с фазой «бутылка из дымки» (3с сценария)
+      setTimeout(playBottle, 3000);
+    }
+  }
+
   /* ---- Scroll reveals ---- */
   function applyReveals(scope) {
     var els = (scope || document).querySelectorAll(".reveal");
