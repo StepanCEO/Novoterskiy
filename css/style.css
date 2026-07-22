@@ -492,8 +492,7 @@ img, svg { display: block; max-width: 100%; }
   padding: 0 var(--gutter);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(20,49,63,0.06);
+  gap: 0; /* one continuous panorama, no hard borders (ТЗ п.5) */
   border-radius: var(--r-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -523,6 +522,20 @@ img, svg { display: block; max-width: 100%; }
   z-index: 1;
   background: linear-gradient(180deg, rgba(20,49,63,0) 30%, rgba(20,49,63,0.28) 62%, rgba(20,49,63,0.82) 100%);
   transition: opacity 0.5s;
+}
+/* Colour logic (ТЗ п.5.1): each zone reads in its element colour,
+   fading to a dark base so the caption stays legible (WCAG AA). */
+.el-air::before {
+  background: linear-gradient(180deg, rgba(178,214,231,0.5) 0%, rgba(20,49,63,0) 42%, rgba(20,49,63,0.82) 100%);
+}
+.el-ice::before {
+  background: linear-gradient(180deg, rgba(92,156,190,0.52) 0%, rgba(20,49,63,0) 42%, rgba(20,49,63,0.82) 100%);
+}
+.el-earth::before {
+  background: linear-gradient(180deg, rgba(48,132,102,0.5) 0%, rgba(20,49,63,0) 42%, rgba(20,49,63,0.84) 100%);
+}
+.el-fire::before {
+  background: linear-gradient(180deg, rgba(216,132,58,0.54) 0%, rgba(38,30,26,0) 40%, rgba(30,34,34,0.84) 100%);
 }
 .el-body {
   position: relative;
