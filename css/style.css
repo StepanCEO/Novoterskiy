@@ -40,6 +40,8 @@
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+/* Видимый focus для клавиатурной навигации (WCAG) */
+:focus-visible { outline: 2px solid var(--glacier-d); outline-offset: 3px; border-radius: 2px; }
 
 body {
   margin: 0;
