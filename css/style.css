@@ -377,18 +377,6 @@ img, svg { display: block; max-width: 100%; }
   z-index: 1;
   animation: bottlefloat 6s ease-in-out infinite;
 }
-.hero-rocks {
-  position: absolute;
-  left: 50%;
-  bottom: -1.2%;
-  z-index: 5;
-  width: min(112%, 650px);
-  max-width: none;
-  height: auto;
-  pointer-events: none;
-  transform: translateX(-50%);
-  filter: drop-shadow(0 12px 14px rgba(20, 32, 36, 0.24));
-}
 @keyframes bottlefloat {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
@@ -414,7 +402,7 @@ img, svg { display: block; max-width: 100%; }
   align-self: end;
   width: 130%;
   height: 55%;
-  z-index: 4;
+  z-index: 2;
   pointer-events: none;
   background:
     radial-gradient(42% 55% at 30% 78%, rgba(173,209,222,0.55), transparent 70%),
@@ -560,6 +548,14 @@ img, svg { display: block; max-width: 100%; }
   color: var(--muted);
   max-width: 230px;
   margin: 0 auto;
+}
+.el-brand-mark {
+  display: block;
+  width: 38px;
+  height: auto;
+  margin: 0.1rem auto 0.75rem;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
 }
 
 .el-photo-wrap {
@@ -1459,7 +1455,6 @@ img, svg { display: block; max-width: 100%; }
   .hero-sub { margin-top: 1rem; line-height: 1.6; }
   .hero-cta { margin-top: 1.35rem; }
   .bottle { height: clamp(290px, 76vw, 390px); transform: rotate(12deg) translate(4%, 2%); }
-  .hero-rocks { width: 138%; bottom: -0.4%; }
   .elements-grid { grid-template-columns: 1fr; gap: 2rem; }
   .el-photo-wrap { height: clamp(220px, 52vw, 300px); }
   .mineral-grid { grid-template-columns: 1fr; gap: 1.8rem; }
@@ -1502,6 +1497,17 @@ img, svg { display: block; max-width: 100%; }
   animation: none;
 }
 .hero-bg { display: none; }
+.hero-ember {
+  position: absolute;
+  z-index: 1;
+  right: 12%;
+  bottom: 6%;
+  width: min(44vw, 520px);
+  height: min(18vw, 190px);
+  pointer-events: none;
+  background: radial-gradient(ellipse at 54% 64%, rgba(239, 173, 93, 0.25), rgba(244, 204, 153, 0.12) 34%, transparent 72%);
+  filter: blur(12px);
+}
 .hero-topo { top: 4.5rem; width: min(24vw, 330px); color: rgba(72, 124, 142, 0.17); }
 .hero-grid {
   max-width: 1180px;
@@ -1517,7 +1523,6 @@ img, svg { display: block; max-width: 100%; }
 }
 .hero-sub { margin-top: 1.25rem; max-width: 310px; font-size: 0.86rem; line-height: 1.65; }
 .hero-cta { margin-top: 1.7rem; }
-.hero-cta .btn-primary { display: none; }
 .btn-play { font-size: 0.68rem; letter-spacing: 0.1em; }
 .btn-play-pin { width: 42px; height: 42px; background: #17656a; }
 .hero-bottle { min-height: clamp(490px, 48vw, 610px); isolation: isolate; }
@@ -1532,20 +1537,12 @@ img, svg { display: block; max-width: 100%; }
   transform: translateX(-50%);
   border-radius: 50%;
   background: url("../assets/photos/hero-mountain.webp") 56% 34% / cover no-repeat;
-  filter: saturate(0.76) brightness(1.13);
-  box-shadow: inset 0 0 46px rgba(255,255,255,0.5), 0 16px 40px rgba(77, 130, 143, 0.12);
+  filter: saturate(0.48) brightness(1.24) contrast(0.83);
+  box-shadow: inset 0 0 72px rgba(255,255,255,0.72), 0 14px 34px rgba(77, 130, 143, 0.08);
 }
 .bottle { height: clamp(420px, 43vw, 590px); transform: rotate(17deg) translate(9%, 1%); }
 .bottle-video { mix-blend-mode: multiply; }
 .hero-mist { width: 116%; height: 42%; opacity: 0.55; filter: blur(13px); }
-.hero-rocks {
-  left: 55%;
-  bottom: 0;
-  width: min(99%, 590px);
-  filter: drop-shadow(0 10px 11px rgba(20, 32, 36, 0.2));
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-}
 
 .elements { padding: 0; background: #fbf7f2; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
 .elements .section-head { margin: 0; max-width: none; padding: 1rem var(--gutter) 0.95rem; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
@@ -1559,6 +1556,7 @@ img, svg { display: block; max-width: 100%; }
 .el-cap h3 { font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: 0.11em; margin: 0 0 0.7rem; }
 .el-cap p { max-width: 190px; font-size: 0.72rem; line-height: 1.45; color: rgba(28, 75, 80, 0.86); }
 .el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.86) 0%, rgba(251,247,242,0.32) 46%, rgba(251,247,242,0.04) 72%); }
+.el-fire .el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.92) 0%, rgba(247,222,192,0.58) 46%, rgba(170,112,70,0.22) 100%); }
 
 @media (max-width: 1023px) {
   .hero { min-height: auto; padding-top: 5.6rem; text-align: left; }
@@ -1579,13 +1577,13 @@ img, svg { display: block; max-width: 100%; }
   .hero-bottle { min-height: 348px; margin-top: -0.15rem; }
   .hero-bottle::before { width: min(82%, 330px); top: 0; }
   .bottle { height: clamp(295px, 76vw, 365px); }
-  .hero-rocks { width: 116%; left: 55%; }
-  .elements-grid { grid-template-columns: repeat(2, 1fr); height: auto; }
-  .el { min-height: 210px; }
+  .hero-ember { right: 4%; bottom: 2%; width: 82vw; height: 135px; }
+  .elements-grid { grid-template-columns: 1fr; height: auto; }
+  .el { min-height: clamp(260px, 56svh, 420px); }
   .el-cap { padding: 1.5rem 0.8rem 0; }
   .el-cap p { font-size: 0.66rem; }
   .el + .el { border-left: 0; }
-  .el:nth-child(even) { border-left: 1px solid rgba(255,255,255,0.38); }
+  .el + .el { border-top: 1px solid rgba(255,255,255,0.38); }
 }
 
 /* The opaque video uses multiply so its white matte blends into the light

@@ -13,3 +13,6 @@ Thumbs.db
 # Private spec — contains pricing / contract details, keep out of public repo
 ТЗ.md
 
+# Rejected local image experiments — not part of the website
+assets/photos/hero-rocks-pile.webp
+assets/photos/hero-rocks-reference.webp

@@ -14,7 +14,13 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Новотерская — Баланс четырёх стихий" />
 <meta property="og:description" content="Рожденная ледниками. Закаленная сердцем земли. Природная минеральная вода с вершин Эльбруса." />
-<meta property="og:image" content="assets/og-cover.jpg" />
+<meta property="og:image" content="https://stepanceo.github.io/Novoterskiy/assets/og-cover.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Новотерская — Баланс четырёх стихий" />
+<meta name="twitter:description" content="Рожденная ледниками. Закаленная сердцем земли." />
+<meta name="twitter:image" content="https://stepanceo.github.io/Novoterskiy/assets/og-cover.jpg" />
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:locale:alternate" content="en_US" />
 
@@ -156,6 +162,7 @@
     <span class="hero-fog"></span>
     <span class="hero-warmth"></span>
   </div>
+  <span class="hero-ember" aria-hidden="true"></span>
   <!-- Topographic contour lines, top-right corner -->
   <svg class="hero-topo" viewBox="0 0 420 300" aria-hidden="true" preserveAspectRatio="xMaxYMin meet">
     <g fill="none" stroke="currentColor" stroke-width="1.1">
@@ -188,17 +195,17 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <!-- Видео бутылки со стекающей водой: настоящий альфа-канал (VP9 yuva420p),
-             фон вырезан. Safari без поддержки альфа-WebM получит статичное фото. -->
+        <!-- Лёгкое видео бутылки: белый фон визуально растворяется в светлой сцене.
+             MP4 нужен как запасной формат для Safari/iPhone. -->
         <video class="bottle-video" id="bottleVideo" width="720" height="1200"
                muted playsinline preload="auto"
                poster="assets/video/bottle-hero-poster.webp"
                aria-label="Новотерская Целебная">
           <source src="assets/video/bottle-hero.webm" type='video/webm; codecs="vp9"' />
+          <source src="assets/video/bottle-hero.mp4" type="video/mp4" />
           <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
         </video>
       </div>
-      <img class="hero-rocks" src="assets/photos/hero-rocks.webp" width="1536" height="282" alt="" aria-hidden="true" />
       <div class="hero-mist" aria-hidden="true"></div>
       <div class="hero-water" aria-hidden="true">
         <span class="drop"></span><span class="drop"></span><span class="drop"></span>
@@ -221,6 +228,7 @@
     <article class="el el-air reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Air">Воздух</h3>
+        <img class="el-brand-mark" src="assets/logo-mark.webp" width="44" height="44" alt="" aria-hidden="true" />
         <p data-en="The purity of heights. The path begins at the summits of Elbrus.">Чистота высоты. Путь начинается у вершин Эльбруса.</p>
       </div>
       <div class="el-photo-wrap">
@@ -230,6 +238,7 @@
     <article class="el el-ice reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Ice">Лёд</h3>
+        <img class="el-brand-mark" src="assets/logo-mark.webp" width="44" height="44" alt="" aria-hidden="true" />
         <p data-en="Meltwater slowly passes through ice and mountain strata.">Талая вода медленно проходит сквозь лёд и горные слои.</p>
       </div>
       <div class="el-photo-wrap">
@@ -239,6 +248,7 @@
     <article class="el el-earth reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Earth">Земля</h3>
+        <img class="el-brand-mark" src="assets/logo-mark.webp" width="44" height="44" alt="" aria-hidden="true" />
         <p data-en="Mountain rock saturates the water with natural minerals.">Горные породы насыщают воду природными минералами.</p>
       </div>
       <div class="el-photo-wrap">
@@ -248,6 +258,7 @@
     <article class="el el-fire reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Fire">Огонь</h3>
+        <img class="el-brand-mark" src="assets/logo-mark.webp" width="44" height="44" alt="" aria-hidden="true" />
         <p data-en="Underground heat and thermal springs complete the natural process.">Подземное тепло и термальные источники завершают природный процесс.</p>
       </div>
       <div class="el-photo-wrap">
@@ -331,29 +342,29 @@
       <div class="mineral-photo"><img src="assets/photos/mineral-si.webp" width="1672" height="941" loading="lazy" alt="Кремний — природный минерал" /></div>
       <span class="mineral-sym">Si</span>
       <h3 data-en="Silicon">Кремний</h3>
-      <p data-en="A natural component of the water. Supports tissues and the skeletal system.*">Природный компонент воды. Поддерживает ткани и костную систему.*</p>
+      <p data-en="A natural component of the mineral composition.">Природный компонент минерального состава.</p>
     </article>
     <article class="mineral warm reveal">
       <div class="mineral-photo"><img src="assets/photos/mineral-ca.webp" width="1672" height="941" loading="lazy" alt="Кальций — природный минерал" /></div>
       <span class="mineral-sym">Ca</span>
       <h3 data-en="Calcium">Кальций</h3>
-      <p data-en="The foundation of strong bones and teeth.*">Основа прочности костей и зубов.*</p>
+      <p data-en="A natural component of the mineral composition.">Природный компонент минерального состава.</p>
     </article>
     <article class="mineral cold reveal">
       <div class="mineral-photo"><img src="assets/photos/mineral-mg.webp" width="1672" height="941" loading="lazy" alt="Магний — природный минерал" /></div>
       <span class="mineral-sym">Mg</span>
       <h3 data-en="Magnesium">Магний</h3>
-      <p data-en="Supports the nervous system and heart rhythm.*">Поддержка нервной системы и сердечного ритма.*</p>
+      <p data-en="A natural component of the mineral composition.">Природный компонент минерального состава.</p>
     </article>
     <article class="mineral warm reveal">
       <div class="mineral-photo"><img src="assets/photos/mineral-hco3.webp" width="1672" height="941" loading="lazy" alt="Гидрокарбонаты — природный минерал" /></div>
       <span class="mineral-sym">HCO₃</span>
       <h3 data-en="Bicarbonates">Гидрокарбонаты</h3>
-      <p data-en="Help maintain the acid–base balance.*">Помогают сохранять кислотно-щелочной баланс.*</p>
+      <p data-en="Natural salts that shape the characteristic mineral composition.">Природные соли, формирующие характерный минеральный состав.</p>
     </article>
   </div>
-  <p class="mineral-note" data-en="* Final wording on physiological effects is published only after review by a technologist, lawyer and labeling specialist. Until then — neutral wording about composition.">
-    * Финальные формулировки о физиологическом воздействии публикуются только после проверки технологом, юристом и специалистом по маркировке. До согласования — нейтральные формулировки о составе.
+  <p class="mineral-note" data-en="The section uses neutral wording about the natural mineral composition. Any physiological claims are added only after legal and labeling approval.">
+    В разделе используются нейтральные формулировки о природном минеральном составе. Формулировки о физиологическом воздействии добавляются только после согласования с юристом и специалистом по маркировке.
   </p>
 </section>
 
