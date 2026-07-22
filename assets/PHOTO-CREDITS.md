@@ -9,7 +9,7 @@
 | photos/element-air.webp | Небо, облака, вершины | — | — |
 | photos/element-ice.webp | Голубой ледник, кристаллы | — | — |
 | photos/element-earth.webp | Мшистые камни, горный ручей (Logan Canyon, Spring Creek) | Wikimedia Commons / NARA #7720240 | Public domain |
-| photos/element-fire.webp | Термальные террасы с паром (Mammoth Hot Springs, «Sunrise steam on Mound Terrace») | Wikimedia Commons (NPS) | Public domain |
+| photos/element-fire.webp | Огненное термальное поле на закате, пар и свечение | Исходный ассет проекта | — |
 
 Public-domain изображения (работы государственных органов США) не требуют
 атрибуции; источник указан для прозрачности. При замене на фирменные фото

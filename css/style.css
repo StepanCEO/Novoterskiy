@@ -532,7 +532,7 @@ img, svg { display: block; max-width: 100%; }
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: #1C4B50;
-  margin: 0.7rem 0 0.65rem;
+  margin: 0.4rem 0 0.65rem;
 }
 .el-cap p {
   font-size: 0.85rem;
@@ -541,16 +541,6 @@ img, svg { display: block; max-width: 100%; }
   max-width: 230px;
   margin: 0 auto;
 }
-.el-mark {
-  display: block;
-  width: 26px;
-  margin: 0 auto;
-  opacity: 0.55;
-}
-.el-air .el-mark   { color: #7FAEC6; }
-.el-ice .el-mark   { color: var(--glacier-d); }
-.el-earth .el-mark { color: var(--moss-d); }
-.el-fire .el-mark  { color: var(--ember); }
 
 .el-photo-wrap {
   position: relative;
