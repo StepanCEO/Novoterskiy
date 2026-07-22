@@ -384,51 +384,6 @@ img, svg { display: block; max-width: 100%; }
           mask: url("../assets/products/celebnaya-pet-05.webp") center/auto 100% no-repeat;
   /* label shimmer starts with the calm loop (6s+), see .hero.loaded rules */
 }
-
-/* ---- Вода стекает по бутылке ----
-   Капли-струйки едут вниз внутри маски по силуэту бутылки:
-   за контур не выходят, GPU-transform, лёгкий след за каплей. */
-.bottle-drips {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  -webkit-mask: url("../assets/products/celebnaya-pet-05.webp") center/auto 100% no-repeat;
-          mask: url("../assets/products/celebnaya-pet-05.webp") center/auto 100% no-repeat;
-}
-.bdrip {
-  position: absolute;
-  top: -8%;
-  width: 3.5px;
-  height: 26px;
-  border-radius: 3px;
-  /* капля: яркая головка + тающий след сверху */
-  background: linear-gradient(180deg,
-    rgba(255,255,255,0) 0%,
-    rgba(214,240,248,0.35) 55%,
-    rgba(255,255,255,0.85) 92%,
-    rgba(235,251,255,0.95) 100%);
-  opacity: 0;
-  will-change: transform;
-}
-.bdrip:nth-child(1) { left: 38%; height: 22px; }
-.bdrip:nth-child(2) { left: 48%; width: 2.5px; height: 30px; }
-.bdrip:nth-child(3) { left: 57%; height: 18px; }
-.bdrip:nth-child(4) { left: 44%; width: 2.5px; height: 24px; }
-.bdrip:nth-child(5) { left: 62%; width: 2px; height: 20px; }
-@keyframes drip {
-  0%   { transform: translateY(0) scaleY(0.6); opacity: 0; }
-  8%   { opacity: 0.9; }
-  55%  { transform: translateY(52vh) scaleY(1.15); opacity: 0.85; }
-  72%  { opacity: 0; }
-  100% { transform: translateY(64vh) scaleY(1); opacity: 0; }
-}
-/* стартуют вместе со спокойным loop, в разнобой — как настоящие капли */
-.hero.loaded .bdrip:nth-child(1) { animation: drip 5.5s 6.2s cubic-bezier(.45,.05,.55,.95) infinite; }
-.hero.loaded .bdrip:nth-child(2) { animation: drip 7s 8.1s cubic-bezier(.45,.05,.55,.95) infinite; }
-.hero.loaded .bdrip:nth-child(3) { animation: drip 6.2s 10.4s cubic-bezier(.45,.05,.55,.95) infinite; }
-.hero.loaded .bdrip:nth-child(4) { animation: drip 8s 12.7s cubic-bezier(.45,.05,.55,.95) infinite; }
-.hero.loaded .bdrip:nth-child(5) { animation: drip 6.8s 14.9s cubic-bezier(.45,.05,.55,.95) infinite; }
 @keyframes shine {
   0%,100% { background-position: 130% 0; }
   50%     { background-position: -30% 0; }
@@ -1511,7 +1466,6 @@ img, svg { display: block; max-width: 100%; }
   .hero-glint { opacity: 0 !important; }
   .hero-mist { opacity: 0.85 !important; }
   .hero-water .drop { opacity: 0 !important; }
-  .bdrip { opacity: 0 !important; animation: none !important; }
   .hero::before { transform: none !important; }
   .bottle { opacity: 1 !important; filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)) !important; }
   .thread { display: none; }
