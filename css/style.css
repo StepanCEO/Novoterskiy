@@ -1468,6 +1468,15 @@ img, svg { display: block; max-width: 100%; }
   .thread { display: none; }
 }
 
+/*
+  The hero source is an opaque VP9 video. On a phone, multiply lets its white
+  matte blend into the mountain layer below, so the bottle has no rectangle
+  around it (including in Safari on iPhone).
+*/
+@media (max-width: 767px) {
+  .bottle-video { mix-blend-mode: multiply; }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
