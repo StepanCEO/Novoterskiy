@@ -743,6 +743,9 @@ img, svg { display: block; max-width: 100%; }
   grid-row: 1;
   width: 140px;
   height: 100px;
+  /* Подложка цвета страницы: multiply смешивает белый фон фото ровно
+     в этот цвет в ЛЮБОМ контексте наложения (z-index/hover/reveal) */
+  background: var(--paper);
 }
 .mineral-photo img {
   width: 100%; height: 100%;
