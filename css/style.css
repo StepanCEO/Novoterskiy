@@ -1536,7 +1536,7 @@ img, svg { display: block; max-width: 100%; }
 .el-cap { position: relative; z-index: 3; padding: clamp(1.8rem, 3.2vw, 2.7rem) 1rem 0; color: #123f46; text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
 .el-cap h3 { font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: 0.11em; margin: 0 0 0.7rem; color: #0d3f47; text-shadow: 0 1px 8px rgba(255,255,255,0.96); }
 .el-cap p { max-width: 190px; font-size: 0.74rem; font-weight: 600; line-height: 1.5; color: #123f46; text-shadow: 0 1px 8px rgba(255,255,255,0.96); }
-.el-earth .el-cap {
+.el .el-cap {
   min-height: 178px;
   background: linear-gradient(180deg, rgba(251,247,242,0.98) 0%, rgba(251,247,242,0.92) 68%, rgba(251,247,242,0) 100%);
 }
