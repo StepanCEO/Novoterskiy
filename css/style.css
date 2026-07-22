@@ -1485,11 +1485,111 @@ img, svg { display: block; max-width: 100%; }
   .thread { display: none; }
 }
 
-/*
-  The hero source is an opaque VP9 video. On a phone, multiply lets its white
-  matte blend into the mountain layer below, so the bottle has no rectangle
-  around it (including in Safari on iPhone).
-*/
+/* ---------- Reference direction · light editorial opening ---------- */
+/* The supplied reference uses a quiet paper ground and one central product
+   vignette rather than a full-bleed landscape. */
+.hero {
+  min-height: min(100svh, 760px);
+  padding-top: 5.6rem;
+  padding-bottom: 1.4rem;
+  background: #fbf7f2;
+  border-bottom: 1px solid rgba(28, 75, 80, 0.14);
+}
+.hero::before {
+  background:
+    radial-gradient(32% 36% at 56% 52%, rgba(202, 231, 238, 0.36), transparent 72%),
+    radial-gradient(28% 30% at 76% 66%, rgba(194, 227, 231, 0.3), transparent 76%);
+  animation: none;
+}
+.hero-bg { display: none; }
+.hero-topo { top: 4.5rem; width: min(24vw, 330px); color: rgba(72, 124, 142, 0.17); }
+.hero-grid {
+  max-width: 1180px;
+  grid-template-columns: minmax(290px, 0.72fr) minmax(0, 1.28fr);
+  gap: 0;
+}
+.hero-copy { max-width: 390px; }
+.hero-title {
+  font-size: clamp(1.85rem, 2.55vw, 2.6rem);
+  line-height: 1.22;
+  letter-spacing: 0.04em;
+  color: #315b61;
+}
+.hero-sub { margin-top: 1.25rem; max-width: 310px; font-size: 0.86rem; line-height: 1.65; }
+.hero-cta { margin-top: 1.7rem; }
+.hero-cta .btn-primary { display: none; }
+.btn-play { font-size: 0.68rem; letter-spacing: 0.1em; }
+.btn-play-pin { width: 42px; height: 42px; background: #17656a; }
+.hero-bottle { min-height: clamp(490px, 48vw, 610px); isolation: isolate; }
+.hero-bottle::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 2%;
+  width: min(80%, 520px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: url("../assets/photos/hero-mountain.webp") 56% 34% / cover no-repeat;
+  filter: saturate(0.76) brightness(1.13);
+  box-shadow: inset 0 0 46px rgba(255,255,255,0.5), 0 16px 40px rgba(77, 130, 143, 0.12);
+}
+.bottle { height: clamp(420px, 43vw, 590px); transform: rotate(17deg) translate(9%, 1%); }
+.bottle-video { mix-blend-mode: multiply; }
+.hero-mist { width: 116%; height: 42%; opacity: 0.55; filter: blur(13px); }
+.hero-rocks {
+  left: 55%;
+  bottom: 0;
+  width: min(99%, 590px);
+  filter: drop-shadow(0 10px 11px rgba(20, 32, 36, 0.2));
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+
+.elements { padding: 0; background: #fbf7f2; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
+.elements .section-head { margin: 0; max-width: none; padding: 1rem var(--gutter) 0.95rem; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
+.elements .eyebrow, .elements .section-lede { display: none; }
+.elements .section-title { font-size: clamp(0.9rem, 1.3vw, 1.1rem); letter-spacing: 0.12em; }
+.elements-grid { gap: 0; height: clamp(260px, 26vw, 360px); }
+.el { min-height: 0; overflow: hidden; }
+.el + .el { border-left: 1px solid rgba(255,255,255,0.38); }
+.el-photo-wrap { position: absolute; inset: 0; height: auto; margin: 0; }
+.el-cap { position: relative; z-index: 3; padding: clamp(1.8rem, 3.2vw, 2.7rem) 1rem 0; color: #1c4b50; }
+.el-cap h3 { font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: 0.11em; margin: 0 0 0.7rem; }
+.el-cap p { max-width: 190px; font-size: 0.72rem; line-height: 1.45; color: rgba(28, 75, 80, 0.86); }
+.el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.86) 0%, rgba(251,247,242,0.32) 46%, rgba(251,247,242,0.04) 72%); }
+
+@media (max-width: 1023px) {
+  .hero { min-height: auto; padding-top: 5.6rem; text-align: left; }
+  .hero-grid { grid-template-columns: 0.7fr 1.3fr; }
+  .hero-copy { margin: 0; }
+  .hero-sub { margin-left: 0; margin-right: 0; }
+  .hero-cta { justify-content: flex-start; }
+  .hero-bottle { min-height: 440px; }
+  .elements-grid { grid-template-columns: repeat(4, 1fr); gap: 0; height: 285px; }
+  .el-photo-wrap { height: auto; }
+}
+@media (max-width: 767px) {
+  .hero { padding: 5rem var(--gutter) 0.7rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 0; }
+  .hero-copy { max-width: 330px; margin: 0 auto; text-align: center; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-bottle { min-height: 348px; margin-top: -0.15rem; }
+  .hero-bottle::before { width: min(82%, 330px); top: 0; }
+  .bottle { height: clamp(295px, 76vw, 365px); }
+  .hero-rocks { width: 116%; left: 55%; }
+  .elements-grid { grid-template-columns: repeat(2, 1fr); height: auto; }
+  .el { min-height: 210px; }
+  .el-cap { padding: 1.5rem 0.8rem 0; }
+  .el-cap p { font-size: 0.66rem; }
+  .el + .el { border-left: 0; }
+  .el:nth-child(even) { border-left: 1px solid rgba(255,255,255,0.38); }
+}
+
+/* The opaque video uses multiply so its white matte blends into the light
+   editorial scene instead of showing as a rectangular background. */
 @media (max-width: 767px) {
   .bottle-video { mix-blend-mode: multiply; }
 }
