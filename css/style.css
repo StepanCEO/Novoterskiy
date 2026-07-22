@@ -1181,12 +1181,13 @@ img, svg { display: block; max-width: 100%; }
   overflow: hidden;
   background: var(--paper);
 }
-.final-quadrants { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; }
-.final-quadrants .q { opacity: 0.5; }
-.q-air   { background: radial-gradient(120% 120% at 100% 100%, #ffffff, #e7f1f8); }
-.q-ice   { background: radial-gradient(120% 120% at 0 100%, #dcecf5, #bcdcea); }
-.q-earth { background: radial-gradient(120% 120% at 100% 0, #d8e8dd, #a9cbb2); }
-.q-fire  { background: radial-gradient(120% 120% at 0 0, #f6e6cf, #e6bd8c); }
+/* Четыре стихии как мягкие перетекающие пятна — без жёстких границ (ТЗ п.5/11) */
+.final-quadrants { position: absolute; inset: -12%; filter: blur(52px); }
+.final-quadrants .q { position: absolute; width: 70%; height: 70%; border-radius: 50%; opacity: 0.8; }
+.q-air   { top: -8%; left: -8%; background: radial-gradient(closest-side, #dcebf7, transparent 74%); }
+.q-ice   { top: -8%; right: -8%; background: radial-gradient(closest-side, #b9dcec, transparent 74%); }
+.q-earth { bottom: -8%; left: -8%; background: radial-gradient(closest-side, #b7d5c0, transparent 74%); }
+.q-fire  { bottom: -8%; right: -8%; background: radial-gradient(closest-side, #eecb9f, transparent 74%); }
 .final-inner {
   position: relative;
   z-index: 2;
@@ -1197,7 +1198,7 @@ img, svg { display: block; max-width: 100%; }
   padding: clamp(2.4rem, 5vw, 4rem);
   box-shadow: var(--shadow-soft);
 }
-.final-mark { width: 40px; margin: 0 auto 1.6rem; color: var(--glacier-d); opacity: 0.6; }
+.final-mark { width: 84px; height: auto; margin: 0 auto 1.6rem; opacity: 0.95; }
 .final-quote {
   font-family: var(--ff-serif);
   font-weight: 600;
