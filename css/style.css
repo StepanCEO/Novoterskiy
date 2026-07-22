@@ -146,6 +146,24 @@ img, svg { display: block; max-width: 100%; }
   transition: stroke-dashoffset 0.15s linear;
   filter: drop-shadow(0 0 6px rgba(111,168,196,0.4));
 }
+/* Content blocks always sit ABOVE the water thread (z-index 1):
+   the line lives in the air between blocks, never over cards or text. */
+.section-head,
+.elements-grid,
+.path-steps,
+.mineral-grid,
+.mineral-note,
+.trust-stats,
+.trust-grid,
+.docs-head,
+.docs-grid,
+.docs-note,
+.collection-track,
+.where-grid,
+.contacts-grid {
+  position: relative;
+  z-index: 2;
+}
 /* ---------- Header ---------- */
 .site-header {
   position: fixed;
