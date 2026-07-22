@@ -8,6 +8,7 @@ Thumbs.db
 
 # Local tooling
 .claude/
+.mcp.json
 
 # Private spec — contains pricing / contract details, keep out of public repo
 ТЗ.md
