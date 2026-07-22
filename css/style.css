@@ -25,9 +25,9 @@
   --wrap: 1200px;
   --gutter: clamp(20px, 5vw, 72px);
 
-  --ff-display: "Inter", system-ui, sans-serif;
-  --ff-serif: "Playfair Display", "Georgia", serif;
-  --ff-body: "Inter", system-ui, sans-serif;
+  --ff-display: "Golos Text", system-ui, sans-serif;
+  --ff-serif: "Literata", "Georgia", serif;
+  --ff-body: "Golos Text", system-ui, sans-serif;
   --ff-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --r: 16px;
@@ -82,11 +82,12 @@ img, svg { display: block; max-width: 100%; }
   padding: 0 var(--gutter);
 }
 .section-title {
-  font-family: var(--ff-display);
+  /* Выразительная антиква для эмоциональных заголовков (ТЗ п.13) */
+  font-family: var(--ff-serif);
   font-weight: 700;
   font-size: clamp(2.2rem, 5.2vw, 3.9rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: var(--deep);
 }
 .section-lede {
@@ -277,7 +278,7 @@ img, svg { display: block; max-width: 100%; }
 .hero-copy { max-width: 430px; }
 .hero-title {
   font-family: var(--ff-serif);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(1.7rem, 2.9vw, 2.6rem);
   line-height: 1.34;
   letter-spacing: 0.055em;
@@ -804,10 +805,10 @@ img, svg { display: block; max-width: 100%; }
 }
 .origin-inner { position: relative; z-index: 2; max-width: 900px; }
 .origin-title {
-  font-family: var(--ff-display);
-  font-weight: 400;
+  font-family: var(--ff-serif);
+  font-weight: 600;
   font-size: clamp(2rem, 5vw, 3.6rem);
-  line-height: 1.12;
+  line-height: 1.14;
   margin: 0.5rem 0 2rem;
   letter-spacing: -0.01em;
 }
@@ -960,7 +961,7 @@ img, svg { display: block; max-width: 100%; }
   justify-content: center;
   gap: 0.2em;
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   color: var(--deep);
 }
@@ -1198,10 +1199,10 @@ img, svg { display: block; max-width: 100%; }
 }
 .final-mark { width: 40px; margin: 0 auto 1.6rem; color: var(--glacier-d); opacity: 0.6; }
 .final-quote {
-  font-family: var(--ff-display);
-  font-weight: 400;
+  font-family: var(--ff-serif);
+  font-weight: 600;
   font-size: clamp(1.8rem, 4vw, 3rem);
-  line-height: 1.16;
+  line-height: 1.2;
   color: var(--deep);
   letter-spacing: -0.01em;
 }
@@ -1408,10 +1409,10 @@ img, svg { display: block; max-width: 100%; }
   margin: 0 auto;
 }
 .legal-title {
-  font-family: var(--ff-display);
+  font-family: var(--ff-serif);
   font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 600;
-  line-height: 1.08;
+  font-weight: 700;
+  line-height: 1.12;
   color: var(--deep);
   margin: 0.5rem 0 0.6rem;
 }
