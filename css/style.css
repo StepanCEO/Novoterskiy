@@ -368,6 +368,13 @@ img, svg { display: block; max-width: 100%; }
   margin: 0 auto;
   animation: bottlefloat 6s ease-in-out infinite;
 }
+.bottle-ios {
+  display: none;
+  height: 100%;
+  width: auto;
+  margin: 0 auto;
+  animation: bottlefloat 6s ease-in-out infinite;
+}
 .bottle-photo {
   display: block;
   height: 100%;
@@ -1571,7 +1578,15 @@ img, svg { display: block; max-width: 100%; }
 /* The opaque video uses multiply so its white matte blends into the light
    editorial scene instead of showing as a rectangular background. */
 @media (max-width: 767px) {
-  .bottle-video { mix-blend-mode: multiply; }
+  .bottle-video { display: none; }
+  .bottle-ios { display: block; }
+}
+
+/* iOS Safari decodes the H.264 fallback with an opaque, soft white matte.
+   Use the prepared 720 px transparent still instead, including in landscape. */
+@supports (-webkit-touch-callout: none) {
+  .bottle-video { display: none; }
+  .bottle-ios { display: block; }
 }
 
 /* ---------- Reduced motion ---------- */

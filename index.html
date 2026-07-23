@@ -195,8 +195,8 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <!-- Лёгкое видео бутылки: белый фон визуально растворяется в светлой сцене.
-             MP4 нужен как запасной формат для Safari/iPhone. -->
+        <!-- Desktop video; iPhone uses the sharp transparent still below because
+             H.264 cannot carry alpha and Safari otherwise reveals its white matte. -->
         <video class="bottle-video" id="bottleVideo" width="720" height="1200"
                muted playsinline preload="auto"
                poster="assets/video/bottle-hero-poster.webp"
@@ -205,6 +205,7 @@
           <source src="assets/video/bottle-hero.mp4" type="video/mp4" />
           <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
         </video>
+        <img class="bottle-ios" src="assets/products/hero-bottle-ios.png" width="720" height="1200" alt="" aria-hidden="true" />
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
       <div class="hero-water" aria-hidden="true">

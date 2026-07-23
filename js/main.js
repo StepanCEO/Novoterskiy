@@ -16,7 +16,9 @@
   /* ---- Bottle video: играет один раз в момент появления бутылки (3s),
          застывает на последнем кадре до следующей загрузки страницы ---- */
   var bottleVideo = document.getElementById("bottleVideo");
-  if (bottleVideo) {
+  var useIosBottleStill = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (bottleVideo && !useIosBottleStill) {
     bottleVideo.addEventListener("ended", function () {
       // фиксируемся на последнем кадре
       bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
