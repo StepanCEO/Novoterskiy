@@ -65,8 +65,40 @@
 
   /* ---- Header scrolled state + water-thread progress ---- */
   var header = document.querySelector(".site-header");
+  var thread = document.querySelector(".thread");
   var threadPath = document.querySelector(".thread-path");
-  var THREAD_LEN = 1400;
+  var pathLine = document.querySelector(".path-line");
+  var threadStartY = 0;
+  var threadLength = 0;
+
+  /* Общая голубая нить начинается точно в конце маршрута «Путь воды»,
+     затем плавно возвращается к центральной оси страницы. */
+  function updateThreadGeometry() {
+    if (!thread || !threadPath || !pathLine || window.innerWidth <= 767) return;
+    var end = pathLine.getBoundingClientRect();
+    var doc = document.documentElement;
+    var width = window.innerWidth;
+    var startX = end.left + end.width / 2;
+    threadStartY = Math.round((window.scrollY || window.pageYOffset) + end.bottom);
+    var height = Math.max(1, doc.scrollHeight - threadStartY);
+    var centerX = width / 2;
+    var settle = Math.min(360, Math.max(220, height * 0.07));
+    var sway = Math.min(42, width * 0.035);
+    var d = [
+      "M " + startX.toFixed(1) + " 0",
+      "C " + startX.toFixed(1) + " " + (settle * 0.28).toFixed(1) + ", " + (centerX - sway).toFixed(1) + " " + (settle * 0.72).toFixed(1) + ", " + centerX.toFixed(1) + " " + settle.toFixed(1),
+      "S " + (centerX + sway).toFixed(1) + " " + (settle * 1.9).toFixed(1) + ", " + centerX.toFixed(1) + " " + (settle * 2.7).toFixed(1),
+      "S " + (centerX - sway).toFixed(1) + " " + (height * 0.72).toFixed(1) + ", " + centerX.toFixed(1) + " " + height.toFixed(1)
+    ].join(" ");
+    thread.style.setProperty("--thread-top", threadStartY + "px");
+    thread.style.setProperty("--thread-height", height + "px");
+    thread.setAttribute("viewBox", "0 0 " + width + " " + height);
+    threadPath.setAttribute("d", d);
+    // Достаточный запас для stroke-dasharray: так линия корректно рисуется
+    // и в браузерах, где SVGPathElement#getTotalLength недоступен.
+    threadLength = Math.ceil(height * 1.2 + Math.abs(centerX - startX) * 1.5);
+    threadPath.style.setProperty("--thread-length", threadLength);
+  }
 
   /* ---- Water's-path timeline: line fills as the section scrolls ---- */
   var pathSteps = document.querySelector(".path-steps");
@@ -124,10 +156,11 @@
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
     if (header) header.classList.toggle("scrolled", y > 24);
-    if (threadPath) {
-      var docH = document.documentElement.scrollHeight - window.innerHeight;
-      var p = docH > 0 ? Math.min(1, y / docH) : 0;
-      threadPath.style.setProperty("--thread-offset", (THREAD_LEN * (1 - p)).toFixed(1));
+    if (threadPath && threadLength) {
+      var visibleBottom = y + window.innerHeight;
+      var threadHeight = Math.max(1, document.documentElement.scrollHeight - threadStartY);
+      var p = Math.max(0, Math.min(1, (visibleBottom - threadStartY) / threadHeight));
+      threadPath.style.setProperty("--thread-offset", (threadLength * (1 - p)).toFixed(1));
     }
     if (!reduceMotion) { updatePathFlow(); updateOriginParallax(); }
   }
@@ -138,6 +171,9 @@
       ticking = true;
     }
   }, { passive: true });
+  updateThreadGeometry();
+  window.addEventListener("resize", updateThreadGeometry, { passive: true });
+  window.addEventListener("load", updateThreadGeometry, { once: true });
   onScroll();
 
   /* ---- Счётчики цифр в блоке доверия: накручиваются при появлении ---- */
