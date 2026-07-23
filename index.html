@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=hero-fone-v2" />
+<link rel="stylesheet" href="css/style.css?v=scroll-story-v1" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -269,65 +269,90 @@
 
 <!-- ============ 3 · WATER'S PATH ============ -->
 <section class="path" id="path" aria-labelledby="path-title">
-  <div class="section-head">
-    <p class="eyebrow" data-en="The process">Процесс</p>
-    <h2 class="section-title" id="path-title" data-en="The water's path">Путь воды</h2>
-    <p class="section-lede" data-en="Follow a single drop: summit, glacier, rock, underground heat, natural spring.">
-      Следуйте за каплей: вершина, ледник, горная порода, подземное тепло, природный источник.
-    </p>
-  </div>
+  <div class="path-sticky">
+    <div class="path-scenes" aria-hidden="true">
+      <figure class="path-scene" data-scene="air">
+        <img src="assets/scroll/воздух.jpg" width="1672" height="941" alt="" />
+      </figure>
+      <figure class="path-scene" data-scene="ice">
+        <img src="assets/scroll/лед.jpg" width="1672" height="941" alt="" />
+      </figure>
+      <figure class="path-scene" data-scene="earth">
+        <img src="assets/scroll/земля.jpg" width="1672" height="941" alt="" />
+      </figure>
+      <figure class="path-scene" data-scene="fire">
+        <img src="assets/scroll/огонь.jpg" width="1672" height="941" alt="" />
+      </figure>
+      <figure class="path-scene" data-scene="spring">
+        <img src="assets/scroll/источник.jpg" width="1672" height="941" alt="" />
+      </figure>
+    </div>
+    <div class="path-veil" aria-hidden="true"></div>
 
-  <ol class="path-steps">
-    <span class="path-line" aria-hidden="true">
-      <span class="path-line-fill"></span>
-      <span class="path-drop"></span>
-    </span>
-    <li class="path-step reveal" data-stage="air">
-      <span class="path-dot">
-        <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16a3.5 3.5 0 0 1 .3-6.98A5 5 0 0 1 16 8.5a3.5 3.5 0 0 1 1 6.9Z"/></svg>
-      </span>
-      <div class="path-body">
-        <h3 data-en="Summit · Air">Вершина · Воздух</h3>
-        <p data-en="Clouds gather over Elbrus; the first meltwater appears.">Облака сгущаются над Эльбрусом; появляется первая талая вода.</p>
+    <div class="path-content">
+      <div class="section-head">
+        <p class="eyebrow" data-en="The process">Процесс</p>
+        <h2 class="section-title" id="path-title" data-en="The water's path">Путь воды</h2>
+        <p class="section-lede" data-en="Follow a single drop: summit, glacier, rock, underground heat, natural spring.">
+          Следуйте за каплей: вершина, ледник, горная порода, подземное тепло, природный источник.
+        </p>
       </div>
-    </li>
-    <li class="path-step reveal" data-stage="ice">
-      <span class="path-dot">
-        <img class="path-ic path-ic-snowflake" src="assets/icons/element-snowflake.svg" width="24" height="24" alt="" aria-hidden="true" />
-      </span>
-      <div class="path-body">
-        <h3 data-en="Glacier · Ice">Ледник · Лёд</h3>
-        <p data-en="The stream slips into a fissure and descends through the rock.">Поток уходит в трещину и опускается сквозь породу.</p>
+
+      <div class="path-timeline">
+        <span class="path-line" aria-hidden="true">
+          <span class="path-line-fill"></span>
+          <span class="path-drop"></span>
+        </span>
+        <ol class="path-steps">
+          <li class="path-step is-active" data-stage="air" aria-current="step">
+            <span class="path-dot">
+              <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16a3.5 3.5 0 0 1 .3-6.98A5 5 0 0 1 16 8.5a3.5 3.5 0 0 1 1 6.9Z"/></svg>
+            </span>
+            <div class="path-body">
+              <h3 data-en="Summit · Air">Вершина · Воздух</h3>
+              <p data-en="Clouds gather over Elbrus; the first meltwater appears.">Облака сгущаются над Эльбрусом; появляется первая талая вода.</p>
+            </div>
+          </li>
+          <li class="path-step" data-stage="ice">
+            <span class="path-dot">
+              <img class="path-ic path-ic-snowflake" src="assets/icons/element-snowflake.svg" width="24" height="24" alt="" aria-hidden="true" />
+            </span>
+            <div class="path-body">
+              <h3 data-en="Glacier · Ice">Ледник · Лёд</h3>
+              <p data-en="The stream slips into a fissure and descends through the rock.">Поток уходит в трещину и опускается сквозь породу.</p>
+            </div>
+          </li>
+          <li class="path-step" data-stage="earth">
+            <span class="path-dot">
+              <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 18 5-8 3.5 5L15 9l6 9Z"/></svg>
+            </span>
+            <div class="path-body">
+              <h3 data-en="Rock · Earth">Порода · Земля</h3>
+              <p data-en="Deep layers give the water its natural mineral character.">Глубокие слои придают воде природный минеральный характер.</p>
+            </div>
+          </li>
+          <li class="path-step" data-stage="fire">
+            <span class="path-dot">
+              <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3 4 4.5 4 8a4 4 0 0 1-8 0c0-1.3.5-2.3 1.2-3.2C10 9 11.5 8 12 3Z"/></svg>
+            </span>
+            <div class="path-body">
+              <h3 data-en="Depth · Fire">Глубина · Огонь</h3>
+              <p data-en="Underground warmth and thermal steam meet the flow.">Подземное тепло и термальный пар встречают поток.</p>
+            </div>
+          </li>
+          <li class="path-step" data-stage="spring">
+            <span class="path-dot">
+              <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 5.5 6.8 5.5 10a5.5 5.5 0 0 1-11 0C6.5 9.8 9 7 12 3Z"/></svg>
+            </span>
+            <div class="path-body">
+              <h3 data-en="Rise · Spring">Подъём · Источник</h3>
+              <p data-en="The water surfaces among green forest, moss and a clear stream.">Вода выходит на поверхность среди зелёного леса, мха и чистого ручья.</p>
+            </div>
+          </li>
+        </ol>
       </div>
-    </li>
-    <li class="path-step reveal" data-stage="earth">
-      <span class="path-dot">
-        <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 18 5-8 3.5 5L15 9l6 9Z"/></svg>
-      </span>
-      <div class="path-body">
-        <h3 data-en="Rock · Earth">Порода · Земля</h3>
-        <p data-en="Deep layers give the water its natural mineral character.">Глубокие слои придают воде природный минеральный характер.</p>
-      </div>
-    </li>
-    <li class="path-step reveal" data-stage="fire">
-      <span class="path-dot">
-        <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3 4 4.5 4 8a4 4 0 0 1-8 0c0-1.3.5-2.3 1.2-3.2C10 9 11.5 8 12 3Z"/></svg>
-      </span>
-      <div class="path-body">
-        <h3 data-en="Depth · Fire">Глубина · Огонь</h3>
-        <p data-en="Underground warmth and thermal steam meet the flow.">Подземное тепло и термальный пар встречают поток.</p>
-      </div>
-    </li>
-    <li class="path-step reveal" data-stage="spring">
-      <span class="path-dot">
-        <svg class="path-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 5.5 6.8 5.5 10a5.5 5.5 0 0 1-11 0C6.5 9.8 9 7 12 3Z"/></svg>
-      </span>
-      <div class="path-body">
-        <h3 data-en="Rise · Spring">Подъём · Источник</h3>
-        <p data-en="The water surfaces among green forest, moss and a clear stream.">Вода выходит на поверхность среди зелёного леса, мха и чистого ручья.</p>
-      </div>
-    </li>
-  </ol>
+    </div>
+  </div>
 </section>
 <!-- ============ 4 · MINERAL COMPOSITION ============ -->
 <section class="minerals" id="minerals" aria-labelledby="minerals-title">
@@ -649,7 +674,7 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/main.js?v=river-to-waterline"></script>
+<script src="js/main.js?v=scroll-story-v1"></script>
 <script src="js/cms.js"></script>
 </body>
 </html>

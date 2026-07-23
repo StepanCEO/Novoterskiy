@@ -68,6 +68,8 @@
   var thread = document.querySelector(".thread");
   var threadPath = document.querySelector(".thread-path");
   var pathLine = document.querySelector(".path-line");
+  var pathSection = document.querySelector(".path");
+  var pathSticky = document.querySelector(".path-sticky");
   var footer = document.querySelector(".site-footer");
   var threadStartY = 0;
   var threadHeight = 0;
@@ -84,8 +86,15 @@
     var width = doc.clientWidth;
     var startX = end.left + end.width / 2;
     // Два пикселя перекрытия убирают просвет между соседними штрихами.
-    threadStartY = Math.floor((window.scrollY || window.pageYOffset) + end.bottom) - 2;
     var scrollY = window.scrollY || window.pageYOffset;
+    if (pathSection && pathSticky) {
+      var sectionRect = pathSection.getBoundingClientRect();
+      var stickyRect = pathSticky.getBoundingClientRect();
+      var lineBottomInSticky = end.bottom - stickyRect.top;
+      threadStartY = Math.floor(scrollY + sectionRect.bottom - (stickyRect.height - lineBottomInSticky)) - 2;
+    } else {
+      threadStartY = Math.floor(scrollY + end.bottom) - 2;
+    }
     var footerTop = footer ? scrollY + footer.getBoundingClientRect().top : doc.scrollHeight;
     var waterline = footer ? footer.querySelector(".footer-waterline") : null;
     var waterlineHeight = waterline ? waterline.getBoundingClientRect().height : 0;
@@ -140,43 +149,52 @@
   /* ---- Water's-path timeline: line fills as the section scrolls ---- */
   var pathSteps = document.querySelector(".path-steps");
   var pathLineFill = document.querySelector(".path-line-fill");
+  var pathSceneEls = Array.prototype.slice.call(document.querySelectorAll(".path-scene"));
+  var pathStepEls = Array.prototype.slice.call(document.querySelectorAll(".path-step"));
+  var pathActiveIndex = -1;
 
-  /* Сцены «Пути воды» (ТЗ п.6): фон секции плавно меняется по мере скролла —
-     светлый лёд → умеренно тёмная порода → тёплый отсвет Огня → зелень источника */
-  var pathSection = document.querySelector(".path");
-  var SCENES = [
-    [0.0,  [246, 250, 252]], // Воздух/Лёд — светлый
-    [0.38, [214, 205, 192]], // Земля — натуральная порода, умеренно темнее
-    [0.66, [236, 215, 188]], // Огонь — тёплый отсвет
-    [1.0,  [223, 235, 221]]  // Источник — мягкая зелень
-  ];
-  function sceneColor(p) {
-    for (var i = 1; i < SCENES.length; i++) {
-      if (p <= SCENES[i][0]) {
-        var a = SCENES[i - 1], b = SCENES[i];
-        var k = (p - a[0]) / (b[0] - a[0]);
-        return "rgb(" + a[1].map(function (c, j) {
-          return Math.round(c + (b[1][j] - c) * k);
-        }).join(",") + ")";
-      }
-    }
-    return "rgb(" + SCENES[SCENES.length - 1][1].join(",") + ")";
+  function smoothStep(value) {
+    value = Math.max(0, Math.min(1, value));
+    return value * value * (3 - 2 * value);
   }
 
   function updatePathFlow() {
-    if (!pathSteps || !pathLineFill) return;
-    var rect = pathSteps.getBoundingClientRect();
+    if (!pathSection || !pathSteps || !pathLineFill) return;
+    var rect = pathSection.getBoundingClientRect();
     var vh = window.innerHeight;
-    // 0 when the list top reaches mid-screen, 1 when its bottom passes mid-screen
-    var start = vh * 0.62;
-    var end = vh * 0.32;
-    var p = (start - rect.top) / (rect.height - (start - end));
+    var scrollRange = Math.max(1, rect.height - vh);
+    var p = -rect.top / scrollRange;
     p = Math.max(0, Math.min(1, p));
+    var lastIndex = Math.max(1, pathSceneEls.length - 1);
+    var stagePosition = p * lastIndex;
+    var activeIndex = Math.max(0, Math.min(lastIndex, Math.round(stagePosition)));
     var pct = (p * 100).toFixed(2) + "%";
     pathLineFill.style.height = pct;
     pathSteps.style.setProperty("--flow", pct);
     pathSteps.classList.toggle("flowing", p > 0.01 && p < 0.99);
-    if (pathSection) pathSection.style.background = sceneColor(p);
+
+    pathSceneEls.forEach(function (scene, index) {
+      var rawOpacity = reduceMotion ? (index === activeIndex ? 1 : 0) : 1 - Math.abs(stagePosition - index);
+      var opacity = smoothStep(rawOpacity);
+      var localProgress = Math.max(0, Math.min(1, (stagePosition - index + 1) / 2));
+      scene.style.setProperty("--scene-opacity", opacity.toFixed(4));
+      scene.style.setProperty("--scene-scale", (1.035 + localProgress * 0.025).toFixed(4));
+      scene.style.setProperty("--scene-y", ((0.5 - localProgress) * 12).toFixed(2) + "px");
+    });
+
+    if (activeIndex !== pathActiveIndex) {
+      pathActiveIndex = activeIndex;
+      pathStepEls.forEach(function (step, index) {
+        var isActive = index === activeIndex;
+        step.classList.toggle("is-active", isActive);
+        step.classList.toggle("is-past", index < activeIndex);
+        if (isActive) step.setAttribute("aria-current", "step");
+        else step.removeAttribute("aria-current");
+      });
+      if (pathStepEls[activeIndex]) {
+        pathSection.setAttribute("data-active-stage", pathStepEls[activeIndex].getAttribute("data-stage"));
+      }
+    }
   }
 
   /* Параллакс фото «Истории происхождения»: фон движется медленнее скролла */
@@ -199,7 +217,8 @@
       var p = Math.max(0, Math.min(1, (y + window.innerHeight * 0.5 - threadStartY) / Math.max(1, threadHeight)));
       threadPath.style.setProperty("--thread-offset", (threadLength * (1 - p)).toFixed(1));
     }
-    if (!reduceMotion) { updatePathFlow(); updateOriginParallax(); }
+    updatePathFlow();
+    if (!reduceMotion) updateOriginParallax();
   }
   var ticking = false;
   window.addEventListener("scroll", function () {
@@ -210,6 +229,7 @@
   }, { passive: true });
   updateThreadGeometry();
   window.addEventListener("resize", updateThreadGeometry, { passive: true });
+  window.addEventListener("resize", updatePathFlow, { passive: true });
   window.addEventListener("load", updateThreadGeometry, { once: true });
   onScroll();
 
