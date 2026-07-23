@@ -77,9 +77,12 @@
     if (!thread || !threadPath || !pathLine || window.innerWidth <= 767) return;
     var end = pathLine.getBoundingClientRect();
     var doc = document.documentElement;
-    var width = window.innerWidth;
+    // SVG занимает ширину документа без полосы прокрутки. Используем ту же
+    // систему координат, чтобы начало нити попадало точно в центр линии пути.
+    var width = doc.clientWidth;
     var startX = end.left + end.width / 2;
-    threadStartY = Math.round((window.scrollY || window.pageYOffset) + end.bottom);
+    // Два пикселя перекрытия убирают просвет между соседними штрихами.
+    threadStartY = Math.floor((window.scrollY || window.pageYOffset) + end.bottom) - 2;
     var height = Math.max(1, doc.scrollHeight - threadStartY);
     var centerX = width / 2;
     var settle = Math.min(360, Math.max(220, height * 0.07));
