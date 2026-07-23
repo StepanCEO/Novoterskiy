@@ -1749,6 +1749,15 @@ img, svg { display: block; max-width: 100%; }
 @media (max-width: 767px) {
   .bottle-video { display: none; }
   .bottle-ios { display: block; }
+
+  /* Keep the compact bottle sharp throughout its entrance. On a small screen
+     Safari's animated blur covers the whole label instead of reading as mist. */
+  .hero.loaded .bottle { animation-name: bottleEmergeSharp; }
+}
+
+@keyframes bottleEmergeSharp {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* iOS Safari decodes the H.264 fallback with an opaque, soft white matte.
@@ -1756,6 +1765,7 @@ img, svg { display: block; max-width: 100%; }
 @supports (-webkit-touch-callout: none) {
   .bottle-video { display: none; }
   .bottle-ios { display: block; }
+  .hero.loaded .bottle { animation-name: bottleEmergeSharp; }
 }
 
 /* ---------- Reduced motion ---------- */
