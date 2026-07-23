@@ -702,6 +702,10 @@ img, svg { display: block; max-width: 100%; }
   opacity: 0.55;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
+.path-ic-snowflake {
+  width: 22px;
+  height: 22px;
+}
 .path-step.in .path-dot {
   transform: scale(1.12);
   border-color: currentColor;
