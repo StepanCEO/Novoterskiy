@@ -87,9 +87,12 @@
     threadStartY = Math.floor((window.scrollY || window.pageYOffset) + end.bottom) - 2;
     var scrollY = window.scrollY || window.pageYOffset;
     var footerTop = footer ? scrollY + footer.getBoundingClientRect().top : doc.scrollHeight;
-    // Река входит под волнистую кромку подвала и растворяется уже в воде.
-    var sinkDepth = footer ? Math.min(150, Math.max(115, footer.getBoundingClientRect().height * 0.42)) : 0;
-    var height = Math.max(1, Math.floor(footerTop + sinkDepth - threadStartY));
+    var waterline = footer ? footer.querySelector(".footer-waterline") : null;
+    var waterlineHeight = waterline ? waterline.getBoundingClientRect().height : 0;
+    // В центре SVG поверхность проходит примерно посередине волны.
+    // Ручеёк касается этой кромки, но не продолжается внутри подвала.
+    var riverEndY = footerTop - waterlineHeight * 0.5;
+    var height = Math.max(1, Math.floor(riverEndY - threadStartY));
     threadHeight = height;
     var centerX = width / 2;
     var settle = Math.min(360, Math.max(220, height * 0.07));
@@ -112,7 +115,7 @@
       var span = Math.min(waveSpan * spanPattern[wave % spanPattern.length], height - riverY);
       var nextY = riverY + span;
       var nextX = centerX + direction * sway * swayPattern[wave % swayPattern.length];
-      if (nextY === height && span < waveSpan * 0.45) nextX = centerX;
+      if (nextY === height) nextX = centerX;
       d.push(
         "C " + riverX.toFixed(1) + " " + (riverY + span * 0.3).toFixed(1) + ", " +
         nextX.toFixed(1) + " " + (riverY + span * 0.7).toFixed(1) + ", " +

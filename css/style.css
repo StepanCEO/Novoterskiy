@@ -144,10 +144,6 @@ img, svg { display: block; max-width: 100%; }
   z-index: 1;
   pointer-events: none;
   opacity: 0.82;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 160px), transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 160px), transparent 100%);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
 }
 .thread-path {
   stroke-dasharray: var(--thread-length, 0);
