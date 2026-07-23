@@ -384,20 +384,6 @@ img, svg { display: block; max-width: 100%; }
   z-index: 1;
   animation: bottlefloat 6s ease-in-out infinite;
 }
-.hero-rock-ridge {
-  grid-area: 1 / 1;
-  align-self: end;
-  justify-self: end;
-  width: 82%;
-  height: auto;
-  margin: 0 -8% 5% 0;
-  position: relative;
-  z-index: 1;
-  clip-path: inset(0 0 0 15%);
-  transform: scaleY(1.28);
-  transform-origin: 50% 100%;
-  pointer-events: none;
-}
 @keyframes bottlefloat {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
@@ -1581,7 +1567,6 @@ img, svg { display: block; max-width: 100%; }
   .hero-cta { justify-content: center; }
   .hero-bottle { min-height: 348px; margin-top: -0.15rem; }
   .bottle { height: clamp(295px, 76vw, 365px); }
-  .hero-rock-ridge { width: 88%; margin: 0 -5% 5% 0; clip-path: inset(0 0 0 10%); transform: scaleY(1.16); }
   .elements-grid { grid-template-columns: 1fr; height: auto; }
   .el { min-height: clamp(260px, 56svh, 420px); }
   .el-cap { padding: 1.5rem 0.8rem 0; }
