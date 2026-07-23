@@ -157,9 +157,10 @@
     var y = window.scrollY || window.pageYOffset;
     if (header) header.classList.toggle("scrolled", y > 24);
     if (threadPath && threadLength) {
-      var visibleBottom = y + window.innerHeight;
       var threadHeight = Math.max(1, document.documentElement.scrollHeight - threadStartY);
-      var p = Math.max(0, Math.min(1, (visibleBottom - threadStartY) / threadHeight));
+      // Нить растёт вслед за прокруткой, когда источник проходит середину
+      // экрана — точка старта остаётся видимой, пока поток идёт ниже.
+      var p = Math.max(0, Math.min(1, (y + window.innerHeight * 0.5 - threadStartY) / threadHeight));
       threadPath.style.setProperty("--thread-offset", (threadLength * (1 - p)).toFixed(1));
     }
     if (!reduceMotion) { updatePathFlow(); updateOriginParallax(); }

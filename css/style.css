@@ -143,14 +143,13 @@ img, svg { display: block; max-width: 100%; }
   height: var(--thread-height, 0px);
   z-index: 1;
   pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
+  opacity: 0.82;
 }
 .thread-path {
   stroke-dasharray: var(--thread-length, 0);
   stroke-dashoffset: var(--thread-offset, 0);
   transition: stroke-dashoffset 0.15s linear;
-  filter: drop-shadow(0 0 6px rgba(111,168,196,0.4));
+  filter: drop-shadow(0 0 5px rgba(25,157,209,0.5));
 }
 /* Content blocks always sit ABOVE the water thread (z-index 1):
    the line lives in the air between blocks, never over cards or text. */
