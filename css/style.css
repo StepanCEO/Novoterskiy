@@ -144,6 +144,10 @@ img, svg { display: block; max-width: 100%; }
   z-index: 1;
   pointer-events: none;
   opacity: 0.82;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 160px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 160px), transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 .thread-path {
   stroke-dasharray: var(--thread-length, 0);
@@ -1317,11 +1321,28 @@ img, svg { display: block; max-width: 100%; }
 
 /* ---------- Footer ---------- */
 .site-footer {
+  --footer-wave-height: clamp(58px, 7vw, 92px);
+  position: relative;
   background: var(--deep);
   color: rgba(255,255,255,0.8);
-  padding: clamp(3rem, 6vw, 5rem) 0 2.4rem;
+  padding: clamp(5.5rem, 9vw, 7.5rem) 0 clamp(3rem, 4vw, 4rem);
+}
+.footer-waterline {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  bottom: calc(100% - 1px);
+  width: 100%;
+  height: var(--footer-wave-height);
+  max-width: none;
+  pointer-events: none;
+}
+.footer-waterline path {
+  fill: var(--deep);
 }
 .footer-grid {
+  position: relative;
+  z-index: 2;
   max-width: var(--wrap);
   margin: 0 auto;
   padding: 0 var(--gutter);

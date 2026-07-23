@@ -87,8 +87,9 @@
     threadStartY = Math.floor((window.scrollY || window.pageYOffset) + end.bottom) - 2;
     var scrollY = window.scrollY || window.pageYOffset;
     var footerTop = footer ? scrollY + footer.getBoundingClientRect().top : doc.scrollHeight;
-    // Русло заканчивается на верхней границе синего подвала.
-    var height = Math.max(1, Math.floor(footerTop - threadStartY));
+    // Река входит под волнистую кромку подвала и растворяется уже в воде.
+    var sinkDepth = footer ? Math.min(150, Math.max(115, footer.getBoundingClientRect().height * 0.42)) : 0;
+    var height = Math.max(1, Math.floor(footerTop + sinkDepth - threadStartY));
     threadHeight = height;
     var centerX = width / 2;
     var settle = Math.min(360, Math.max(220, height * 0.07));
