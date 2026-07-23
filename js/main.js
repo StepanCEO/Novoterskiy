@@ -68,7 +68,9 @@
   var thread = document.querySelector(".thread");
   var threadPath = document.querySelector(".thread-path");
   var pathLine = document.querySelector(".path-line");
+  var footer = document.querySelector(".site-footer");
   var threadStartY = 0;
+  var threadHeight = 0;
   var threadLength = 0;
 
   /* Общая голубая нить начинается точно в конце маршрута «Путь воды»,
@@ -83,7 +85,11 @@
     var startX = end.left + end.width / 2;
     // Два пикселя перекрытия убирают просвет между соседними штрихами.
     threadStartY = Math.floor((window.scrollY || window.pageYOffset) + end.bottom) - 2;
-    var height = Math.max(1, doc.scrollHeight - threadStartY);
+    var scrollY = window.scrollY || window.pageYOffset;
+    var footerTop = footer ? scrollY + footer.getBoundingClientRect().top : doc.scrollHeight;
+    // Русло заканчивается на верхней границе синего подвала.
+    var height = Math.max(1, Math.floor(footerTop - threadStartY));
+    threadHeight = height;
     var centerX = width / 2;
     var settle = Math.min(360, Math.max(220, height * 0.07));
     var sway = Math.min(130, Math.max(72, width * 0.09));
@@ -184,10 +190,9 @@
     var y = window.scrollY || window.pageYOffset;
     if (header) header.classList.toggle("scrolled", y > 24);
     if (threadPath && threadLength) {
-      var threadHeight = Math.max(1, document.documentElement.scrollHeight - threadStartY);
       // Нить растёт вслед за прокруткой, когда источник проходит середину
       // экрана — точка старта остаётся видимой, пока поток идёт ниже.
-      var p = Math.max(0, Math.min(1, (y + window.innerHeight * 0.5 - threadStartY) / threadHeight));
+      var p = Math.max(0, Math.min(1, (y + window.innerHeight * 0.5 - threadStartY) / Math.max(1, threadHeight)));
       threadPath.style.setProperty("--thread-offset", (threadLength * (1 - p)).toFixed(1));
     }
     if (!reduceMotion) { updatePathFlow(); updateOriginParallax(); }
