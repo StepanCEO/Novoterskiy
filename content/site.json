@@ -8,12 +8,36 @@
   },
   "header": {
     "nav": [
-      { "label_ru": "О воде", "label_en": "About water", "url": "#elements" },
-      { "label_ru": "Происхождение", "label_en": "Origin", "url": "#origin" },
-      { "label_ru": "Состав", "label_en": "Composition", "url": "#minerals" },
-      { "label_ru": "Производство", "label_en": "Production", "url": "#trust" },
-      { "label_ru": "Коллекция", "label_en": "Collection", "url": "#collection" },
-      { "label_ru": "Контакты", "label_en": "Contacts", "url": "#contacts" }
+      {
+        "label_ru": "О воде",
+        "label_en": "About water",
+        "url": "#elements"
+      },
+      {
+        "label_ru": "Происхождение",
+        "label_en": "Origin",
+        "url": "#origin"
+      },
+      {
+        "label_ru": "Состав",
+        "label_en": "Composition",
+        "url": "#minerals"
+      },
+      {
+        "label_ru": "Производство",
+        "label_en": "Production",
+        "url": "#trust"
+      },
+      {
+        "label_ru": "Коллекция",
+        "label_en": "Collection",
+        "url": "#collection"
+      },
+      {
+        "label_ru": "Контакты",
+        "label_en": "Contacts",
+        "url": "#contacts"
+      }
     ],
     "cta_ru": "Купить",
     "cta_en": "Buy",
@@ -47,10 +71,46 @@
     "text_ru": "Воздух, Лёд, Земля и Огонь — единая природная панорама, а не четыре отдельных истории.",
     "text_en": "Air, ice, earth and fire — one continuous natural panorama, not four separate stories.",
     "items": [
-      { "title_ru": "Воздух", "title_en": "Air", "text_ru": "Чистота высоты. Путь начинается у вершин Эльбруса.", "text_en": "The purity of heights. The path begins at the summits of Elbrus.", "image": "assets/photos/element-air.webp", "image_alt_ru": "Воздух — небо и облака над Эльбрусом", "image_alt_en": "Air — sky and clouds above Elbrus", "icon": "assets/logo-mark.webp" },
-      { "title_ru": "Лёд", "title_en": "Ice", "text_ru": "Талая вода медленно проходит сквозь лёд и горные слои.", "text_en": "Meltwater slowly passes through ice and mountain strata.", "image": "assets/photos/element-ice-arctic.webp", "image_alt_ru": "Лёд — заснеженные бирюзовые льды", "image_alt_en": "Ice — snow-covered turquoise ice", "icon": "assets/logo-mark.webp" },
-      { "title_ru": "Земля", "title_en": "Earth", "text_ru": "Горные породы насыщают воду природными минералами.", "text_en": "Mountain rock saturates the water with natural minerals.", "image": "assets/photos/element-earth-golden.webp", "image_alt_ru": "Земля — зелёный горный лес, ручей и золотистые камни", "image_alt_en": "Earth — green mountain forest, stream and golden stones", "icon": "assets/logo-mark.webp" },
-      { "title_ru": "Огонь", "title_en": "Fire", "text_ru": "Подземное тепло и термальные источники завершают природный процесс.", "text_en": "Underground heat and thermal springs complete the natural process.", "image": "assets/photos/element-fire.webp", "image_alt_ru": "Огонь — тепло и энергия земных недр", "image_alt_en": "Fire — heat and energy from the depths of the earth", "icon": "assets/logo-mark.webp" }
+      {
+        "title_ru": "Воздух",
+        "title_en": "Air",
+        "text_ru": "Чистота высоты. Путь начинается у вершин Эльбруса.",
+        "text_en": "The purity of heights. The path begins at the summits of Elbrus.",
+        "image": "assets/photos/element-air.webp",
+        "image_alt_ru": "Воздух — небо и облака над Эльбрусом",
+        "image_alt_en": "Air — sky and clouds above Elbrus",
+        "icon": "assets/kmv-air.webp"
+      },
+      {
+        "title_ru": "Лёд",
+        "title_en": "Ice",
+        "text_ru": "Талая вода медленно проходит сквозь лёд и горные слои.",
+        "text_en": "Meltwater slowly passes through ice and mountain strata.",
+        "image": "assets/photos/element-ice-arctic.webp",
+        "image_alt_ru": "Лёд — заснеженные бирюзовые льды",
+        "image_alt_en": "Ice — snow-covered turquoise ice",
+        "icon": "assets/kmv-ice.webp"
+      },
+      {
+        "title_ru": "Земля",
+        "title_en": "Earth",
+        "text_ru": "Горные породы насыщают воду природными минералами.",
+        "text_en": "Mountain rock saturates the water with natural minerals.",
+        "image": "assets/photos/element-earth-golden.webp",
+        "image_alt_ru": "Земля — зелёный горный лес, ручей и золотистые камни",
+        "image_alt_en": "Earth — green mountain forest, stream and golden stones",
+        "icon": "assets/kmv-earth.webp"
+      },
+      {
+        "title_ru": "Огонь",
+        "title_en": "Fire",
+        "text_ru": "Подземное тепло и термальные источники завершают природный процесс.",
+        "text_en": "Underground heat and thermal springs complete the natural process.",
+        "image": "assets/photos/element-fire.webp",
+        "image_alt_ru": "Огонь — тепло и энергия земных недр",
+        "image_alt_en": "Fire — heat and energy from the depths of the earth",
+        "icon": "assets/kmv-fire.webp"
+      }
     ]
   },
   "path": {
@@ -61,11 +121,46 @@
     "text_ru": "Следуйте за каплей: вершина, ледник, горная порода, подземное тепло, природный источник.",
     "text_en": "Follow a single drop: summit, glacier, rock, underground heat, natural spring.",
     "items": [
-      { "stage": "air", "title_ru": "Вершина · Воздух", "title_en": "Summit · Air", "text_ru": "Облака сгущаются над Эльбрусом; появляется первая талая вода.", "text_en": "Clouds gather over Elbrus; the first meltwater appears.", "image": "assets/scroll/воздух.jpg" },
-      { "stage": "ice", "title_ru": "Ледник · Лёд", "title_en": "Glacier · Ice", "text_ru": "Поток уходит в трещину и опускается сквозь породу.", "text_en": "The stream slips into a fissure and descends through the rock.", "image": "assets/scroll/лед.jpg" },
-      { "stage": "earth", "title_ru": "Порода · Земля", "title_en": "Rock · Earth", "text_ru": "Глубокие слои придают воде природный минеральный характер.", "text_en": "Deep layers give the water its natural mineral character.", "image": "assets/scroll/земля.jpg" },
-      { "stage": "fire", "title_ru": "Глубина · Огонь", "title_en": "Depth · Fire", "text_ru": "Подземное тепло и термальный пар встречают поток.", "text_en": "Underground warmth and thermal steam meet the flow.", "image": "assets/scroll/огонь.jpg" },
-      { "stage": "spring", "title_ru": "Подъём · Источник", "title_en": "Rise · Spring", "text_ru": "Вода выходит на поверхность среди зелёного леса, мха и чистого ручья.", "text_en": "The water surfaces among green forest, moss and a clear stream.", "image": "assets/scroll/источник.jpg" }
+      {
+        "stage": "air",
+        "title_ru": "Вершина · Воздух",
+        "title_en": "Summit · Air",
+        "text_ru": "Облака сгущаются над Эльбрусом; появляется первая талая вода.",
+        "text_en": "Clouds gather over Elbrus; the first meltwater appears.",
+        "image": "assets/scroll/воздух.jpg"
+      },
+      {
+        "stage": "ice",
+        "title_ru": "Ледник · Лёд",
+        "title_en": "Glacier · Ice",
+        "text_ru": "Поток уходит в трещину и опускается сквозь породу.",
+        "text_en": "The stream slips into a fissure and descends through the rock.",
+        "image": "assets/scroll/лед.jpg"
+      },
+      {
+        "stage": "earth",
+        "title_ru": "Порода · Земля",
+        "title_en": "Rock · Earth",
+        "text_ru": "Глубокие слои придают воде природный минеральный характер.",
+        "text_en": "Deep layers give the water its natural mineral character.",
+        "image": "assets/scroll/земля.jpg"
+      },
+      {
+        "stage": "fire",
+        "title_ru": "Глубина · Огонь",
+        "title_en": "Depth · Fire",
+        "text_ru": "Подземное тепло и термальный пар встречают поток.",
+        "text_en": "Underground warmth and thermal steam meet the flow.",
+        "image": "assets/scroll/огонь.jpg"
+      },
+      {
+        "stage": "spring",
+        "title_ru": "Подъём · Источник",
+        "title_en": "Rise · Spring",
+        "text_ru": "Вода выходит на поверхность среди зелёного леса, мха и чистого ручья.",
+        "text_en": "The water surfaces among green forest, moss and a clear stream.",
+        "image": "assets/scroll/источник.jpg"
+      }
     ]
   },
   "minerals": {
@@ -74,10 +169,46 @@
     "title_ru": "Природный минеральный состав",
     "title_en": "Natural mineral composition",
     "items": [
-      { "symbol": "Si", "title_ru": "Кремний", "title_en": "Silicon", "text_ru": "Природный компонент минерального состава.", "text_en": "A natural component of the mineral composition.", "image": "assets/photos/mineral-si.webp", "image_alt_ru": "Кремний — природный минерал", "image_alt_en": "Silicon — natural mineral" },
-      { "symbol": "Ca", "title_ru": "Кальций", "title_en": "Calcium", "text_ru": "Природный компонент минерального состава.", "text_en": "A natural component of the mineral composition.", "image": "assets/photos/mineral-ca.webp", "image_alt_ru": "Кальций — природный минерал", "image_alt_en": "Calcium — natural mineral" },
-      { "symbol": "Mg", "title_ru": "Магний", "title_en": "Magnesium", "text_ru": "Природный компонент минерального состава.", "text_en": "A natural component of the mineral composition.", "image": "assets/photos/mineral-mg.webp", "image_alt_ru": "Магний — природный минерал", "image_alt_en": "Magnesium — natural mineral" },
-      { "symbol": "HCO₃", "title_ru": "Гидрокарбонаты", "title_en": "Bicarbonates", "text_ru": "Природные соли, формирующие характерный минеральный состав.", "text_en": "Natural salts that shape the characteristic mineral composition.", "image": "assets/photos/mineral-hco3.webp", "image_alt_ru": "Гидрокарбонаты — природный минерал", "image_alt_en": "Bicarbonates — natural mineral" }
+      {
+        "symbol": "Si",
+        "title_ru": "Кремний",
+        "title_en": "Silicon",
+        "text_ru": "Природный компонент минерального состава.",
+        "text_en": "A natural component of the mineral composition.",
+        "image": "assets/photos/mineral-si.webp",
+        "image_alt_ru": "Кремний — природный минерал",
+        "image_alt_en": "Silicon — natural mineral"
+      },
+      {
+        "symbol": "Ca",
+        "title_ru": "Кальций",
+        "title_en": "Calcium",
+        "text_ru": "Природный компонент минерального состава.",
+        "text_en": "A natural component of the mineral composition.",
+        "image": "assets/photos/mineral-ca.webp",
+        "image_alt_ru": "Кальций — природный минерал",
+        "image_alt_en": "Calcium — natural mineral"
+      },
+      {
+        "symbol": "Mg",
+        "title_ru": "Магний",
+        "title_en": "Magnesium",
+        "text_ru": "Природный компонент минерального состава.",
+        "text_en": "A natural component of the mineral composition.",
+        "image": "assets/photos/mineral-mg.webp",
+        "image_alt_ru": "Магний — природный минерал",
+        "image_alt_en": "Magnesium — natural mineral"
+      },
+      {
+        "symbol": "HCO₃",
+        "title_ru": "Гидрокарбонаты",
+        "title_en": "Bicarbonates",
+        "text_ru": "Природные соли, формирующие характерный минеральный состав.",
+        "text_en": "Natural salts that shape the characteristic mineral composition.",
+        "image": "assets/photos/mineral-hco3.webp",
+        "image_alt_ru": "Гидрокарбонаты — природный минерал",
+        "image_alt_en": "Bicarbonates — natural mineral"
+      }
     ]
   },
   "origin": {
@@ -100,17 +231,62 @@
     "text_ru": "Рациональная опора легенды: подготовка, материалы, контроль и стандарты.",
     "text_en": "The rational case behind the legend: preparation, materials, control and standards.",
     "stats": [
-      { "value": "2", "suffix": "", "label_ru": "Автономных производственных цеха", "label_en": "Autonomous production lines" },
-      { "value": "150", "suffix": "+", "label_ru": "Наград и отличий", "label_en": "Awards and honours" },
-      { "value": "1995", "suffix": "", "label_ru": "С года — почти 30 лет", "label_en": "Since — nearly 30 years" },
-      { "value": "FSSC", "suffix": "22000", "label_ru": "Стандарт безопасности пищевой продукции", "label_en": "Food safety standard" }
+      {
+        "value": "2",
+        "suffix": "",
+        "label_ru": "Автономных производственных цеха",
+        "label_en": "Autonomous production lines"
+      },
+      {
+        "value": "150",
+        "suffix": "+",
+        "label_ru": "Наград и отличий",
+        "label_en": "Awards and honours"
+      },
+      {
+        "value": "1995",
+        "suffix": "",
+        "label_ru": "С года — почти 30 лет",
+        "label_en": "Since — nearly 30 years"
+      },
+      {
+        "value": "FSSC",
+        "suffix": "22000",
+        "label_ru": "Стандарт безопасности пищевой продукции",
+        "label_en": "Food safety standard"
+      }
     ],
     "cards": [
-      { "title_ru": "Бережная подготовка воды", "title_en": "Careful water preparation", "text_ru": "Фильтрация без химических реагентов: песчано-гравийные и угольные фильтры, микронная очистка и УФ-обработка.", "text_en": "Filtration without chemical reagents: sand, gravel and carbon filters, micron filtration and UV treatment." },
-      { "title_ru": "Нержавеющая сталь", "title_en": "Stainless steel", "text_ru": "Линии из Италии, Франции и Германии; вода идёт по собственному минералопроводу.", "text_en": "Lines from Italy, France and Germany; water flows through a dedicated mineral pipeline." },
-      { "title_ru": "Контроль качества", "title_en": "Quality control", "text_ru": "Собственная лаборатория, контроль каждой партии и показатели безопасности по ГОСТ Р 54316 и ТР ТС 021/2011.", "text_en": "Own laboratory, batch-by-batch testing and safety indicators to GOST R 54316 and TR TS 021/2011." },
-      { "title_ru": "Соблюдение стандартов", "title_en": "Compliance with standards", "text_ru": "FSSC 22000, государственная регистрация ЕАЭС и Российский знак качества — документы ниже.", "text_en": "FSSC 22000, EAEU state registration and Russian Quality Mark — the documents are below." },
-      { "title_ru": "Безупречность процесса", "title_en": "Flawless process", "text_ru": "Два автономных цеха, точный розлив и состав, сохранённый от источника до бутылки.", "text_en": "Two autonomous shops, precise bottling and a composition preserved from source to bottle." }
+      {
+        "title_ru": "Бережная подготовка воды",
+        "title_en": "Careful water preparation",
+        "text_ru": "Фильтрация без химических реагентов: песчано-гравийные и угольные фильтры, микронная очистка и УФ-обработка.",
+        "text_en": "Filtration without chemical reagents: sand, gravel and carbon filters, micron filtration and UV treatment."
+      },
+      {
+        "title_ru": "Нержавеющая сталь",
+        "title_en": "Stainless steel",
+        "text_ru": "Линии из Италии, Франции и Германии; вода идёт по собственному минералопроводу.",
+        "text_en": "Lines from Italy, France and Germany; water flows through a dedicated mineral pipeline."
+      },
+      {
+        "title_ru": "Контроль качества",
+        "title_en": "Quality control",
+        "text_ru": "Собственная лаборатория, контроль каждой партии и показатели безопасности по ГОСТ Р 54316 и ТР ТС 021/2011.",
+        "text_en": "Own laboratory, batch-by-batch testing and safety indicators to GOST R 54316 and TR TS 021/2011."
+      },
+      {
+        "title_ru": "Соблюдение стандартов",
+        "title_en": "Compliance with standards",
+        "text_ru": "FSSC 22000, государственная регистрация ЕАЭС и Российский знак качества — документы ниже.",
+        "text_en": "FSSC 22000, EAEU state registration and Russian Quality Mark — the documents are below."
+      },
+      {
+        "title_ru": "Безупречность процесса",
+        "title_en": "Flawless process",
+        "text_ru": "Два автономных цеха, точный розлив и состав, сохранённый от источника до бутылки.",
+        "text_en": "Two autonomous shops, precise bottling and a composition preserved from source to bottle."
+      }
     ],
     "documents_title_ru": "Документы и сертификаты",
     "documents_title_en": "Documents and certificates",
@@ -158,10 +334,26 @@
     "text_ru": "Рожденная ледниками. Закаленная сердцем земли.",
     "text_en": "Born of glaciers. Tempered by the heart of the earth.",
     "nav": [
-      { "label_ru": "Продукция", "label_en": "Products", "url": "#collection" },
-      { "label_ru": "Источник", "label_en": "Source", "url": "#origin" },
-      { "label_ru": "Где купить", "label_en": "Where to buy", "url": "#where" },
-      { "label_ru": "Контакты", "label_en": "Contacts", "url": "#contacts" }
+      {
+        "label_ru": "Продукция",
+        "label_en": "Products",
+        "url": "#collection"
+      },
+      {
+        "label_ru": "Источник",
+        "label_en": "Source",
+        "url": "#origin"
+      },
+      {
+        "label_ru": "Где купить",
+        "label_en": "Where to buy",
+        "url": "#where"
+      },
+      {
+        "label_ru": "Контакты",
+        "label_en": "Contacts",
+        "url": "#contacts"
+      }
     ],
     "privacy_ru": "Политика конфиденциальности",
     "privacy_en": "Privacy policy",

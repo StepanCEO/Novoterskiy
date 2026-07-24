@@ -557,9 +557,10 @@ img, svg { display: block; max-width: 100%; }
 }
 .el-icon {
   display: grid;
+  grid-template: 100% / 100%;
   place-items: center;
-  width: 59px;
-  height: 40px;
+  width: 76px;
+  height: 58px;
   margin: 0.1rem auto 0.85rem;
   filter: drop-shadow(0 1px 5px rgba(255,255,255,0.92));
 }
