@@ -23,6 +23,16 @@
     return safeUrl(value, fallback, false);
   }
 
+  /* Внутренние страницы (каталог, документы) используют тот же site.json,
+     где ссылки на разделы главной записаны как «#origin». На подстранице
+     такой якорь никуда не ведёт — дописываем index.html. */
+  var onHome = /(^|\/)(index\.html)?$/i.test(location.pathname);
+
+  function resolveHash(value) {
+    if (onHome || typeof value !== "string") return value;
+    return value.charAt(0) === "#" ? "index.html" + value : value;
+  }
+
   function getJSON(url) {
     return fetch(url, { cache: "no-cache" }).then(function (response) {
       if (!response.ok) throw new Error(url + " " + response.status);
@@ -30,11 +40,15 @@
     });
   }
 
+  /* root === null означает «секции нет на этой странице»: без этого поиск
+     провалился бы в document и переписал бы чужой узел с тем же классом. */
   function one(selector, root) {
+    if (arguments.length > 1 && !root) return null;
     return (root || document).querySelector(selector);
   }
 
   function all(selector, root) {
+    if (arguments.length > 1 && !root) return [];
     return Array.prototype.slice.call((root || document).querySelectorAll(selector));
   }
 
@@ -47,7 +61,7 @@
   }
 
   function setLink(element, value, fallback) {
-    if (element && value != null) element.setAttribute("href", safeUrl(value, fallback || element.getAttribute("href"), true));
+    if (element && value != null) element.setAttribute("href", safeUrl(resolveHash(value), fallback || element.getAttribute("href"), true));
   }
 
   function setImage(element, value, fallback, altRu, altEn) {
@@ -83,7 +97,7 @@
       bilingual(node, item.label_ru, item.label_en);
       setLink(node, item.url);
     });
-    var headerCta = one(".header-actions .btn");
+    var headerCta = one(".header-actions .btn:not([data-no-cms])");
     bilingual(headerCta, header.cta_ru, header.cta_en);
     setLink(headerCta, header.cta_url);
 
@@ -184,7 +198,7 @@
 
     var collection = data.collection || {};
     var collectionRoot = one("#collection");
-    sectionHead(collectionRoot, collection, false);
+    sectionHead(collectionRoot, collection);
     all(".product .btn", collectionRoot).forEach(function (button) {
       bilingual(button, collection.buy_ru, collection.buy_en);
       if (!button.getAttribute("href")) setLink(button, collection.default_buy_url);
@@ -227,7 +241,7 @@
     var collection = siteContent.collection || {};
     track.innerHTML = data.items.map(function (product) {
       var photo = safeAsset(product.photo, "");
-      var href = safeUrl(product.buy_url, collection.default_buy_url || "#where", true);
+      var href = safeUrl(resolveHash(product.buy_url), resolveHash(collection.default_buy_url) || "index.html#where", true);
       var titleEn = esc(product.title_en || product.title);
       var typeEn = esc(product.type_en || product.type);
       var alt = product.alt_ru || (product.title + " — " + product.type);

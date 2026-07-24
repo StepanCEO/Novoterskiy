@@ -182,13 +182,15 @@ collections:
               - { name: documents_cta_en, label: Кнопка документов EN, widget: string }
               - { name: documents_cta_url, label: Ссылка документов, widget: string }
           - name: collection
-            label: Коллекция
+            label: Каталог
             widget: object
             fields:
               - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
               - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
               - { name: title_ru, label: Заголовок RU, widget: string }
               - { name: title_en, label: Заголовок EN, widget: string }
+              - { name: text_ru, label: Подзаголовок RU, widget: text }
+              - { name: text_en, label: Подзаголовок EN, widget: text }
               - { name: buy_ru, label: Кнопка покупки RU, widget: string }
               - { name: buy_en, label: Кнопка покупки EN, widget: string }
               - { name: default_buy_url, label: Ссылка покупки по умолчанию, widget: string }

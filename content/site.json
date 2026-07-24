@@ -29,19 +29,14 @@
         "url": "#trust"
       },
       {
-        "label_ru": "Коллекция",
-        "label_en": "Collection",
-        "url": "#collection"
-      },
-      {
         "label_ru": "Контакты",
         "label_en": "Contacts",
         "url": "#contacts"
       }
     ],
-    "cta_ru": "Купить",
-    "cta_en": "Buy",
-    "cta_url": "#collection"
+    "cta_ru": "Каталог",
+    "cta_en": "Catalog",
+    "cta_url": "catalog.html"
   },
   "hero": {
     "title_line_1_ru": "Рожденная ледниками.",
@@ -299,11 +294,13 @@
   "collection": {
     "eyebrow_ru": "Линейка",
     "eyebrow_en": "The range",
-    "title_ru": "Коллекция",
-    "title_en": "The collection",
+    "title_ru": "Каталог",
+    "title_en": "Catalog",
+    "text_ru": "Одна вода — пять форматов. Стекло сохраняет вкус для стола, ПЭТ едет с вами.",
+    "text_en": "One water — five formats. Glass keeps the taste for the table, PET travels with you.",
     "buy_ru": "Купить",
     "buy_en": "Buy",
-    "default_buy_url": "#where"
+    "default_buy_url": "index.html#where"
   },
   "final": {
     "quote_ru": "Мы не создаем воду. Мы лишь бережно сохраняем путь, который природа проходила десятилетиями.",
@@ -312,7 +309,7 @@
     "accent_en": "The purity of nature. The perfection of production.",
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
-    "cta_url": "#collection",
+    "cta_url": "catalog.html",
     "bottle": "assets/products/hero-bottle-ios.png",
     "logo": "assets/logo-mark.webp"
   },
@@ -337,7 +334,7 @@
       {
         "label_ru": "Продукция",
         "label_en": "Products",
-        "url": "#collection"
+        "url": "catalog.html"
       },
       {
         "label_ru": "Источник",
