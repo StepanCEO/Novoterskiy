@@ -1174,11 +1174,14 @@ img, svg { display: block; max-width: 100%; }
   gap: 1.2rem;
 }
 .stat {
+  /* Плашка стоит поверх голубой нити, поэтому фон полностью непрозрачный —
+     иначе река просвечивает сквозь цифры. */
+  position: relative;
   text-align: center;
   padding: 1.6rem 0.8rem;
   border-radius: var(--r);
-  background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(244,248,251,0.7));
-  border: 1px solid rgba(20,49,63,0.06);
+  background: linear-gradient(180deg, #ffffff, #f4f8fb);
+  border: 1px solid rgba(20,49,63,0.08);
 }
 .stat-num {
   display: flex;

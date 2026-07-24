@@ -126,6 +126,7 @@
   var thread = document.querySelector(".thread");
   var threadPath = document.querySelector(".thread-path");
   var pathLine = document.querySelector(".path-line");
+  var pathLastDot = document.querySelector(".path-step:last-child .path-dot");
   var pathSection = document.querySelector(".path");
   var pathSticky = document.querySelector(".path-sticky");
   var footer = document.querySelector(".site-footer");
@@ -142,16 +143,20 @@
     // SVG занимает ширину документа без полосы прокрутки. Используем ту же
     // систему координат, чтобы начало нити попадало точно в центр линии пути.
     var width = doc.clientWidth;
-    var startX = end.left + end.width / 2;
+    // Нить должна выходить из-под нижней точки последнего кружка, а не из
+    // линии-подложки: у кружка свой центр (он шире линии), и расхождение в
+    // пару пикселей читается как косой выход из бока.
+    var anchor = pathLastDot ? pathLastDot.getBoundingClientRect() : end;
+    var startX = anchor.left + anchor.width / 2;
     // Два пикселя перекрытия убирают просвет между соседними штрихами.
     var scrollY = window.scrollY || window.pageYOffset;
     if (pathSection && pathSticky) {
       var sectionRect = pathSection.getBoundingClientRect();
       var stickyRect = pathSticky.getBoundingClientRect();
-      var lineBottomInSticky = end.bottom - stickyRect.top;
+      var lineBottomInSticky = anchor.bottom - stickyRect.top;
       threadStartY = Math.floor(scrollY + sectionRect.bottom - (stickyRect.height - lineBottomInSticky)) - 2;
     } else {
-      threadStartY = Math.floor(scrollY + end.bottom) - 2;
+      threadStartY = Math.floor(scrollY + anchor.bottom) - 2;
     }
     var footerTop = footer ? scrollY + footer.getBoundingClientRect().top : doc.scrollHeight;
     var waterline = footer ? footer.querySelector(".footer-waterline") : null;
@@ -164,9 +169,13 @@
     var centerX = width / 2;
     var settle = Math.min(360, Math.max(220, height * 0.07));
     var sway = Math.min(130, Math.max(72, width * 0.09));
+    // Короткий вертикальный участок под кружком: без него изгиб к центру
+    // страницы начинается сразу и капля будто вытекает из бока, а не снизу.
+    var drop = Math.min(46, settle * 0.16);
     var d = [
       "M " + startX.toFixed(1) + " 0",
-      "C " + startX.toFixed(1) + " " + (settle * 0.28).toFixed(1) + ", " + (centerX - sway * 0.45).toFixed(1) + " " + (settle * 0.72).toFixed(1) + ", " + centerX.toFixed(1) + " " + settle.toFixed(1)
+      "L " + startX.toFixed(1) + " " + drop.toFixed(1),
+      "C " + startX.toFixed(1) + " " + (drop + (settle - drop) * 0.3).toFixed(1) + ", " + (centerX - sway * 0.45).toFixed(1) + " " + (drop + (settle - drop) * 0.74).toFixed(1) + ", " + centerX.toFixed(1) + " " + settle.toFixed(1)
     ];
 
     // Чередующиеся безье-сегменты дают заметное, но спокойное русло.
