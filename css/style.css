@@ -334,7 +334,13 @@ img, svg { display: block; max-width: 100%; }
   border-radius: 10px;
   backdrop-filter: blur(8px);
 }
-.hero-elements img { width: 44px; height: 30px; object-fit: contain; }
+.hero-elements img,
+.hero-elements svg { width: 44px; height: 30px; object-fit: contain; display: block; }
+/* Тонкие контурные иконки стихий — цвет по палитре зон (ТЗ п.5) */
+.he-air  svg { color: #7fa8bd; }
+.he-ice  svg { color: #5c9cbe; }
+.he-earth svg { color: #308466; }
+.he-fire svg { color: #cf8a3e; }
 .hero-elements span { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .hero-cta { margin-top: 2.4rem; display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; }
 
@@ -1829,7 +1835,7 @@ img, svg { display: block; max-width: 100%; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-elements { gap: 0.3rem; }
   .hero-elements li { padding: 0.45rem 0.1rem 0.4rem; }
-  .hero-elements img { width: 38px; height: 26px; }
+  .hero-elements img, .hero-elements svg { width: 38px; height: 26px; }
   .hero-elements span { font-size: 0.54rem; }
   .hero-cta { justify-content: center; }
   .hero-bottle { min-height: 348px; margin-top: -0.15rem; }
