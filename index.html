@@ -200,17 +200,14 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <!-- Desktop video; iPhone uses the sharp transparent still below because
-             H.264 cannot carry alpha and Safari otherwise reveals its white matte. -->
-        <video class="bottle-video" id="bottleVideo" width="720" height="1200"
-               muted playsinline preload="auto"
-               poster="assets/video/bottle-hero-poster.webp"
-               aria-label="Новотерская Целебная">
-          <source src="assets/video/bottle-hero.webm" type='video/webm; codecs="vp9"' />
-          <source src="assets/video/bottle-hero.mp4" type="video/mp4" />
-          <img class="bottle-photo" src="assets/products/celebnaya-pet-05.webp" width="225" height="741" alt="Новотерская Целебная" />
-        </video>
-        <img class="bottle-ios" src="assets/products/hero-bottle-ios.png" width="720" height="1200" alt="" aria-hidden="true" />
+        <!-- 360° spin: photo frames, drag to rotate, slow auto-rotation -->
+        <div class="bottle-spin" id="bottleSpin" role="img"
+             aria-label="Новотерская Целебная — вращающаяся бутылка">
+          <img class="spin-frame is-active" src="assets/spin/spin-00.webp" width="720" height="1200" alt="Новотерская Целебная" />
+          <img class="spin-frame" src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
+          <img class="spin-frame" src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
+          <img class="spin-frame" src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
+        </div>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
       <div class="hero-water" aria-hidden="true">

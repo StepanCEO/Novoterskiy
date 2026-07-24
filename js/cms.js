@@ -103,20 +103,6 @@
     setLink(heroCtas[1], hero.secondary_cta_url);
     setImage(one(".hero-bg img"), hero.background);
 
-    var video = one("#bottleVideo");
-    if (video) {
-      if (hero.video_poster != null) video.setAttribute("poster", safeAsset(hero.video_poster, video.getAttribute("poster")));
-      var sources = all("source", video);
-      var nextWebm = safeAsset(hero.video_webm, sources[0] && sources[0].getAttribute("src"));
-      var nextMp4 = safeAsset(hero.video_mp4, sources[1] && sources[1].getAttribute("src"));
-      var changed = false;
-      if (sources[0] && nextWebm && nextWebm !== sources[0].getAttribute("src")) { sources[0].setAttribute("src", nextWebm); changed = true; }
-      if (sources[1] && nextMp4 && nextMp4 !== sources[1].getAttribute("src")) { sources[1].setAttribute("src", nextMp4); changed = true; }
-      setImage(one(".bottle-photo", video), hero.video_fallback);
-      if (changed) video.load();
-    }
-    setImage(one(".bottle-ios"), hero.mobile_bottle);
-
     var elements = data.elements || {};
     var elementsRoot = one("#elements");
     sectionHead(elementsRoot, elements);

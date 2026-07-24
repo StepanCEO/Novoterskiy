@@ -358,30 +358,30 @@ img, svg { display: block; max-width: 100%; }
   transform: rotate(17deg) translate(10%, 2%);
   filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35));
 }
-/* Видео бутылки: настоящий альфа-канал (VP9), фон вырезан в самом файле */
-.bottle-video {
-  display: block;
-  height: 100%;
-  width: auto;
-  margin: 0 auto;
-  animation: bottlefloat 6s ease-in-out infinite;
-}
-.bottle-ios {
-  display: none;
-  height: 100%;
-  width: auto;
-  margin: 0 auto;
-  animation: bottlefloat 6s ease-in-out infinite;
-}
-.bottle-photo {
-  display: block;
-  height: 100%;
-  width: auto;
-  margin: 0 auto;
+/* 360° spin viewer: stacked photo frames, one visible at a time */
+.bottle-spin {
   position: relative;
-  z-index: 1;
+  height: 100%;
+  aspect-ratio: 720 / 1200;
+  margin: 0 auto;
+  cursor: grab;
+  touch-action: pan-y; /* вертикальный скролл сохраняем, горизонт — вращение */
+  user-select: none;
+  -webkit-user-drag: none;
   animation: bottlefloat 6s ease-in-out infinite;
 }
+.bottle-spin.is-dragging { cursor: grabbing; }
+.spin-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.spin-frame.is-active { opacity: 1; }
 @keyframes bottlefloat {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
@@ -1815,7 +1815,6 @@ img, svg { display: block; max-width: 100%; }
   display: none;
 }
 .bottle { height: clamp(420px, 43vw, 590px); transform: rotate(17deg) translate(9%, 1%); }
-.bottle-video { mix-blend-mode: multiply; }
 .hero-mist { width: 116%; height: 42%; opacity: 0.55; filter: blur(13px); }
 
 .elements { padding: 0; background: #fbf7f2; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
@@ -1863,14 +1862,9 @@ img, svg { display: block; max-width: 100%; }
   .el + .el { border-top: 1px solid rgba(255,255,255,0.38); }
 }
 
-/* The opaque video uses multiply so its white matte blends into the light
-   editorial scene instead of showing as a rectangular background. */
+/* Compact bottle stays sharp throughout its entrance. On a small screen
+   Safari's animated blur covers the whole label instead of reading as mist. */
 @media (max-width: 767px) {
-  .bottle-video { display: none; }
-  .bottle-ios { display: block; }
-
-  /* Keep the compact bottle sharp throughout its entrance. On a small screen
-     Safari's animated blur covers the whole label instead of reading as mist. */
   .hero.loaded .bottle { animation-name: bottleEmergeSharp; }
 }
 
@@ -1879,11 +1873,8 @@ img, svg { display: block; max-width: 100%; }
   to   { opacity: 1; }
 }
 
-/* iOS Safari decodes the H.264 fallback with an opaque, soft white matte.
-   Use the prepared 720 px transparent still instead, including in landscape. */
+/* iOS Safari: same sharp entrance for the spin viewer. */
 @supports (-webkit-touch-callout: none) {
-  .bottle-video { display: none; }
-  .bottle-ios { display: block; }
   .hero.loaded .bottle { animation-name: bottleEmergeSharp; }
 }
 

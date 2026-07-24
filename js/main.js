@@ -13,29 +13,49 @@
     setTimeout(startHero, 200);
   }
 
-  /* ---- Bottle video: играет один раз в момент появления бутылки (3s),
-         застывает на последнем кадре до следующей загрузки страницы ---- */
-  var bottleVideo = document.getElementById("bottleVideo");
-  var useIosBottleStill = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  if (bottleVideo && !useIosBottleStill) {
-    bottleVideo.addEventListener("ended", function () {
-      // фиксируемся на последнем кадре
-      bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
-      bottleVideo.pause();
-    });
-    var playBottle = function () {
-      var p = bottleVideo.play();
-      if (p && p.catch) p.catch(function () { /* автоплей запрещён — остаётся постер */ });
+  /* ---- Bottle 360° spin: кадры-фото, drag/свайп вращает, плюс медленное
+         авто-вращение, пока пользователь не трогает бутылку ---- */
+  var bottleSpin = document.getElementById("bottleSpin");
+  if (bottleSpin) {
+    var spinFrames = Array.prototype.slice.call(bottleSpin.querySelectorAll(".spin-frame"));
+    var spinCount = spinFrames.length;
+    var spinIndex = 0;
+    var showFrame = function (i) {
+      var next = ((Math.round(i) % spinCount) + spinCount) % spinCount;
+      if (next === spinIndex) return;
+      spinFrames[spinIndex].classList.remove("is-active");
+      spinFrames[next].classList.add("is-active");
+      spinIndex = next;
     };
-    if (reduceMotion) {
-      // без анимаций: сразу финальный кадр
-      bottleVideo.addEventListener("loadedmetadata", function () {
-        bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
-      });
-    } else {
-      // старт синхронно с фазой «бутылка из дымки» (3с сценария)
-      setTimeout(playBottle, 3000);
+
+    // drag: полный оборот за ~0.9 ширины бутылки
+    var dragging = false, startX = 0, startIndex = 0;
+    var pxPerTurn = function () { return Math.max(180, bottleSpin.clientWidth * 0.9); };
+    bottleSpin.addEventListener("pointerdown", function (e) {
+      dragging = true;
+      startX = e.clientX;
+      startIndex = spinIndex;
+      bottleSpin.classList.add("is-dragging");
+      bottleSpin.setPointerCapture(e.pointerId);
+    });
+    bottleSpin.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var turns = (e.clientX - startX) / pxPerTurn();
+      showFrame(startIndex + turns * spinCount);
+    });
+    var endDrag = function () {
+      dragging = false;
+      bottleSpin.classList.remove("is-dragging");
+    };
+    bottleSpin.addEventListener("pointerup", endDrag);
+    bottleSpin.addEventListener("pointercancel", endDrag);
+
+    // авто-вращение: следующий кадр каждые 1.8с, пауза при drag и вне вкладки
+    if (!reduceMotion) {
+      setInterval(function () {
+        if (dragging || document.visibilityState !== "visible") return;
+        showFrame(spinIndex + 1);
+      }, 1800);
     }
   }
 
