@@ -9,6 +9,7 @@ Thumbs.db
 # Local tooling
 .claude/
 .mcp.json
+tools/__pycache__/
 
 # Private spec — contains pricing / contract details, keep out of public repo
 ТЗ.md
