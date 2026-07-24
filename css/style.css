@@ -1707,7 +1707,9 @@ img, svg { display: block; max-width: 100%; }
 }
 /* tablet 768–1023 */
 @media (max-width: 1023px) {
-  .site-nav { display: none; }
+  /* Меню целиком не влезает, но каталог — главный вход в продукцию,
+     поэтому от навигации остаётся только он. */
+  .site-nav a:not([href$="catalog.html"]) { display: none; }
   .hero { padding-top: 6.5rem; text-align: center; }
   /* На узких экранах текст идёт поверх горы — туман равномернее и плотнее */
   .hero-fog {
@@ -1736,8 +1738,7 @@ img, svg { display: block; max-width: 100%; }
 /* mobile 320–767 */
 @media (max-width: 767px) {
   :root { --gutter: 20px; }
-  /* Меню скрыто с 1023px, поэтому кнопка «Каталог» — единственный вход
-     в продукцию с телефона: оставляем её, только компактнее. */
+  /* Кнопки в шапке больше нет — остаётся переключатель языка и «Каталог» в меню. */
   .header-actions { gap: 0.7rem; }
   .header-actions .btn { --_pad: 0.62em 0.95em; font-size: 0.62rem; }
   .hero { padding-top: 5.5rem; padding-bottom: 1rem; }

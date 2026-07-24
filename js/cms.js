@@ -97,9 +97,6 @@
       bilingual(node, item.label_ru, item.label_en);
       setLink(node, item.url);
     });
-    var headerCta = one(".header-actions .btn:not([data-no-cms])");
-    bilingual(headerCta, header.cta_ru, header.cta_en);
-    setLink(headerCta, header.cta_url);
 
     var hero = data.hero || {};
     var heroTitle = one("#hero-title");

@@ -39,9 +39,6 @@ collections:
                   - { name: label_ru, label: Текст RU, widget: string }
                   - { name: label_en, label: Текст EN, widget: string }
                   - { name: url, label: Ссылка, widget: string }
-              - { name: cta_ru, label: Кнопка RU, widget: string }
-              - { name: cta_en, label: Кнопка EN, widget: string }
-              - { name: cta_url, label: Ссылка кнопки, widget: string }
           - name: hero
             label: Первый экран
             widget: object

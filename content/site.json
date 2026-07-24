@@ -9,9 +9,9 @@
   "header": {
     "nav": [
       {
-        "label_ru": "О воде",
-        "label_en": "About water",
-        "url": "#elements"
+        "label_ru": "Каталог",
+        "label_en": "Catalog",
+        "url": "catalog.html"
       },
       {
         "label_ru": "Происхождение",
@@ -33,10 +33,7 @@
         "label_en": "Contacts",
         "url": "#contacts"
       }
-    ],
-    "cta_ru": "Каталог",
-    "cta_en": "Catalog",
-    "cta_url": "catalog.html"
+    ]
   },
   "hero": {
     "title_line_1_ru": "Рожденная ледниками.",
