@@ -3,37 +3,57 @@
     {
       "id": "celebnaya-glass-elita-05",
       "title": "Целебная 0.5",
+      "title_en": "Healing 0.5",
       "type": "Газированная · стекло «Элита»",
       "type_en": "Sparkling · glass «Elita»",
-      "photo": "assets/products/celebnaya-glass-elita-05.webp"
+      "photo": "assets/products/celebnaya-glass-elita-05.webp",
+      "alt_ru": "Новотерская Целебная 0,5 л, стекло Элита",
+      "alt_en": "Novoterskaya Healing 0.5 L, Elita glass bottle",
+      "buy_url": "#where"
     },
     {
       "id": "celebnaya-glass-euro-05",
       "title": "Целебная 0.5",
+      "title_en": "Healing 0.5",
       "type": "Газированная · стекло «Евро»",
       "type_en": "Sparkling · glass «Euro»",
-      "photo": "assets/products/celebnaya-glass-euro-05.webp"
+      "photo": "assets/products/celebnaya-glass-euro-05.webp",
+      "alt_ru": "Новотерская Целебная 0,5 л, стекло Евро",
+      "alt_en": "Novoterskaya Healing 0.5 L, Euro glass bottle",
+      "buy_url": "#where"
     },
     {
       "id": "celebnaya-pet-05",
       "title": "Целебная 0.5",
+      "title_en": "Healing 0.5",
       "type": "Газированная · ПЭТ",
       "type_en": "Sparkling · PET",
-      "photo": "assets/products/celebnaya-pet-05.webp"
+      "photo": "assets/products/celebnaya-pet-05.webp",
+      "alt_ru": "Новотерская Целебная 0,5 л, ПЭТ",
+      "alt_en": "Novoterskaya Healing 0.5 L, PET bottle",
+      "buy_url": "#where"
     },
     {
       "id": "celebnaya-pet-10",
       "title": "Целебная 1.0",
+      "title_en": "Healing 1.0",
       "type": "Газированная · ПЭТ",
       "type_en": "Sparkling · PET",
-      "photo": "assets/products/celebnaya-pet-10.webp"
+      "photo": "assets/products/celebnaya-pet-10.webp",
+      "alt_ru": "Новотерская Целебная 1,0 л, ПЭТ",
+      "alt_en": "Novoterskaya Healing 1.0 L, PET bottle",
+      "buy_url": "#where"
     },
     {
       "id": "celebnaya-pet-15",
       "title": "Целебная 1.5",
+      "title_en": "Healing 1.5",
       "type": "Газированная · ПЭТ",
       "type_en": "Sparkling · PET",
-      "photo": "assets/products/celebnaya-pet-15.webp"
+      "photo": "assets/products/celebnaya-pet-15.webp",
+      "alt_ru": "Новотерская Целебная 1,5 л, ПЭТ",
+      "alt_en": "Novoterskaya Healing 1.5 L, PET bottle",
+      "buy_url": "#where"
     }
   ]
 }

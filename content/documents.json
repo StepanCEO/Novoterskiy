@@ -53,6 +53,24 @@
       "desc": "N RU Д-RU.РА02.В.96742/22",
       "desc_en": "N RU Д-RU.РА02.В.96742/22",
       "file": ""
+    },
+    {
+      "id": "Сводные данные о результатах СОУТ",
+      "anchor": "sout-summary",
+      "name": "Сводные данные о результатах СОУТ",
+      "name_en": "Summary of the workplace assessment results",
+      "desc": "PDF со старого сайта АО «Кавминводы»",
+      "desc_en": "PDF transferred from the former JSC Kavminvody website",
+      "file": "assets/documents/sout-summary.pdf"
+    },
+    {
+      "id": "Перечень мероприятий по охране труда",
+      "anchor": "labor-safety-measures",
+      "name": "Перечень мероприятий по охране труда",
+      "name_en": "Occupational safety action plan",
+      "desc": "PDF со старого сайта АО «Кавминводы»",
+      "desc_en": "PDF transferred from the former JSC Kavminvody website",
+      "file": "assets/documents/labor-safety-measures.pdf"
     }
   ]
 }

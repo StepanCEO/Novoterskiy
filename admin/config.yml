@@ -11,6 +11,242 @@ media_folder: "assets/uploads"
 public_folder: "assets/uploads"
 
 collections:
+  # ---- Тексты, изображения и ссылки сайта ----
+  - name: site
+    label: Сайт
+    files:
+      - name: site
+        label: Главная страница
+        file: content/site.json
+        fields:
+          - name: brand
+            label: Бренд
+            widget: object
+            fields:
+              - { name: name_ru, label: Название RU, widget: string }
+              - { name: name_en, label: Название EN, widget: string }
+              - { name: tagline_ru, label: Подпись RU, widget: string }
+              - { name: tagline_en, label: Подпись EN, widget: string }
+              - { name: logo, label: Логотип, widget: image }
+          - name: header
+            label: Шапка и навигация
+            widget: object
+            fields:
+              - name: nav
+                label: Пункты меню
+                widget: list
+                fields: &link_fields
+                  - { name: label_ru, label: Текст RU, widget: string }
+                  - { name: label_en, label: Текст EN, widget: string }
+                  - { name: url, label: Ссылка, widget: string }
+              - { name: cta_ru, label: Кнопка RU, widget: string }
+              - { name: cta_en, label: Кнопка EN, widget: string }
+              - { name: cta_url, label: Ссылка кнопки, widget: string }
+          - name: hero
+            label: Первый экран
+            widget: object
+            fields:
+              - { name: title_line_1_ru, label: Заголовок — строка 1 RU, widget: string }
+              - { name: title_line_1_en, label: Заголовок — строка 1 EN, widget: string }
+              - { name: title_line_2_ru, label: Заголовок — строка 2 RU, widget: string }
+              - { name: title_line_2_en, label: Заголовок — строка 2 EN, widget: string }
+              - { name: text_ru, label: Текст RU, widget: text }
+              - { name: text_en, label: Текст EN, widget: text }
+              - { name: primary_cta_ru, label: Основная кнопка RU, widget: string }
+              - { name: primary_cta_en, label: Основная кнопка EN, widget: string }
+              - { name: primary_cta_url, label: Ссылка основной кнопки, widget: string }
+              - { name: secondary_cta_ru, label: Вторая кнопка RU, widget: string }
+              - { name: secondary_cta_en, label: Вторая кнопка EN, widget: string }
+              - { name: secondary_cta_url, label: Ссылка второй кнопки, widget: string }
+              - { name: background, label: Фоновое изображение, widget: image }
+              - { name: video_webm, label: Видео WebM, widget: file }
+              - { name: video_mp4, label: Видео MP4, widget: file }
+              - { name: video_poster, label: Постер видео, widget: image }
+              - { name: video_fallback, label: Запасное фото в video, widget: image }
+              - { name: mobile_bottle, label: Бутылка для телефона, widget: image }
+          - name: elements
+            label: Четыре стихии
+            widget: object
+            fields:
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+              - { name: text_ru, label: Текст RU, widget: text }
+              - { name: text_en, label: Текст EN, widget: text }
+              - name: items
+                label: Карточки (сохраняйте порядок)
+                widget: list
+                min: 4
+                max: 4
+                fields:
+                  - { name: title_ru, label: Название RU, widget: string }
+                  - { name: title_en, label: Название EN, widget: string }
+                  - { name: text_ru, label: Текст RU, widget: text }
+                  - { name: text_en, label: Текст EN, widget: text }
+                  - { name: image, label: Фото, widget: image }
+                  - { name: image_alt_ru, label: Описание фото RU, widget: string }
+                  - { name: image_alt_en, label: Описание фото EN, widget: string }
+                  - { name: icon, label: Иконка, widget: image }
+          - name: path
+            label: Путь воды
+            widget: object
+            fields:
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+              - { name: text_ru, label: Текст RU, widget: text }
+              - { name: text_en, label: Текст EN, widget: text }
+              - name: items
+                label: Этапы (сохраняйте 5 этапов и их порядок)
+                widget: list
+                min: 5
+                max: 5
+                fields:
+                  - { name: stage, label: "Код: air / ice / earth / fire / spring", widget: string }
+                  - { name: title_ru, label: Название RU, widget: string }
+                  - { name: title_en, label: Название EN, widget: string }
+                  - { name: text_ru, label: Текст RU, widget: text }
+                  - { name: text_en, label: Текст EN, widget: text }
+                  - { name: image, label: Фото сцены, widget: image }
+          - name: minerals
+            label: Минеральный состав
+            widget: object
+            fields:
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+              - name: items
+                label: Минералы (сохраняйте порядок)
+                widget: list
+                fields:
+                  - { name: symbol, label: Символ, widget: string }
+                  - { name: title_ru, label: Название RU, widget: string }
+                  - { name: title_en, label: Название EN, widget: string }
+                  - { name: text_ru, label: Текст RU, widget: text }
+                  - { name: text_en, label: Текст EN, widget: text }
+                  - { name: image, label: Фото, widget: image }
+                  - { name: image_alt_ru, label: Описание фото RU, widget: string }
+                  - { name: image_alt_en, label: Описание фото EN, widget: string }
+          - name: origin
+            label: Происхождение
+            widget: object
+            fields: &section_with_cta
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+              - { name: text_ru, label: Текст RU, widget: text }
+              - { name: text_en, label: Текст EN, widget: text }
+              - { name: cta_ru, label: Кнопка RU, widget: string }
+              - { name: cta_en, label: Кнопка EN, widget: string }
+              - { name: cta_url, label: Ссылка кнопки, widget: string }
+              - { name: background, label: Фоновое изображение, widget: image }
+          - name: trust
+            label: Доверие и качество
+            widget: object
+            fields:
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+              - { name: text_ru, label: Текст RU, widget: text }
+              - { name: text_en, label: Текст EN, widget: text }
+              - name: stats
+                label: Показатели (4)
+                widget: list
+                min: 4
+                max: 4
+                fields:
+                  - { name: value, label: Значение, widget: string }
+                  - { name: suffix, label: Суффикс, widget: string, required: false }
+                  - { name: label_ru, label: Подпись RU, widget: string }
+                  - { name: label_en, label: Подпись EN, widget: string }
+              - name: cards
+                label: Этапы качества (5)
+                widget: list
+                min: 5
+                max: 5
+                fields:
+                  - { name: title_ru, label: Название RU, widget: string }
+                  - { name: title_en, label: Название EN, widget: string }
+                  - { name: text_ru, label: Текст RU, widget: text }
+                  - { name: text_en, label: Текст EN, widget: text }
+              - { name: documents_title_ru, label: Документы — заголовок RU, widget: string }
+              - { name: documents_title_en, label: Документы — заголовок EN, widget: string }
+              - { name: documents_note_ru, label: Примечание RU, widget: text }
+              - { name: documents_note_en, label: Примечание EN, widget: text }
+              - { name: documents_cta_ru, label: Кнопка документов RU, widget: string }
+              - { name: documents_cta_en, label: Кнопка документов EN, widget: string }
+              - { name: documents_cta_url, label: Ссылка документов, widget: string }
+          - name: collection
+            label: Коллекция
+            widget: object
+            fields:
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+              - { name: buy_ru, label: Кнопка покупки RU, widget: string }
+              - { name: buy_en, label: Кнопка покупки EN, widget: string }
+              - { name: default_buy_url, label: Ссылка покупки по умолчанию, widget: string }
+          - name: final
+            label: Финальный экран
+            widget: object
+            fields:
+              - { name: quote_ru, label: Цитата RU, widget: text }
+              - { name: quote_en, label: Цитата EN, widget: text }
+              - { name: accent_ru, label: Акцент RU, widget: string }
+              - { name: accent_en, label: Акцент EN, widget: string }
+              - { name: cta_ru, label: Кнопка RU, widget: string }
+              - { name: cta_en, label: Кнопка EN, widget: string }
+              - { name: cta_url, label: Ссылка кнопки, widget: string }
+              - { name: bottle, label: Фото бутылки, widget: image }
+              - { name: logo, label: Логотип, widget: image }
+          - name: where
+            label: Где купить — заголовок
+            widget: object
+            fields: &section_heading
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+              - { name: text_ru, label: Текст RU, widget: text }
+              - { name: text_en, label: Текст EN, widget: text }
+          - name: contacts
+            label: Контакты — заголовок
+            widget: object
+            fields:
+              - { name: eyebrow_ru, label: Надзаголовок RU, widget: string }
+              - { name: eyebrow_en, label: Надзаголовок EN, widget: string }
+              - { name: title_ru, label: Заголовок RU, widget: string }
+              - { name: title_en, label: Заголовок EN, widget: string }
+          - name: footer
+            label: Подвал
+            widget: object
+            fields:
+              - { name: text_ru, label: Слоган RU, widget: text }
+              - { name: text_en, label: Слоган EN, widget: text }
+              - name: nav
+                label: Ссылки
+                widget: list
+                fields: *link_fields
+              - { name: privacy_ru, label: Политика RU, widget: string }
+              - { name: privacy_en, label: Политика EN, widget: string }
+              - { name: privacy_url, label: Ссылка на политику, widget: string }
+              - { name: copyright_ru, label: Копирайт RU, widget: string }
+              - { name: copyright_en, label: Копирайт EN, widget: string }
+          - name: cookie
+            label: Cookie-баннер
+            widget: object
+            fields:
+              - { name: text_ru, label: Текст RU, widget: text }
+              - { name: text_en, label: Текст EN, widget: text }
+              - { name: button_ru, label: Кнопка RU, widget: string }
+              - { name: button_en, label: Кнопка EN, widget: string }
+
   # ---- Продукция ----
   - name: products
     label: Продукция
@@ -26,9 +262,13 @@ collections:
             fields:
               - { name: id, label: "ID (латиницей, без пробелов)", widget: string }
               - { name: title, label: Название, widget: string }
+              - { name: title_en, label: "Название (EN)", widget: string, required: false }
               - { name: type, label: "Тип (RU)", widget: string }
               - { name: type_en, label: "Тип (EN)", widget: string, required: false }
               - { name: photo, label: Фото, widget: image }
+              - { name: alt_ru, label: "Описание фото (RU)", widget: string, required: false }
+              - { name: alt_en, label: "Описание фото (EN)", widget: string, required: false }
+              - { name: buy_url, label: "Ссылка «Купить»", widget: string, required: false }
 
   # ---- Документы и сертификаты ----
   - name: documents
@@ -45,7 +285,9 @@ collections:
               - { name: id, label: "ID / метка аналитики", widget: string }
               - { name: anchor, label: "Якорь на documents.html", widget: string, required: false }
               - { name: name, label: Название, widget: string }
+              - { name: name_en, label: "Название (EN)", widget: string, required: false }
               - { name: desc, label: Описание, widget: text }
+              - { name: desc_en, label: "Описание (EN)", widget: text, required: false }
               - { name: file, label: "Файл (PDF/скан) — если есть", widget: file, required: false }
 
   # ---- Контакты и дистрибьюторы ----
@@ -57,7 +299,9 @@ collections:
         file: content/contacts.json
         fields:
           - { name: company, label: Производитель, widget: string }
+          - { name: company_en, label: "Производитель (EN)", widget: string, required: false }
           - { name: address, label: Адрес, widget: text }
+          - { name: address_en, label: "Адрес (EN)", widget: text, required: false }
           - { name: phone, label: Телефон, widget: string }
           - { name: email, label: E-mail, widget: string }
           - { name: telegram, label: Telegram, widget: string, required: false }
