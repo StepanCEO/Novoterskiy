@@ -39,6 +39,32 @@
     }
   }
 
+  /* ---- Hero background video: 6с сцена (небо → лёд → дымка → тепло),
+         в конце застывает на последнем кадре до следующей загрузки страницы ---- */
+  var heroVideo = document.getElementById("heroVideo");
+  if (heroVideo) {
+    var freezeHeroEnd = function () {
+      heroVideo.currentTime = Math.max(0, heroVideo.duration - 0.05);
+      heroVideo.pause();
+    };
+    heroVideo.addEventListener("ended", freezeHeroEnd);
+    if (reduceMotion) {
+      // без анимаций: сразу финальный спокойный кадр
+      heroVideo.addEventListener("loadedmetadata", freezeHeroEnd);
+    } else {
+      var playHero = function () {
+        var p = heroVideo.play();
+        if (p && p.catch) p.catch(function () { /* автоплей запрещён — остаётся постер */ });
+      };
+      if (heroVideo.readyState >= 2) playHero();
+      else heroVideo.addEventListener("canplay", playHero, { once: true });
+      // если вкладка была в фоне и браузер приостановил ролик — доигрываем
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "visible" && !heroVideo.ended && heroVideo.paused) playHero();
+      });
+    }
+  }
+
   /* ---- Scroll reveals ---- */
   function applyReveals(scope) {
     var els = (scope || document).querySelectorAll(".reveal");
@@ -302,6 +328,9 @@
       if (!ruStore.has(el)) ruStore.set(el, el.innerHTML);
       el.innerHTML = toEn ? el.getAttribute("data-en") : ruStore.get(el);
     });
+    document.querySelectorAll("[data-alt-en]").forEach(function (el) {
+      el.setAttribute("alt", toEn ? el.getAttribute("data-alt-en") : (el.getAttribute("data-alt-ru") || ""));
+    });
     htmlEl.setAttribute("lang", toEn ? "en" : "ru");
     if (langToggle) {
       langToggle.querySelectorAll(".lang-opt").forEach(function (o) {
@@ -387,6 +416,9 @@
      Когда cms.js перерисовал секции из JSON, заново вешаем reveal-анимации
      и применяем текущий язык к новым узлам. */
   document.addEventListener("novo:hydrated", function () {
+    // CMS перезаписала русскую базу. Старый WeakMap иначе возвращал бы
+    // прежнюю статическую версию после переключения EN → RU.
+    ruStore = new WeakMap();
     applyReveals(document);
     initCollectionDots(); // карусель перерисована из JSON — пересобираем точки
     if (htmlEl.getAttribute("lang") === "en") setLang("en");

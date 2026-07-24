@@ -155,7 +155,13 @@
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <!-- Полноэкранная гора в лёгком тумане (правка заказчика) -->
   <div class="hero-bg" aria-hidden="true">
-    <img src="assets/fone.png" width="1672" height="941" alt="" loading="eager" fetchpriority="high" />
+    <video class="hero-video" id="heroVideo" width="1920" height="976"
+           muted playsinline preload="auto"
+           poster="assets/video/hero-bg-poster.webp">
+      <source src="assets/video/hero-bg.webm" type='video/webm; codecs="vp9"' />
+      <source src="assets/video/hero-bg.mp4" type="video/mp4" />
+      <img src="assets/video/hero-bg-poster.webp" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+    </video>
     <span class="hero-clouds"></span>
     <span class="hero-glint"></span>
     <span class="hero-fog"></span>
@@ -180,7 +186,14 @@
       <p class="hero-sub reveal" data-en="The journey of every drop begins at the summits of Elbrus and continues into the depths of the earth, where cold, heat and mountain rock create a natural balance.">
         Путь каждой капли начинается на вершинах Эльбруса и продолжается в глубинах земли, где холод, тепло и горные породы создают природный баланс.
       </p>
+      <ul class="hero-elements reveal" aria-label="Четыре стихии" data-en-aria-label="Four elements">
+        <li><img src="assets/logo-mark.webp" width="44" height="30" alt="" aria-hidden="true"/><span data-en="Air">Воздух</span></li>
+        <li><img src="assets/logo-mark.webp" width="44" height="30" alt="" aria-hidden="true"/><span data-en="Ice">Лёд</span></li>
+        <li><img src="assets/logo-mark.webp" width="44" height="30" alt="" aria-hidden="true"/><span data-en="Earth">Земля</span></li>
+        <li><img src="assets/logo-mark.webp" width="44" height="30" alt="" aria-hidden="true"/><span data-en="Fire">Огонь</span></li>
+      </ul>
       <div class="hero-cta reveal">
+        <a class="btn btn-primary" href="#elements" data-en="Begin the journey">Начать путешествие</a>
         <a class="btn-play" href="#origin" aria-label="Узнать историю">
           <span class="btn-play-pin" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
@@ -227,7 +240,7 @@
     <article class="el el-air reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Air">Воздух</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/icons/element-wind.svg" width="36" height="36" alt="" /></span>
+        <span class="el-icon" aria-hidden="true"><img src="assets/logo-mark.webp" width="59" height="40" alt="" /></span>
         <p data-en="The purity of heights. The path begins at the summits of Elbrus.">Чистота высоты. Путь начинается у вершин Эльбруса.</p>
       </div>
       <div class="el-photo-wrap">
@@ -237,7 +250,7 @@
     <article class="el el-ice reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Ice">Лёд</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/icons/element-snowflake.svg" width="36" height="36" alt="" /></span>
+        <span class="el-icon" aria-hidden="true"><img src="assets/logo-mark.webp" width="59" height="40" alt="" /></span>
         <p data-en="Meltwater slowly passes through ice and mountain strata.">Талая вода медленно проходит сквозь лёд и горные слои.</p>
       </div>
       <div class="el-photo-wrap">
@@ -247,7 +260,7 @@
     <article class="el el-earth reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Earth">Земля</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/icons/element-mountain.svg" width="36" height="36" alt="" /></span>
+        <span class="el-icon" aria-hidden="true"><img src="assets/logo-mark.webp" width="59" height="40" alt="" /></span>
         <p data-en="Mountain rock saturates the water with natural minerals.">Горные породы насыщают воду природными минералами.</p>
       </div>
       <div class="el-photo-wrap">
@@ -257,7 +270,7 @@
     <article class="el el-fire reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Fire">Огонь</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/icons/element-flame.svg" width="36" height="36" alt="" /></span>
+        <span class="el-icon" aria-hidden="true"><img src="assets/logo-mark.webp" width="59" height="40" alt="" /></span>
         <p data-en="Underground heat and thermal springs complete the natural process.">Подземное тепло и термальные источники завершают природный процесс.</p>
       </div>
       <div class="el-photo-wrap">
@@ -510,6 +523,20 @@
           <span class="doc-desc">N RU Д-RU.РА02.В.96742/22</span>
         </a>
       </li>
+      <li class="doc reveal">
+        <a class="doc-link" href="assets/documents/sout-summary.pdf" target="_blank" rel="noopener" data-analytics="doc-open" data-doc="Сводные данные о результатах СОУТ">
+          <span class="doc-mark doc-mark--pdf" aria-hidden="true">PDF</span>
+          <span class="doc-name" data-en="Summary of the workplace assessment results">Сводные данные о результатах СОУТ</span>
+          <span class="doc-desc" data-en="PDF transferred from the former JSC Kavminvody website">PDF со старого сайта АО «Кавминводы»</span>
+        </a>
+      </li>
+      <li class="doc reveal">
+        <a class="doc-link" href="assets/documents/labor-safety-measures.pdf" target="_blank" rel="noopener" data-analytics="doc-open" data-doc="Перечень мероприятий по охране труда">
+          <span class="doc-mark doc-mark--pdf" aria-hidden="true">PDF</span>
+          <span class="doc-name" data-en="Occupational safety action plan">Перечень мероприятий по охране труда</span>
+          <span class="doc-desc" data-en="PDF transferred from the former JSC Kavminvody website">PDF со старого сайта АО «Кавминводы»</span>
+        </a>
+      </li>
     </ul>
     <p class="docs-note" data-en="Data based on the manufacturer's specifications; exact values for each batch are shown on the label.">Данные приведены по документации производителя; точные значения по партии указаны на этикетке.</p>
   </div>
@@ -572,13 +599,20 @@
     <span class="q q-air"></span><span class="q q-ice"></span>
     <span class="q q-earth"></span><span class="q q-fire"></span>
   </div>
-  <div class="final-inner">
-    <img class="final-mark" src="assets/logo-mark.webp" width="88" height="60" alt="Кавминводы" loading="lazy" />
-    <blockquote class="final-quote" id="final-title" data-en="We do not create water. We only carefully preserve the path that nature travelled for decades.">
-      Мы не создаем воду. Мы лишь бережно сохраняем путь, который природа проходила десятилетиями.
-    </blockquote>
-    <p class="final-accent" data-en="The purity of nature. The perfection of production.">Чистота природы. Безупречность производства.</p>
-    <a class="btn btn-primary btn-lg" href="#collection" data-en="Taste the balance of nature">Попробовать баланс природы</a>
+  <div class="final-composition">
+    <figure class="final-bottle reveal" aria-label="Новотерская Целебная">
+      <span class="final-bottle-halo" aria-hidden="true"></span>
+      <img src="assets/products/hero-bottle-ios.png" width="720" height="1200" alt="Бутылка Новотерская Целебная" loading="lazy" />
+      <span class="final-bottle-mist" aria-hidden="true"></span>
+    </figure>
+    <div class="final-inner reveal">
+      <img class="final-mark" src="assets/logo-mark.webp" width="88" height="60" alt="Кавминводы" loading="lazy" />
+      <blockquote class="final-quote" id="final-title" data-en="We do not create water. We only carefully preserve the path that nature travelled for decades.">
+        Мы не создаем воду. Мы лишь бережно сохраняем путь, который природа проходила десятилетиями.
+      </blockquote>
+      <p class="final-accent" data-en="The purity of nature. The perfection of production.">Чистота природы. Безупречность производства.</p>
+      <a class="btn btn-primary btn-lg" href="#collection" data-en="Taste the balance of nature">Попробовать баланс природы</a>
+    </div>
   </div>
 </section>
 
@@ -674,7 +708,7 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/main.js?v=scroll-story-v1"></script>
-<script src="js/cms.js"></script>
+<script src="js/main.js?v=site-cms-v1"></script>
+<script src="js/cms.js?v=site-cms-v1"></script>
 </body>
 </html>
