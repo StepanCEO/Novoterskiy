@@ -650,10 +650,23 @@ img, svg { display: block; max-width: 100%; }
   0%, 100% { opacity: 0.45; }
   50%      { opacity: 1; }
 }
-/* Hover: активная зона оживает, остальные мягко приглушаются */
+/* Hover: активная зона честно расширяется (ТЗ п.5), остальные мягко приглушаются */
 @media (hover: hover) and (min-width: 861px) {
+  .elements-grid { display: flex; }
+  .elements-grid .el {
+    flex: 1 1 0;
+    min-width: 0;
+    transition:
+      opacity 1s cubic-bezier(.22,.61,.36,1),
+      transform 1s cubic-bezier(.22,.61,.36,1),
+      flex-grow 0.7s cubic-bezier(.2,.7,.3,1);
+  }
+  /* стаггер каскада — только для появления, hover-расширение без задержки */
+  .elements-grid .el:nth-child(2) { transition-delay: 0.12s, 0.12s, 0s; }
+  .elements-grid .el:nth-child(3) { transition-delay: 0.24s, 0.24s, 0s; }
+  .elements-grid .el:nth-child(4) { transition-delay: 0.36s, 0.36s, 0s; }
   .elements-grid:hover .el { opacity: 0.65; }
-  .elements-grid .el:hover { opacity: 1; }
+  .elements-grid .el:hover { opacity: 1; flex-grow: 1.5; }
   .el:hover .el-photo { transform: scale(1.07); }
 }
 .el:focus-visible { outline: 2px solid var(--glacier-d); outline-offset: 4px; }
@@ -1274,7 +1287,13 @@ img, svg { display: block; max-width: 100%; }
   font-family: var(--ff-mono);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
-  color: var(--gold);
+  /* Деликатный перелив серебра и золота (ТЗ п.9) */
+  background: linear-gradient(100deg, #b99b55, var(--gold) 35%, #efe3c4 50%, var(--gold) 65%, #b99b55);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sheen 7s linear infinite;
 }
 .trust-card h3 {
   font-family: var(--ff-display);
@@ -1291,7 +1310,22 @@ img, svg { display: block; max-width: 100%; }
   color: var(--glacier-d);
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
+  position: relative;
+  transition: color 0.4s;
 }
+/* Серебристо-золотая линия проявляется под ссылкой при наведении (ТЗ п.9) */
+.trust-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 1px;
+  background: var(--shimmer);
+  background-size: 200% auto;
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: sheen 5s linear infinite;
+}
+.trust-link:hover::after { opacity: 1; }
 
 /* documents & certificates */
 .trust-docs {
@@ -1342,6 +1376,23 @@ img, svg { display: block; max-width: 100%; }
   color: var(--gold);
   font-size: 1rem;
   font-weight: 700;
+  position: relative;
+}
+/* Тонкое серебристо-золотое кольцо вокруг иконки документа (ТЗ п.9) */
+.doc-mark::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  padding: 1px;
+  background: var(--shimmer);
+  background-size: 200% auto;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: sheen 8s linear infinite;
+  opacity: 0.7;
 }
 .doc-mark--pdf { font-size: 0.58rem; letter-spacing: 0.04em; }
 .doc-name {
