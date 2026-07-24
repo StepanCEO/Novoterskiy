@@ -311,35 +311,6 @@ img, svg { display: block; max-width: 100%; }
   line-height: 1.75;
   color: #506169; /* darkened for AA contrast over the lighter sky */
 }
-.hero-elements {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.45rem;
-  width: min(100%, 380px);
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-.hero-elements li {
-  display: grid;
-  place-items: center;
-  gap: 0.3rem;
-  min-width: 0;
-  padding: 0.55rem 0.2rem 0.45rem;
-  color: #1c4b50;
-  background: rgba(255, 255, 255, 0.62);
-  border: 1px solid rgba(28, 75, 80, 0.13);
-  border-radius: 10px;
-  backdrop-filter: blur(8px);
-}
-.hero-elements img,
-.hero-elements svg { width: 44px; height: 30px; object-fit: contain; display: block; }
-/* Тонкие контурные иконки стихий — цвет по палитре зон (ТЗ п.5) */
-.he-air  svg { color: #7fa8bd; }
-.he-ice  svg { color: #5c9cbe; }
-.he-earth svg { color: #308466; }
-.he-fire svg { color: #cf8a3e; }
-.hero-elements span { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .hero-cta { margin-top: 2.4rem; display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; }
 
 /* Play button (reference "Узнать историю") */
@@ -1678,7 +1649,6 @@ img, svg { display: block; max-width: 100%; }
 .hero .reveal { opacity: 0; transform: translateY(20px); }
 .hero.loaded .hero-title { animation: heroIn 1s 0.3s forwards cubic-bezier(.2,.7,.3,1); }
 .hero.loaded .hero-sub   { animation: heroIn 1s 0.8s forwards cubic-bezier(.2,.7,.3,1); }
-.hero.loaded .hero-elements { animation: heroIn 1s 1s forwards cubic-bezier(.2,.7,.3,1); }
 .hero.loaded .hero-cta   { animation: heroIn 1s 1.2s forwards cubic-bezier(.2,.7,.3,1); }
 .hero.loaded .hero-bottle{ animation: heroIn 1.2s 0.2s forwards cubic-bezier(.2,.7,.3,1); }
 @keyframes heroIn { to { opacity: 1; transform: none; } }
@@ -1746,7 +1716,6 @@ img, svg { display: block; max-width: 100%; }
   .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-copy { max-width: 620px; margin: 0 auto; }
   .hero-sub { margin-left: auto; margin-right: auto; }
-  .hero-elements { margin-left: auto; margin-right: auto; }
   .hero-cta { justify-content: center; }
   .hero-topo { width: 44vw; }
   .bottle { transform: rotate(14deg) translate(6%, 2%); }
@@ -1882,10 +1851,6 @@ img, svg { display: block; max-width: 100%; }
   .hero-grid { grid-template-columns: 1fr; gap: 0; }
   .hero-copy { max-width: 330px; margin: 0 auto; text-align: center; }
   .hero-sub { margin-left: auto; margin-right: auto; }
-  .hero-elements { gap: 0.3rem; }
-  .hero-elements li { padding: 0.45rem 0.1rem 0.4rem; }
-  .hero-elements img, .hero-elements svg { width: 38px; height: 26px; }
-  .hero-elements span { font-size: 0.54rem; }
   .hero-cta { justify-content: center; }
   .hero-bottle { min-height: 348px; margin-top: -0.15rem; }
   .bottle { height: clamp(295px, 76vw, 365px); }
