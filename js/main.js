@@ -13,35 +13,38 @@
     setTimeout(startHero, 200);
   }
 
-  /* ---- Bottle 360° spin: кадры-фото, drag/свайп вращает, плюс медленное
-         авто-вращение, пока пользователь не трогает бутылку ---- */
+  /* ---- Bottle 360° spin: непрерывный «угол» с кросс-фейдом соседних кадров —
+         вращение видится плавным даже при малом числе кадров.
+         Drag/свайп вращает, авто-вращение идёт через rAF ---- */
   var bottleSpin = document.getElementById("bottleSpin");
   if (bottleSpin) {
     var spinFrames = Array.prototype.slice.call(bottleSpin.querySelectorAll(".spin-frame"));
     var spinCount = spinFrames.length;
-    var spinIndex = 0;
-    var showFrame = function (i) {
-      var next = ((Math.round(i) % spinCount) + spinCount) % spinCount;
-      if (next === spinIndex) return;
-      spinFrames[spinIndex].classList.remove("is-active");
-      spinFrames[next].classList.add("is-active");
-      spinIndex = next;
+    var spinAngle = 0; // в «кадрах»: 0..spinCount, дробное
+    var renderSpin = function () {
+      for (var i = 0; i < spinCount; i++) {
+        var d = (((i - spinAngle) % spinCount) + spinCount) % spinCount;
+        if (d > spinCount / 2) d = spinCount - d;
+        // линейный бленд между двумя соседними кадрами
+        spinFrames[i].style.opacity = Math.max(0, 1 - d);
+      }
     };
+    renderSpin();
 
-    // drag: полный оборот за ~0.9 ширины бутылки
-    var dragging = false, startX = 0, startIndex = 0;
-    var pxPerTurn = function () { return Math.max(180, bottleSpin.clientWidth * 0.9); };
+    // drag: полный оборот за ~1.4 ширины бутылки
+    var dragging = false, startX = 0, startAngle = 0;
+    var pxPerTurn = function () { return Math.max(260, bottleSpin.clientWidth * 1.4); };
     bottleSpin.addEventListener("pointerdown", function (e) {
       dragging = true;
       startX = e.clientX;
-      startIndex = spinIndex;
+      startAngle = spinAngle;
       bottleSpin.classList.add("is-dragging");
       bottleSpin.setPointerCapture(e.pointerId);
     });
     bottleSpin.addEventListener("pointermove", function (e) {
       if (!dragging) return;
-      var turns = (e.clientX - startX) / pxPerTurn();
-      showFrame(startIndex + turns * spinCount);
+      spinAngle = startAngle + (e.clientX - startX) / pxPerTurn() * spinCount;
+      renderSpin();
     });
     var endDrag = function () {
       dragging = false;
@@ -50,12 +53,21 @@
     bottleSpin.addEventListener("pointerup", endDrag);
     bottleSpin.addEventListener("pointercancel", endDrag);
 
-    // авто-вращение: следующий кадр каждые 1.8с, пауза при drag и вне вкладки
+    // авто-вращение: полный оборот за 14с, пауза при drag
     if (!reduceMotion) {
-      setInterval(function () {
-        if (dragging || document.visibilityState !== "visible") return;
-        showFrame(spinIndex + 1);
-      }, 1800);
+      var TURN_SECONDS = 14;
+      var lastTs = null;
+      var tickSpin = function (ts) {
+        if (lastTs != null && !dragging) {
+          // зажимаем delta: после возврата из фоновой вкладки без скачка
+          var dt = Math.min(ts - lastTs, 100);
+          spinAngle += (dt / 1000) * (spinCount / TURN_SECONDS);
+          renderSpin();
+        }
+        lastTs = ts;
+        requestAnimationFrame(tickSpin);
+      };
+      requestAnimationFrame(tickSpin);
     }
   }
 
