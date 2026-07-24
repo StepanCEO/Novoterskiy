@@ -15,3 +15,6 @@ Thumbs.db
 
 # Rejected local image experiments — not part of the website
 assets/photos/hero-rocks-pile.webp
+
+# Присланные в Telegram исходники логотипов — рабочие файлы, не сайт
+assets/photo_*.jpg
