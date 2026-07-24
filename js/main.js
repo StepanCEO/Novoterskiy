@@ -167,15 +167,24 @@
     var height = Math.max(1, Math.floor(riverEndY - threadStartY));
     threadHeight = height;
     var centerX = width / 2;
-    var settle = Math.min(360, Math.max(220, height * 0.07));
     var sway = Math.min(130, Math.max(72, width * 0.09));
     // Короткий вертикальный участок под кружком: без него изгиб к центру
     // страницы начинается сразу и капля будто вытекает из бока, а не снизу.
-    var drop = Math.min(46, settle * 0.16);
+    var drop = Math.min(46, height * 0.01);
+    // Длина съезда к центру зависит от того, сколько нужно пройти по горизонтали:
+    // так наклон русла остаётся одинаково мягким при любой ширине окна.
+    var reach = Math.abs(centerX - startX);
+    var settle = drop + Math.min(Math.max(300, reach * 1.6), Math.max(320, height * 0.22));
+    // На очень коротких страницах съезд не должен вылезать за пределы SVG.
+    settle = Math.min(settle, height);
+    // Оба контрольных плеча вертикальны: сверху — чтобы гладко продолжить
+    // прямой участок, снизу — чтобы совпасть с волнами русла, которые тоже
+    // входят и выходят вертикально. Иначе на стыке виден залом.
+    var ease = (settle - drop) * 0.46;
     var d = [
       "M " + startX.toFixed(1) + " 0",
       "L " + startX.toFixed(1) + " " + drop.toFixed(1),
-      "C " + startX.toFixed(1) + " " + (drop + (settle - drop) * 0.3).toFixed(1) + ", " + (centerX - sway * 0.45).toFixed(1) + " " + (drop + (settle - drop) * 0.74).toFixed(1) + ", " + centerX.toFixed(1) + " " + settle.toFixed(1)
+      "C " + startX.toFixed(1) + " " + (drop + ease).toFixed(1) + ", " + centerX.toFixed(1) + " " + (settle - ease).toFixed(1) + ", " + centerX.toFixed(1) + " " + settle.toFixed(1)
     ];
 
     // Чередующиеся безье-сегменты дают заметное, но спокойное русло.
@@ -183,25 +192,38 @@
     var waveSpan = Math.min(760, Math.max(520, height / 10));
     var spanPattern = [0.92, 1.08, 0.84, 1.14];
     var swayPattern = [0.76, 1, 0.86, 1.1, 0.92];
+
+    // Сначала намечаем границы волн. Короткий остаток у подвала не выделяем в
+    // отдельный сегмент: русло успело бы только резко дёрнуться к центру —
+    // вместо этого им удлиняется последняя волна.
+    var stops = [];
+    var markY = settle;
+    var wave = 0;
+    while (markY < height) {
+      var span = waveSpan * spanPattern[wave % spanPattern.length];
+      var stopY = markY + span;
+      if (height - stopY < span * 0.6) stopY = height;
+      stops.push(Math.min(stopY, height));
+      markY = stopY;
+      wave++;
+    }
+
     var riverY = settle;
     var riverX = centerX;
     var direction = 1;
-    var wave = 0;
-    while (riverY < height) {
-      var span = Math.min(waveSpan * spanPattern[wave % spanPattern.length], height - riverY);
-      var nextY = riverY + span;
-      var nextX = centerX + direction * sway * swayPattern[wave % swayPattern.length];
-      if (nextY === height) nextX = centerX;
+    stops.forEach(function (nextY, index) {
+      var length = nextY - riverY;
+      // Последняя волна приходит ровно в центр — там нить встречает волну подвала.
+      var nextX = nextY >= height ? centerX : centerX + direction * sway * swayPattern[index % swayPattern.length];
       d.push(
-        "C " + riverX.toFixed(1) + " " + (riverY + span * 0.3).toFixed(1) + ", " +
-        nextX.toFixed(1) + " " + (riverY + span * 0.7).toFixed(1) + ", " +
+        "C " + riverX.toFixed(1) + " " + (riverY + length * 0.3).toFixed(1) + ", " +
+        nextX.toFixed(1) + " " + (nextY - length * 0.3).toFixed(1) + ", " +
         nextX.toFixed(1) + " " + nextY.toFixed(1)
       );
       riverX = nextX;
       riverY = nextY;
       direction *= -1;
-      wave++;
-    }
+    });
     d = d.join(" ");
     thread.style.setProperty("--thread-top", threadStartY + "px");
     thread.style.setProperty("--thread-height", height + "px");
