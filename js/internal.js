@@ -47,6 +47,21 @@
     }
 
     try { localStorage.setItem("novo-lang", language); } catch (error) {}
+    // Адрес отражает язык (?lang=en) — так работает hreflang и ссылкой на
+    // английскую версию можно поделиться. Через History API, без перезагрузки.
+    try {
+      var url = new URL(window.location.href);
+      if (toEnglish) url.searchParams.set("lang", "en");
+      else url.searchParams.delete("lang");
+      window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+      // canonical должен указывать на текущую языковую версию, иначе поисковик
+      // сочтёт английскую страницу дублем русской и выкинет её из индекса.
+      var canonical = document.getElementById("canonicalLink");
+      if (canonical) {
+        var base = canonical.getAttribute("href").split("?")[0];
+        canonical.setAttribute("href", toEnglish ? base + "?lang=en" : base);
+      }
+    } catch (error) {}
     document.dispatchEvent(new CustomEvent("novo:languagechange", { detail: { language: language } }));
   }
 
@@ -56,7 +71,12 @@
     setLanguage(html.getAttribute("lang") === "en" ? "ru" : "en");
   });
 
+  // Язык из адреса важнее сохранённого: по ссылке должна открыться
+  // именно та версия, на которую сослались.
+  var languageFromUrl = null;
+  try { languageFromUrl = new URL(window.location.href).searchParams.get("lang"); } catch (error) {}
   var savedLanguage = "ru";
   try { savedLanguage = localStorage.getItem("novo-lang") || "ru"; } catch (error) {}
-  setLanguage(savedLanguage === "en" ? "en" : "ru");
+  var initial = languageFromUrl !== null ? languageFromUrl : savedLanguage;
+  setLanguage(initial === "en" ? "en" : "ru");
 })();

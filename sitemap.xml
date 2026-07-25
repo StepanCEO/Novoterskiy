@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Карта сайта. Каждая страница присутствует в двух языковых версиях:
+  русская — по чистому адресу, английская — с ?lang=en. Внутри каждой записи
+  перечислены обе через xhtml:link, как требует Google для hreflang.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/catalog.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/catalog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/catalog.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/catalog.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/catalog.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/catalog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/catalog.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/catalog.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/story.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/story.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/story.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/story.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/story.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/story.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/story.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/story.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/documents.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/documents.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/documents.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/documents.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/documents.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/documents.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/documents.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/documents.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/privacy.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

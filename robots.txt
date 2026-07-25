@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Служебные каталоги в поиске не нужны
+Disallow: /admin/
+Disallow: /tools/
+
+Sitemap: https://stepanceo.github.io/Novoterskiy/sitemap.xml

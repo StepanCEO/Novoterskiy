@@ -134,6 +134,14 @@ img, svg { display: block; max-width: 100%; }
 .btn-outline { color: var(--glacier-d); border-color: rgba(62,122,152,0.4); }
 .btn-outline:hover { background: var(--glacier-d); color: #fff; transform: translateY(-2px); }
 
+/* ---------- <picture> ----------
+   AVIF-обёртка не должна участвовать в раскладке: <picture> — обычный
+   inline-бокс, и он разрывает цепочку height:100% между контейнером фото
+   и самим <img>. display:contents убирает обёртку из дерева раскладки,
+   поэтому все прежние правила для .el-photo, .path-scene img и прочих
+   продолжают работать так, будто <img> лежит в родителе напрямую. */
+picture { display: contents; }
+
 /* ---------- Water thread signature ---------- */
 .thread {
   position: absolute;

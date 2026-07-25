@@ -10,6 +10,15 @@
 <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32" />
 <link rel="apple-touch-icon" href="assets/favicon-180.png" />
 
+<!-- Канонический адрес и языковые версии. Язык живёт в ?lang=en, поэтому у
+     русской и английской версии разные URL — этого и требует hreflang.
+     href канонической ссылки правит скрипт при смене языка. -->
+<link rel="canonical" id="canonicalLink" href="https://stepanceo.github.io/Novoterskiy/" />
+<link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/" />
+<link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/" />
+<meta property="og:url" content="https://stepanceo.github.io/Novoterskiy/" />
+
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Новотерская — Баланс четырёх стихий" />
@@ -27,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=origin-cover-v1" />
+<link rel="stylesheet" href="css/style.css?v=avif-seo-v1" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -94,7 +103,10 @@
 
 <header class="site-header" id="top">
   <a class="brand" href="#top" aria-label="Новотерская — на главную">
-    <img class="brand-mark" src="assets/logo-mark.webp" width="59" height="40" alt="Кавминводы" />
+    <picture>
+      <source srcset="assets/logo-mark.avif" type="image/avif" />
+      <img class="brand-mark" src="assets/logo-mark.webp" width="59" height="40" alt="Кавминводы" />
+    </picture>
     <span class="brand-col">
       <span class="brand-name">Новотерская</span>
       <span class="brand-tag" data-en="natural mineral water">природная минеральная вода</span>
@@ -128,7 +140,10 @@
            poster="assets/video/hero-bg-poster.webp">
       <source src="assets/video/hero-bg.webm" type='video/webm; codecs="vp9"' />
       <source src="assets/video/hero-bg.mp4" type="video/mp4" />
-      <img src="assets/video/hero-bg-poster.webp" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+      <picture>
+        <source srcset="assets/video/hero-bg-poster.avif" type="image/avif" />
+        <img src="assets/video/hero-bg-poster.webp" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+      </picture>
     </video>
     <span class="hero-clouds"></span>
     <span class="hero-glint"></span>
@@ -171,10 +186,22 @@
         <!-- 360° spin: photo frames, drag to rotate, slow auto-rotation -->
         <div class="bottle-spin" id="bottleSpin" role="img"
              aria-label="Новотерская Целебная — вращающаяся бутылка">
-          <img class="spin-frame is-active" src="assets/spin/spin-00.webp" width="720" height="1200" alt="Новотерская Целебная" />
-          <img class="spin-frame" src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
-          <img class="spin-frame" src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
-          <img class="spin-frame" src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
+          <picture>
+            <source srcset="assets/spin/spin-00.avif" type="image/avif" />
+            <img class="spin-frame is-active" src="assets/spin/spin-00.webp" width="720" height="1200" alt="Новотерская Целебная" />
+          </picture>
+          <picture>
+            <source srcset="assets/spin/spin-01.avif" type="image/avif" />
+            <img class="spin-frame" src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
+          </picture>
+          <picture>
+            <source srcset="assets/spin/spin-02.avif" type="image/avif" />
+            <img class="spin-frame" src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
+          </picture>
+          <picture>
+            <source srcset="assets/spin/spin-03.avif" type="image/avif" />
+            <img class="spin-frame" src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
+          </picture>
         </div>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
@@ -199,41 +226,65 @@
     <article class="el el-air reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Air">Воздух</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/kmv-air.webp" width="72" height="58" alt="" loading="lazy" /></span>
+        <span class="el-icon" aria-hidden="true"><picture>
+  <source srcset="assets/kmv-air.avif" type="image/avif" />
+  <img src="assets/kmv-air.webp" width="72" height="58" alt="" loading="lazy" />
+</picture></span>
         <p data-en="The purity of heights. The path begins at the summits of Elbrus.">Чистота высоты. Путь начинается у вершин Эльбруса.</p>
       </div>
       <div class="el-photo-wrap">
-        <img class="el-photo" src="assets/photos/element-air.webp" width="1672" height="941" loading="lazy" alt="Воздух — небо и облака над Эльбрусом" />
+        <picture>
+          <source srcset="assets/photos/element-air.avif" type="image/avif" />
+          <img class="el-photo" src="assets/photos/element-air.webp" width="1672" height="941" loading="lazy" alt="Воздух — небо и облака над Эльбрусом" />
+        </picture>
       </div>
     </article>
     <article class="el el-ice reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Ice">Лёд</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/kmv-ice.webp" width="72" height="58" alt="" loading="lazy" /></span>
+        <span class="el-icon" aria-hidden="true"><picture>
+  <source srcset="assets/kmv-ice.avif" type="image/avif" />
+  <img src="assets/kmv-ice.webp" width="72" height="58" alt="" loading="lazy" />
+</picture></span>
         <p data-en="Meltwater slowly passes through ice and mountain strata.">Талая вода медленно проходит сквозь лёд и горные слои.</p>
       </div>
       <div class="el-photo-wrap">
-        <img class="el-photo" src="assets/photos/element-ice-arctic.webp" width="1100" height="1170" loading="lazy" alt="Лёд — заснеженные бирюзовые льды" />
+        <picture>
+          <source srcset="assets/photos/element-ice-arctic.avif" type="image/avif" />
+          <img class="el-photo" src="assets/photos/element-ice-arctic.webp" width="1100" height="1170" loading="lazy" alt="Лёд — заснеженные бирюзовые льды" />
+        </picture>
       </div>
     </article>
     <article class="el el-earth reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Earth">Земля</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/kmv-earth.webp" width="72" height="63" alt="" loading="lazy" /></span>
+        <span class="el-icon" aria-hidden="true"><picture>
+  <source srcset="assets/kmv-earth.avif" type="image/avif" />
+  <img src="assets/kmv-earth.webp" width="72" height="63" alt="" loading="lazy" />
+</picture></span>
         <p data-en="Mountain rock saturates the water with natural minerals.">Горные породы насыщают воду природными минералами.</p>
       </div>
       <div class="el-photo-wrap">
-        <img class="el-photo" src="assets/photos/element-earth-golden.webp" width="1024" height="1536" loading="lazy" alt="Земля — зелёный горный лес, ручей и золотистые камни" />
+        <picture>
+          <source srcset="assets/photos/element-earth-golden.avif" type="image/avif" />
+          <img class="el-photo" src="assets/photos/element-earth-golden.webp" width="1024" height="1536" loading="lazy" alt="Земля — зелёный горный лес, ручей и золотистые камни" />
+        </picture>
       </div>
     </article>
     <article class="el el-fire reveal" tabindex="0">
       <div class="el-cap">
         <h3 data-en="Fire">Огонь</h3>
-        <span class="el-icon" aria-hidden="true"><img src="assets/kmv-fire.webp" width="72" height="62" alt="" loading="lazy" /></span>
+        <span class="el-icon" aria-hidden="true"><picture>
+  <source srcset="assets/kmv-fire.avif" type="image/avif" />
+  <img src="assets/kmv-fire.webp" width="72" height="62" alt="" loading="lazy" />
+</picture></span>
         <p data-en="Underground heat and thermal springs complete the natural process.">Подземное тепло и термальные источники завершают природный процесс.</p>
       </div>
       <div class="el-photo-wrap">
-        <img class="el-photo" src="assets/photos/element-fire.webp" width="1672" height="941" loading="lazy" alt="Огонь — тепло и энергия земных недр" />
+        <picture>
+          <source srcset="assets/photos/element-fire.avif" type="image/avif" />
+          <img class="el-photo" src="assets/photos/element-fire.webp" width="1672" height="941" loading="lazy" alt="Огонь — тепло и энергия земных недр" />
+        </picture>
       </div>
     </article>
   </div>
@@ -244,19 +295,34 @@
   <div class="path-sticky">
     <div class="path-scenes" aria-hidden="true">
       <figure class="path-scene" data-scene="air">
-        <img src="assets/scroll/воздух.jpg" width="1672" height="941" alt="" />
+        <picture>
+          <source srcset="assets/scroll/воздух.avif" type="image/avif" />
+          <img src="assets/scroll/воздух.webp" width="1672" height="941" alt="" />
+        </picture>
       </figure>
       <figure class="path-scene" data-scene="ice">
-        <img src="assets/scroll/лед.jpg" width="1672" height="941" alt="" />
+        <picture>
+          <source srcset="assets/scroll/лед.avif" type="image/avif" />
+          <img src="assets/scroll/лед.webp" width="1672" height="941" alt="" />
+        </picture>
       </figure>
       <figure class="path-scene" data-scene="earth">
-        <img src="assets/scroll/земля.jpg" width="1672" height="941" alt="" />
+        <picture>
+          <source srcset="assets/scroll/земля.avif" type="image/avif" />
+          <img src="assets/scroll/земля.webp" width="1672" height="941" alt="" />
+        </picture>
       </figure>
       <figure class="path-scene" data-scene="fire">
-        <img src="assets/scroll/огонь.jpg" width="1672" height="941" alt="" />
+        <picture>
+          <source srcset="assets/scroll/огонь.avif" type="image/avif" />
+          <img src="assets/scroll/огонь.webp" width="1672" height="941" alt="" />
+        </picture>
       </figure>
       <figure class="path-scene" data-scene="spring">
-        <img src="assets/scroll/источник.jpg" width="1672" height="941" alt="" />
+        <picture>
+          <source srcset="assets/scroll/источник.avif" type="image/avif" />
+          <img src="assets/scroll/источник.webp" width="1672" height="941" alt="" />
+        </picture>
       </figure>
     </div>
     <div class="path-veil" aria-hidden="true"></div>
@@ -335,25 +401,37 @@
 
   <div class="mineral-grid">
     <article class="mineral cold reveal">
-      <div class="mineral-photo"><img src="assets/photos/mineral-si.webp" width="1672" height="941" loading="lazy" alt="Кремний — природный минерал" /></div>
+      <div class="mineral-photo"><picture>
+  <source srcset="assets/photos/mineral-si.avif" type="image/avif" />
+  <img src="assets/photos/mineral-si.webp" width="1672" height="941" loading="lazy" alt="Кремний — природный минерал" />
+</picture></div>
       <span class="mineral-sym">Si</span>
       <h3 data-en="Silicon">Кремний</h3>
       <p data-en="A natural component of the mineral composition.">Природный компонент минерального состава.</p>
     </article>
     <article class="mineral warm reveal">
-      <div class="mineral-photo"><img src="assets/photos/mineral-ca.webp" width="1672" height="941" loading="lazy" alt="Кальций — природный минерал" /></div>
+      <div class="mineral-photo"><picture>
+  <source srcset="assets/photos/mineral-ca.avif" type="image/avif" />
+  <img src="assets/photos/mineral-ca.webp" width="1672" height="941" loading="lazy" alt="Кальций — природный минерал" />
+</picture></div>
       <span class="mineral-sym">Ca</span>
       <h3 data-en="Calcium">Кальций</h3>
       <p data-en="A natural component of the mineral composition.">Природный компонент минерального состава.</p>
     </article>
     <article class="mineral cold reveal">
-      <div class="mineral-photo"><img src="assets/photos/mineral-mg.webp" width="1672" height="941" loading="lazy" alt="Магний — природный минерал" /></div>
+      <div class="mineral-photo"><picture>
+  <source srcset="assets/photos/mineral-mg.avif" type="image/avif" />
+  <img src="assets/photos/mineral-mg.webp" width="1672" height="941" loading="lazy" alt="Магний — природный минерал" />
+</picture></div>
       <span class="mineral-sym">Mg</span>
       <h3 data-en="Magnesium">Магний</h3>
       <p data-en="A natural component of the mineral composition.">Природный компонент минерального состава.</p>
     </article>
     <article class="mineral warm reveal">
-      <div class="mineral-photo"><img src="assets/photos/mineral-hco3.webp" width="1672" height="941" loading="lazy" alt="Гидрокарбонаты — природный минерал" /></div>
+      <div class="mineral-photo"><picture>
+  <source srcset="assets/photos/mineral-hco3.avif" type="image/avif" />
+  <img src="assets/photos/mineral-hco3.webp" width="1672" height="941" loading="lazy" alt="Гидрокарбонаты — природный минерал" />
+</picture></div>
       <span class="mineral-sym">HCO₃</span>
       <h3 data-en="Bicarbonates">Гидрокарбонаты</h3>
       <p data-en="Natural salts that shape the characteristic mineral composition.">Природные соли, формирующие характерный минеральный состав.</p>
@@ -514,7 +592,10 @@
       <span class="final-bottle-mist" aria-hidden="true"></span>
     </figure>
     <div class="final-inner reveal">
-      <img class="final-mark" src="assets/logo-mark.webp" width="88" height="60" alt="Кавминводы" loading="lazy" />
+      <picture>
+        <source srcset="assets/logo-mark.avif" type="image/avif" />
+        <img class="final-mark" src="assets/logo-mark.webp" width="88" height="60" alt="Кавминводы" loading="lazy" />
+      </picture>
       <blockquote class="final-quote" id="final-title" data-en="We do not create water. We only carefully preserve the path that nature travelled for decades.">
         Мы не создаем воду. Мы лишь бережно сохраняем путь, который природа проходила десятилетиями.
       </blockquote>
@@ -616,7 +697,7 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/main.js?v=origin-cover-v1"></script>
-<script src="js/cms.js?v=origin-cover-v1"></script>
+<script src="js/main.js?v=avif-seo-v1"></script>
+<script src="js/cms.js?v=avif-seo-v1"></script>
 </body>
 </html>

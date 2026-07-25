@@ -401,6 +401,23 @@
       });
     }
     try { localStorage.setItem("novo-lang", lang); } catch (e) {}
+    // Адрес отражает язык: ?lang=en. Это нужно для hreflang и для того, чтобы
+    // ссылкой на английскую версию можно было поделиться. History API — без
+    // перезагрузки, поэтому требование ТЗ «переключение не сбрасывает
+    // страницу» сохраняется.
+    try {
+      var url = new URL(window.location.href);
+      if (toEn) url.searchParams.set("lang", "en");
+      else url.searchParams.delete("lang");
+      window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+      // canonical должен указывать на текущую языковую версию, иначе поисковик
+      // сочтёт английскую страницу дублем русской и выкинет её из индекса.
+      var canonical = document.getElementById("canonicalLink");
+      if (canonical) {
+        var base = canonical.getAttribute("href").split("?")[0];
+        canonical.setAttribute("href", toEn ? base + "?lang=en" : base);
+      }
+    } catch (e) {}
   }
 
   if (langToggle) {
@@ -408,9 +425,13 @@
       var next = htmlEl.getAttribute("lang") === "en" ? "ru" : "en";
       setLang(next);
     });
+    // Язык из адреса важнее сохранённого: пользователь пришёл по конкретной
+    // ссылке, и она должна открыться именно на том языке.
+    var fromUrl = null;
+    try { fromUrl = new URL(window.location.href).searchParams.get("lang"); } catch (e) {}
     var saved;
     try { saved = localStorage.getItem("novo-lang"); } catch (e) {}
-    if (saved === "en") setLang("en");
+    if (fromUrl === "en" || (fromUrl === null && saved === "en")) setLang("en");
   }
 
   /* ---- Cookie banner ---- */

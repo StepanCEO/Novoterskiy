@@ -66,7 +66,25 @@
 
   function setImage(element, value, fallback, altRu, altEn) {
     if (!element) return;
-    if (value != null) element.setAttribute("src", safeAsset(value, fallback || element.getAttribute("src")));
+    if (value != null) {
+      var previous = element.getAttribute("src");
+      var src = safeAsset(value, fallback || previous);
+      element.setAttribute("src", src);
+      // Картинка может быть завёрнута в <picture> с AVIF-источником. Если
+      // редактор поставил из CMS другой файл, у него нет пары .avif — а
+      // <picture> при неудачной загрузке <source> НЕ откатывается на <img>,
+      // а показывает битую картинку. Поэтому AVIF-источник просто снимаем:
+      // новое фото грузится в своём формате, пусть и без экономии веса.
+      if (src !== previous) {
+        var picture = element.parentNode;
+        if (picture && picture.tagName === "PICTURE") {
+          var sources = picture.querySelectorAll('source[type="image/avif"]');
+          for (var i = 0; i < sources.length; i++) {
+            sources[i].parentNode.removeChild(sources[i]);
+          }
+        }
+      }
+    }
     if (altRu != null) {
       element.setAttribute("alt", String(altRu));
       element.setAttribute("data-alt-ru", String(altRu));
@@ -242,14 +260,34 @@
       var titleEn = esc(product.title_en || product.title);
       var typeEn = esc(product.type_en || product.type);
       var alt = product.alt_ru || (product.title + " — " + product.type);
-      return '<article class="product reveal"><div class="product-photo">' +
+      // AVIF-источник ставим «на пробу»: у файла из репозитория пара .avif есть,
+      // у только что загруженного через CMS — нет. Если источник не откроется,
+      // его снимет обработчик ошибки ниже, и картинка догрузится в своём формате.
+      var avif = photo.replace(/\.(webp|jpe?g|png)$/i, ".avif");
+      var source = avif !== photo ? '<source srcset="' + esc(avif) + '" type="image/avif" />' : "";
+      return '<article class="product reveal"><div class="product-photo"><picture>' + source +
         '<img src="' + esc(photo) + '" loading="lazy" alt="' + esc(alt) + '" data-alt-ru="' + esc(alt) +
-        '" data-alt-en="' + esc(product.alt_en || alt) + '" /></div>' +
+        '" data-alt-en="' + esc(product.alt_en || alt) + '" /></picture></div>' +
         '<h3 data-en="' + esc(titleEn) + '">' + esc(product.title) + '</h3>' +
         '<p class="product-type" data-en="' + esc(typeEn) + '">' + esc(product.type) + '</p>' +
         '<a class="btn btn-outline" href="' + esc(href) + '" data-analytics="product-buy" data-product="' +
         esc(product.id) + '" data-en="' + esc(esc(collection.buy_en || "Buy")) + '">' + esc(collection.buy_ru || "Купить") + '</a></article>';
     }).join("");
+
+    // Страховка для фото, загруженных через CMS: у них нет пары .avif, а
+    // <picture> при неудачной загрузке <source> не откатывается на <img>, а
+    // показывает битую картинку. Снимаем источник и перезапускаем загрузку.
+    all(".product-photo img", track).forEach(function (image) {
+      image.addEventListener("error", function onError() {
+        image.removeEventListener("error", onError);
+        var picture = image.parentNode;
+        if (!picture || picture.tagName !== "PICTURE") return;
+        var sources = picture.querySelectorAll('source[type="image/avif"]');
+        if (!sources.length) return;
+        for (var i = 0; i < sources.length; i++) sources[i].parentNode.removeChild(sources[i]);
+        image.src = image.getAttribute("src");
+      });
+    });
   }
 
   function hydrateContacts(data) {

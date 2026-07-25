@@ -119,7 +119,7 @@
         "title_en": "Summit · Air",
         "text_ru": "Облака сгущаются над Эльбрусом; появляется первая талая вода.",
         "text_en": "Clouds gather over Elbrus; the first meltwater appears.",
-        "image": "assets/scroll/воздух.jpg"
+        "image": "assets/scroll/воздух.webp"
       },
       {
         "stage": "ice",
@@ -127,7 +127,7 @@
         "title_en": "Glacier · Ice",
         "text_ru": "Поток уходит в трещину и опускается сквозь породу.",
         "text_en": "The stream slips into a fissure and descends through the rock.",
-        "image": "assets/scroll/лед.jpg"
+        "image": "assets/scroll/лед.webp"
       },
       {
         "stage": "earth",
@@ -135,7 +135,7 @@
         "title_en": "Rock · Earth",
         "text_ru": "Глубокие слои придают воде природный минеральный характер.",
         "text_en": "Deep layers give the water its natural mineral character.",
-        "image": "assets/scroll/земля.jpg"
+        "image": "assets/scroll/земля.webp"
       },
       {
         "stage": "fire",
@@ -143,7 +143,7 @@
         "title_en": "Depth · Fire",
         "text_ru": "Подземное тепло и термальный пар встречают поток.",
         "text_en": "Underground warmth and thermal steam meet the flow.",
-        "image": "assets/scroll/огонь.jpg"
+        "image": "assets/scroll/огонь.webp"
       },
       {
         "stage": "spring",
@@ -151,7 +151,7 @@
         "title_en": "Rise · Spring",
         "text_ru": "Вода выходит на поверхность среди зелёного леса, мха и чистого ручья.",
         "text_en": "The water surfaces among green forest, moss and a clear stream.",
-        "image": "assets/scroll/источник.jpg"
+        "image": "assets/scroll/источник.webp"
       }
     ]
   },
