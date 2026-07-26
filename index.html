@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=a11y-perf-v3" />
+<link rel="stylesheet" href="css/style.css?v=lcp-v4" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -206,17 +206,22 @@
             <source srcset="assets/spin/spin-00.avif" type="image/avif" />
             <img class="spin-frame is-active" fetchpriority="high" src="assets/spin/spin-00.webp" width="720" height="1200" alt="Новотерская Целебная" />
           </picture>
+          <!-- Кадры 1–3 висят в data-src и подставляются из main.js после
+               window.load. Замер под троттлингом: три лишних снимка 720×1200
+               декодировались в один такт с первым, и LCP мобильного уезжал
+               с 2,9с до 5,8с — при том что сам файл первого кадра приходит
+               за 0,4с. Без JS остаётся неподвижный кадр 0, бутылка на месте. -->
           <picture>
-            <source srcset="assets/spin/spin-01.avif" type="image/avif" />
-            <img class="spin-frame" fetchpriority="low" src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
+            <source data-srcset="assets/spin/spin-01.avif" type="image/avif" />
+            <img class="spin-frame" fetchpriority="low" data-src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
           </picture>
           <picture>
-            <source srcset="assets/spin/spin-02.avif" type="image/avif" />
-            <img class="spin-frame" fetchpriority="low" src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
+            <source data-srcset="assets/spin/spin-02.avif" type="image/avif" />
+            <img class="spin-frame" fetchpriority="low" data-src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
           </picture>
           <picture>
-            <source srcset="assets/spin/spin-03.avif" type="image/avif" />
-            <img class="spin-frame" fetchpriority="low" src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
+            <source data-srcset="assets/spin/spin-03.avif" type="image/avif" />
+            <img class="spin-frame" fetchpriority="low" data-src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
           </picture>
         </div>
       </div>
@@ -313,31 +318,31 @@
       <figure class="path-scene" data-scene="air">
         <picture>
           <source srcset="assets/scroll/воздух.avif" type="image/avif" />
-          <img src="assets/scroll/воздух.webp" width="1672" height="941" alt="" />
+          <img src="assets/scroll/воздух.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
         </picture>
       </figure>
       <figure class="path-scene" data-scene="ice">
         <picture>
           <source srcset="assets/scroll/лед.avif" type="image/avif" />
-          <img src="assets/scroll/лед.webp" width="1672" height="941" alt="" />
+          <img src="assets/scroll/лед.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
         </picture>
       </figure>
       <figure class="path-scene" data-scene="earth">
         <picture>
           <source srcset="assets/scroll/земля.avif" type="image/avif" />
-          <img src="assets/scroll/земля.webp" width="1672" height="941" alt="" />
+          <img src="assets/scroll/земля.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
         </picture>
       </figure>
       <figure class="path-scene" data-scene="fire">
         <picture>
           <source srcset="assets/scroll/огонь.avif" type="image/avif" />
-          <img src="assets/scroll/огонь.webp" width="1672" height="941" alt="" />
+          <img src="assets/scroll/огонь.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
         </picture>
       </figure>
       <figure class="path-scene" data-scene="spring">
         <picture>
           <source srcset="assets/scroll/источник.avif" type="image/avif" />
-          <img src="assets/scroll/источник.webp" width="1672" height="941" alt="" />
+          <img src="assets/scroll/источник.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
         </picture>
       </figure>
     </div>
@@ -369,7 +374,7 @@
           </li>
           <li class="path-step" data-stage="ice">
             <span class="path-dot">
-              <img class="path-ic path-ic-snowflake" src="assets/icons/element-snowflake.svg" width="24" height="24" alt="" aria-hidden="true" />
+              <img class="path-ic path-ic-snowflake" src="assets/icons/element-snowflake.svg" width="24" height="24" alt="" aria-hidden="true" loading="lazy" />
             </span>
             <div class="path-body">
               <h3 data-en="Glacier · Ice">Ледник · Лёд</h3>
@@ -713,7 +718,7 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/main.js?v=a11y-perf-v3"></script>
-<script src="js/cms.js?v=a11y-perf-v3"></script>
+<script src="js/main.js?v=lcp-v4" defer></script>
+<script src="js/cms.js?v=lcp-v4" defer></script>
 </body>
 </html>
