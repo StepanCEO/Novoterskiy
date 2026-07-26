@@ -35,8 +35,16 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=avif-seo-v1" />
+<!-- Таблица стилей Google Fonts блокирует отрисовку: браузер не рисует ни
+     строчки, пока не сходит на сторонний домен и не разберёт ответ, — это давало
+     около полутора секунд к FCP на мобильном 4G. media="print" делает её
+     неблокирующей, onload возвращает её в дело. Текст при этом рисуется системным
+     шрифтом и подменяется при загрузке — ровно то же, что уже делает display=swap.
+     В стилях у каждого шрифта прописан системный запасной, так что подмена
+     аккуратная. <noscript> — для случая, когда onload не отработает. -->
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" /></noscript>
+<link rel="stylesheet" href="css/style.css?v=a11y-perf-v2" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -102,7 +110,7 @@
 </svg>
 
 <header class="site-header" id="top">
-  <a class="brand" href="#top" aria-label="Новотерская — на главную">
+  <a class="brand" href="#top">
     <picture>
       <source srcset="assets/logo-mark.avif" type="image/avif" />
       <img class="brand-mark" src="assets/logo-mark.webp" width="59" height="40" alt="Кавминводы" />
@@ -111,7 +119,7 @@
       <span class="brand-name">Новотерская</span>
       <span class="brand-tag" data-en="natural mineral water">природная минеральная вода</span>
     </span>
-  </a>
+  <span class="sr-only" data-en=" - home"> — на главную</span></a>
 
   <nav class="site-nav" aria-label="Основная навигация">
     <a href="catalog.html" data-en="Catalog">Каталог</a>
@@ -122,11 +130,11 @@
   </nav>
 
   <div class="header-actions">
-    <button class="lang-toggle" id="langToggle" type="button" aria-label="Сменить язык / Switch language">
+    <button class="lang-toggle" id="langToggle" type="button">
       <span class="lang-opt is-active" data-lang="ru">RU</span>
       <span class="lang-sep">·</span>
       <span class="lang-opt" data-lang="en">EN</span>
-    </button>
+    <span class="sr-only" data-en=" - switch language"> — сменить язык</span></button>
   </div>
 </header>
 
@@ -136,13 +144,13 @@
   <!-- Полноэкранная гора в лёгком тумане (правка заказчика) -->
   <div class="hero-bg" aria-hidden="true">
     <video class="hero-video" id="heroVideo" width="1920" height="976"
-           muted playsinline preload="auto"
+           muted playsinline preload="metadata"
            poster="assets/video/hero-bg-poster.webp">
       <source src="assets/video/hero-bg.webm" type='video/webm; codecs="vp9"' />
       <source src="assets/video/hero-bg.mp4" type="video/mp4" />
       <picture>
         <source srcset="assets/video/hero-bg-poster.avif" type="image/avif" />
-        <img src="assets/video/hero-bg-poster.webp" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+        <img src="assets/video/hero-bg-poster.webp" width="1920" height="976" alt="" loading="eager" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
@@ -188,19 +196,19 @@
              aria-label="Новотерская Целебная — вращающаяся бутылка">
           <picture>
             <source srcset="assets/spin/spin-00.avif" type="image/avif" />
-            <img class="spin-frame is-active" src="assets/spin/spin-00.webp" width="720" height="1200" alt="Новотерская Целебная" />
+            <img class="spin-frame is-active" fetchpriority="high" src="assets/spin/spin-00.webp" width="720" height="1200" alt="Новотерская Целебная" />
           </picture>
           <picture>
             <source srcset="assets/spin/spin-01.avif" type="image/avif" />
-            <img class="spin-frame" src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
+            <img class="spin-frame" fetchpriority="low" src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
           </picture>
           <picture>
             <source srcset="assets/spin/spin-02.avif" type="image/avif" />
-            <img class="spin-frame" src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
+            <img class="spin-frame" fetchpriority="low" src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
           </picture>
           <picture>
             <source srcset="assets/spin/spin-03.avif" type="image/avif" />
-            <img class="spin-frame" src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
+            <img class="spin-frame" fetchpriority="low" src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
           </picture>
         </div>
       </div>
@@ -697,7 +705,7 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/main.js?v=avif-seo-v1"></script>
-<script src="js/cms.js?v=avif-seo-v1"></script>
+<script src="js/main.js?v=a11y-perf-v2"></script>
+<script src="js/cms.js?v=a11y-perf-v2"></script>
 </body>
 </html>

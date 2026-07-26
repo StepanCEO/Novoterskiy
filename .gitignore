@@ -19,3 +19,7 @@ assets/photos/hero-rocks-pile.webp
 
 # Присланные в Telegram исходники логотипов — рабочие файлы, не сайт
 assets/photo_*.jpg
+
+# Отчёты кросс-браузерных прогонов и Lighthouse — 12МБ скриншотов и JSON,
+# пересоздаются командой node tools/crossbrowser.mjs / tools/lighthouse.mjs
+tools/.crossbrowser/

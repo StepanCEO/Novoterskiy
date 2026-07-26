@@ -249,6 +249,20 @@ picture { display: contents; }
 .lang-opt { transition: color 0.3s; }
 .lang-opt.is-active { color: var(--deep); font-weight: 500; }
 .lang-sep { color: var(--silver); }
+/* Текст только для скринридеров: остаётся в доступном имени, но не занимает
+   места на экране. display:none и visibility:hidden не годятся — они убирают
+   текст и из озвучки. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ---------- 1 · HERO ---------- */
 .hero {
@@ -1465,6 +1479,10 @@ picture { display: contents; }
   transition: background 0.3s, transform 0.3s;
 }
 .collection-dots .cdot.on { background: var(--glacier-d); transform: scale(1.3); }
+/* Уровень заголовка карточки зависит от страницы: на catalog.html «Каталог» —
+   это h1, поэтому товары там h2 (иначе разрыв уровней), а внутри секции на
+   главной остаётся h3. Вид одинаковый, поэтому стилизуем оба. */
+.product h2,
 .product h3 {
   font-family: var(--ff-serif);
   font-weight: 600;
@@ -1472,7 +1490,12 @@ picture { display: contents; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--deep);
+  /* Дефолтный отступ у h2 и h3 разный (0.83em против 1em), а карточки всю
+     жизнь верстались под h3 — фиксируем его явно, чтобы смена уровня не
+     сдвинула сетку. */
+  margin: 1.02rem 0;
 }
+.product h2 em,
 .product h3 em { font-style: normal; color: var(--glacier-d); }
 .product-type {
   font-family: var(--ff-mono);
@@ -1967,6 +1990,13 @@ picture { display: contents; }
   line-height: 1.12;
   color: var(--deep);
   margin: 0.5rem 0 0.6rem;
+  /* «конфиденциальности» одним словом шире 390px-экрана и растягивало всю
+     страницу (горизонтальный скролл на privacy.html). hyphens переносит по
+     слогам — у <html lang="ru"> словарь есть; overflow-wrap оставлен на случай,
+     когда словаря нет: тогда перенос будет жёстким, но скролла всё равно не
+     появится. Порядок важен: сначала пробуем красиво, потом принудительно. */
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 .legal-sub {
   font-size: 1.05rem;

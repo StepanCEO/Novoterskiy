@@ -19,8 +19,16 @@
 <meta content="https://stepanceo.github.io/Novoterskiy/privacy.html" property="og:url"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:wght@500;600;700&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet"/>
-<link href="css/style.css?v=avif-seo-v1" rel="stylesheet"/>
+<!-- Таблица стилей Google Fonts блокирует отрисовку: браузер не рисует ни
+     строчки, пока не сходит на сторонний домен и не разберёт ответ, — это давало
+     около полутора секунд к FCP на мобильном 4G. media="print" делает её
+     неблокирующей, onload возвращает её в дело. Текст при этом рисуется системным
+     шрифтом и подменяется при загрузке — ровно то же, что уже делает display=swap.
+     В стилях у каждого шрифта прописан системный запасной, так что подмена
+     аккуратная. <noscript> — для случая, когда onload не отработает. -->
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:wght@500;600;700&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:wght@500;600;700&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
+<link href="css/style.css?v=a11y-perf-v2" rel="stylesheet"/>
 </head>
 <body class="legal-page">
 <header class="site-header is-solid" id="top">
@@ -32,7 +40,7 @@
 <span class="brand-name"><span data-en="Novoterskaya">Новотерская</span></span>
 </a>
 <div class="header-actions">
-    <button aria-label="Сменить язык / Switch language" class="lang-toggle" id="langToggle" type="button"><span class="lang-opt is-active" data-lang="ru">RU</span><span class="lang-sep">·</span><span class="lang-opt" data-lang="en">EN</span></button>
+    <button class="lang-toggle" id="langToggle" type="button"><span class="lang-opt is-active" data-lang="ru">RU</span><span class="lang-sep">·</span><span class="lang-opt" data-lang="en">EN</span><span class="sr-only" data-en=" - switch language"> — сменить язык</span></button>
 <a class="btn btn-sm" href="index.html"><span data-en="Home">На главную</span></a>
 </div>
 </header>
@@ -309,6 +317,6 @@
 </div>
 </footer>
 
-<script defer="" src="js/internal.js?v=avif-seo-v1"></script>
+<script defer="" src="js/internal.js?v=a11y-perf-v2"></script>
 </body>
 </html>

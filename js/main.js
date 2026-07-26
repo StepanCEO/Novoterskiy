@@ -75,6 +75,26 @@
          в конце застывает на последнем кадре до следующей загрузки страницы ---- */
   var heroVideo = document.getElementById("heroVideo");
   if (heroVideo) {
+    /* Safari/WebKit на <source type='video/webm; codecs="vp9"'> отвечает
+       canPlayType → "probably", но VP9 в WebM у него не декодируется: элемент
+       навсегда остаётся в readyState 0 при networkState 2 (грузит и грузит).
+       Браузер при этом не считает это ошибкой, поэтому ни error, ни переход к
+       следующему <source> не происходят — и событие load страницы не наступает
+       вообще. Сторожевой таймер: нет метаданных за 2.5с → берём mp4 напрямую.
+       В движках, которые webm читают, метаданные приходят раньше, и таймер
+       снимается, так что размер (277КБ webm против 999КБ mp4) не теряется. */
+    var heroFallback = heroVideo.querySelector('source[type="video/mp4"]');
+    if (heroFallback) {
+      var stuckWatch = setTimeout(function () {
+        if (heroVideo.readyState === 0) {
+          heroVideo.removeAttribute("src");
+          heroVideo.src = heroFallback.getAttribute("src");
+          heroVideo.load();
+        }
+      }, 2500);
+      heroVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
+    }
+
     var freezeHeroEnd = function () {
       heroVideo.currentTime = Math.max(0, heroVideo.duration - 0.05);
       heroVideo.pause();

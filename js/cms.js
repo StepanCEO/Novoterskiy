@@ -250,6 +250,16 @@
     bilingual(one("#cookieOk"), cookie.button_ru, cookie.button_en);
   }
 
+  /* Уровень заголовка карточки — на одну ступень ниже заголовка секции.
+     На catalog.html «Каталог» это h1, значит товары h2; если секция когда-нибудь
+     вернётся на главную внутрь h2 — товары станут h3. Уровень читаем из
+     .section-head, чтобы не считать заголовки самих карточек. */
+  function productHeading() {
+    var head = one(".collection .section-head h1, .collection .section-head h2, .collection .section-head h3");
+    var level = head ? Number(head.tagName.charAt(1)) : 2;
+    return "h" + Math.min(level + 1, 6);
+  }
+
   function hydrateProducts(data) {
     var track = one(".collection-track");
     if (!track || !data || !Array.isArray(data.items) || !data.items.length) return;
@@ -265,10 +275,21 @@
       // его снимет обработчик ошибки ниже, и картинка догрузится в своём формате.
       var avif = photo.replace(/\.(webp|jpe?g|png)$/i, ".avif");
       var source = avif !== photo ? '<source srcset="' + esc(avif) + '" type="image/avif" />' : "";
+      // width/height обязательны, даже когда высоту задаёт CSS: без них браузер
+      // не знает пропорций до загрузки и верстка дёргается (CLS), а Lighthouse
+      // ругается на unsized-images. Фото бутылок из products.json — одного
+      // формата 225×763; если в CMS указали свои размеры, берём их.
+      var w = parseInt(product.photo_width, 10) || 225;
+      var h = parseInt(product.photo_height, 10) || 763;
+      // На каталоге заголовок страницы — h1, поэтому карточки идут h2:
+      // h3 после h1 даёт разрыв в уровнях (heading-order). На главной этот
+      // список живёт внутри секции со своим h2, и там уровень задаёт headingLevel.
+      var hx = productHeading();
       return '<article class="product reveal"><div class="product-photo"><picture>' + source +
-        '<img src="' + esc(photo) + '" loading="lazy" alt="' + esc(alt) + '" data-alt-ru="' + esc(alt) +
+        '<img src="' + esc(photo) + '" width="' + w + '" height="' + h +
+        '" loading="lazy" alt="' + esc(alt) + '" data-alt-ru="' + esc(alt) +
         '" data-alt-en="' + esc(product.alt_en || alt) + '" /></picture></div>' +
-        '<h3 data-en="' + esc(titleEn) + '">' + esc(product.title) + '</h3>' +
+        '<' + hx + ' data-en="' + esc(titleEn) + '">' + esc(product.title) + '</' + hx + '>' +
         '<p class="product-type" data-en="' + esc(typeEn) + '">' + esc(product.type) + '</p>' +
         '<a class="btn btn-outline" href="' + esc(href) + '" data-analytics="product-buy" data-product="' +
         esc(product.id) + '" data-en="' + esc(esc(collection.buy_en || "Buy")) + '">' + esc(collection.buy_ru || "Купить") + '</a></article>';

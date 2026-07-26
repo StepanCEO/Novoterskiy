@@ -39,11 +39,14 @@
     html.setAttribute("lang", language);
     if (toggle) {
       toggle.querySelectorAll(".lang-opt").forEach(function (option) {
-        var active = option.getAttribute("data-lang") === language;
-        option.classList.toggle("is-active", active);
-        option.setAttribute("aria-hidden", active ? "false" : "true");
+        option.classList.toggle("is-active", option.getAttribute("data-lang") === language);
       });
-      toggle.setAttribute("aria-label", toEnglish ? "Switch language to Russian" : "Сменить язык на английский");
+      /* aria-label здесь намеренно не ставим. Он полностью подменял бы видимый
+         текст «RU · EN», и доступное имя перестало бы его содержать: голосовое
+         управление на «нажми RU» кнопку не находит (axe:
+         label-content-name-mismatch). Вместо метки внутри кнопки лежит
+         .sr-only-пояснение — оно дописывается к видимому тексту, а не заменяет
+         его, и переводится обычным data-en вместе со всей страницей. */
     }
 
     try { localStorage.setItem("novo-lang", language); } catch (error) {}
