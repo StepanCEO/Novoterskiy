@@ -83,17 +83,37 @@
        вообще. Сторожевой таймер: нет метаданных за 2.5с → берём mp4 напрямую.
        В движках, которые webm читают, метаданные приходят раньше, и таймер
        снимается, так что размер (277КБ webm против 999КБ mp4) не теряется. */
-    var heroFallback = heroVideo.querySelector('source[type="video/mp4"]');
-    if (heroFallback) {
-      var stuckWatch = setTimeout(function () {
-        if (heroVideo.readyState === 0) {
-          heroVideo.removeAttribute("src");
-          heroVideo.src = heroFallback.getAttribute("src");
-          heroVideo.load();
-        }
-      }, 2500);
-      heroVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
-    }
+    /* Источники собираем здесь, а не в разметке: в Safari <source> внутри
+       <video> навсегда удерживает событие load страницы. Плюс так ролик не
+       отбирает канал у кадров бутылки, пока рисуется первый экран. */
+    var heroMp4 = heroVideo.getAttribute("data-mp4");
+    var heroWebm = heroVideo.getAttribute("data-webm");
+    var startHeroVideo = function () {
+      if (heroMp4) {
+        var stuckWatch = setTimeout(function () {
+          if (heroVideo.readyState === 0) {
+            heroVideo.querySelectorAll("source").forEach(function (node) { node.remove(); });
+            heroVideo.src = heroMp4;
+            heroVideo.load();
+          }
+        }, 2500);
+        heroVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
+      }
+      // Порядок важен: webm лёгкий (277КБ против 999КБ), mp4 — запасной.
+      var sources = document.createDocumentFragment();
+      [[heroWebm, 'video/webm; codecs="vp9"'], [heroMp4, "video/mp4"]].forEach(function (pair) {
+        if (!pair[0]) return;
+        var source = document.createElement("source");
+        source.setAttribute("src", pair[0]);
+        source.setAttribute("type", pair[1]);
+        sources.appendChild(source);
+      });
+      heroVideo.insertBefore(sources, heroVideo.firstChild);
+      heroVideo.load();
+    };
+    // rAF после load: даём браузеру отрисовать кадр, а уже потом занимать канал.
+    if (document.readyState === "complete") requestAnimationFrame(startHeroVideo);
+    else window.addEventListener("load", function () { requestAnimationFrame(startHeroVideo); }, { once: true });
 
     var freezeHeroEnd = function () {
       heroVideo.currentTime = Math.max(0, heroVideo.duration - 0.05);

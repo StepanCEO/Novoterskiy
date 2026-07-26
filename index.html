@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Literata:wght@500;600;700&display=swap&subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=a11y-perf-v2" />
+<link rel="stylesheet" href="css/style.css?v=a11y-perf-v3" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -143,13 +143,21 @@
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <!-- Полноэкранная гора в лёгком тумане (правка заказчика) -->
   <div class="hero-bg" aria-hidden="true">
+    <!-- Адреса ролика лежат в data-*, а не в <source>, и подставляются из
+         main.js после window.load. Две причины. Safari: <source> в разметке
+         навсегда удерживает событие load страницы — оно не наступает вообще,
+         даже с preload="none". И скорость: четверть мегабайта видео иначе
+         грузится одновременно с кадрами бутылки, а бутылка и есть LCP.
+         Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
     <video class="hero-video" id="heroVideo" width="1920" height="976"
-           muted playsinline preload="metadata"
-           poster="assets/video/hero-bg-poster.webp">
-      <source src="assets/video/hero-bg.webm" type='video/webm; codecs="vp9"' />
-      <source src="assets/video/hero-bg.mp4" type="video/mp4" />
+           muted playsinline preload="none"
+           poster="assets/video/hero-bg-poster.webp"
+           data-webm="assets/video/hero-bg.webm"
+           data-mp4="assets/video/hero-bg.mp4">
+      <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
+           браузеры подтягивали и его, и webp из poster= — 33КБ впустую в самый
+           занятый момент загрузки, ровно когда рисуется бутылка. -->
       <picture>
-        <source srcset="assets/video/hero-bg-poster.avif" type="image/avif" />
         <img src="assets/video/hero-bg-poster.webp" width="1920" height="976" alt="" loading="eager" />
       </picture>
     </video>
@@ -705,7 +713,7 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/main.js?v=a11y-perf-v2"></script>
-<script src="js/cms.js?v=a11y-perf-v2"></script>
+<script src="js/main.js?v=a11y-perf-v3"></script>
+<script src="js/cms.js?v=a11y-perf-v3"></script>
 </body>
 </html>
