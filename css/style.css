@@ -1222,6 +1222,9 @@ picture { display: contents; }
 .stat-val { font-size: clamp(1.9rem, 4vw, 2.9rem); }
 .stat-unit {
   font-family: var(--ff-mono);
+  /* Вес задаём явно: .stat-num выше просит 700, а у моноширинного в наборе
+     только 400 и 500 — браузер рисовал поддельный жирный, размазывая штрихи. */
+  font-weight: 500;
   font-size: 0.82rem;
   letter-spacing: 0.06em;
   color: var(--gold);
