@@ -25,10 +25,15 @@
   --wrap: 1200px;
   --gutter: clamp(20px, 5vw, 72px);
 
-  --ff-display: "Golos Text", system-ui, sans-serif;
-  --ff-serif: "Literata", "Georgia", serif;
-  --ff-body: "Golos Text", system-ui, sans-serif;
-  --ff-mono: "IBM Plex Mono", ui-monospace, monospace;
+  /* Пара шрифтов: Prata — антиква для заголовков, Fira Sans — весь остальной
+     текст. У Prata в наборе только вес 400, поэтому везде, где ею набран
+     заголовок, вес задан явно: иначе браузер рисует поддельный жирный. */
+  --ff-display: "Fira Sans", system-ui, sans-serif;
+  --ff-serif: "Prata", "Georgia", serif;
+  --ff-body: "Fira Sans", system-ui, sans-serif;
+  /* Мелкие капсовые подписи (рубрики, даты, единицы). Моноширинного в паре
+     нет — держим их на Fira Sans, разрядка и капс дают нужную «техничность». */
+  --ff-label: "Fira Sans", system-ui, sans-serif;
 
   --r: 16px;
   --r-lg: 26px;
@@ -72,7 +77,7 @@ img, svg { display: block; max-width: 100%; }
 
 /* ---------- Shared type helpers ---------- */
 .eyebrow {
-  font-family: var(--ff-mono);
+  font-family: var(--ff-label);
   font-size: 0.72rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -90,7 +95,7 @@ img, svg { display: block; max-width: 100%; }
 .section-title {
   /* Референс: антиква капсом с разрядкой, спокойный размер (ТЗ п.13) */
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1.5rem, 3vw, 2.3rem);
   line-height: 1.25;
   letter-spacing: 0.14em;
@@ -207,7 +212,7 @@ picture { display: contents; }
 .brand-name {
   font-family: var(--ff-serif);
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -340,7 +345,7 @@ picture { display: contents; }
   gap: 0.35rem;
   background: none;
   border: none;
-  font-family: var(--ff-mono);
+  font-family: var(--ff-label);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   color: var(--muted);
@@ -416,7 +421,7 @@ picture { display: contents; }
 .hero-copy { max-width: 470px; }
 .hero-title {
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1.85rem, 3.1vw, 2.9rem);
   line-height: 1.34;
   letter-spacing: 0.055em;
@@ -663,7 +668,7 @@ picture { display: contents; }
 }
 .el-cap h3 {
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.98rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -1075,7 +1080,7 @@ picture { display: contents; }
   margin: 0;
   font-family: var(--ff-serif);
   font-size: 2.4rem;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1;
   background: var(--shimmer);
   background-size: 200% auto;
@@ -1089,7 +1094,7 @@ picture { display: contents; }
 @keyframes sheen { to { background-position: 200% center; } }
 .mineral h3 {
   grid-column: 1 / -1;
-  font-family: var(--ff-mono);
+  font-family: var(--ff-label);
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1162,7 +1167,7 @@ picture { display: contents; }
 .link-arrow:hover::after { transform: translateX(6px); }
 .origin-title {
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1.5rem, 3.4vw, 2.5rem);
   line-height: 1.4;
   margin: 0.5rem 0 2rem;
@@ -1193,7 +1198,7 @@ picture { display: contents; }
 }
 .about-lede {
   font-family: var(--ff-serif);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   line-height: 1.5;
   color: var(--deep);
@@ -1216,7 +1221,7 @@ picture { display: contents; }
 .about-fact-num {
   display: block;
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1.3rem, 2.4vw, 1.7rem);
   color: var(--deep);
 }
@@ -1280,7 +1285,7 @@ picture { display: contents; }
 }
 .contact-label {
   display: block;
-  font-family: var(--ff-mono);
+  font-family: var(--ff-label);
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1321,15 +1326,15 @@ picture { display: contents; }
   justify-content: center;
   gap: 0.2em;
   font-family: var(--ff-serif);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
   color: var(--deep);
 }
 .stat-val { font-size: clamp(1.9rem, 4vw, 2.9rem); }
 .stat-unit {
-  font-family: var(--ff-mono);
-  /* Вес задаём явно: .stat-num выше просит 700, а у моноширинного в наборе
-     только 400 и 500 — браузер рисовал поддельный жирный, размазывая штрихи. */
+  font-family: var(--ff-label);
+  /* Вес задаём явно: .stat-num выше просит 400 у антиквы, а подпись единицы
+     должна читаться плотнее — 500 у Fira Sans настоящий, не поддельный. */
   font-weight: 500;
   font-size: 0.82rem;
   letter-spacing: 0.06em;
@@ -1392,7 +1397,7 @@ picture { display: contents; }
 }
 .trust-card:hover { transform: translateY(-5px); }
 .trust-num {
-  font-family: var(--ff-mono);
+  font-family: var(--ff-label);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   /* Деликатный перелив серебра и золота (ТЗ п.9) */
@@ -1443,7 +1448,7 @@ picture { display: contents; }
 }
 .docs-title {
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1.4rem, 3vw, 2rem);
   color: var(--deep);
   text-align: center;
@@ -1594,7 +1599,7 @@ picture { display: contents; }
 .product h2,
 .product h3 {
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.02rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1607,7 +1612,7 @@ picture { display: contents; }
 .product h2 em,
 .product h3 em { font-style: normal; color: var(--glacier-d); }
 .product-type {
-  font-family: var(--ff-mono);
+  font-family: var(--ff-label);
   font-size: 0.74rem;
   letter-spacing: 0.08em;
   color: var(--muted);
@@ -1701,7 +1706,7 @@ picture { display: contents; }
 .final-mark { width: 84px; height: auto; margin: 0 auto 1.6rem; opacity: 0.95; }
 .final-quote {
   font-family: var(--ff-serif);
-  font-weight: 600;
+  font-weight: 400;
   font-size: clamp(1.4rem, 2.8vw, 2.2rem);
   line-height: 1.45;
   color: #1C4B50;
@@ -1710,7 +1715,7 @@ picture { display: contents; }
 }
 .final-accent {
   margin: 1.6rem 0 2rem;
-  font-family: var(--ff-mono);
+  font-family: var(--ff-label);
   font-size: 0.82rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1958,6 +1963,16 @@ picture { display: contents; }
   /* Кнопки в шапке больше нет — остаётся переключатель языка и «Каталог» в меню. */
   .header-actions { gap: 0.7rem; }
   .header-actions .btn { --_pad: 0.62em 0.95em; font-size: 0.62rem; }
+  /* Антиква Prata шире прежней: на 320–414px «НОВОТЕРСКАЯ» дотягивалась до
+     переключателя языка и налезала на него. Знак и название ужимаются вместе
+     с шириной экрана, nowrap держит название одной строкой. */
+  .brand { gap: 0.5rem; min-width: 0; }
+  .brand-mark { height: 32px; }
+  .brand-name {
+    font-size: clamp(0.74rem, 3.2vw, 1.05rem);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
   .hero { padding-top: 5.5rem; padding-bottom: 1rem; }
   .hero-grid { gap: 0.75rem; }
   .hero-title { font-size: 1.68rem; line-height: 1.25; }
@@ -2169,7 +2184,7 @@ picture { display: contents; }
 .legal-title {
   font-family: var(--ff-serif);
   font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.12;
   color: var(--deep);
   margin: 0.5rem 0 0.6rem;
@@ -2315,8 +2330,8 @@ picture { display: contents; }
 }
 .news-date {
   display: block;
-  font-family: var(--ff-mono);
-  /* В наборе у моноширинного только 400 и 500: 600+ дал бы поддельный жирный. */
+  font-family: var(--ff-label);
+  /* Дата — подпись, а не заголовок: средний вес вместо жирного. */
   font-weight: 500;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
