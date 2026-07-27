@@ -19,7 +19,7 @@ const pw = await import(new URL("file:///" + PW).href);
 const { chromium, firefox, webkit, devices } = pw.default || pw;
 
 const BASE = process.argv[2] || "http://localhost:4322";
-const PAGES = ["/index.html", "/catalog.html", "/story.html", "/documents.html", "/privacy.html"];
+const PAGES = ["/index.html", "/catalog.html", "/story.html", "/documents.html", "/awards.html", "/news.html", "/charity.html", "/privacy.html"];
 const SHOTS = "tools/.crossbrowser";
 
 /* Консоль шумит и на здоровых сайтах: превью-сервер, шрифты Google, favicon.
@@ -92,8 +92,19 @@ async function probe(page) {
   });
 }
 
+/* Локальные сборки браузеров Playwright переставлялись, и headless-оболочка
+   Chromium от прошлой версии осталась прописанной, но удалённой. Путь можно
+   задать переменной, иначе берём то, что предлагает сам Playwright. */
+const EXE = {
+  Chromium: process.env.PW_CHROMIUM || null,
+  Gecko: process.env.PW_FIREFOX || null,
+  WebKit: process.env.PW_WEBKIT || null,
+};
+
 async function run(name, browserType, contextOpts, shot) {
-  const browser = await browserType.launch();
+  const engine = name.split(" ")[0];
+  const exe = EXE[engine];
+  const browser = await browserType.launch(exe ? { executablePath: exe } : {});
   const context = await browser.newContext(contextOpts);
   const results = [];
 

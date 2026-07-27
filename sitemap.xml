@@ -76,6 +76,23 @@
   </url>
 
   <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/awards.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/awards.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/awards.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/awards.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/awards.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/awards.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/awards.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/awards.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
     <loc>https://stepanceo.github.io/Novoterskiy/privacy.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/privacy.html?lang=en"/>

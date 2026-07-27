@@ -24,9 +24,14 @@
             "url": "#lab"
           },
           {
-            "label_ru": "Документы и награды",
-            "label_en": "Documents and awards",
+            "label_ru": "Документы",
+            "label_en": "Documents",
             "url": "documents.html"
+          },
+          {
+            "label_ru": "Награды",
+            "label_en": "Awards",
+            "url": "awards.html"
           },
           {
             "label_ru": "История",
