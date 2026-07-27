@@ -55,6 +55,15 @@
       "file": ""
     },
     {
+      "id": "Товарные знаки",
+      "anchor": "trademarks",
+      "name": "Товарные знаки",
+      "name_en": "Trademarks",
+      "desc": "Пять свидетельств Роспатента: название, этикетка и бутылка",
+      "desc_en": "Five Rospatent certificates: name, label and bottle",
+      "file": ""
+    },
+    {
       "id": "Сводные данные о результатах СОУТ",
       "anchor": "sout-summary",
       "name": "Сводные данные о результатах СОУТ",
