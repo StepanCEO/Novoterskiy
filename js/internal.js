@@ -68,6 +68,14 @@
     document.dispatchEvent(new CustomEvent("novo:languagechange", { detail: { language: language } }));
   }
 
+  /* Контент, дорисованный после старта (лента новостей), приходит по-русски.
+     Если выбран английский, его надо перевести — иначе на странице окажутся
+     оба языка сразу. Слушаем событие, а не экспортируем функцию: скрипты
+     подключены отдельно и общей области видимости у них нет. */
+  document.addEventListener("novo:contentadded", function () {
+    setLanguage(html.getAttribute("lang") === "en" ? "en" : "ru");
+  });
+
   if (!toggle) return;
 
   toggle.addEventListener("click", function () {

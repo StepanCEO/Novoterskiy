@@ -21,7 +21,8 @@ const lighthouse = (await import(new URL("file:///" + LH).href)).default;
 const { launch } = await import(new URL("file:///" + CL).href);
 
 const BASE = process.argv[2] || "http://127.0.0.1:4322";
-const PAGES = ["/index.html", "/catalog.html", "/story.html", "/documents.html", "/privacy.html"];
+const PAGES = ["/index.html", "/catalog.html", "/story.html", "/documents.html",
+  "/privacy.html", "/news.html", "/charity.html"];
 const CATEGORIES = ["performance", "accessibility", "best-practices", "seo"];
 mkdirSync("tools/.crossbrowser", { recursive: true });
 
