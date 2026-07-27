@@ -109,7 +109,7 @@
     "video_mp4": "assets/video/bottle-hero.mp4",
     "video_poster": "assets/video/bottle-hero-poster.webp",
     "video_fallback": "assets/products/celebnaya-pet-05.webp",
-    "mobile_bottle": "assets/products/hero-bottle-ios.png"
+    "bottle": "assets/products/bottle-splash.webp"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -363,7 +363,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/products/hero-bottle-ios.png",
+    "bottle": "assets/products/bottle-splash.webp",
     "logo": "assets/logo-mark.webp"
   },
   "where": {

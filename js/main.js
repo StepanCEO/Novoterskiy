@@ -13,102 +13,6 @@
     setTimeout(startHero, 200);
   }
 
-  /* ---- Bottle 360° spin: непрерывный «угол» с кросс-фейдом соседних кадров —
-         вращение видится плавным даже при малом числе кадров.
-         Drag/свайп вращает, авто-вращение идёт через rAF ---- */
-  var bottleSpin = document.getElementById("bottleSpin");
-  if (bottleSpin) {
-    var spinFrames = Array.prototype.slice.call(bottleSpin.querySelectorAll(".spin-frame"));
-    var spinCount = spinFrames.length;
-    var spinAngle = 0; // в «кадрах»: 0..spinCount, дробное
-    /* Кадры 1–3 подставляются ниже, после window.load (см. комментарий в
-       разметке). Пока их нет, кросс-фейд считать нечего: кадр 0 держит
-       CSS-класс .is-active, и renderSpin просто не трогает opacity —
-       иначе бутылка мигнула бы пустотой на месте ещё не пришедшего кадра. */
-    var spinReady = false;
-    var renderSpin = function () {
-      if (!spinReady) return;
-      for (var i = 0; i < spinCount; i++) {
-        var d = (((i - spinAngle) % spinCount) + spinCount) % spinCount;
-        if (d > spinCount / 2) d = spinCount - d;
-        // линейный бленд между двумя соседними кадрами
-        spinFrames[i].style.opacity = Math.max(0, 1 - d);
-      }
-    };
-
-    // drag: полный оборот за ~1.4 ширины бутылки
-    var dragging = false, startX = 0, startAngle = 0;
-    var pxPerTurn = function () { return Math.max(260, bottleSpin.clientWidth * 1.4); };
-    bottleSpin.addEventListener("pointerdown", function (e) {
-      dragging = true;
-      startX = e.clientX;
-      startAngle = spinAngle;
-      bottleSpin.classList.add("is-dragging");
-      bottleSpin.setPointerCapture(e.pointerId);
-    });
-    bottleSpin.addEventListener("pointermove", function (e) {
-      if (!dragging) return;
-      spinAngle = startAngle + (e.clientX - startX) / pxPerTurn() * spinCount;
-      renderSpin();
-    });
-    var endDrag = function () {
-      dragging = false;
-      bottleSpin.classList.remove("is-dragging");
-    };
-    bottleSpin.addEventListener("pointerup", endDrag);
-    bottleSpin.addEventListener("pointercancel", endDrag);
-
-    // авто-вращение: полный оборот за 14с, пауза при drag
-    var startAutoSpin = function () {
-      if (reduceMotion) return;
-      var TURN_SECONDS = 14;
-      var lastTs = null;
-      var tickSpin = function (ts) {
-        if (lastTs != null && !dragging) {
-          // зажимаем delta: после возврата из фоновой вкладки без скачка
-          var dt = Math.min(ts - lastTs, 100);
-          spinAngle += (dt / 1000) * (spinCount / TURN_SECONDS);
-          renderSpin();
-        }
-        lastTs = ts;
-        requestAnimationFrame(tickSpin);
-      };
-      requestAnimationFrame(tickSpin);
-    };
-
-    /* Догружаем остальные кадры и только тогда отдаём управление opacity
-       кросс-фейду. Ждём именно все: вращение по половине кадров выглядит
-       рывком, а лишняя секунда ожидания незаметна — бутылка уже стоит. */
-    var loadRestFrames = function () {
-      var deferred = spinFrames.filter(function (frame) { return frame.getAttribute("data-src"); });
-      var finish = function () {
-        spinReady = true;
-        renderSpin();
-        startAutoSpin();
-      };
-      if (!deferred.length) return finish();
-      var pending = deferred.length;
-      var oneDone = function () { if (--pending === 0) finish(); };
-      deferred.forEach(function (frame) {
-        var picture = frame.parentNode;
-        if (picture && picture.tagName === "PICTURE") {
-          picture.querySelectorAll("source[data-srcset]").forEach(function (source) {
-            source.setAttribute("srcset", source.getAttribute("data-srcset"));
-            source.removeAttribute("data-srcset");
-          });
-        }
-        // error тоже считаем «готово»: один недошедший кадр не должен
-        // навсегда оставить бутылку неподвижной.
-        frame.addEventListener("load", oneDone, { once: true });
-        frame.addEventListener("error", oneDone, { once: true });
-        frame.setAttribute("src", frame.getAttribute("data-src"));
-        frame.removeAttribute("data-src");
-      });
-    };
-    if (document.readyState === "complete") requestAnimationFrame(loadRestFrames);
-    else window.addEventListener("load", function () { requestAnimationFrame(loadRestFrames); }, { once: true });
-  }
-
   /* ---- Hero background video: 6с сцена (небо → лёд → дымка → тепло),
          в конце застывает на последнем кадре до следующей загрузки страницы ---- */
   var heroVideo = document.getElementById("heroVideo");
@@ -123,7 +27,7 @@
        снимается, так что размер (277КБ webm против 999КБ mp4) не теряется. */
     /* Источники собираем здесь, а не в разметке: в Safari <source> внутри
        <video> навсегда удерживает событие load страницы. Плюс так ролик не
-       отбирает канал у кадров бутылки, пока рисуется первый экран. */
+       отбирает канал у снимка бутылки, пока рисуется первый экран. */
     var heroMp4 = heroVideo.getAttribute("data-mp4");
     var heroWebm = heroVideo.getAttribute("data-webm");
     var startHeroVideo = function () {

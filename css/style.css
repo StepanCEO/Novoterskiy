@@ -482,51 +482,25 @@ picture { display: contents; }
   z-index: 3;
   width: auto; height: clamp(380px, 44vw, 580px);
   margin: 0 auto;
-  transform: rotate(17deg) translate(10%, 2%);
+  /* Наклона тут нет: он уже снят в кадре (~29°), а поворот из CSS добавлялся
+     бы к нему. Остаётся только сдвиг — кадр шире прежнего за счёт брызг
+     слева, и без него бутылка уезжает от центра колонки. */
+  transform: translate(4%, 2%);
   filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35));
 }
-/* 360° spin viewer: stacked photo frames, one visible at a time */
-.bottle-spin {
-  position: relative;
+/* <picture> отдаём гриду насквозь, чтобы размеры и центровку задавала сама
+   картинка, как было у прежней крутилки. */
+.bottle picture { display: contents; }
+.bottle-photo {
+  display: block;
   height: 100%;
-  aspect-ratio: 720 / 1200;
-  margin: 0 auto;
-  cursor: grab;
-  touch-action: pan-y; /* вертикальный скролл сохраняем, горизонт — вращение */
-  user-select: none;
-  -webkit-user-drag: none;
+  width: auto;
   animation: bottlefloat 6s ease-in-out infinite;
-}
-.bottle-spin.is-dragging { cursor: grabbing; }
-.spin-frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  pointer-events: none;
   -webkit-user-drag: none;
 }
-.spin-frame.is-active { opacity: 1; }
 @keyframes bottlefloat {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
-}
-.bottle-shine {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.55) 50%, transparent 58%);
-  background-size: 250% 100%;
-  -webkit-mask: url("../assets/products/celebnaya-pet-05.webp") center/auto 100% no-repeat;
-          mask: url("../assets/products/celebnaya-pet-05.webp") center/auto 100% no-repeat;
-  /* label shimmer starts with the calm loop (6s+), see .hero.loaded rules */
-}
-@keyframes shine {
-  0%,100% { background-position: 130% 0; }
-  50%     { background-position: -30% 0; }
 }
 /* Watercolor mist at the base */
 .hero-mist {
@@ -1654,6 +1628,7 @@ picture { display: contents; }
   margin: 0;
   isolation: isolate;
 }
+.final-bottle picture { display: contents; }
 .final-bottle img {
   position: relative;
   z-index: 2;
@@ -1662,7 +1637,8 @@ picture { display: contents; }
   max-width: 100%;
   object-fit: contain;
   filter: drop-shadow(-18px 34px 34px rgba(28,75,80,0.24));
-  transform: rotate(-7deg);
+  /* Прежний снимок стоял ровно, и наклон ему давал CSS. У нового он свой, снят
+     в кадре, поэтому здесь поворота нет — покачивание ниже идёт от нуля. */
   animation: finalBottleFloat 7s ease-in-out infinite;
 }
 .final-bottle-halo {
@@ -1690,8 +1666,8 @@ picture { display: contents; }
   pointer-events: none;
 }
 @keyframes finalBottleFloat {
-  0%, 100% { transform: rotate(-7deg) translateY(0); }
-  50% { transform: rotate(-5deg) translateY(-10px); }
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-10px); }
 }
 .final-inner {
   position: relative;
@@ -1841,9 +1817,8 @@ picture { display: contents; }
   50%      { opacity: 0.72; }
 }
 
-/* 6s+ · calm loop — slow clouds, weak water, label shimmer, faint steam.
-   (clouds/water/steam keep their infinite loops; label shine joins here) */
-.hero.loaded .bottle-shine { animation: shine 5.5s ease-in-out 6s infinite; }
+/* 6s+ · calm loop — slow clouds, weak water, faint steam: у каждого свой
+   бесконечный цикл, отдельного правила на этот участок не нужно. */
 
 /* ---------- Responsive ---------- */
 /* laptop 1024–1439 */
@@ -1943,7 +1918,7 @@ picture { display: contents; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-cta { justify-content: center; }
   .hero-topo { width: 44vw; }
-  .bottle { transform: rotate(14deg) translate(6%, 2%); }
+  .bottle { transform: translate(2%, 2%); }
   .elements-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
   .el-photo-wrap { height: clamp(220px, 34vw, 320px); }
   .mineral-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1978,7 +1953,7 @@ picture { display: contents; }
   .hero-title { font-size: 1.68rem; line-height: 1.25; }
   .hero-sub { margin-top: 1rem; line-height: 1.6; }
   .hero-cta { margin-top: 1.35rem; }
-  .bottle { height: clamp(290px, 76vw, 390px); transform: rotate(12deg) translate(4%, 2%); }
+  .bottle { height: clamp(290px, 76vw, 390px); transform: translate(0, 2%); }
   .elements-grid { grid-template-columns: 1fr; gap: 2rem; }
   .el-photo-wrap { height: clamp(220px, 52vw, 300px); }
   .mineral-grid { grid-template-columns: 1fr; gap: 1.8rem; }
@@ -2001,7 +1976,9 @@ picture { display: contents; }
   .collection-dots { display: flex; }
   .final { min-height: auto; padding-top: 4rem; }
   .final-composition { grid-template-columns: 1fr; gap: 0; }
-  .final-bottle { min-height: 360px; margin-bottom: -3.5rem; }
+  /* Карточка с цитатой заходит на бутылку, но меньше, чем прежде: у наклонённого
+     снимка внизу справа донышко, и старые -3.5rem срезали его по диагонали. */
+  .final-bottle { min-height: 360px; margin-bottom: -1.1rem; }
   .final-bottle img { height: clamp(330px, 96vw, 430px); }
   .final-bottle-halo { width: min(410px, 110%); }
   .final-inner { padding: 2.3rem 1.35rem; }
@@ -2050,7 +2027,7 @@ picture { display: contents; }
 .hero-bottle::before {
   display: none;
 }
-.bottle { height: clamp(420px, 43vw, 590px); transform: rotate(17deg) translate(9%, 1%); }
+.bottle { height: clamp(420px, 43vw, 590px); transform: translate(4%, 1%); }
 .hero-mist { width: 116%; height: 42%; opacity: 0.55; filter: blur(13px); }
 
 .elements { padding: 0; background: #fbf7f2; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
@@ -2109,7 +2086,7 @@ picture { display: contents; }
   to   { opacity: 1; }
 }
 
-/* iOS Safari: same sharp entrance for the spin viewer. */
+/* iOS Safari: same sharp entrance for the bottle photo. */
 @supports (-webkit-touch-callout: none) {
   .hero.loaded .bottle { animation-name: bottleEmergeSharp; }
 }

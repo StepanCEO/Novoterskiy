@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=awards-v9" />
+<link rel="stylesheet" href="css/style.css?v=bottle-v10" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -233,31 +233,12 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <!-- 360° spin: photo frames, drag to rotate, slow auto-rotation -->
-        <div class="bottle-spin" id="bottleSpin" role="img"
-             aria-label="Новотерская Целебная — вращающаяся бутылка">
-          <picture>
-            <source srcset="assets/spin/spin-00.avif" type="image/avif" />
-            <img class="spin-frame is-active" fetchpriority="high" src="assets/spin/spin-00.webp" width="720" height="1200" alt="Новотерская Целебная" />
-          </picture>
-          <!-- Кадры 1–3 висят в data-src и подставляются из main.js после
-               window.load. Замер под троттлингом: три лишних снимка 720×1200
-               декодировались в один такт с первым, и LCP мобильного уезжал
-               с 2,9с до 5,8с — при том что сам файл первого кадра приходит
-               за 0,4с. Без JS остаётся неподвижный кадр 0, бутылка на месте. -->
-          <picture>
-            <source data-srcset="assets/spin/spin-01.avif" type="image/avif" />
-            <img class="spin-frame" fetchpriority="low" data-src="assets/spin/spin-01.webp" width="720" height="1200" alt="" aria-hidden="true" />
-          </picture>
-          <picture>
-            <source data-srcset="assets/spin/spin-02.avif" type="image/avif" />
-            <img class="spin-frame" fetchpriority="low" data-src="assets/spin/spin-02.webp" width="720" height="1200" alt="" aria-hidden="true" />
-          </picture>
-          <picture>
-            <source data-srcset="assets/spin/spin-03.avif" type="image/avif" />
-            <img class="spin-frame" fetchpriority="low" data-src="assets/spin/spin-03.webp" width="720" height="1200" alt="" aria-hidden="true" />
-          </picture>
-        </div>
+        <!-- Снимок с всплеском. Наклон запечён в кадре, поэтому CSS бутылку
+             больше не поворачивает — иначе к своим 29° добавились бы ещё 17°. -->
+        <picture>
+          <source srcset="assets/products/bottle-splash.avif" type="image/avif" />
+          <img class="bottle-photo" fetchpriority="high" src="assets/products/bottle-splash.webp" width="977" height="1283" alt="Новотерская Целебная" />
+        </picture>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
       <div class="hero-water" aria-hidden="true">
@@ -653,7 +634,10 @@
   <div class="final-composition">
     <figure class="final-bottle reveal" aria-label="Новотерская Целебная">
       <span class="final-bottle-halo" aria-hidden="true"></span>
-      <img src="assets/products/hero-bottle-ios.png" width="720" height="1200" alt="Бутылка Новотерская Целебная" loading="lazy" />
+      <picture>
+        <source srcset="assets/products/bottle-splash.avif" type="image/avif" />
+        <img src="assets/products/bottle-splash.webp" width="977" height="1283" alt="Бутылка Новотерская Целебная" loading="lazy" />
+      </picture>
       <span class="final-bottle-mist" aria-hidden="true"></span>
     </figure>
     <div class="final-inner reveal">
@@ -763,7 +747,7 @@
 </div>
 
 <script src="js/nav.js?v=icon-v6" defer></script>
-<script src="js/main.js?v=icon-v6" defer></script>
-<script src="js/cms.js?v=icon-v6" defer></script>
+<script src="js/main.js?v=bottle-v10" defer></script>
+<script src="js/cms.js?v=bottle-v10" defer></script>
 </body>
 </html>

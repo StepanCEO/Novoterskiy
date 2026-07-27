@@ -68,7 +68,7 @@ collections:
               - { name: video_mp4, label: Видео MP4, widget: file }
               - { name: video_poster, label: Постер видео, widget: image }
               - { name: video_fallback, label: Запасное фото в video, widget: image }
-              - { name: mobile_bottle, label: Бутылка для телефона, widget: image }
+              - { name: bottle, label: Бутылка в первом экране, widget: image }
           - name: elements
             label: Четыре стихии
             widget: object

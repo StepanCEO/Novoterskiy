@@ -148,6 +148,7 @@
     bilingual(one(".btn-play-label", heroCtas[1]), hero.secondary_cta_ru, hero.secondary_cta_en);
     setLink(heroCtas[1], hero.secondary_cta_url);
     setImage(one(".hero-bg img"), hero.background);
+    setImage(one(".bottle-photo"), hero.bottle);
 
     var elements = data.elements || {};
     var elementsRoot = one("#elements");

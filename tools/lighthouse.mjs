@@ -21,15 +21,18 @@ const lighthouse = (await import(new URL("file:///" + LH).href)).default;
 const { launch } = await import(new URL("file:///" + CL).href);
 
 const BASE = process.argv[2] || "http://127.0.0.1:4322";
-const PAGES = ["/index.html", "/catalog.html", "/story.html", "/documents.html",
-  "/awards.html", "/privacy.html", "/news.html", "/charity.html"];
+/* Полный прогон — восемь страниц в двух форматах, это около десяти минут.
+   Когда правишь одну метрику на одной странице, столько ждать незачем:
+   LH_PAGES=/index.html LH_FORM=mobile node tools/lighthouse.mjs <адрес> */
+const PAGES = (process.env.LH_PAGES || "/index.html,/catalog.html,/story.html,/documents.html,/awards.html,/privacy.html,/news.html,/charity.html").split(",");
+const FORM_FACTORS = (process.env.LH_FORM || "mobile,desktop").split(",");
 const CATEGORIES = ["performance", "accessibility", "best-practices", "seo"];
 mkdirSync("tools/.crossbrowser", { recursive: true });
 
 const chrome = await launch({ chromePath: CHROME, chromeFlags: ["--headless=new", "--no-sandbox"] });
 const summary = [];
 
-for (const formFactor of ["mobile", "desktop"]) {
+for (const formFactor of FORM_FACTORS) {
   const screenEmulation = formFactor === "desktop"
     ? { mobile: false, width: 1350, height: 940, deviceScaleFactor: 1, disabled: false }
     : { mobile: true, width: 412, height: 823, deviceScaleFactor: 1.75, disabled: false };
