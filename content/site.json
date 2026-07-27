@@ -53,6 +53,23 @@
         ]
       },
       {
+        "label_ru": "Новости",
+        "label_en": "News",
+        "url": "",
+        "children": [
+          {
+            "label_ru": "Общие",
+            "label_en": "General",
+            "url": "news.html"
+          },
+          {
+            "label_ru": "Благотворительность",
+            "label_en": "Charity",
+            "url": "charity.html"
+          }
+        ]
+      },
+      {
         "label_ru": "Источник",
         "label_en": "Origin",
         "url": "#origin"
