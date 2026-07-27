@@ -2272,19 +2272,52 @@ picture { display: contents; }
 /* Сканы дипломов — вертикальные листы примерно 3:4, поэтому карточка задаёт
    пропорцию сама, а не тянется по содержимому: иначе ряд рвётся на разной
    высоте подписей. object-fit: contain — лист виден целиком, без обрезки
-   печати и подписей на самом дипломе. */
-.awards-grid {
+   печати и подписей на самом дипломе.
+
+   Наград в периоде до пятидесяти, поэтому они листаются, как на прежнем сайте,
+   а не выкладываются простыней на десять экранов. Механика — родная прокрутка
+   с scroll-snap: свайп на телефоне, колесо и трекпад на десктопе работают сами,
+   без скрипта; стрелки и счётчик страниц ему только помогают. Поэтому при
+   выключенном JS галерея остаётся полностью проходимой. */
+.awards-slider { position: relative; margin: 1.4rem 0 1.1rem; }
+.awards-track {
+  --per: 4;
+  --awards-gap: 1.2rem;
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem 1.2rem;
-  margin: 1.4rem 0 1rem;
-  padding: 0;
+  display: flex;
+  gap: var(--awards-gap);
+  margin: 0;
+  /* Запас сверху и снизу — под подъём карточки на ховере и её тень:
+     overflow-x: auto делает контейнер обрезающим и по вертикали тоже. */
+  padding: 6px 0 0.9rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(62,122,152,0.34) rgba(62,122,152,0.1);
+  scrollbar-width: thin;
 }
-.legal-body .awards-grid { margin: 1.4rem 0 1rem; }
+.awards-track::-webkit-scrollbar { height: 8px; }
+.awards-track::-webkit-scrollbar-track {
+  background: rgba(62,122,152,0.1);
+  border-radius: 99px;
+}
+.awards-track::-webkit-scrollbar-thumb {
+  background: rgba(62,122,152,0.34);
+  border-radius: 99px;
+}
+.awards-track > .award {
+  flex: 0 0 calc((100% - (var(--per) - 1) * var(--awards-gap)) / var(--per));
+  scroll-snap-align: start;
+}
 .award { padding-left: 0; margin: 0; }
 .legal-body .award { padding-left: 0; margin: 0; }
 .legal-body .award::before { content: none; }
+/* Селектор с .legal-body намеренно: у ссылок в тексте страницы есть
+   подчёркивание (.legal-body a), а карточка — не текстовая ссылка, и
+   подчёркивать в ней подпись незачем. Подчёркивание наследуется от ссылки
+   вниз, и снять его правилом для вложенного .award-name нельзя. */
+.legal-body .award-link { text-decoration: none; }
 .award-link {
   display: flex;
   flex-direction: column;
@@ -2296,8 +2329,8 @@ picture { display: contents; }
   border-radius: 14px;
   color: inherit;
   text-decoration: none;
-  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease),
-    border-color 0.28s var(--ease);
+  transition: transform 0.28s cubic-bezier(.2,.7,.3,1), box-shadow 0.28s cubic-bezier(.2,.7,.3,1),
+    border-color 0.28s cubic-bezier(.2,.7,.3,1);
 }
 .award-link:hover {
   transform: translateY(-4px);
@@ -2307,6 +2340,12 @@ picture { display: contents; }
 .award-link:focus-visible { outline: 2px solid var(--glacier-d); outline-offset: 3px; }
 .award-img {
   width: 100%;
+  /* height: auto обязателен. В разметке у каждого скана свои width и height —
+     они держат место до загрузки и спасают от сдвига вёрстки, но браузер
+     считает их заданными обеими сторонами и игнорирует aspect-ratio. Тогда
+     карточка вытягивалась на натуральную высоту скана (до 589px), а во флекс-
+     дорожке по этой высоте растягивались и все остальные. */
+  height: auto;
   aspect-ratio: 3 / 4;
   object-fit: contain;
   background: #fff;
@@ -2332,6 +2371,52 @@ picture { display: contents; }
   line-height: 1.35;
   color: var(--ink);
 }
+/* Панель управления над лентой: стрелки и «страница N из M». Кнопки рисует
+   скрипт — без него панель пустая и не занимает места.
+   Место под неё не резервируем: замер показал, что сдвиг на этом участке даёт
+   не появление кнопок (они успевают к первой отрисовке), а подмена системного
+   шрифта на Fira Sans — от неё вводный абзац становится на строку выше. */
+.awards-nav {
+  display: none;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 1.4rem 0 0;
+}
+.awards-nav.is-ready { display: flex; }
+.awards-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(62,122,152,0.24);
+  border-radius: 50%;
+  color: var(--glacier-d);
+  cursor: pointer;
+  transition: background 0.24s cubic-bezier(.2,.7,.3,1), border-color 0.24s cubic-bezier(.2,.7,.3,1),
+    color 0.24s cubic-bezier(.2,.7,.3,1), opacity 0.24s cubic-bezier(.2,.7,.3,1);
+}
+.awards-arrow svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.awards-arrow:hover:not(:disabled) {
+  background: var(--glacier-d);
+  border-color: var(--glacier-d);
+  color: #fff;
+}
+.awards-arrow:focus-visible { outline: 2px solid var(--glacier-d); outline-offset: 3px; }
+/* На крайних страницах кнопка гаснет, но остаётся на месте — иначе счётчик и
+   вторая стрелка прыгали бы при каждом пролистывании до края. */
+.awards-arrow:disabled { opacity: 0.32; cursor: default; }
+.awards-count {
+  margin: 0 0 0 0.3rem;
+  font-family: var(--ff-label);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .awards-empty {
   margin: 0;
   padding: 1.8rem 1.6rem;
@@ -2345,11 +2430,21 @@ picture { display: contents; }
 .docs-more { margin: 1rem 0 0; font-size: 0.95rem; }
 .docs-more a { color: var(--glacier-d); text-decoration: none; }
 .docs-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
-@media (max-width: 767px) {
-  .awards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0.8rem; }
+/* Сколько сканов в кадре. Меньше одного не бывает, а на узком экране два уже
+   не дают прочитать подпись под листом. */
+@media (max-width: 1023px) {
+  .awards-track { --per: 3; }
 }
-@media (max-width: 400px) {
-  .awards-grid { grid-template-columns: 1fr; }
+@media (max-width: 767px) {
+  .awards-track { --per: 2; --awards-gap: 0.8rem; }
+}
+@media (max-width: 430px) {
+  .awards-track { --per: 1; }
+}
+/* «Без анимации смысл не теряется»: пролистывание никуда не девается, уходит
+   только плавность — кадр сменяется сразу, без проезда. */
+@media (prefers-reduced-motion: reduce) {
+  .awards-track { scroll-behavior: auto; }
 }
 
 /* ---- Возврат на главную (внутренние страницы) ---- */

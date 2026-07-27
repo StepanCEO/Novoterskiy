@@ -28,7 +28,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link href="css/style.css?v=awards-v8" rel="stylesheet"/>
+<link href="css/style.css?v=awards-v9" rel="stylesheet"/>
 </head>
 <body class="legal-page">
 <header class="site-header is-solid" id="top">
@@ -79,10 +79,11 @@
 <h1 class="legal-title"><span data-en="Awards">Награды</span></h1>
 <p class="legal-sub"><span data-en="More than 150 diplomas, certificates and marks of distinction from 1997 to the present day">Более 150 дипломов, свидетельств и знаков отличия — с 1997 года до наших дней</span></p>
 <div class="legal-body">
-<p><span data-en="Since 1997, the water of JSC &#8220;Kavminvody&#8221; has been taken to Russian and international exhibitions and quality contests. Below are the diplomas, certificates and marks of distinction from the archive of the enterprise &#8212; scans of the originals, grouped by period. Click on any of them to open the full-size image.">С 1997 года вода АО «Кавминводы» участвует в российских и международных выставках и конкурсах качества. Ниже — дипломы, свидетельства и знаки отличия из архива предприятия: сканы оригиналов, сгруппированные по периодам. Любой из них открывается в полном размере по клику.</span></p>
+<p><span data-en="Since 1997, the water of JSC &#8220;Kavminvody&#8221; has been taken to Russian and international exhibitions and quality contests. Below are the diplomas, certificates and marks of distinction from the archive of the enterprise &#8212; scans of the originals, grouped by period. Each row is leafed through with the arrows or by swiping; a click opens the full-size image.">С 1997 года вода АО «Кавминводы» участвует в российских и международных выставках и конкурсах качества. Ниже — дипломы, свидетельства и знаки отличия из архива предприятия: сканы оригиналов, сгруппированные по периодам. Каждый ряд листается стрелками или свайпом, а по клику скан открывается в полном размере.</span></p>
 <h2 id="p1997-2010"><span data-en="1997—2010">1997—2010</span></h2>
 <p><span data-en="The first international exhibition diplomas, the platinum “21st Century Quality Mark” and the Russian Government Quality Award.">Первые дипломы международных выставок, платиновый «Знак качества XXI века» и Премия Правительства РФ в области качества.</span></p>
-<ul class="awards-grid">
+<div aria-label="Награды 1997—2010" class="awards-slider" data-en-aria-label="Awards 1997—2010" role="group">
+<ul class="awards-track" id="awards-1997-2010">
 <li class="award" id="1997-ifw-berlin">
 <a class="award-link" href="assets/awards/full/1997-ifw-berlin.webp" target="_blank" rel="noopener">
 <img alt="" class="award-img" decoding="async" height="589" loading="lazy" src="assets/awards/thumb/1997-ifw-berlin.webp" width="409"/>
@@ -384,9 +385,11 @@
 </a>
 </li>
 </ul>
+</div>
 <h2 id="p2011-2021"><span data-en="2011—2021">2011—2021</span></h2>
 <p><span data-en="“Brand No. 1 in Russia”, annual Green Week diplomas in Berlin and the golden “21st Century Quality Mark”.">«Марка № 1 в России», ежегодные дипломы «Зелёной недели» в Берлине и золотой «Знак качества XXI века».</span></p>
-<ul class="awards-grid">
+<div aria-label="Награды 2011—2021" class="awards-slider" data-en-aria-label="Awards 2011—2021" role="group">
+<ul class="awards-track" id="awards-2011-2021">
 <li class="award" id="2011-pochetny-diplom-znak-kachestva">
 <a class="award-link" href="assets/awards/full/2011-pochetny-diplom-znak-kachestva.webp" target="_blank" rel="noopener">
 <img alt="" class="award-img" decoding="async" height="605" loading="lazy" src="assets/awards/thumb/2011-pochetny-diplom-znak-kachestva.webp" width="420"/>
@@ -562,6 +565,7 @@
 </a>
 </li>
 </ul>
+</div>
 <h2 id="p2021-2026"><span data-en="2021—2026">2021—2026</span></h2>
 <p class="awards-empty"><span data-en="This period is still being filled in: awards of recent years will appear here as the originals are scanned.">Этот период пока наполняется: награды последних лет появятся здесь по мере оцифровки оригиналов.</span></p>
 </div>
@@ -597,5 +601,6 @@
 
 <script defer="" src="js/nav.js?v=icon-v6"></script>
 <script defer="" src="js/internal.js?v=icon-v6"></script>
+<script defer="" src="js/awards.js?v=awards-v9"></script>
 </body>
 </html>
