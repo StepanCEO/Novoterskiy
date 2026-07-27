@@ -39,9 +39,30 @@
 </picture>
 <span class="brand-name"><span data-en="Novoterskaya">Новотерская</span></span>
 </a>
+<nav aria-label="Основная навигация" class="site-nav" id="siteNav">
+<div class="nav-item">
+<button aria-controls="navSubAbout" aria-expanded="false" class="nav-link nav-toggle" type="button"><span class="nav-label" data-en="About us">О компании</span><span aria-hidden="true" class="nav-caret"></span></button>
+<ul class="nav-sub" id="navSubAbout">
+<li><a data-en="Production" href="index.html#production">Производство</a></li>
+<li><a data-en="Laboratory" href="index.html#lab">Лаборатория</a></li>
+<li><a data-en="Documents and awards" href="documents.html" aria-current="page">Документы и награды</a></li>
+<li><a data-en="Our story" href="story.html">История</a></li>
+</ul>
+</div>
+<div class="nav-item">
+<button aria-controls="navSubProducts" aria-expanded="false" class="nav-link nav-toggle" type="button"><span class="nav-label" data-en="Products">Продукция</span><span aria-hidden="true" class="nav-caret"></span></button>
+<ul class="nav-sub" id="navSubProducts">
+<li><a data-en="Catalog" href="catalog.html">Каталог</a></li>
+<li><a data-en="Water composition" href="index.html#minerals">Состав воды</a></li>
+</ul>
+</div>
+<a class="nav-link" data-en="Origin" href="index.html#origin">Источник</a>
+<a class="nav-link" data-en="Where to buy" href="index.html#where">Где купить</a>
+<a class="nav-link" data-en="Contacts" href="index.html#contacts">Контакты</a>
+</nav>
 <div class="header-actions">
     <button class="lang-toggle" id="langToggle" type="button"><span class="lang-opt is-active" data-lang="ru">RU</span><span class="lang-sep">·</span><span class="lang-opt" data-lang="en">EN</span><span class="sr-only" data-en=" - switch language"> — сменить язык</span></button>
-<a class="btn btn-sm" href="index.html"><span data-en="Home">На главную</span></a>
+<button aria-controls="siteNav" aria-expanded="false" class="nav-burger" id="navBurger" type="button"><span aria-hidden="true" class="burger-box"><span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span></span><span class="sr-only" data-en="Menu">Меню</span></button>
 </div>
 </header>
 <main class="legal">
@@ -113,6 +134,7 @@
 </div>
 </footer>
 
+<script defer="" src="js/nav.js?v=lcp-v5"></script>
 <script defer="" src="js/internal.js?v=lcp-v5"></script>
 </body>
 </html>

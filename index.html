@@ -121,12 +121,34 @@
     </span>
   <span class="sr-only" data-en=" - home"> — на главную</span></a>
 
-  <nav class="site-nav" aria-label="Основная навигация">
-    <a href="catalog.html" data-en="Catalog">Каталог</a>
-    <a href="#origin" data-en="Origin">Происхождение</a>
-    <a href="#minerals" data-en="Composition">Состав</a>
-    <a href="#trust" data-en="Production">Производство</a>
-    <a href="#contacts" data-en="Contacts">Контакты</a>
+  <!-- Меню в две ступени: структура повторяет старый сайт, но свёрнута до
+       5 верхних пунктов. «Главная» отдельным пунктом не нужна — на неё ведёт
+       логотип. Подпункты «О компании» ведут внутрь секции «Доверие и качество»
+       (#production, #lab): отдельных страниц под них нет. -->
+  <nav class="site-nav" id="siteNav" aria-label="Основная навигация">
+    <div class="nav-item">
+      <button class="nav-link nav-toggle" type="button" aria-expanded="false" aria-controls="navSubAbout">
+        <span class="nav-label" data-en="About us">О компании</span><span class="nav-caret" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-sub" id="navSubAbout">
+        <li><a href="#production" data-en="Production">Производство</a></li>
+        <li><a href="#lab" data-en="Laboratory">Лаборатория</a></li>
+        <li><a href="documents.html" data-en="Documents and awards">Документы и награды</a></li>
+        <li><a href="story.html" data-en="Our story">История</a></li>
+      </ul>
+    </div>
+    <div class="nav-item">
+      <button class="nav-link nav-toggle" type="button" aria-expanded="false" aria-controls="navSubProducts">
+        <span class="nav-label" data-en="Products">Продукция</span><span class="nav-caret" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-sub" id="navSubProducts">
+        <li><a href="catalog.html" data-en="Catalog">Каталог</a></li>
+        <li><a href="#minerals" data-en="Water composition">Состав воды</a></li>
+      </ul>
+    </div>
+    <a class="nav-link" href="#origin" data-en="Origin">Источник</a>
+    <a class="nav-link" href="#where" data-en="Where to buy">Где купить</a>
+    <a class="nav-link" href="#contacts" data-en="Contacts">Контакты</a>
   </nav>
 
   <div class="header-actions">
@@ -135,6 +157,10 @@
       <span class="lang-sep">·</span>
       <span class="lang-opt" data-lang="en">EN</span>
     <span class="sr-only" data-en=" - switch language"> — сменить язык</span></button>
+    <button class="nav-burger" id="navBurger" type="button" aria-expanded="false" aria-controls="siteNav">
+      <span class="burger-box" aria-hidden="true"><span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span></span>
+      <span class="sr-only" data-en="Menu">Меню</span>
+    </button>
   </div>
 </header>
 
@@ -506,7 +532,9 @@
   </ul>
 
   <!-- Process line: 01 → 05 -->
-  <ol class="trust-grid" aria-label="Путь качества">
+  <!-- id="production" и id="lab" ниже — цели подпунктов меню «О компании».
+       Отдельных страниц под них нет, поэтому ведём внутрь этой секции. -->
+  <ol class="trust-grid" id="production" aria-label="Путь качества">
     <li class="trust-card reveal">
       <span class="trust-num">01</span>
       <h3 data-en="Careful water preparation">Бережная подготовка воды</h3>
@@ -517,7 +545,7 @@
       <h3 data-en="Stainless steel">Нержавеющая сталь</h3>
       <p data-en="Lines from Italy, France and Germany; water flows through a dedicated mineral pipeline.">Линии из Италии, Франции и Германии; вода идёт по собственному минералопроводу.</p>
     </li>
-    <li class="trust-card reveal">
+    <li class="trust-card reveal" id="lab">
       <span class="trust-num">03</span>
       <h3 data-en="Quality control">Контроль качества</h3>
       <p data-en="Own laboratory, batch-by-batch testing and safety indicators to GOST R 54316 and TR TS 021/2011.">Собственная лаборатория, контроль каждой партии и показатели безопасности по ГОСТ Р 54316 и ТР ТС 021/2011.</p>
@@ -718,6 +746,7 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
+<script src="js/nav.js?v=lcp-v5" defer></script>
 <script src="js/main.js?v=lcp-v5" defer></script>
 <script src="js/cms.js?v=lcp-v5" defer></script>
 </body>

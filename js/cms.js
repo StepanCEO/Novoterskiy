@@ -108,12 +108,29 @@
     bilingual(one(".site-header .brand-tag"), brand.tagline_ru, brand.tagline_en);
     setImage(one(".site-header .brand-mark"), brand.logo);
 
+    /* Меню двухуровневое, поэтому идём по верхним пунктам, а не по всем
+       ссылкам подряд: у пункта с подменю подписью служит .nav-label внутри
+       кнопки, а сами ссылки лежат в соседнем списке. Порядок в site.json
+       должен совпадать с порядком в разметке — это же правило действовало и
+       для плоского меню. */
     var header = data.header || {};
-    all(".site-nav a").forEach(function (node, index) {
-      var item = (header.nav || [])[index];
+    var navItems = header.nav || [];
+    all("#siteNav > .nav-item, #siteNav > .nav-link").forEach(function (node, index) {
+      var item = navItems[index];
       if (!item) return;
-      bilingual(node, item.label_ru, item.label_en);
-      setLink(node, item.url);
+      var isGroup = node.classList.contains("nav-item");
+      var label = isGroup ? one(".nav-label", node) : node;
+      bilingual(label, item.label_ru, item.label_en);
+      if (!isGroup) {
+        setLink(node, item.url);
+        return;
+      }
+      all(".nav-sub a", node).forEach(function (link, subIndex) {
+        var sub = (item.children || [])[subIndex];
+        if (!sub) return;
+        bilingual(link, sub.label_ru, sub.label_en);
+        setLink(link, sub.url);
+      });
     });
 
     var hero = data.hero || {};

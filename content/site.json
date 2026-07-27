@@ -9,24 +9,58 @@
   "header": {
     "nav": [
       {
-        "label_ru": "Каталог",
-        "label_en": "Catalog",
-        "url": "catalog.html"
+        "label_ru": "О компании",
+        "label_en": "About us",
+        "url": "",
+        "children": [
+          {
+            "label_ru": "Производство",
+            "label_en": "Production",
+            "url": "#production"
+          },
+          {
+            "label_ru": "Лаборатория",
+            "label_en": "Laboratory",
+            "url": "#lab"
+          },
+          {
+            "label_ru": "Документы и награды",
+            "label_en": "Documents and awards",
+            "url": "documents.html"
+          },
+          {
+            "label_ru": "История",
+            "label_en": "Our story",
+            "url": "story.html"
+          }
+        ]
       },
       {
-        "label_ru": "Происхождение",
+        "label_ru": "Продукция",
+        "label_en": "Products",
+        "url": "",
+        "children": [
+          {
+            "label_ru": "Каталог",
+            "label_en": "Catalog",
+            "url": "catalog.html"
+          },
+          {
+            "label_ru": "Состав воды",
+            "label_en": "Water composition",
+            "url": "#minerals"
+          }
+        ]
+      },
+      {
+        "label_ru": "Источник",
         "label_en": "Origin",
         "url": "#origin"
       },
       {
-        "label_ru": "Состав",
-        "label_en": "Composition",
-        "url": "#minerals"
-      },
-      {
-        "label_ru": "Производство",
-        "label_en": "Production",
-        "url": "#trust"
+        "label_ru": "Где купить",
+        "label_en": "Where to buy",
+        "url": "#where"
       },
       {
         "label_ru": "Контакты",

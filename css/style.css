@@ -33,6 +33,10 @@
   --r: 16px;
   --r-lg: 26px;
 
+  /* Высота фиксированной шапки: мобильная панель меню отступает на неё,
+     чтобы не выезжать из-под логотипа. */
+  --header-h: 68px;
+
   /* Elemental gradient used as the metallic shimmer accent */
   --shimmer: linear-gradient(100deg, var(--silver), #fff 42%, var(--gold) 70%, var(--silver));
 }
@@ -215,24 +219,120 @@ picture { display: contents; }
   color: var(--muted);
   margin-top: 2px;
 }
-.site-nav { display: flex; flex-wrap: nowrap; gap: clamp(0.9rem, 1.6vw, 1.6rem); }
-.site-nav a {
+.site-nav { display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(0.9rem, 1.6vw, 1.6rem); }
+.nav-item { position: relative; }
+/* Верхний уровень: и ссылки, и кнопки с подменю выглядят одинаково —
+   разницу выдаёт только галочка. */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-family: inherit;
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
   position: relative;
   padding: 0.2rem 0;
   transform: scale(0.94);
   transform-origin: center;
   transition: color 0.3s ease, transform 0.3s cubic-bezier(.2,.7,.3,1);
 }
-.site-nav a:hover {
+.nav-link:hover,
+.nav-item:hover > .nav-toggle,
+.nav-toggle[aria-expanded="true"] {
   color: var(--ink);
   transform: scale(1.04);
 }
+.nav-link[aria-current="page"] { color: var(--deep); }
+.nav-caret {
+  width: 5px;
+  height: 5px;
+  border-right: 1.4px solid currentColor;
+  border-bottom: 1.4px solid currentColor;
+  transform: translateY(-1px) rotate(45deg);
+  transition: transform 0.3s cubic-bezier(.2,.7,.3,1);
+}
+.nav-toggle[aria-expanded="true"] .nav-caret { transform: translateY(1px) rotate(-135deg); }
+
+/* Подменю. visibility, а не display: анимация появления и отсутствие в
+   фокусной последовательности, пока список закрыт. */
+.nav-sub {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: 0.85rem;
+  min-width: 220px;
+  padding: 0.5rem;
+  list-style: none;
+  background: rgba(251,252,254,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(20,49,63,0.08);
+  border-radius: 14px;
+  box-shadow: 0 22px 48px -26px rgba(20,49,63,0.45);
+  opacity: 0;
+  visibility: hidden;
+  /* pointer-events дублирует visibility осознанно: прозрачный список всё ещё
+     перехватывает клики, а visibility переключается с задержкой и в фоновой
+     вкладке (где переходы заморожены) может не переключиться вовсе. */
+  pointer-events: none;
+  transform: translate(-50%, -8px);
+  /* visibility — шагом, не интерполяцией: на открытии сразу, на закрытии с
+     задержкой на длину анимации, чтобы список не исчезал до конца затухания. */
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(.2,.7,.3,1), visibility 0s 0.28s;
+}
+/* Зазор между кнопкой и списком мышь пересекает «вслепую» — перекрываем его
+   прозрачной полосой, иначе меню закрывается на полпути. */
+.nav-sub::before {
+  content: "";
+  position: absolute;
+  inset: -0.9rem 0 100% 0;
+}
+/* :focus-within здесь нет намеренно: после клика по кнопке фокус остаётся на
+   ней, и правило держало бы список открытым — повторный клик не закрывал его.
+   Клавиатуру ведёт JS через aria-expanded. */
+.nav-item:hover > .nav-sub,
+.nav-toggle[aria-expanded="true"] + .nav-sub {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(.2,.7,.3,1), visibility 0s;
+}
+.nav-sub a {
+  display: block;
+  padding: 0.52rem 0.7rem;
+  border-radius: 9px;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.25s, background 0.25s;
+}
+.nav-sub a:hover,
+.nav-sub a:focus-visible { color: var(--deep); background: rgba(25,157,209,0.09); }
+.nav-sub a[aria-current="page"] { color: var(--deep); font-weight: 500; }
+
+/* Бургер: только на узких экранах, ниже переключается в media-запросе. */
+.nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 0.35rem; color: var(--deep); }
+.burger-box { display: block; width: 22px; }
+.burger-line {
+  display: block;
+  height: 1.6px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.32s cubic-bezier(.2,.7,.3,1), opacity 0.2s;
+}
+.burger-line + .burger-line { margin-top: 5px; }
+.nav-burger[aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.6px) rotate(45deg); }
+.nav-burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; }
+.nav-burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.6px) rotate(-45deg); }
 
 .header-actions { display: flex; align-items: center; gap: 1rem; }
 .lang-toggle {
@@ -1748,9 +1848,79 @@ picture { display: contents; }
 }
 /* tablet 768–1023 */
 @media (max-width: 1023px) {
-  /* Меню целиком не влезает, но каталог — главный вход в продукцию,
-     поэтому от навигации остаётся только он. */
-  .site-nav a:not([href$="catalog.html"]) { display: none; }
+  /* Пять пунктов в строку не влезают: меню уезжает в панель под бургер.
+     Раньше здесь скрывалось всё кроме «Каталога» — из-за этого на 320–390px
+     название бренда налезало на единственную оставшуюся ссылку. */
+  .nav-burger { display: inline-flex; }
+  .site-nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: calc(var(--header-h, 68px) + 0.5rem) var(--gutter) 1.6rem;
+    background: rgba(251,252,254,0.97);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(20,49,63,0.09);
+    box-shadow: 0 26px 50px -30px rgba(20,49,63,0.5);
+    /* Панель едет вверх за пределы экрана, а не гасится display — так у неё
+       есть анимация, и пока она закрыта, ссылки выпадают из фокуса. */
+    transform: translateY(-102%);
+    visibility: hidden;
+    transition: transform 0.42s cubic-bezier(.2,.7,.3,1), visibility 0.42s;
+    max-height: 100vh;
+    overflow-y: auto;
+    z-index: -1;
+  }
+  .site-header.nav-open .site-nav { transform: translateY(0); visibility: visible; }
+  .nav-item { position: static; }
+  .nav-link {
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.95rem 0;
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+    color: var(--deep);
+    transform: none;
+    border-bottom: 1px solid rgba(20,49,63,0.07);
+  }
+  .nav-link:hover,
+  .nav-item:hover > .nav-toggle,
+  .nav-toggle[aria-expanded="true"] { transform: none; }
+  .nav-caret { width: 6px; height: 6px; }
+  /* В панели подменю — аккордеон: раскрывается только по нажатию, наведение
+     на тач-экране «залипает» и открывало бы список само. */
+  .nav-sub {
+    position: static;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0 0 1rem;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s 0.36s;
+  }
+  .nav-sub::before { content: none; }
+  /* Гасим hover-открытие с десктопа: в панели раскрывает только нажатие. */
+  .nav-item:hover > .nav-sub { max-height: 0; visibility: hidden; }
+  .nav-toggle[aria-expanded="true"] + .nav-sub {
+    max-height: 320px;
+    visibility: visible;
+    pointer-events: auto;
+    transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s;
+  }
+  .nav-sub a { padding: 0.72rem 0; font-size: 0.82rem; border-bottom: 1px solid rgba(20,49,63,0.05); }
+  .nav-sub li:last-child a { border-bottom: none; }
   .hero { padding-top: 6.5rem; text-align: center; }
   /* На узких экранах текст идёт поверх горы — туман равномернее и плотнее */
   .hero-fog {
@@ -1941,6 +2111,10 @@ picture { display: contents; }
   .hero::before { transform: none !important; }
   .bottle { opacity: 1 !important; filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)) !important; }
   .thread { display: none; }
+  /* Меню переключается мгновенно, но остаётся управляемым: обнуление
+     transition-duration выше само по себе меню не ломает — visibility и
+     transform по-прежнему меняются, просто без плавности. */
+  .nav-sub, .site-nav { transition: none !important; }
 }
 
 /* ==================================================================
