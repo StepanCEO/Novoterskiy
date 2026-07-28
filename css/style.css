@@ -480,10 +480,8 @@ picture { display: contents; }
   grid-area: 1 / 1;
   position: relative;
   z-index: 3;
-  /* Кадр ролика заметно шире прежнего снимка (760×700 против 977×1283), так
-     что размер держим по ширине: по высоте бутылка вылезала бы из колонки на
-     ноутбуках. --bottle-h остаётся «бюджетом высоты» — его и меняют
-     брейкпоинты, как раньше меняли height. */
+  /* Alpha-ролик собран в том же формате 760×700, что и постер, поэтому
+     бутылка масштабируется без мыла и без белого фона вокруг воды. */
   --bottle-h: clamp(380px, 44vw, 580px);
   width: min(100%, calc(var(--bottle-h) * 760 / 700));
   height: auto;
@@ -502,10 +500,12 @@ picture { display: contents; }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* Белый фон съёмки ключом не убрать — вода в кадре ровно такой же
-     светлоты. multiply гасит светлое в страницу: гора и туман просвечивают
-     сквозь фон ролика, а стекло, вода и этикетка остаются. Две растушёванные
-     маски снимают кромку кадра, чтобы не читался прямоугольник. */
+  animation: bottlefloat 6s ease-in-out infinite;
+  -webkit-user-drag: none;
+}
+/* Запасной H.264 не умеет прозрачность: только в старых браузерах
+   мягко смешиваем его с фоном, alpha-WebM выше остаётся чистым. */
+.bottle-video--fallback {
   mix-blend-mode: multiply;
   -webkit-mask-image:
     linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%),
@@ -515,63 +515,12 @@ picture { display: contents; }
     linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%),
     linear-gradient(to bottom, transparent 0, #000 6%, #000 90%, transparent 100%);
   mask-composite: intersect;
-  animation: bottlefloat 6s ease-in-out infinite;
-  -webkit-user-drag: none;
 }
 @keyframes bottlefloat {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
 }
 
-/* Конденсат по стеклу. Включается, когда ролик доиграл (.bottle--rested):
-   кадр к этому моменту застыл, и струйки попадают ровно на стекло. Дальше
-   бегут без остановки. Координаты — доли кадра 760×700, стекло идёт по
-   диагонали от горлышка справа вверху к этикетке слева внизу. */
-.bottle-drips {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 1.2s ease-out;
-}
-.bottle--rested .bottle-drips { opacity: 1; }
-.bottle-drips span {
-  position: absolute;
-  width: 3px;
-  border-radius: 999px;
-  background: linear-gradient(to bottom,
-    rgba(255,255,255,0) 0%,
-    rgba(233,250,255,0.55) 40%,
-    rgba(160,214,231,0.95) 100%);
-  filter: drop-shadow(0 0 2px rgba(255,255,255,0.8));
-  animation: drip 5.4s linear infinite;
-}
-/* Головка струйки — та самая капля, что тянет за собой след */
-.bottle-drips span::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -3px;
-  width: 6px; height: 7px;
-  margin-left: -3px;
-  border-radius: 50% 50% 58% 58%;
-  background: radial-gradient(circle at 36% 30%, #f6feff, rgba(126,190,212,0.95));
-  box-shadow: 0 1px 3px rgba(255,255,255,0.85);
-}
-@keyframes drip {
-  0%   { transform: translateY(-25%); opacity: 0; }
-  10%  { opacity: 0.95; }
-  82%  { opacity: 0.95; }
-  100% { transform: translateY(175%); opacity: 0; }
-}
-.bottle-drips span:nth-child(1) { left: 63%; top: 19%; height: 13%; animation-duration: 5.4s; animation-delay: 0s; }
-.bottle-drips span:nth-child(2) { left: 67%; top: 21%; height: 11%; animation-duration: 6.6s; animation-delay: 1.9s; }
-.bottle-drips span:nth-child(3) { left: 59%; top: 26%; height: 14%; animation-duration: 4.8s; animation-delay: 3.1s; }
-.bottle-drips span:nth-child(4) { left: 55%; top: 32%; height: 12%; animation-duration: 6.1s; animation-delay: 0.8s; }
-.bottle-drips span:nth-child(5) { left: 62%; top: 30%; height: 10%; animation-duration: 7.2s; animation-delay: 4.4s; }
-.bottle-drips span:nth-child(6) { left: 51%; top: 39%; height: 11%; width: 2px; animation-duration: 5.9s; animation-delay: 2.6s; }
-.bottle-drips span:nth-child(7) { left: 69%; top: 25%; height: 9%;  width: 2px; animation-duration: 8.1s; animation-delay: 6.2s; }
 /* Watercolor mist at the base */
 .hero-mist {
   grid-area: 1 / 1;
@@ -591,36 +540,6 @@ picture { display: contents; }
 @keyframes steam {
   0%,100% { opacity: 0.85; transform: translateY(4%) scale(1); }
   50%     { opacity: 1; transform: translateY(0) scale(1.04); }
-}
-
-/* Water movement + splashes at the bottle base (Ice / water element) */
-.hero-water {
-  grid-area: 1 / 1;
-  align-self: end;
-  justify-self: center;
-  position: relative;
-  width: 48%;
-  height: 18%;
-  margin-bottom: 5%;
-  z-index: 6;
-  pointer-events: none;
-}
-.hero-water .drop {
-  position: absolute;
-  bottom: 42%;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #eafaff, rgba(120,190,210,0.9));
-  opacity: 0;
-}
-.hero-water .drop:nth-child(1) { left: 32%; }
-.hero-water .drop:nth-child(2) { left: 52%; width: 4px; height: 4px; }
-.hero-water .drop:nth-child(3) { left: 66%; }
-@keyframes splash {
-  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
-  22%  { opacity: 0.9; }
-  55%  { transform: translateY(-26px) scale(1); opacity: 0.9; }
-  100% { transform: translateY(6px) scale(0.7); opacity: 0; }
 }
 
 /* Полноэкранная гора в лёгком тумане */
@@ -1860,17 +1779,13 @@ picture { display: contents; }
 .hero.loaded .hero-clouds { animation: cloudIn 1.6s 0.4s ease-out forwards, cloudDrift 16s ease-in-out 2s infinite; }
 @keyframes cloudIn { from { opacity: 0; } to { opacity: 0.85; } }
 
-/* 1.5–3s · ice & water appear — cold silvery-turquoise glint + splash drops */
+/* 1.5–3s · ice & water appear — cold silvery-turquoise glint */
 .hero.loaded .hero-glint { animation: glintSweep 2s 1.5s ease-in-out forwards; }
 @keyframes glintSweep {
   0%   { opacity: 0; background-position: 130% 0; }
   40%  { opacity: 1; }
   100% { opacity: 0; background-position: -30% 0; }
 }
-.hero.loaded .hero-water .drop:nth-child(1) { animation: splash 3.6s 1.9s ease-out infinite; }
-.hero.loaded .hero-water .drop:nth-child(2) { animation: splash 3.6s 2.8s ease-out infinite; }
-.hero.loaded .hero-water .drop:nth-child(3) { animation: splash 3.6s 3.6s ease-out infinite; }
-
 /* ~2.4s · water mist gathers, so the bottle can emerge FROM it */
 .hero.loaded .hero-mist { animation: mistIn 1.1s 2.4s ease-out forwards, steam 8s ease-in-out 3.5s infinite; }
 @keyframes mistIn { from { opacity: 0; } to { opacity: 0.85; } }
@@ -2167,10 +2082,8 @@ picture { display: contents; }
   .hero-glint { opacity: 0 !important; }
   .hero-mist { opacity: 0.85 !important; }
   .hero-warmth { opacity: 1 !important; }
-  .hero-water .drop { opacity: 0 !important; }
   .hero::before { transform: none !important; }
   .bottle-video, .bottle-photo { opacity: 1 !important; }
-  .bottle-drips { display: none; }
   .thread { display: none; }
   /* Меню переключается мгновенно, но остаётся управляемым: обнуление
      transition-duration выше само по себе меню не ломает — visibility и

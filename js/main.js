@@ -79,18 +79,15 @@
     }
   }
 
-  /* ---- Bottle animation video: 7с всплеск, потом кадр застывает и
-         включается конденсат (.bottle--rested) ---- */
+  /* ---- Bottle animation video: 7с всплеск, потом кадр застывает ---- */
   var bottleVideo = document.getElementById("bottleVideo");
   if (bottleVideo) {
-    var bottleEl = bottleVideo.closest(".bottle");
     var bottleMp4  = bottleVideo.getAttribute("data-mp4");
     var bottleWebm = bottleVideo.getAttribute("data-webm");
 
     var freezeBottle = function () {
       bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
       bottleVideo.pause();
-      if (bottleEl) bottleEl.classList.add("bottle--rested");
     };
     bottleVideo.addEventListener("ended", freezeBottle);
 
@@ -98,6 +95,8 @@
       if (bottleMp4) {
         var stuckWatch = setTimeout(function () {
           if (bottleVideo.readyState === 0) {
+            bottleVideo.classList.remove("bottle-video--alpha");
+            bottleVideo.classList.add("bottle-video--fallback");
             bottleVideo.querySelectorAll("source").forEach(function (n) { n.remove(); });
             bottleVideo.src = bottleMp4;
             bottleVideo.load();
@@ -105,6 +104,7 @@
         }, 2500);
         bottleVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
       }
+      if (bottleWebm) bottleVideo.classList.add("bottle-video--alpha");
       var sources = document.createDocumentFragment();
       [[bottleWebm, 'video/webm; codecs="vp9"'], [bottleMp4, "video/mp4"]].forEach(function (pair) {
         if (!pair[0]) return;
@@ -129,7 +129,7 @@
           startBottleVideo();
           var playBottle = function () {
             var p = bottleVideo.play();
-            if (p && p.catch) p.catch(function () { if (bottleEl) bottleEl.classList.add("bottle--rested"); });
+            if (p && p.catch) p.catch(function () {});
           };
           if (bottleVideo.readyState >= 2) playBottle();
           else bottleVideo.addEventListener("canplay", playBottle, { once: true });

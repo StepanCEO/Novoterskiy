@@ -233,34 +233,23 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <!-- Ролик со всплеском: 7 секунд, дальше кадр просто застывает —
-             <video> держит последний кадр после ended сам. Тот же кадр лежит
-             постером, так что до старта, при prefers-reduced-motion и вовсе
-             без JS первый экран выглядит финальной сценой.
-             Белый фон съёмки ключом не выкусить (вода на нём такая же
-             светлая), его гасит multiply в .bottle-video.
+        <!-- Ролик со всплеском: 7 секунд, дальше кадр просто застывает.
+             Фон исходной съёмки уже удалён из alpha-WebM, поэтому гора
+             просвечивает сквозь воду и стекло без грязного белого прямоугольника.
              Адреса в data-*, а не в <source>: Safari на <source> с VP9
              навсегда удерживает событие load страницы — см. #heroVideo. -->
         <video class="bottle-video" id="bottleVideo" width="760" height="700"
                muted playsinline preload="none" disablepictureinpicture
                aria-hidden="true"
-               poster="assets/video/bottle-splash-poster.webp"
-               data-webm="assets/video/bottle-splash.webm"
-               data-mp4="assets/video/bottle-splash.mp4">
+               poster="assets/video/bottle-splash-alpha-poster.webp"
+               data-webm="assets/video/bottle-splash-alpha.webm"
+               data-mp4="assets/video/bottle-splash-hq.mp4">
           <picture>
-            <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-splash-poster.webp" width="760" height="700" alt="Новотерская Целебная" />
+            <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-splash-alpha-poster.webp" width="760" height="700" alt="Новотерская Целебная" />
           </picture>
         </video>
-        <!-- Конденсат: тонкие струйки бегут по стеклу, включаются в конце ролика -->
-        <div class="bottle-drips" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-        </div>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
-      <div class="hero-water" aria-hidden="true">
-        <span class="drop"></span><span class="drop"></span><span class="drop"></span>
-      </div>
     </figure>
   </div>
 </section>
