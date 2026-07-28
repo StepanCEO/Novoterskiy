@@ -2370,16 +2370,6 @@ picture { display: contents; }
   text-transform: uppercase;
   color: var(--muted);
 }
-.awards-empty {
-  margin: 0;
-  padding: 1.8rem 1.6rem;
-  background: rgba(255,255,255,0.6);
-  border: 1px dashed rgba(62,122,152,0.28);
-  border-radius: 14px;
-  color: var(--ink);
-  font-size: 0.95rem;
-  text-align: center;
-}
 .docs-more { margin: 1rem 0 0; font-size: 0.95rem; }
 .docs-more a { color: var(--glacier-d); text-decoration: none; }
 .docs-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
