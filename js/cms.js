@@ -265,10 +265,17 @@
       bilingual(node, item.label_ru, item.label_en);
       setLink(node, item.url);
     });
-    var legal = all(".footer-legal > *");
-    bilingual(legal[0], footer.privacy_ru, footer.privacy_en);
-    setLink(legal[0], footer.privacy_url);
-    bilingual(legal[1], footer.copyright_ru, footer.copyright_en);
+    // Выбираем по селекторам, а не по индексу: в подвале рядом стоит
+    // кнопка .footer-doc-btn, и позиции сдвигаются.
+    var privacyLink = one(".footer-legal > a:not(.footer-doc-btn)");
+    bilingual(privacyLink, footer.privacy_ru, footer.privacy_en);
+    setLink(privacyLink, footer.privacy_url);
+    var docBtn = one(".footer-legal > .footer-doc-btn");
+    if (docBtn) {
+      bilingual(one("span:not(.footer-doc-btn__mark)", docBtn), footer.pdpolicy_ru, footer.pdpolicy_en);
+      setLink(docBtn, footer.pdpolicy_url);
+    }
+    bilingual(one(".footer-legal > span"), footer.copyright_ru, footer.copyright_en);
 
     var cookie = data.cookie || {};
     bilingual(one("#cookie p"), cookie.text_ru, cookie.text_en);
