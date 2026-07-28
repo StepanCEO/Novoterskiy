@@ -480,21 +480,41 @@ picture { display: contents; }
   grid-area: 1 / 1;
   position: relative;
   z-index: 3;
-  width: auto; height: clamp(380px, 44vw, 580px);
+  /* Кадр ролика заметно шире прежнего снимка (760×700 против 977×1283), так
+     что размер держим по ширине: по высоте бутылка вылезала бы из колонки на
+     ноутбуках. --bottle-h остаётся «бюджетом высоты» — его и меняют
+     брейкпоинты, как раньше меняли height. */
+  --bottle-h: clamp(380px, 44vw, 580px);
+  width: min(100%, calc(var(--bottle-h) * 760 / 700));
+  height: auto;
+  aspect-ratio: 760 / 700;
   margin: 0 auto;
-  /* Наклона тут нет: он уже снят в кадре (~29°), а поворот из CSS добавлялся
-     бы к нему. Остаётся только сдвиг — кадр шире прежнего за счёт брызг
-     слева, и без него бутылка уезжает от центра колонки. */
+  /* Наклона тут нет: он уже снят в кадре, а поворот из CSS добавлялся бы к
+     нему. Остаётся только сдвиг — кадр шире, и без него бутылка уезжает от
+     центра колонки. Тени тоже нет: она обвела бы прямоугольник кадра. */
   transform: translate(4%, 2%);
-  filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35));
 }
-/* <picture> отдаём гриду насквозь, чтобы размеры и центровку задавала сама
-   картинка, как было у прежней крутилки. */
+/* <picture> отдаём насквозь: заглушка для древних движков без <video>. */
 .bottle picture { display: contents; }
+.bottle-video,
 .bottle-photo {
   display: block;
+  width: 100%;
   height: 100%;
-  width: auto;
+  object-fit: contain;
+  /* Белый фон съёмки ключом не убрать — вода в кадре ровно такой же
+     светлоты. multiply гасит светлое в страницу: гора и туман просвечивают
+     сквозь фон ролика, а стекло, вода и этикетка остаются. Две растушёванные
+     маски снимают кромку кадра, чтобы не читался прямоугольник. */
+  mix-blend-mode: multiply;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 6%, #000 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 6%, #000 90%, transparent 100%);
+  mask-composite: intersect;
   animation: bottlefloat 6s ease-in-out infinite;
   -webkit-user-drag: none;
 }
@@ -502,6 +522,56 @@ picture { display: contents; }
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-10px); }
 }
+
+/* Конденсат по стеклу. Включается, когда ролик доиграл (.bottle--rested):
+   кадр к этому моменту застыл, и струйки попадают ровно на стекло. Дальше
+   бегут без остановки. Координаты — доли кадра 760×700, стекло идёт по
+   диагонали от горлышка справа вверху к этикетке слева внизу. */
+.bottle-drips {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease-out;
+}
+.bottle--rested .bottle-drips { opacity: 1; }
+.bottle-drips span {
+  position: absolute;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(233,250,255,0.55) 40%,
+    rgba(160,214,231,0.95) 100%);
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.8));
+  animation: drip 5.4s linear infinite;
+}
+/* Головка струйки — та самая капля, что тянет за собой след */
+.bottle-drips span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 6px; height: 7px;
+  margin-left: -3px;
+  border-radius: 50% 50% 58% 58%;
+  background: radial-gradient(circle at 36% 30%, #f6feff, rgba(126,190,212,0.95));
+  box-shadow: 0 1px 3px rgba(255,255,255,0.85);
+}
+@keyframes drip {
+  0%   { transform: translateY(-25%); opacity: 0; }
+  10%  { opacity: 0.95; }
+  82%  { opacity: 0.95; }
+  100% { transform: translateY(175%); opacity: 0; }
+}
+.bottle-drips span:nth-child(1) { left: 63%; top: 19%; height: 13%; animation-duration: 5.4s; animation-delay: 0s; }
+.bottle-drips span:nth-child(2) { left: 67%; top: 21%; height: 11%; animation-duration: 6.6s; animation-delay: 1.9s; }
+.bottle-drips span:nth-child(3) { left: 59%; top: 26%; height: 14%; animation-duration: 4.8s; animation-delay: 3.1s; }
+.bottle-drips span:nth-child(4) { left: 55%; top: 32%; height: 12%; animation-duration: 6.1s; animation-delay: 0.8s; }
+.bottle-drips span:nth-child(5) { left: 62%; top: 30%; height: 10%; animation-duration: 7.2s; animation-delay: 4.4s; }
+.bottle-drips span:nth-child(6) { left: 51%; top: 39%; height: 11%; width: 2px; animation-duration: 5.9s; animation-delay: 2.6s; }
+.bottle-drips span:nth-child(7) { left: 69%; top: 25%; height: 9%;  width: 2px; animation-duration: 8.1s; animation-delay: 6.2s; }
 /* Watercolor mist at the base */
 .hero-mist {
   grid-area: 1 / 1;
@@ -1805,9 +1875,14 @@ picture { display: contents; }
 .hero.loaded .hero-mist { animation: mistIn 1.1s 2.4s ease-out forwards, steam 8s ease-in-out 3.5s infinite; }
 @keyframes mistIn { from { opacity: 0; } to { opacity: 0.85; } }
 
-/* 3–4.5s · the bottle emerges from the mist, water flowing around it */
-.hero.loaded .bottle { animation: bottleEmerge 1.6s 3s cubic-bezier(.2,.7,.3,1) backwards; }
-@keyframes bottleEmerge { from { opacity: 0; filter: blur(8px) drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)); } to { opacity: 1; } }
+/* 3–4.5s · бутылка выходит из тумана, и ровно в этот момент стартует ролик
+   (задержка продублирована в main.js — менять надо оба места).
+   Проявление живёт на самом кадре, а не на .bottle: opacity у родителя
+   изолировала бы multiply, и в конце анимации фон ролика «моргнул» бы белым.
+   Только прозрачность: blur и тень обвели бы прямоугольник кадра. */
+.hero.loaded .bottle-video,
+.hero.loaded .bottle-photo { animation: bottlefloat 6s ease-in-out infinite, bottleEmerge 1.6s 3s cubic-bezier(.2,.7,.3,1) backwards; }
+@keyframes bottleEmerge { from { opacity: 0; } to { opacity: 1; } }
 
 /* 4.5–6s · тёплое золотистое свечение снизу (Огонь), затем едва заметное дыхание */
 .hero.loaded .hero-warmth { animation: warmthIn 1.6s 4.5s ease-out forwards, warmthBreath 10s ease-in-out 6.5s infinite; }
@@ -1953,7 +2028,7 @@ picture { display: contents; }
   .hero-title { font-size: 1.68rem; line-height: 1.25; }
   .hero-sub { margin-top: 1rem; line-height: 1.6; }
   .hero-cta { margin-top: 1.35rem; }
-  .bottle { height: clamp(290px, 76vw, 390px); transform: translate(0, 2%); }
+  .bottle { --bottle-h: clamp(290px, 76vw, 390px); transform: translate(0, 2%); }
   .elements-grid { grid-template-columns: 1fr; gap: 2rem; }
   .el-photo-wrap { height: clamp(220px, 52vw, 300px); }
   .mineral-grid { grid-template-columns: 1fr; gap: 1.8rem; }
@@ -2027,7 +2102,7 @@ picture { display: contents; }
 .hero-bottle::before {
   display: none;
 }
-.bottle { height: clamp(420px, 43vw, 590px); transform: translate(4%, 1%); }
+.bottle { --bottle-h: clamp(420px, 43vw, 590px); transform: translate(4%, 1%); }
 .hero-mist { width: 116%; height: 42%; opacity: 0.55; filter: blur(13px); }
 
 .elements { padding: 0; background: #fbf7f2; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
@@ -2066,7 +2141,7 @@ picture { display: contents; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-cta { justify-content: center; }
   .hero-bottle { min-height: 348px; margin-top: -0.15rem; }
-  .bottle { height: clamp(295px, 76vw, 365px); }
+  .bottle { --bottle-h: clamp(295px, 76vw, 365px); }
   .elements-grid { grid-template-columns: 1fr; height: auto; }
   .el { min-height: clamp(260px, 56svh, 420px); }
   .el-cap { padding: 1.5rem 0.8rem 0; }
@@ -2075,21 +2150,8 @@ picture { display: contents; }
   .el + .el { border-top: 1px solid rgba(255,255,255,0.38); }
 }
 
-/* Compact bottle stays sharp throughout its entrance. On a small screen
-   Safari's animated blur covers the whole label instead of reading as mist. */
-@media (max-width: 767px) {
-  .hero.loaded .bottle { animation-name: bottleEmergeSharp; }
-}
-
-@keyframes bottleEmergeSharp {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* iOS Safari: same sharp entrance for the bottle photo. */
-@supports (-webkit-touch-callout: none) {
-  .hero.loaded .bottle { animation-name: bottleEmergeSharp; }
-}
+/* Отдельного «резкого» появления для мобильных больше нет: bottleEmerge и так
+   ведёт только прозрачность — анимированное размытие обводило бы кромку кадра. */
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
@@ -2107,7 +2169,8 @@ picture { display: contents; }
   .hero-warmth { opacity: 1 !important; }
   .hero-water .drop { opacity: 0 !important; }
   .hero::before { transform: none !important; }
-  .bottle { opacity: 1 !important; filter: drop-shadow(-18px 30px 38px rgba(20,49,63,0.35)) !important; }
+  .bottle-video, .bottle-photo { opacity: 1 !important; }
+  .bottle-drips { display: none; }
   .thread { display: none; }
   /* Меню переключается мгновенно, но остаётся управляемым: обнуление
      transition-duration выше само по себе меню не ломает — visibility и

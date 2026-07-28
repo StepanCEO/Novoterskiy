@@ -79,6 +79,70 @@
     }
   }
 
+  /* ---- Bottle animation video: 7с всплеск, потом кадр застывает и
+         включается конденсат (.bottle--rested) ---- */
+  var bottleVideo = document.getElementById("bottleVideo");
+  if (bottleVideo) {
+    var bottleEl = bottleVideo.closest(".bottle");
+    var bottleMp4  = bottleVideo.getAttribute("data-mp4");
+    var bottleWebm = bottleVideo.getAttribute("data-webm");
+
+    var freezeBottle = function () {
+      bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
+      bottleVideo.pause();
+      if (bottleEl) bottleEl.classList.add("bottle--rested");
+    };
+    bottleVideo.addEventListener("ended", freezeBottle);
+
+    var startBottleVideo = function () {
+      if (bottleMp4) {
+        var stuckWatch = setTimeout(function () {
+          if (bottleVideo.readyState === 0) {
+            bottleVideo.querySelectorAll("source").forEach(function (n) { n.remove(); });
+            bottleVideo.src = bottleMp4;
+            bottleVideo.load();
+          }
+        }, 2500);
+        bottleVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
+      }
+      var sources = document.createDocumentFragment();
+      [[bottleWebm, 'video/webm; codecs="vp9"'], [bottleMp4, "video/mp4"]].forEach(function (pair) {
+        if (!pair[0]) return;
+        var s = document.createElement("source");
+        s.setAttribute("src", pair[0]);
+        s.setAttribute("type", pair[1]);
+        sources.appendChild(s);
+      });
+      bottleVideo.insertBefore(sources, bottleVideo.firstChild);
+      bottleVideo.load();
+    };
+
+    if (reduceMotion) {
+      // без анимаций: сразу финальный кадр + конденсат
+      if (document.readyState === "complete") requestAnimationFrame(function () { startBottleVideo(); bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true }); });
+      else window.addEventListener("load", function () { requestAnimationFrame(function () { startBottleVideo(); bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true }); }); }, { once: true });
+    } else {
+      // Ролик стартует вместе с bottleEmerge (3 с после .loaded).
+      // Задержка 3000 мс совпадает с animation-delay в CSS — менять оба места.
+      var scheduleBottlePlay = function () {
+        setTimeout(function () {
+          startBottleVideo();
+          var playBottle = function () {
+            var p = bottleVideo.play();
+            if (p && p.catch) p.catch(function () { if (bottleEl) bottleEl.classList.add("bottle--rested"); });
+          };
+          if (bottleVideo.readyState >= 2) playBottle();
+          else bottleVideo.addEventListener("canplay", playBottle, { once: true });
+          document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState === "visible" && !bottleVideo.ended && bottleVideo.paused) bottleVideo.play();
+          });
+        }, 3000);
+      };
+      if (document.readyState === "complete") requestAnimationFrame(scheduleBottlePlay);
+      else window.addEventListener("load", function () { requestAnimationFrame(scheduleBottlePlay); }, { once: true });
+    }
+  }
+
   /* ---- Scroll reveals ---- */
   function applyReveals(scope) {
     var els = (scope || document).querySelectorAll(".reveal");

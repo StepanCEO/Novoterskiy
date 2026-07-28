@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=bottle-v10" />
+<link rel="stylesheet" href="css/style.css?v=splash-v11" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -233,12 +233,29 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <!-- Снимок с всплеском. Наклон запечён в кадре, поэтому CSS бутылку
-             больше не поворачивает — иначе к своим 29° добавились бы ещё 17°. -->
-        <picture>
-          <source srcset="assets/products/bottle-splash.avif" type="image/avif" />
-          <img class="bottle-photo" fetchpriority="high" src="assets/products/bottle-splash.webp" width="977" height="1283" alt="Новотерская Целебная" />
-        </picture>
+        <!-- Ролик со всплеском: 7 секунд, дальше кадр просто застывает —
+             <video> держит последний кадр после ended сам. Тот же кадр лежит
+             постером, так что до старта, при prefers-reduced-motion и вовсе
+             без JS первый экран выглядит финальной сценой.
+             Белый фон съёмки ключом не выкусить (вода на нём такая же
+             светлая), его гасит multiply в .bottle-video.
+             Адреса в data-*, а не в <source>: Safari на <source> с VP9
+             навсегда удерживает событие load страницы — см. #heroVideo. -->
+        <video class="bottle-video" id="bottleVideo" width="760" height="700"
+               muted playsinline preload="none" disablepictureinpicture
+               aria-hidden="true"
+               poster="assets/video/bottle-splash-poster.webp"
+               data-webm="assets/video/bottle-splash.webm"
+               data-mp4="assets/video/bottle-splash.mp4">
+          <picture>
+            <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-splash-poster.webp" width="760" height="700" alt="Новотерская Целебная" />
+          </picture>
+        </video>
+        <!-- Конденсат: тонкие струйки бегут по стеклу, включаются в конце ролика -->
+        <div class="bottle-drips" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
       <div class="hero-water" aria-hidden="true">
@@ -746,8 +763,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=icon-v6" defer></script>
-<script src="js/main.js?v=bottle-v10" defer></script>
-<script src="js/cms.js?v=bottle-v10" defer></script>
+<script src="js/nav.js?v=splash-v11" defer></script>
+<script src="js/main.js?v=splash-v11" defer></script>
+<script src="js/cms.js?v=splash-v11" defer></script>
 </body>
 </html>
