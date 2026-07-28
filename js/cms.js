@@ -268,16 +268,9 @@
       bilingual(node, item.label_ru, item.label_en);
       setLink(node, item.url);
     });
-    // Выбираем по селекторам, а не по индексу: в подвале рядом стоит
-    // кнопка .footer-doc-btn, и позиции сдвигаются.
-    var privacyLink = one(".footer-legal > a:not(.footer-doc-btn)");
+    var privacyLink = one(".footer-legal > a");
     bilingual(privacyLink, footer.privacy_ru, footer.privacy_en);
     setLink(privacyLink, footer.privacy_url);
-    var docBtn = one(".footer-legal > .footer-doc-btn");
-    if (docBtn) {
-      bilingual(one("span:not(.footer-doc-btn__mark)", docBtn), footer.pdpolicy_ru, footer.pdpolicy_en);
-      setLink(docBtn, footer.pdpolicy_url);
-    }
     bilingual(one(".footer-legal > span"), footer.copyright_ru, footer.copyright_en);
 
     var cookie = data.cookie || {};

@@ -405,12 +405,9 @@
         "url": "#contacts"
       }
     ],
-    "privacy_ru": "Политика конфиденциальности",
-    "privacy_en": "Privacy policy",
+    "privacy_ru": "Политика обработки персональных данных",
+    "privacy_en": "Personal data processing policy",
     "privacy_url": "privacy.html",
-    "pdpolicy_ru": "Политика обработки персональных данных",
-    "pdpolicy_en": "Personal data processing policy",
-    "pdpolicy_url": "assets/documents/personal-data-policy.pdf",
     "copyright_ru": "© 2026 АО «Кавминводы». КМВ.",
     "copyright_en": "© 2026 AO Kavminvody. КМВ."
   },
