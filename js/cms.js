@@ -149,10 +149,13 @@
     setLink(heroCtas[1], hero.secondary_cta_url);
     setImage(one(".hero-bg img"), hero.background);
     setImage(one(".bottle-photo"), hero.bottle);
-    // Bottle animation video — repurposed video_* keys
+    // Bottle animation video — repurposed video_* keys.
+    // Постер не перезаписываем, если main.js уже подставил запасной кадр:
+    // JSON приезжает позже разметки, и иначе он вернул бы обратно кадр
+    // неудавшегося ролика.
     var bv = document.getElementById("bottleVideo");
     if (bv) {
-      if (hero.video_poster) bv.setAttribute("poster", hero.video_poster);
+      if (hero.video_poster && !bv.dataset.posterSwapped) bv.setAttribute("poster", hero.video_poster);
       if (hero.video_webm)   bv.setAttribute("data-webm", hero.video_webm);
       if (hero.video_mp4)    bv.setAttribute("data-mp4",  hero.video_mp4);
     }

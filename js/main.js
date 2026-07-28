@@ -95,8 +95,6 @@
       if (bottleMp4) {
         var stuckWatch = setTimeout(function () {
           if (bottleVideo.readyState === 0) {
-            bottleVideo.classList.remove("bottle-video--alpha");
-            bottleVideo.classList.add("bottle-video--fallback");
             bottleVideo.querySelectorAll("source").forEach(function (n) { n.remove(); });
             bottleVideo.src = bottleMp4;
             bottleVideo.load();
@@ -104,7 +102,23 @@
         }, 2500);
         bottleVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
       }
-      if (bottleWebm) bottleVideo.classList.add("bottle-video--alpha");
+      /* Постер — первый кадр ролика, то есть почти чистый туман: пока ролик
+         не заиграл, бутылки на экране нет. Если он так и не доедет, меняем
+         постер на готовый кадр со всплеском, чтобы первый экран не остался
+         пустым. Сам ролик прозрачности не имеет — смешивание задано в CSS
+         для всех движков сразу, отдельного класса под запасной H.264 нет.
+         Флаг posterSwapped нужен, чтобы CMS не вернула постер обратно:
+         site.json приезжает асинхронно и тоже пишет этот атрибут. */
+      var posterFallback = bottleVideo.getAttribute("data-poster-still");
+      if (posterFallback) {
+        var stillWatch = setTimeout(function () {
+          if (bottleVideo.readyState < 2) {
+            bottleVideo.dataset.posterSwapped = "1";
+            bottleVideo.setAttribute("poster", posterFallback);
+          }
+        }, 6000);
+        bottleVideo.addEventListener("canplay", function () { clearTimeout(stillWatch); }, { once: true });
+      }
       var sources = document.createDocumentFragment();
       [[bottleWebm, 'video/webm; codecs="vp9"'], [bottleMp4, "video/mp4"]].forEach(function (pair) {
         if (!pair[0]) return;
@@ -122,8 +136,8 @@
       if (document.readyState === "complete") requestAnimationFrame(function () { startBottleVideo(); bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true }); });
       else window.addEventListener("load", function () { requestAnimationFrame(function () { startBottleVideo(); bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true }); }); }, { once: true });
     } else {
-      // Ролик стартует вместе с bottleEmerge (3 с после .loaded).
-      // Задержка 3000 мс совпадает с animation-delay в CSS — менять оба места.
+      // Ролик стартует вместе с bottleEmerge (0.35 с после .loaded).
+      // Задержка 350 мс совпадает с animation-delay в CSS — менять оба места.
       var scheduleBottlePlay = function () {
         setTimeout(function () {
           startBottleVideo();
@@ -136,7 +150,7 @@
           document.addEventListener("visibilitychange", function () {
             if (document.visibilityState === "visible" && !bottleVideo.ended && bottleVideo.paused) bottleVideo.play();
           });
-        }, 3000);
+        }, 350);
       };
       if (document.readyState === "complete") requestAnimationFrame(scheduleBottlePlay);
       else window.addEventListener("load", function () { requestAnimationFrame(scheduleBottlePlay); }, { once: true });

@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=policy-v13" />
+<link rel="stylesheet" href="css/style.css?v=hero-v14" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -234,18 +234,24 @@
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
         <!-- Ролик со всплеском: 7 секунд, дальше кадр просто застывает.
-             Фон исходной съёмки уже удалён из alpha-WebM, поэтому гора
-             просвечивает сквозь воду и стекло без грязного белого прямоугольника.
+             Прозрачности у него нет и быть не может: съёмка сделана на светлом
+             тумане, где стекло, вода и снег сами почти белые. Кадр смешивается
+             с горой через mix-blend-mode: darken в CSS — белёсый фон уходит,
+             бутылка и кристаллы остаются.
+             poster — ровно первый кадр ролика, поэтому в момент старта
+             подмены не видно; data-poster-still подставится, только если
+             ролик так и не загрузится.
              Адреса в data-*, а не в <source>: Safari на <source> с VP9
              навсегда удерживает событие load страницы — см. #heroVideo. -->
         <video class="bottle-video" id="bottleVideo" width="760" height="700"
                muted playsinline preload="none" disablepictureinpicture
                aria-hidden="true"
-               poster="assets/video/bottle-splash-alpha-poster.webp"
+               poster="assets/video/bottle-splash-start.webp"
+               data-poster-still="assets/video/bottle-splash-poster.webp"
                data-webm="assets/video/bottle-splash-alpha.webm"
                data-mp4="assets/video/bottle-splash-hq.mp4">
           <picture>
-            <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-splash-alpha-poster.webp" width="760" height="700" alt="Новотерская Целебная" />
+            <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-splash-poster.webp" width="760" height="700" alt="Новотерская Целебная" />
           </picture>
         </video>
       </div>
@@ -756,8 +762,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=policy-v13" defer></script>
-<script src="js/main.js?v=policy-v13" defer></script>
-<script src="js/cms.js?v=policy-v13" defer></script>
+<script src="js/nav.js?v=hero-v14" defer></script>
+<script src="js/main.js?v=hero-v14" defer></script>
+<script src="js/cms.js?v=hero-v14" defer></script>
 </body>
 </html>

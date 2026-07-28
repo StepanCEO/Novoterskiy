@@ -105,9 +105,9 @@
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
     "background": "assets/video/hero-bg-poster.webp",
-    "video_webm": "assets/video/bottle-splash.webm",
-    "video_mp4": "assets/video/bottle-splash.mp4",
-    "video_poster": "assets/video/bottle-splash-poster.webp",
+    "video_webm": "assets/video/bottle-splash-alpha.webm",
+    "video_mp4": "assets/video/bottle-splash-hq.mp4",
+    "video_poster": "assets/video/bottle-splash-start.webp",
     "video_fallback": "assets/products/celebnaya-pet-05.webp",
     "bottle": "assets/products/bottle-splash.webp"
   },
