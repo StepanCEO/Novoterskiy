@@ -380,7 +380,7 @@
     if (!track || !data || !Array.isArray(data.items) || !data.items.length) return;
     var collection = siteContent.collection || {};
     track.innerHTML = data.items.map(function (product) {
-      var href = safeUrl(resolveHash(product.buy_url), resolveHash(collection.default_buy_url) || "index.html#where", true);
+      var href = safeUrl(resolveHash(product.buy_url), resolveHash(collection.default_buy_url) || "buy.html", true);
       var titleEn = productTitle(product.title_en || product.title);
       var typeEn = esc(product.type_en || product.type);
       var shots = productShots(product);

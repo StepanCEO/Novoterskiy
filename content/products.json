@@ -2,8 +2,8 @@
   "items": [
     {
       "id": "celebnaya-glass-elita-05",
-      "title": "Целебная 0.5",
-      "title_en": "Healing 0.5",
+      "title": "Новотерская целебная 0.5",
+      "title_en": "Novoterskaya Tselebnaya 0.5",
       "type": "Газированная · стекло «Элита»",
       "type_en": "Sparkling · glass «Elita»",
       "photo": "assets/products/celebnaya-glass-elita-05.webp",
@@ -60,12 +60,12 @@
           "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle - back label"
         }
       ],
-      "buy_url": "#where"
+      "buy_url": "buy.html"
     },
     {
       "id": "celebnaya-pet-05",
-      "title": "Целебная 0.5",
-      "title_en": "Healing 0.5",
+      "title": "Новотерская целебная 0.5",
+      "title_en": "Novoterskaya Tselebnaya 0.5",
       "type": "Газированная · ПЭТ",
       "type_en": "Sparkling · PET",
       "photo": "assets/products/celebnaya-pet-05.webp",
@@ -131,12 +131,12 @@
           "alt_en": "Novoterskaya Tselebnaya 0.5 L, PET bottle - pack, angled"
         }
       ],
-      "buy_url": "#where"
+      "buy_url": "buy.html"
     },
     {
       "id": "celebnaya-pet-15",
-      "title": "Целебная 1.5",
-      "title_en": "Healing 1.5",
+      "title": "Новотерская целебная 1.5",
+      "title_en": "Novoterskaya Tselebnaya 1.5",
       "type": "Газированная · ПЭТ",
       "type_en": "Sparkling · PET",
       "photo": "assets/products/celebnaya-pet-15.webp",
@@ -193,12 +193,12 @@
           "alt_en": "Novoterskaya Tselebnaya 1.5 L, PET bottle - pack of six"
         }
       ],
-      "buy_url": "#where"
+      "buy_url": "buy.html"
     },
     {
       "id": "pityevaya-pet-05",
-      "title": "Питьевая 0.5",
-      "title_en": "Drinking 0.5",
+      "title": "Новотерская питьевая 0.5",
+      "title_en": "Novoterskaya Drinking 0.5",
       "type": "Негазированная · ПЭТ",
       "type_en": "Still · PET",
       "photo": "assets/products/pityevaya-pet-05.webp",
@@ -273,12 +273,12 @@
           "alt_en": "Novoterskaya Drinking Water 0.5 L, PET bottle - back label"
         }
       ],
-      "buy_url": "#where"
+      "buy_url": "buy.html"
     },
     {
       "id": "pityevaya-pet-033",
-      "title": "Питьевая 0.33",
-      "title_en": "Drinking 0.33",
+      "title": "Новотерская питьевая 0.33",
+      "title_en": "Novoterskaya Drinking 0.33",
       "type": "Негазированная · ПЭТ",
       "type_en": "Still · PET",
       "photo": "assets/products/pityevaya-pet-033.webp",
@@ -335,7 +335,7 @@
           "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - pack of six"
         }
       ],
-      "buy_url": "#where"
+      "buy_url": "buy.html"
     }
   ]
 }

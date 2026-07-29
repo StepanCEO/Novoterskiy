@@ -35,6 +35,9 @@
     setTranslatedAttribute("[data-en-content]", "content", "data-en-content", toEnglish);
     setTranslatedAttribute("[data-en-aria-label]", "aria-label", "data-en-aria-label", toEnglish);
     setTranslatedAttribute("[data-en-alt]", "alt", "data-en-alt", toEnglish);
+    // title у <iframe> — это доступное имя фрейма: у карт магазинов оно
+    // единственное, что читает скринридер, поэтому переводим и его.
+    setTranslatedAttribute("[data-en-title]", "title", "data-en-title", toEnglish);
 
     html.setAttribute("lang", language);
     if (toggle) {

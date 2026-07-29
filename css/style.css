@@ -1021,7 +1021,9 @@ picture { display: contents; }
 
 /* ---------- 4 · MINERALS ---------- */
 .minerals { padding: clamp(5rem, 9vw, 8rem) 0; }
-.minerals-cta {
+/* Кнопка «дочитать на отдельной странице» под секцией — секций с таким
+   продолжением уже две (состав воды, где купить), поэтому класс общий. */
+.section-cta {
   display: flex;
   justify-content: center;
   padding: 0 var(--gutter);
@@ -2443,6 +2445,144 @@ picture { display: contents; }
   .compo-table th,
   .compo-table td { padding: 0.55rem 0.85rem; }
   .compo-table tbody th { width: auto; }
+}
+
+/* ---- Где купить (buy.html) ---- */
+/* Три канала продаж плиткой: фирменные магазины, OZON, Wildberries. Плитки
+   стоят до .legal-body — до первого h2 с его разделительной линией, — чтобы
+   человек с ходу видел, куда идти, и не читал текст ради ссылки. */
+.buy-channels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 0 0 2.4rem;
+}
+.channel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  padding: 1.5rem 1rem 1.3rem;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid rgba(62,122,152,0.18);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.66);
+  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease),
+              box-shadow 0.35s var(--ease);
+}
+.channel:hover,
+.channel:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(62,122,152,0.42);
+  box-shadow: 0 18px 34px -26px rgba(20,49,63,0.55);
+}
+/* Логотипы маркетплейсов не наши — вместо чужих картинок ставим набранное
+   название в фирменной типографике: обновление логотипа на их стороне такую
+   плитку не состарит. Высота марки фиксирована, чтобы подписи трёх плиток
+   стояли на одной линии независимо от того, картинка внутри или слово. */
+.channel-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  margin-bottom: 0.5rem;
+}
+.channel-mark img { height: 40px; width: auto; }
+.channel-mark-word {
+  font-family: var(--ff-display);
+  font-size: 1.24rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--deep);
+}
+.channel-name {
+  font-family: var(--ff-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--deep);
+}
+.channel-note {
+  font-family: var(--ff-label);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* Карточка магазина: слева адрес и часы, справа карта. Карта — живая, с ней
+   можно работать прямо на странице, поэтому она не картинка, а iframe. */
+.shop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 1.4rem;
+  align-items: center;
+  padding: 1.3rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid rgba(62,122,152,0.18);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.62);
+}
+.shop h3 { margin-top: 0; }
+.shop-line { margin: 0 0 0.6rem; }
+.shop-line:last-child { margin-bottom: 0; }
+.shop-label {
+  display: block;
+  font-family: var(--ff-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+/* Яндекс отдаёт виджет без своих размеров — высоту задаём сами, иначе iframe
+   схлопнется в стандартные 150px и от карты останется полоска. */
+.shop-map iframe {
+  display: block;
+  width: 100%;
+  height: 260px;
+  border: 0;
+  border-radius: 12px;
+}
+
+.dist-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.dist-card {
+  padding: 1.3rem;
+  border: 1px solid rgba(62,122,152,0.18);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.62);
+}
+.dist-card h3 { margin-top: 0; }
+.dist-card .dist-line { margin: 0 0 0.5rem; }
+.dist-card .dist-line:last-child { margin-bottom: 0; }
+
+@media (max-width: 767px) {
+  /* На телефоне три плитки в ряд ужимаются до нечитаемого — раскладываем их
+     в столбец, а внутри каждой: марка слева на обе строки, название и
+     пояснение справа друг под другом. */
+  .buy-channels { grid-template-columns: 1fr; }
+  .channel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0.9rem;
+    row-gap: 0.1rem;
+    padding: 1rem 1.1rem;
+    text-align: left;
+  }
+  .channel-mark {
+    grid-row: 1 / span 2;
+    height: auto;
+    min-width: 68px;
+    margin-bottom: 0;
+  }
+  .channel-mark img { height: 30px; }
+  .channel-mark-word { font-size: 1.02rem; }
+  .shop { grid-template-columns: 1fr; padding: 1.1rem; }
+  .shop-map iframe { height: 220px; }
 }
 
 /* ---- Галерея наград (awards.html) ---- */
