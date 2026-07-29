@@ -1021,6 +1021,12 @@ picture { display: contents; }
 
 /* ---------- 4 · MINERALS ---------- */
 .minerals { padding: clamp(5rem, 9vw, 8rem) 0; }
+.minerals-cta {
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  margin-top: clamp(2.4rem, 4vw, 3.4rem);
+}
 /* Референс: камень слева кругом, символ + название + текст справа, без коробок */
 .mineral-grid {
   max-width: var(--wrap);
@@ -2353,6 +2359,90 @@ picture { display: contents; }
   .legal { padding-top: calc(var(--gutter) + 4rem); }
   .legal-body .docs-grid { grid-template-columns: 1fr; }
   .legal-contacts { padding: 1.3rem 1.3rem; }
+}
+
+/* ---- Таблицы состава воды (composition.html) ---- */
+/* Внутри разделов состава есть свои подзаголовки («Условия хранения»,
+   «Медицинские показания»), поэтому h3 нужен как ступень между h2 и текстом —
+   без разделительной линии, она осталась за h2. */
+.legal-body h3 {
+  font-family: var(--ff-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--deep);
+  margin: 1.8rem 0 0.6rem;
+}
+/* Оболочка со своей прокруткой: на узком экране таблица уезжает вбок сама,
+   а не растягивает страницу. tabindex ей не нужен — с клавиатуры внутрь
+   попадают по ссылкам, а прокручиваемая область без фокуса остаётся
+   доступной колесом и жестом. */
+.compo-table {
+  overflow-x: auto;
+  margin: 1.2rem 0 1.5rem;
+  border: 1px solid rgba(62,122,152,0.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.62);
+}
+.compo-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.compo-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.9rem 1.1rem 0.2rem;
+  font-family: var(--ff-display);
+  font-weight: 600;
+  color: var(--deep);
+}
+.compo-table th,
+.compo-table td {
+  padding: 0.62rem 1.1rem;
+  text-align: left;
+  vertical-align: baseline;
+}
+.compo-table thead th {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--glacier-d);
+  border-bottom: 1px solid rgba(62,122,152,0.18);
+}
+.compo-table tbody th {
+  width: 58%;
+  font-weight: 400;
+  color: var(--ink);
+}
+/* Диапазоны вида «1300 – 1600» читаются столбиком только моноширинными
+   цифрами, и разрывать их переносом нельзя — иначе половина уедет на
+   следующую строку. */
+.compo-table tbody td {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--deep);
+}
+.compo-table tbody tr + tr { border-top: 1px solid rgba(62,122,152,0.1); }
+.compo-table tbody tr.is-total { background: rgba(62,122,152,0.07); }
+.compo-table tbody tr.is-total th,
+.compo-table tbody tr.is-total td {
+  font-weight: 600;
+  color: var(--deep);
+}
+/* Оговорка «только вне фазы обострения» — не рядовая строка текста:
+   выделяем её так же, как выделяют предупреждение на этикетке. */
+.compo-warn {
+  padding: 0.75rem 1.1rem;
+  border-left: 3px solid var(--glacier);
+  background: rgba(62,122,152,0.06);
+  border-radius: 0 10px 10px 0;
+}
+@media (max-width: 767px) {
+  .compo-table table { font-size: 0.9rem; }
+  .compo-table th,
+  .compo-table td { padding: 0.55rem 0.85rem; }
+  .compo-table tbody th { width: auto; }
 }
 
 /* ---- Галерея наград (awards.html) ---- */

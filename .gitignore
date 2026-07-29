@@ -29,6 +29,11 @@ tools/.crossbrowser/
 # ffmpeg -c:v libvpx-vp9 -i assets/video/bottle-loop-alpha.webm -vf format=rgba out/f%03d.png
 tools/qa-bottle/
 
+# Выгрузка страниц про состав воды с novoterskaya.ru: 260КБ сырого HTML,
+# из которых выписаны таблицы для composition.html. Пересоздаётся curl'ом
+# со страниц /mineralnaya-voda/ и /pitevaya-voda/.
+tools/compo-src/
+
 # Выгрузка страницы «История» со старого сайта: дамп HTML, исходные JPEG на 9МБ
 # и контактный лист для проверки, что на кадрах. Скрипты рядом остаются в репо,
 # всё это пересоздаётся: python tools/history-src/grab.py
