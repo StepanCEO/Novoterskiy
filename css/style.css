@@ -480,17 +480,19 @@ picture { display: contents; }
   grid-area: 1 / 1;
   position: relative;
   z-index: 3;
-  /* Ролик собран в том же формате 760×700, что и постер, поэтому кадр
-     масштабируется без мыла и без скачка при старте воспроизведения. */
+  /* Ролик собран в том же формате 420×1402, что и постер, поэтому кадр
+     масштабируется без мыла и без скачка при старте воспроизведения.
+     Кадр обрезан по силуэту: --bottle-h — это уже высота самой бутылки,
+     а не рамки вокруг неё, ширина от неё производная. */
   --bottle-h: clamp(380px, 44vw, 580px);
-  width: min(100%, calc(var(--bottle-h) * 760 / 700));
+  width: min(100%, calc(var(--bottle-h) * 420 / 1402));
   height: auto;
-  aspect-ratio: 760 / 700;
+  aspect-ratio: 420 / 1402;
   margin: 0 auto;
-  /* Наклона тут нет: он уже снят в кадре, а поворот из CSS добавлялся бы к
-     нему. Остаётся только сдвиг — кадр шире, и без него бутылка уезжает от
-     центра колонки. Тени тоже нет: она обвела бы прямоугольник кадра. */
-  transform: translate(4%, 2%);
+  /* Ни наклона, ни сдвига: бутылка стоит прямо и кадр обрезан по ней, так что
+     центр кадра и есть центр бутылки. Сдвиг вправо остался от широкой рамки
+     со всплеском — на узком кадре он только уводил бутылку из колонки.
+     Тени тоже нет: она обвела бы прямоугольник кадра. */
 }
 /* <picture> отдаём насквозь: заглушка для древних движков без <video>. */
 .bottle picture { display: contents; }
@@ -516,31 +518,24 @@ picture { display: contents; }
 }
 /* Запасной H.264 прозрачности не несёт — в него уезжают движки, которые не
    декодируют VP9 с альфой (Safari, см. main.js). Только для них оставляем
-   прежнее смешивание, иначе вокруг кадра будет белый прямоугольник. */
-.bottle.is-flat .bottle-video {
-  mix-blend-mode: darken;
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%),
-    linear-gradient(to bottom, transparent 0, #000 7%, #000 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%),
-    linear-gradient(to bottom, transparent 0, #000 7%, #000 100%);
-  mask-composite: intersect;
-}
+   смешивание: фон в mp4 чисто белый, darken берёт поканальный минимум и
+   белое уходит в гору. Масок по краям больше нет — они растворяли края
+   непрозрачного кадра со всплеском, а этот кадр обрезан по самой бутылке,
+   и маски съедали бы ей бока. */
+.bottle.is-flat .bottle-video { mix-blend-mode: darken; }
 /* Дыхание кадра, а не полёт: раньше стоял translateY(-10px), и лёд каждые три
    секунды отрывался от нижней границы экрана. Масштаб с origin по низу держит
    нижнюю кромку на месте — двигается только верх кадра.
-   Включается только после того, как ролик застыл (.is-still): внутри самого
-   кадра бутылка качается на всплеске, и пульс поверх читался как тряска.
    Живёт на обёртке, а не на ролике: на ролике висит появление, и смена
-   класса перезапускала бы его. */
-.bottle.is-still .bottle-breath {
-  animation: bottlefloat 7s ease-in-out infinite;
+   класса перезапускала бы его. Раньше ждали .is-still — ролик со всплеском
+   сначала сам себя раскачивал, и пульс поверх читался как тряска. Теперь
+   в кадре только стекающие капли, и дыхание идёт с самого начала. */
+.bottle .bottle-breath {
+  animation: bottlefloat 9s ease-in-out infinite;
 }
 @keyframes bottlefloat {
   0%,100% { transform: scale(1); }
-  50%     { transform: scale(1.008); }
+  50%     { transform: scale(1.006); }
 }
 
 /* Watercolor mist at the base */
@@ -2021,7 +2016,6 @@ picture { display: contents; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-cta { justify-content: center; }
   .hero-topo { width: 44vw; }
-  .bottle { transform: translate(2%, 2%); }
   .elements-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
   .el-photo-wrap { height: clamp(220px, 34vw, 320px); }
   .mineral-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2056,7 +2050,9 @@ picture { display: contents; }
   .hero-title { font-size: 1.68rem; line-height: 1.25; }
   .hero-sub { margin-top: 1rem; line-height: 1.6; }
   .hero-cta { margin-top: 1.35rem; }
-  .bottle { --bottle-h: clamp(290px, 76vw, 390px); transform: translate(0, 2%); }
+  /* Ширина кадра теперь 0,3 от высоты, и 76vw её больше не держит: высоту
+     задаём от окна, иначе на узком экране бутылка выходила спичкой. */
+  .bottle { --bottle-h: clamp(300px, 46svh, 430px); }
   .elements-grid { grid-template-columns: 1fr; gap: 2rem; }
   .el-photo-wrap { height: clamp(220px, 52vw, 300px); }
   .mineral-grid { grid-template-columns: 1fr; gap: 1.8rem; }
@@ -2137,7 +2133,7 @@ picture { display: contents; }
 .hero-bottle::before {
   display: none;
 }
-.bottle { --bottle-h: clamp(420px, 43vw, 590px); align-self: end; transform: translate(4%, 0); }
+.bottle { --bottle-h: clamp(420px, min(43vw, 68svh), 610px); align-self: end; }
 .hero-mist { width: 116%; height: 42%; opacity: 0.55; filter: blur(13px); }
 
 .elements { padding: 0; background: #fbf7f2; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
@@ -2182,7 +2178,7 @@ picture { display: contents; }
   .hero-sub { margin-top: 0.9rem; margin-left: auto; margin-right: auto; }
   .hero-cta { margin-top: 1.2rem; justify-content: center; }
   .hero-bottle { min-height: clamp(230px, 38svh, 360px); margin-top: -0.15rem; }
-  .bottle { --bottle-h: clamp(215px, min(76vw, 38svh), 360px); }
+  .bottle { --bottle-h: clamp(215px, 40svh, 360px); }
   .elements-grid { grid-template-columns: 1fr; height: auto; }
   .el { min-height: clamp(260px, 56svh, 420px); }
   .el-cap { padding: 1.5rem 0.8rem 0; }
@@ -2200,7 +2196,7 @@ picture { display: contents; }
   .hero-sub { margin-top: 0.55rem; font-size: 0.78rem; line-height: 1.5; }
   .hero-cta { margin-top: 0.75rem; gap: 0.55rem; }
   .hero-bottle { min-height: clamp(195px, 33svh, 260px); }
-  .bottle { --bottle-h: clamp(195px, min(70vw, 33svh), 260px); }
+  .bottle { --bottle-h: clamp(195px, 34svh, 265px); }
 }
 
 /* Отдельного «резкого» появления для мобильных больше нет: bottleEmerge и так

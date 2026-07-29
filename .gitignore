@@ -26,7 +26,7 @@ tools/.crossbrowser/
 
 # Разбор ролика героя: 200МБ покадровых PNG и сравнений, из которых видно,
 # где расползается вырезка фона. Пересоздаётся из самого ролика:
-# ffmpeg -c:v libvpx-vp9 -i assets/video/bottle-splash-alpha.webm -vf format=rgba out/f%03d.png
+# ffmpeg -c:v libvpx-vp9 -i assets/video/bottle-loop-alpha.webm -vf format=rgba out/f%03d.png
 tools/qa-bottle/
 
 # Выгрузка страницы «История» со старого сайта: дамп HTML, исходные JPEG на 9МБ

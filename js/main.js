@@ -4,13 +4,25 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* Отложить до первой отрисовки, но не потерять вызов. requestAnimationFrame
+     в фоновой вкладке не приходит вовсе (открыли ссылку в новой вкладке —
+     кадра нет, пока не переключатся), поэтому дублируем таймером: кто первым
+     сработал, тот и выполняет. Иначе ролики так и не начинают грузиться. */
+  function afterPaint(fn) {
+    var done = false;
+    var run = function () {
+      if (done) return;
+      done = true;
+      fn();
+    };
+    requestAnimationFrame(run);
+    setTimeout(run, 200);
+  }
+
   /* ---- Hero load sequence ---- */
   var hero = document.getElementById("hero");
   if (hero) {
-    var startHero = function () { hero.classList.add("loaded"); };
-    requestAnimationFrame(startHero);
-    // Fallback: rAF is throttled in background tabs — guarantee the reveal fires.
-    setTimeout(startHero, 200);
+    afterPaint(function () { hero.classList.add("loaded"); });
   }
 
   /* ---- Hero background video: 6с сцена (небо → лёд → дымка → тепло),
@@ -53,9 +65,9 @@
       heroVideo.insertBefore(sources, heroVideo.firstChild);
       heroVideo.load();
     };
-    // rAF после load: даём браузеру отрисовать кадр, а уже потом занимать канал.
-    if (document.readyState === "complete") requestAnimationFrame(startHeroVideo);
-    else window.addEventListener("load", function () { requestAnimationFrame(startHeroVideo); }, { once: true });
+    // После load и первой отрисовки: сперва кадр, потом занимаем канал.
+    if (document.readyState === "complete") afterPaint(startHeroVideo);
+    else window.addEventListener("load", function () { afterPaint(startHeroVideo); }, { once: true });
 
     var freezeHeroEnd = function () {
       heroVideo.currentTime = Math.max(0, heroVideo.duration - 0.05);
@@ -79,7 +91,7 @@
     }
   }
 
-  /* ---- Bottle animation video: 7с всплеск, потом кадр застывает ---- */
+  /* ---- Bottle animation video: 4с стекающих капель, дальше по кругу ---- */
   var bottleVideo = document.getElementById("bottleVideo");
   if (bottleVideo) {
     var bottleMp4  = bottleVideo.getAttribute("data-mp4");
@@ -87,15 +99,15 @@
 
     var bottleBox = bottleVideo.closest ? bottleVideo.closest(".bottle") : null;
 
-    /* Ролик застыл — только теперь включаем «дыхание» кадра. Пока он играет,
-       бутылка внутри и так качается на всплеске, и масштаб поверх читался
-       как тряска. Класс висит на .bottle, анимация — на .bottle-breath. */
+    /* Ролик зациклен в самом файле (хвост перетекает в голову), поэтому
+       останавливать его на последнем кадре больше не нужно — «ended» при
+       loop и не приходит. Замирание оставлено только для тех, кто просил
+       выключить анимации. */
     var freezeBottle = function () {
-      bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
+      bottleVideo.loop = false;
+      bottleVideo.currentTime = 0;
       bottleVideo.pause();
-      if (bottleBox) bottleBox.classList.add("is-still");
     };
-    bottleVideo.addEventListener("ended", freezeBottle);
 
     /* Прозрачность есть только у webm: альфа лежит отдельным каналом VP9.
        Движки, которые его не читают, уезжают на mp4 — там фон непрозрачный,
@@ -120,11 +132,10 @@
         }, 2500);
         bottleVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
       }
-      /* Постер — первый кадр ролика, то есть почти чистый туман: пока ролик
-         не заиграл, бутылки на экране нет. Если он так и не доедет, меняем
-         постер на готовый кадр со всплеском, чтобы первый экран не остался
-         пустым. Сам ролик прозрачности не имеет — смешивание задано в CSS
-         для всех движков сразу, отдельного класса под запасной H.264 нет.
+      /* Постер — первый кадр ролика с прозрачностью: бутылка на первом экране
+         стоит ещё до того, как приедет видео, и подмена на data-poster-still
+         ничего не меняет — там тот же кадр. Ветка оставлена на случай, если
+         в site.json пропишут отдельный запасной кадр.
          Флаг posterSwapped нужен, чтобы CMS не вернула постер обратно:
          site.json приезжает асинхронно и тоже пишет этот атрибут. */
       var posterFallback = bottleVideo.getAttribute("data-poster-still");
@@ -150,9 +161,13 @@
     };
 
     if (reduceMotion) {
-      // без анимаций: сразу финальный кадр + конденсат
-      if (document.readyState === "complete") requestAnimationFrame(function () { startBottleVideo(); bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true }); });
-      else window.addEventListener("load", function () { requestAnimationFrame(function () { startBottleVideo(); bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true }); }); }, { once: true });
+      // без анимаций: неподвижная бутылка на первом кадре, петля выключена
+      var startStill = function () {
+        startBottleVideo();
+        bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true });
+      };
+      if (document.readyState === "complete") afterPaint(startStill);
+      else window.addEventListener("load", function () { afterPaint(startStill); }, { once: true });
     } else {
       // Ролик стартует вместе с bottleEmerge (0.35 с после .loaded).
       // Задержка 350 мс совпадает с animation-delay в CSS — менять оба места.
@@ -170,8 +185,8 @@
           });
         }, 350);
       };
-      if (document.readyState === "complete") requestAnimationFrame(scheduleBottlePlay);
-      else window.addEventListener("load", function () { requestAnimationFrame(scheduleBottlePlay); }, { once: true });
+      if (document.readyState === "complete") afterPaint(scheduleBottlePlay);
+      else window.addEventListener("load", function () { afterPaint(scheduleBottlePlay); }, { once: true });
     }
   }
 
