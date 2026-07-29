@@ -2374,23 +2374,47 @@ picture { display: contents; }
   color: var(--deep);
   margin: 1.8rem 0 0.6rem;
 }
+/* Состав каждой воды — не колонка цифр, а диаграмма: бутылка сбоку, у
+   каждого компонента фотография минерала и полоса от минимума к максимуму
+   диапазона по общей для этой воды шкале. Границы полосы заданы прямо в
+   разметке через --from/--to, поэтому диаграмма живёт без единой строчки JS
+   и переживает смену языка (internal.js меняет только текст). */
+.compo-block {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 38px);
+  align-items: center;
+  margin: 1.4rem 0 1.8rem;
+}
+.compo-bottle {
+  margin: 0;
+  /* Мягкое световое пятно позади бутылки: снимки вырезаны по контуру, и без
+     подложки они висят в воздухе. Радиальный градиент вместо прямоугольной
+     плашки — чтобы не спорить с закруглениями таблицы рядом. */
+  background: radial-gradient(60% 46% at 50% 56%, rgba(220,235,245,0.85), rgba(220,235,245,0) 72%);
+}
+.compo-bottle img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 26px rgba(20,49,63,0.18));
+}
 /* Оболочка со своей прокруткой: на узком экране таблица уезжает вбок сама,
    а не растягивает страницу. tabindex ей не нужен — с клавиатуры внутрь
    попадают по ссылкам, а прокручиваемая область без фокуса остаётся
    доступной колесом и жестом. */
-.compo-table {
+.compo-chart {
   overflow-x: auto;
-  margin: 1.2rem 0 1.5rem;
   border: 1px solid rgba(62,122,152,0.18);
   border-radius: 14px;
   background: rgba(255,255,255,0.62);
 }
-.compo-table table {
+.compo-chart table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
 }
-.compo-table caption {
+.compo-chart caption {
   caption-side: top;
   text-align: left;
   padding: 0.9rem 1.1rem 0.2rem;
@@ -2398,13 +2422,13 @@ picture { display: contents; }
   font-weight: 600;
   color: var(--deep);
 }
-.compo-table th,
-.compo-table td {
-  padding: 0.62rem 1.1rem;
+.compo-chart th,
+.compo-chart td {
+  padding: 0.5rem 1.1rem;
   text-align: left;
-  vertical-align: baseline;
+  vertical-align: middle;
 }
-.compo-table thead th {
+.compo-chart thead th {
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -2412,25 +2436,103 @@ picture { display: contents; }
   color: var(--glacier-d);
   border-bottom: 1px solid rgba(62,122,152,0.18);
 }
-.compo-table tbody th {
-  width: 58%;
+.compo-chart thead .compo-h-num { text-align: right; }
+.compo-chart tbody th {
   font-weight: 400;
   color: var(--ink);
+}
+.compo-chart tbody tr + tr { border-top: 1px solid rgba(62,122,152,0.1); }
+.compo-chart tbody tr.is-total { background: rgba(62,122,152,0.07); }
+.compo-chart tbody tr.is-total th,
+.compo-chart tbody tr.is-total td {
+  font-weight: 600;
+  color: var(--deep);
+}
+/* Камень в строке — тот же приём, что в блоке «Что внутри» на главной:
+   снимок на белом фоне студии, multiply растворяет фон в цвете страницы,
+   так что вырезка по контуру не нужна. */
+/* Флексом накрыта обёртка внутри ячейки, а не сама ячейка: display:flex на
+   <th> выбил бы её из табличной раскладки и развалил колонки. Заодно длинное
+   название переносится рядом с камнем, а не под ним. */
+.compo-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.compo-el {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 34px;
+}
+.compo-el img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+/* У сульфатов, хлоридов и пары натрий+калий снимка нет — вместо камня
+   ставим формулу тем же антиквенным набором, что и символы на главной.
+   Кегль подобран по самому широкому обозначению (Na+K): оно должно
+   умещаться в бокс камня, иначе формула наезжает на название. */
+.compo-el.is-sym {
+  font-family: var(--ff-serif);
+  font-size: 0.9rem;
+  color: var(--glacier-d);
+  white-space: nowrap;
+}
+.compo-name { min-width: 0; }
+/* 32% — ровно столько, чтобы самому длинному названию («Общая жёсткость, не
+   более») хватило места в одну строку и строки состава не разъезжались по
+   высоте. */
+.compo-bar { width: 32%; }
+.compo-track {
+  position: relative;
+  display: block;
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(62,122,152,0.13);
+}
+/* Полоса начинается не от нуля, а от минимума диапазона: видно и сколько
+   компонента в воде, и насколько широко значение гуляет от партии к партии.
+   min-width держит видимой даже кремниевую кислоту — её диапазон занимает
+   чуть больше процента шкалы. */
+.compo-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--from, 0%);
+  right: calc(100% - var(--to, 100%));
+  min-width: 7px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--glacier), var(--glacier-d));
+}
+/* Минерализация и жёсткость меряются в других единицах — по шкале мг/л их
+   ставить нельзя, поэтому в этих строках вместо полосы прочерк. */
+.compo-dash {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(62,122,152,0.3);
 }
 /* Диапазоны вида «1300 – 1600» читаются столбиком только моноширинными
    цифрами, и разрывать их переносом нельзя — иначе половина уедет на
    следующую строку. */
-.compo-table tbody td {
+.compo-num {
+  text-align: right;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   color: var(--deep);
 }
-.compo-table tbody tr + tr { border-top: 1px solid rgba(62,122,152,0.1); }
-.compo-table tbody tr.is-total { background: rgba(62,122,152,0.07); }
-.compo-table tbody tr.is-total th,
-.compo-table tbody tr.is-total td {
-  font-weight: 600;
-  color: var(--deep);
+.compo-scale {
+  margin: 0;
+  padding: 0.7rem 1.1rem 0.9rem;
+  border-top: 1px solid rgba(62,122,152,0.1);
+  font-size: 0.82rem;
+  color: var(--muted);
 }
 /* Оговорка «только вне фазы обострения» — не рядовая строка текста:
    выделяем её так же, как выделяют предупреждение на этикетке. */
@@ -2440,11 +2542,25 @@ picture { display: contents; }
   background: rgba(62,122,152,0.06);
   border-radius: 0 10px 10px 0;
 }
+@media (max-width: 900px) {
+  /* Бутылка уходит наверх и ужимается: рядом с таблицей ей нужно не меньше
+     150 px, иначе колонка с названиями схлопывается в лесенку из переносов. */
+  .compo-block { grid-template-columns: minmax(0, 1fr); }
+  .compo-bottle { width: 120px; margin: 0 auto; }
+}
 @media (max-width: 767px) {
-  .compo-table table { font-size: 0.9rem; }
-  .compo-table th,
-  .compo-table td { padding: 0.55rem 0.85rem; }
-  .compo-table tbody th { width: auto; }
+  .compo-chart table { font-size: 0.84rem; }
+  .compo-chart th,
+  .compo-chart td { padding: 0.45rem 0.42rem; }
+  /* Разрядка и капс в шапке — самое широкое место таблицы: «СОДЕРЖАНИЕ» одним
+     куском задавало ширину колонки и выталкивало таблицу за край экрана. */
+  .compo-chart thead th { font-size: 0.68rem; letter-spacing: 0.02em; }
+  .compo-cell { gap: 0.5rem; }
+  .compo-el { width: 30px; height: 26px; }
+  .compo-el.is-sym { font-size: 0.66rem; }
+  /* Не проценты, а фиксированные пиксели: доля от ширины таблицы в auto-раскладке
+     считается по кругу, и полоса раздувала таблицу за край экрана. */
+  .compo-bar { width: 60px; }
 }
 
 /* ---- Где купить (buy.html) ---- */
