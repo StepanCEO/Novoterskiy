@@ -2622,3 +2622,119 @@ picture { display: contents; }
   .news-item { grid-template-columns: 1fr; gap: 1.1rem; padding: 1.2rem 1.3rem; }
   .news-photo { width: 100%; }
 }
+
+/* ── История: полоса времени ─────────────────────────────────────────── */
+
+/* Хроника шире обычной текстовой страницы: рядом с абзацем стоит фотография,
+   в 820px они оба становятся тесными. */
+.legal-inner.is-wide { max-width: 1040px; }
+
+.timeline {
+  list-style: none;
+  margin: 2.8rem 0 0;
+  padding: 0 0 0 2.6rem;
+  position: relative;
+}
+/* Нить воды вдоль дат. Сплошная линия обрывалась бы у первого и последнего
+   года ступенькой, поэтому концы уходят в прозрачность. */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(111, 168, 196, 0) 0%,
+    rgba(111, 168, 196, 0.5) 5%,
+    rgba(111, 168, 196, 0.5) 95%,
+    rgba(111, 168, 196, 0) 100%
+  );
+}
+
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(210px, 26vw, 300px) minmax(0, 1fr);
+  grid-template-areas:
+    "year year"
+    "photo text";
+  gap: 0 2rem;
+  align-items: start;
+  margin-bottom: 3.4rem;
+}
+.tl-item:last-child { margin-bottom: 0; }
+
+/* Узелок на нити — ровно напротив года. Смещение равно отступу .timeline,
+   так что кружок садится центром на линию. */
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -2.6rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 0 0 2px var(--glacier);
+}
+
+.tl-year {
+  grid-area: year;
+  margin: 0 0 1rem;
+  font-family: var(--ff-display);
+  font-size: clamp(1.45rem, 3.2vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--glacier-d);
+}
+
+/* Кадры разной ориентации: панорамы цехов и вертикальные сканы сертификатов.
+   Рамка держит общую пропорцию, а снимок показывается целиком — обрезка съела
+   бы у сертификата печать и подписи. */
+.tl-figure {
+  grid-area: photo;
+  margin: 0;
+  padding: 8px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+}
+.tl-photo {
+  display: block;
+  width: 100%;
+  /* height: auto обязателен: с width/height в разметке браузер иначе не смотрит
+     на aspect-ratio. */
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.tl-text { grid-area: text; }
+.tl-text p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+@media (max-width: 767px) {
+  /* Фотография над текстом: 210px рядом с абзацем на 390px не оставляют
+     строке места. */
+  .timeline { padding-left: 1.9rem; }
+  .tl-item {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "year"
+      "photo"
+      "text";
+    gap: 0;
+    margin-bottom: 2.8rem;
+  }
+  .tl-item::before { left: -1.9rem; top: 0.35rem; }
+  .tl-year { margin-bottom: 0.8rem; }
+  .tl-figure { margin-bottom: 1.1rem; }
+}

@@ -35,7 +35,12 @@
           },
           {
             "label_ru": "История",
-            "label_en": "Our story",
+            "label_en": "History",
+            "url": "history.html"
+          },
+          {
+            "label_ru": "Легенда бренда",
+            "label_en": "Brand legend",
             "url": "story.html"
           }
         ]
@@ -388,6 +393,11 @@
         "label_ru": "Продукция",
         "label_en": "Products",
         "url": "catalog.html"
+      },
+      {
+        "label_ru": "История",
+        "label_en": "History",
+        "url": "history.html"
       },
       {
         "label_ru": "Источник",

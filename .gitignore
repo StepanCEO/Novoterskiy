@@ -28,3 +28,11 @@ tools/.crossbrowser/
 # где расползается вырезка фона. Пересоздаётся из самого ролика:
 # ffmpeg -c:v libvpx-vp9 -i assets/video/bottle-splash-alpha.webm -vf format=rgba out/f%03d.png
 tools/qa-bottle/
+
+# Выгрузка страницы «История» со старого сайта: дамп HTML, исходные JPEG на 9МБ
+# и контактный лист для проверки, что на кадрах. Скрипты рядом остаются в репо,
+# всё это пересоздаётся: python tools/history-src/grab.py
+tools/history-src/raw/
+tools/history-src/page.html
+tools/history-src/history.json
+tools/history-src/sheet.jpg
