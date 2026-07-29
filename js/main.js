@@ -442,9 +442,10 @@
 
   /* ---- Галерея внутри карточки товара ----
      Все снимки одного товара лежат в одной .product-photo, показан один;
-     точки под фото переключают. Скрытые кадры — display:none, поэтому
-     lazy-загрузка до них не доходит: страница каталога не тянет три десятка
-     картинок разом. Перед первым переключением «прогреваем» карточку. */
+     стрелки по краям фото и точки под ним переключают. Скрытые кадры —
+     display:none, поэтому lazy-загрузка до них не доходит: страница каталога
+     не тянет три десятка картинок разом. Перед первым переключением
+     «прогреваем» карточку. */
   function initProductGalleries() {
     document.querySelectorAll(".product").forEach(function (card) {
       // cms.js пересобирает карточки целиком, так что после перерисовки
@@ -467,12 +468,14 @@
       card.addEventListener("pointerenter", warm);
       card.addEventListener("focusin", warm);
 
+      var current = 0;
       function show(index) {
         warm();
-        shots.forEach(function (shot, i) { shot.classList.toggle("is-on", i === index); });
+        current = (index + shots.length) % shots.length;
+        shots.forEach(function (shot, i) { shot.classList.toggle("is-on", i === current); });
         dots.forEach(function (dot, i) {
-          dot.classList.toggle("is-on", i === index);
-          dot.setAttribute("aria-pressed", i === index ? "true" : "false");
+          dot.classList.toggle("is-on", i === current);
+          dot.setAttribute("aria-pressed", i === current ? "true" : "false");
         });
       }
 
@@ -486,6 +489,13 @@
           show(next);
           dots[next].focus();
         });
+      });
+
+      // Стрелки по краям фото: пролистывают по кругу, чтобы с последнего
+      // кадра можно было вернуться к бутылке одним нажатием.
+      card.querySelectorAll(".product-photo .pnav").forEach(function (arrow) {
+        var step = arrow.classList.contains("pnav-prev") ? -1 : 1;
+        arrow.addEventListener("click", function () { show(current + step); });
       });
     });
   }

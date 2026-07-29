@@ -1569,6 +1569,39 @@ picture { display: contents; }
   .product-photo .pshot.is-on img { animation: pshotIn 0.3s ease; }
 }
 @keyframes pshotIn { from { opacity: 0; } to { opacity: 1; } }
+/* Стрелки по краям фото. На мыши всплывают при наведении на карточку —
+   чтобы в спокойном состоянии витрина оставалась чистой; на тач-устройствах
+   наведения нет, поэтому там они видны всегда (медиазапрос ниже). */
+.pnav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--glacier-d);
+  background: rgba(255,255,255,0.82);
+  box-shadow: 0 2px 10px rgba(20,49,63,0.14);
+  opacity: 0;
+  transition: opacity 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.pnav svg { width: 18px; height: 18px; }
+.pnav-prev { left: 2px; }
+.pnav-next { right: 2px; }
+.pnav-next svg { transform: rotate(180deg); }
+.product:hover .pnav,
+.product:focus-within .pnav { opacity: 1; }
+.pnav:hover { background: #fff; box-shadow: 0 4px 14px rgba(20,49,63,0.2); }
+.pnav:focus-visible { opacity: 1; outline: 2px solid var(--glacier-d); outline-offset: 2px; }
+@media (hover: none) {
+  .pnav { opacity: 1; }
+}
 /* Точки переключения кадров. Сама точка — 8 px, но кнопка вокруг неё
    22 × 22, чтобы попадать пальцем. */
 .product-dots {

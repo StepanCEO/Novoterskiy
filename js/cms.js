@@ -346,6 +346,22 @@
       '" data-alt-en="' + esc(shot.alt_en) + '" /></picture>';
   }
 
+  /* Стрелки по краям фото. Лежат внутри .product-photo, чтобы попадать на
+     сам снимок, а не на подпись. Название кнопки — sr-only-строкой, как у
+     точек: так оно и озвучивается, и переводится через data-en. */
+  function navMarkup(shots) {
+    if (shots.length < 2) return "";
+    var chevron = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" ' +
+      'stroke-linecap="round" stroke-linejoin="round" /></svg>';
+    function arrow(dir, ru, en) {
+      return '<button class="pnav pnav-' + dir + '" type="button">' + chevron +
+        '<span class="sr-only" data-en="' + esc(esc(en)) + '">' + esc(ru) + '</span></button>';
+    }
+    return arrow("prev", "Предыдущее фото", "Previous photo") +
+      arrow("next", "Следующее фото", "Next photo");
+  }
+
   /* Точки под фото. Подпись лежит внутри кнопки как sr-only: она и даёт
      кнопке доступное имя, и переводится тем же механизмом data-en. */
   function dotsMarkup(shots) {
@@ -373,7 +389,7 @@
       // список живёт внутри секции со своим h2, и там уровень задаёт headingLevel.
       var hx = productHeading();
       return '<article class="product reveal"><div class="product-photo">' +
-        shots.map(shotMarkup).join("") + '</div>' + dotsMarkup(shots) +
+        shots.map(shotMarkup).join("") + navMarkup(shots) + '</div>' + dotsMarkup(shots) +
         '<' + hx + ' data-en="' + esc(titleEn) + '">' + productTitle(product.title) + '</' + hx + '>' +
         '<p class="product-type" data-en="' + esc(typeEn) + '">' + esc(product.type) + '</p>' +
         '<a class="btn btn-outline" href="' + esc(href) + '" data-analytics="product-buy" data-product="' +
