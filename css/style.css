@@ -2594,10 +2594,12 @@ picture { display: contents; }
   border-color: rgba(62,122,152,0.42);
   box-shadow: 0 18px 34px -26px rgba(20,49,63,0.55);
 }
-/* Логотипы маркетплейсов не наши — вместо чужих картинок ставим набранное
-   название в фирменной типографике: обновление логотипа на их стороне такую
-   плитку не состарит. Высота марки фиксирована, чтобы подписи трёх плиток
-   стояли на одной линии независимо от того, картинка внутри или слово. */
+/* На плитке стоит настоящий логотип площадки: по нему глаз находит нужную
+   кнопку быстрее, чем по набранному названию. Марки взяты в том виде, в каком
+   их публикует сам бренд, — цвета и пропорции не трогаем. Высота бокса
+   фиксирована, чтобы подписи трёх плиток стояли на одной линии, а логотипы
+   разной ширины (у Wildberries марка вдвое шире монограммы) центровались
+   каждый в своей ячейке. */
 .channel-mark {
   display: flex;
   align-items: center;
@@ -2606,13 +2608,6 @@ picture { display: contents; }
   margin-bottom: 0.5rem;
 }
 .channel-mark img { height: 40px; width: auto; }
-.channel-mark-word {
-  font-family: var(--ff-display);
-  font-size: 1.24rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--deep);
-}
 .channel-name {
   font-family: var(--ff-display);
   font-size: 0.98rem;
@@ -2689,14 +2684,16 @@ picture { display: contents; }
     padding: 1rem 1.1rem;
     text-align: left;
   }
+  /* Не min-width, а фиксированная ширина: марки у площадок разной ширины, и от
+     минимума колонка Wildberries раздувалась — подписи трёх плиток, стоящих
+     теперь столбиком друг под другом, начинались не с одной вертикали. */
   .channel-mark {
     grid-row: 1 / span 2;
     height: auto;
-    min-width: 68px;
+    width: 80px;
     margin-bottom: 0;
   }
   .channel-mark img { height: 30px; }
-  .channel-mark-word { font-size: 1.02rem; }
   .shop { grid-template-columns: 1fr; padding: 1.1rem; }
   .shop-map iframe { height: 220px; }
 }

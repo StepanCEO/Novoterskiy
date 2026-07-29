@@ -39,6 +39,11 @@ tools/compo-src/
 # Пересоздаётся curl'ом со страниц /buy/ и /firm_sale/.
 tools/buy-src/
 
+# Исходные PNG логотипов маркетплейсов со старого сайта: в репо лежат готовые
+# webp/avif в assets/. Пересоздаются curl'ом со static.tildacdn.com — адреса
+# видны в дампе tools/buy-src/buy.html.
+tools/logo-src/
+
 # Выгрузка страницы «История» со старого сайта: дамп HTML, исходные JPEG на 9МБ
 # и контактный лист для проверки, что на кадрах. Скрипты рядом остаются в репо,
 # всё это пересоздаётся: python tools/history-src/grab.py
