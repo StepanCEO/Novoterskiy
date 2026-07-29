@@ -288,36 +288,93 @@
     return "h" + Math.min(level + 1, 6);
   }
 
+  /* В названии товара объём набран отдельно — «Целебная <em>0.5</em>». В JSON
+     он лежит одной строкой, поэтому последнее слово-число оборачиваем сами:
+     иначе после перерисовки из CMS карточка теряет акцент на литраже. */
+  function productTitle(title) {
+    var m = String(title).match(/^(.*\S)\s+([\d.,]+)$/);
+    if (!m) return esc(title);
+    return esc(m[1]) + " <em>" + esc(m[2]) + "</em>";
+  }
+
+  /* У товара несколько снимков: бутылка, две бутылки, упаковка, контрэтикетка.
+     Первый лежит в photo/photo_width/photo_height (так было до галереи и так
+     его редактирует CMS), остальные — в gallery[]. Приводим к одному виду. */
+  function productShots(product) {
+    var alt = product.alt_ru || (product.title + " — " + product.type);
+    var shots = [{
+      photo: product.photo,
+      width: product.photo_width,
+      height: product.photo_height,
+      alt_ru: alt,
+      alt_en: product.alt_en || alt,
+      caption_ru: product.photo_caption_ru,
+      caption_en: product.photo_caption_en
+    }];
+    (Array.isArray(product.gallery) ? product.gallery : []).forEach(function (shot) {
+      if (!shot || !shot.photo) return;
+      var shotAlt = shot.alt_ru || alt;
+      shots.push({
+        photo: shot.photo,
+        width: shot.photo_width,
+        height: shot.photo_height,
+        alt_ru: shotAlt,
+        alt_en: shot.alt_en || shotAlt,
+        caption_ru: shot.caption_ru,
+        caption_en: shot.caption_en
+      });
+    });
+    return shots;
+  }
+
+  function shotMarkup(shot, index) {
+    var photo = safeAsset(shot.photo, "");
+    // AVIF-источник ставим «на пробу»: у файла из репозитория пара .avif есть,
+    // у только что загруженного через CMS — нет. Если источник не откроется,
+    // его снимет обработчик ошибки ниже, и картинка догрузится в своём формате.
+    var avif = photo.replace(/\.(webp|jpe?g|png)$/i, ".avif");
+    var source = avif !== photo ? '<source srcset="' + esc(avif) + '" type="image/avif" />' : "";
+    // width/height обязательны, даже когда высоту задаёт CSS: без них браузер
+    // не знает пропорций до загрузки и верстка дёргается (CLS), а Lighthouse
+    // ругается на unsized-images. Если в CMS размеры не указали, берём формат
+    // бутылки — 225×763.
+    var w = parseInt(shot.width, 10) || 225;
+    var h = parseInt(shot.height, 10) || 763;
+    return '<picture class="pshot' + (index === 0 ? " is-on" : "") + '">' + source +
+      '<img src="' + esc(photo) + '" width="' + w + '" height="' + h +
+      '" loading="lazy" alt="' + esc(shot.alt_ru) + '" data-alt-ru="' + esc(shot.alt_ru) +
+      '" data-alt-en="' + esc(shot.alt_en) + '" /></picture>';
+  }
+
+  /* Точки под фото. Подпись лежит внутри кнопки как sr-only: она и даёт
+     кнопке доступное имя, и переводится тем же механизмом data-en. */
+  function dotsMarkup(shots) {
+    if (shots.length < 2) return "";
+    return '<div class="product-dots">' + shots.map(function (shot, index) {
+      var ru = shot.caption_ru || ("Фото " + (index + 1));
+      var en = shot.caption_en || ("Photo " + (index + 1));
+      return '<button class="pdot' + (index === 0 ? " is-on" : "") + '" type="button" aria-pressed="' +
+        (index === 0 ? "true" : "false") + '"><span class="sr-only" data-en="' + esc(esc(en)) + '">' +
+        esc(ru) + '</span></button>';
+    }).join("") + '</div>';
+  }
+
   function hydrateProducts(data) {
     var track = one(".collection-track");
     if (!track || !data || !Array.isArray(data.items) || !data.items.length) return;
     var collection = siteContent.collection || {};
     track.innerHTML = data.items.map(function (product) {
-      var photo = safeAsset(product.photo, "");
       var href = safeUrl(resolveHash(product.buy_url), resolveHash(collection.default_buy_url) || "index.html#where", true);
-      var titleEn = esc(product.title_en || product.title);
+      var titleEn = productTitle(product.title_en || product.title);
       var typeEn = esc(product.type_en || product.type);
-      var alt = product.alt_ru || (product.title + " — " + product.type);
-      // AVIF-источник ставим «на пробу»: у файла из репозитория пара .avif есть,
-      // у только что загруженного через CMS — нет. Если источник не откроется,
-      // его снимет обработчик ошибки ниже, и картинка догрузится в своём формате.
-      var avif = photo.replace(/\.(webp|jpe?g|png)$/i, ".avif");
-      var source = avif !== photo ? '<source srcset="' + esc(avif) + '" type="image/avif" />' : "";
-      // width/height обязательны, даже когда высоту задаёт CSS: без них браузер
-      // не знает пропорций до загрузки и верстка дёргается (CLS), а Lighthouse
-      // ругается на unsized-images. Фото бутылок из products.json — одного
-      // формата 225×763; если в CMS указали свои размеры, берём их.
-      var w = parseInt(product.photo_width, 10) || 225;
-      var h = parseInt(product.photo_height, 10) || 763;
+      var shots = productShots(product);
       // На каталоге заголовок страницы — h1, поэтому карточки идут h2:
       // h3 после h1 даёт разрыв в уровнях (heading-order). На главной этот
       // список живёт внутри секции со своим h2, и там уровень задаёт headingLevel.
       var hx = productHeading();
-      return '<article class="product reveal"><div class="product-photo"><picture>' + source +
-        '<img src="' + esc(photo) + '" width="' + w + '" height="' + h +
-        '" loading="lazy" alt="' + esc(alt) + '" data-alt-ru="' + esc(alt) +
-        '" data-alt-en="' + esc(product.alt_en || alt) + '" /></picture></div>' +
-        '<' + hx + ' data-en="' + esc(titleEn) + '">' + esc(product.title) + '</' + hx + '>' +
+      return '<article class="product reveal"><div class="product-photo">' +
+        shots.map(shotMarkup).join("") + '</div>' + dotsMarkup(shots) +
+        '<' + hx + ' data-en="' + esc(titleEn) + '">' + productTitle(product.title) + '</' + hx + '>' +
         '<p class="product-type" data-en="' + esc(typeEn) + '">' + esc(product.type) + '</p>' +
         '<a class="btn btn-outline" href="' + esc(href) + '" data-analytics="product-buy" data-product="' +
         esc(product.id) + '" data-en="' + esc(esc(collection.buy_en || "Buy")) + '">' + esc(collection.buy_ru || "Купить") + '</a></article>';

@@ -440,6 +440,57 @@
   }
   initCollectionDots();
 
+  /* ---- Галерея внутри карточки товара ----
+     Все снимки одного товара лежат в одной .product-photo, показан один;
+     точки под фото переключают. Скрытые кадры — display:none, поэтому
+     lazy-загрузка до них не доходит: страница каталога не тянет три десятка
+     картинок разом. Перед первым переключением «прогреваем» карточку. */
+  function initProductGalleries() {
+    document.querySelectorAll(".product").forEach(function (card) {
+      // cms.js пересобирает карточки целиком, так что после перерисовки
+      // флага на новом узле нет и обработчики вешаются заново.
+      if (card.dataset.gallery) return;
+      var shots = card.querySelectorAll(".product-photo .pshot");
+      var dots = card.querySelectorAll(".product-dots .pdot");
+      if (shots.length < 2 || dots.length !== shots.length) return;
+      card.dataset.gallery = "on";
+
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        shots.forEach(function (shot) {
+          var img = shot.querySelector("img");
+          if (img) img.loading = "eager";
+        });
+      }
+      card.addEventListener("pointerenter", warm);
+      card.addEventListener("focusin", warm);
+
+      function show(index) {
+        warm();
+        shots.forEach(function (shot, i) { shot.classList.toggle("is-on", i === index); });
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle("is-on", i === index);
+          dot.setAttribute("aria-pressed", i === index ? "true" : "false");
+        });
+      }
+
+      dots.forEach(function (dot, index) {
+        dot.addEventListener("click", function () { show(index); });
+        dot.addEventListener("keydown", function (ev) {
+          var step = ev.key === "ArrowRight" ? 1 : ev.key === "ArrowLeft" ? -1 : 0;
+          if (!step) return;
+          ev.preventDefault();
+          var next = (index + step + dots.length) % dots.length;
+          show(next);
+          dots[next].focus();
+        });
+      });
+    });
+  }
+  initProductGalleries();
+
   /* ---- Language toggle (RU <-> EN, no reload) ---- */
   var langToggle = document.getElementById("langToggle");
   var htmlEl = document.documentElement;
@@ -565,6 +616,7 @@
     ruStore = new WeakMap();
     applyReveals(document);
     initCollectionDots(); // карусель перерисована из JSON — пересобираем точки
+    initProductGalleries();
     if (htmlEl.getAttribute("lang") === "en") setLang("en");
   });
 })();
