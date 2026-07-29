@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=catalog-v17" />
+<link rel="stylesheet" href="css/style.css?v=hero-v19" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -233,27 +233,37 @@
     <!-- The bottle over the full-bleed mountain, with mist at its base -->
     <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
       <div class="bottle">
-        <!-- Ролик со всплеском: 7 секунд, дальше кадр просто застывает.
-             Прозрачности у него нет и быть не может: съёмка сделана на светлом
-             тумане, где стекло, вода и снег сами почти белые. Кадр смешивается
-             с горой через mix-blend-mode: darken в CSS — белёсый фон уходит,
-             бутылка и кристаллы остаются.
-             poster — ровно первый кадр ролика, поэтому в момент старта
-             подмены не видно; data-poster-still подставится, только если
-             ролик так и не загрузится.
+        <!-- Ролик со всплеском: 5,5 секунды, дальше кадр просто застывает.
+             WebM несёт настоящий канал прозрачности (alpha_mode=1): фон уже
+             вырезан в самом файле, лёд и брызги в нём сохранены. Поэтому кадр
+             кладётся поверх горы как есть, без смешивания. Запасной mp4 альфы
+             не несёт — для него main.js ставит .is-flat, и старое смешивание
+             включается только там.
+             Ролик короче исходных семи секунд намеренно: в последних полутора
+             секундах вырезка фона расползалась — прозрачность пустого угла
+             уходила с 0 до 90 из 255, вверху до 255, и вся картинка затягивалась
+             голубой плёнкой. Застывал кадр ровно там, так что плёнка висела
+             постоянно. Хвост отрезан, ролик замирает на последнем чистом кадре.
+             poster и data-poster-still — первый и последний кадры ролика,
+             пересобранные из него же и тоже с прозрачностью.
              Адреса в data-*, а не в <source>: Safari на <source> с VP9
-             навсегда удерживает событие load страницы — см. #heroVideo. -->
-        <video class="bottle-video" id="bottleVideo" width="760" height="700"
-               muted playsinline preload="none" disablepictureinpicture
-               aria-hidden="true"
-               poster="assets/video/bottle-splash-start.webp"
-               data-poster-still="assets/video/bottle-splash-poster.webp"
-               data-webm="assets/video/bottle-splash-alpha.webm"
-               data-mp4="assets/video/bottle-splash-hq.mp4">
-          <picture>
-            <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-splash-poster.webp" width="760" height="700" alt="Новотерская Целебная" />
-          </picture>
-        </video>
+             навсегда удерживает событие load страницы — см. #heroVideo.
+             .bottle-breath — отдельная обёртка под «дыхание»: у .bottle свой
+             transform, разный на каждом брейкпоинте, и масштаб туда не
+             вписать, а на самом ролике анимация перезапускала бы появление. -->
+        <div class="bottle-breath">
+          <video class="bottle-video" id="bottleVideo" width="760" height="700"
+                 muted playsinline preload="none" disablepictureinpicture
+                 aria-hidden="true"
+                 poster="assets/video/bottle-splash-start.webp?v=hero-v19"
+                 data-poster-still="assets/video/bottle-splash-poster.webp?v=hero-v19"
+                 data-webm="assets/video/bottle-splash-alpha.webm?v=hero-v19"
+                 data-mp4="assets/video/bottle-splash-hq.mp4?v=hero-v19">
+            <picture>
+              <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-splash-poster.webp?v=hero-v19" width="760" height="700" alt="Новотерская Целебная" />
+            </picture>
+          </video>
+        </div>
       </div>
       <div class="hero-mist" aria-hidden="true"></div>
     </figure>
@@ -758,8 +768,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=catalog-v17" defer></script>
-<script src="js/main.js?v=catalog-v17" defer></script>
-<script src="js/cms.js?v=catalog-v17" defer></script>
+<script src="js/nav.js?v=hero-v19" defer></script>
+<script src="js/main.js?v=hero-v19" defer></script>
+<script src="js/cms.js?v=hero-v19" defer></script>
 </body>
 </html>

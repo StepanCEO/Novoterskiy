@@ -85,11 +85,29 @@
     var bottleMp4  = bottleVideo.getAttribute("data-mp4");
     var bottleWebm = bottleVideo.getAttribute("data-webm");
 
+    var bottleBox = bottleVideo.closest ? bottleVideo.closest(".bottle") : null;
+
+    /* Ролик застыл — только теперь включаем «дыхание» кадра. Пока он играет,
+       бутылка внутри и так качается на всплеске, и масштаб поверх читался
+       как тряска. Класс висит на .bottle, анимация — на .bottle-breath. */
     var freezeBottle = function () {
       bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
       bottleVideo.pause();
+      if (bottleBox) bottleBox.classList.add("is-still");
     };
     bottleVideo.addEventListener("ended", freezeBottle);
+
+    /* Прозрачность есть только у webm: альфа лежит отдельным каналом VP9.
+       Движки, которые его не читают, уезжают на mp4 — там фон непрозрачный,
+       и для них возвращаем прежнее смешивание darken (см. .bottle.is-flat).
+       Проверяем currentSrc, а не список источников: подмена на mp4 бывает и
+       по сторожевому таймеру ниже. */
+    var markFlatSource = function () {
+      if (!bottleBox) return;
+      bottleBox.classList.toggle("is-flat", /\.mp4(\?|#|$)/i.test(bottleVideo.currentSrc || ""));
+    };
+    bottleVideo.addEventListener("loadedmetadata", markFlatSource);
+    bottleVideo.addEventListener("loadeddata", markFlatSource);
 
     var startBottleVideo = function () {
       if (bottleMp4) {
