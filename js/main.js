@@ -69,7 +69,11 @@
     if (document.readyState === "complete") afterPaint(startHeroVideo);
     else window.addEventListener("load", function () { afterPaint(startHeroVideo); }, { once: true });
 
+    // heroDone: перемотка к последнему кадру сбрасывает ended, поэтому проход
+    // отмечаем сами — иначе возврат на вкладку пускает панораму заново.
+    var heroDone = false;
     var freezeHeroEnd = function () {
+      heroDone = true;
       heroVideo.currentTime = Math.max(0, heroVideo.duration - 0.05);
       heroVideo.pause();
     };
@@ -84,14 +88,16 @@
       };
       if (heroVideo.readyState >= 2) playHero();
       else heroVideo.addEventListener("canplay", playHero, { once: true });
-      // если вкладка была в фоне и браузер приостановил ролик — доигрываем
+      // если вкладка была в фоне и браузер приостановил ролик — доигрываем;
+      // после последнего кадра не трогаем, иначе панорама пойдёт заново
       document.addEventListener("visibilitychange", function () {
-        if (document.visibilityState === "visible" && !heroVideo.ended && heroVideo.paused) playHero();
+        if (heroDone || document.visibilityState !== "visible") return;
+        if (!heroVideo.ended && heroVideo.paused) playHero();
       });
     }
   }
 
-  /* ---- Bottle animation video: 4с стекающих капель, дальше по кругу ---- */
+  /* ---- Bottle animation video: 4с стекающих капель, один проход ---- */
   var bottleVideo = document.getElementById("bottleVideo");
   if (bottleVideo) {
     var bottleMp4  = bottleVideo.getAttribute("data-mp4");
@@ -99,12 +105,24 @@
 
     var bottleBox = bottleVideo.closest ? bottleVideo.closest(".bottle") : null;
 
-    /* Ролик зациклен в самом файле (хвост перетекает в голову), поэтому
-       останавливать его на последнем кадре больше не нужно — «ended» при
-       loop и не приходит. Замирание оставлено только для тех, кто просил
-       выключить анимации. */
-    var freezeBottle = function () {
-      bottleVideo.loop = false;
+    /* Ролик проходит один раз и замирает на последнем кадре: капли стекли —
+       и бутылка дальше просто стоит. По кругу его не гоняем, поэтому loop
+       снят и в разметке. Кадр держим сами: без явной остановки у последнего
+       кадра часть движков откатывает картинку к постеру.
+       bottleDone запоминает, что проход уже был: перемотка к последнему кадру
+       сбрасывает флаг ended, и без своей отметки возврат на вкладку запустил
+       бы ролик заново — то самое «начинается по кругу». */
+    var bottleDone = false;
+    var freezeBottleEnd = function () {
+      bottleDone = true;
+      if (!isFinite(bottleVideo.duration)) return;
+      bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
+      bottleVideo.pause();
+    };
+    bottleVideo.addEventListener("ended", freezeBottleEnd);
+
+    /* Для тех, кто просил выключить анимации, — неподвижный первый кадр. */
+    var freezeBottleStart = function () {
       bottleVideo.currentTime = 0;
       bottleVideo.pause();
     };
@@ -161,10 +179,10 @@
     };
 
     if (reduceMotion) {
-      // без анимаций: неподвижная бутылка на первом кадре, петля выключена
+      // без анимаций: неподвижная бутылка на первом кадре
       var startStill = function () {
         startBottleVideo();
-        bottleVideo.addEventListener("loadedmetadata", freezeBottle, { once: true });
+        bottleVideo.addEventListener("loadedmetadata", freezeBottleStart, { once: true });
       };
       if (document.readyState === "complete") afterPaint(startStill);
       else window.addEventListener("load", function () { afterPaint(startStill); }, { once: true });
@@ -180,8 +198,11 @@
           };
           if (bottleVideo.readyState >= 2) playBottle();
           else bottleVideo.addEventListener("canplay", playBottle, { once: true });
+          // Ушли со вкладки на середине — вернулись и досматриваем. Если проход
+          // уже закончился, ничего не трогаем: бутылка стоит на стоп-кадре.
           document.addEventListener("visibilitychange", function () {
-            if (document.visibilityState === "visible" && !bottleVideo.ended && bottleVideo.paused) bottleVideo.play();
+            if (bottleDone || document.visibilityState !== "visible") return;
+            if (!bottleVideo.ended && bottleVideo.paused) bottleVideo.play();
           });
         }, 350);
       };
