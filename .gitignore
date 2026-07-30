@@ -51,3 +51,10 @@ tools/history-src/raw/
 tools/history-src/page.html
 tools/history-src/history.json
 tools/history-src/sheet.jpg
+
+# Выгрузка страниц «Лаборатория» и «Защита качества» со старого сайта: дампы
+# HTML на 800КБ, из которых выписаны тексты для lab.html, и исходные снимки
+# лаборатории. Скрипт рядом остаётся в репо, всё это пересоздаётся:
+# python tools/lab-src/grab.py
+tools/lab-src/raw/
+tools/lab-src/*.html

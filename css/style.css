@@ -2868,6 +2868,99 @@ picture { display: contents; }
   .awards-track { scroll-behavior: auto; }
 }
 
+/* ---- Снимки лаборатории (lab.html) ---- */
+/* Та же листалка, что у наград, но содержимое другое: не вертикальные сканы
+   дипломов, которые надо показать целиком, а горизонтальные фотографии. Им
+   нужна своя пропорция, обрезка по кадру вместо полей по бокам и по две
+   карточки в ряду — на четырёх снимок становится с почтовую марку.
+   Селектор из двух классов намеренно перекрывает и медиазапросы галереи наград
+   (у тех вес меньше), поэтому своя раскладка на узких экранах — ниже. */
+.lab-shots .awards-track { --per: 2; }
+.lab-shots .award-img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+@media (max-width: 767px) {
+  .lab-shots .awards-track { --per: 1; }
+}
+
+/* ---- Признаки подлинной бутылки (lab.html) ---- */
+/* Список и снимок маркировки рядом. Снимок липкий: список длиннее него, и без
+   position: sticky нижние пункты читались бы напротив пустого места. */
+.guard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+  gap: 2rem;
+  align-items: start;
+  margin: 1.6rem 0 0;
+}
+.legal-body .guard-list {
+  /* Родная нумерация <ol> здесь лишняя: номер рисует счётчик в ::before,
+     и без этого пункт начинался бы с двух цифр подряд — «1. ① Колпачок». */
+  list-style: none;
+  counter-reset: guard;
+  display: grid;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+}
+.legal-body .guard-list > li {
+  counter-increment: guard;
+  position: relative;
+  padding: 0 0 0 2.6rem;
+  margin: 0;
+}
+/* Точка-маркер из .legal-body li здесь не нужна — её место занимает номер. */
+.legal-body .guard-list > li::before {
+  content: counter(guard);
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: rgba(62,122,152,0.1);
+  border-radius: 50%;
+  font-family: var(--ff-label);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--glacier-d);
+}
+.legal-body .guard-list > li > p { margin: 0; }
+.guard-part {
+  font-family: var(--ff-label);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--glacier-d);
+}
+.legal-body .guard-list > li > .guard-part { margin-bottom: 0.25rem; }
+.guard-figure {
+  position: sticky;
+  top: 92px;
+  margin: 0;
+}
+.guard-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+.guard-figure figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  /* Снимок под списком: в одну колонку он сжимается до нечитаемого, а буквы
+     КМВ и дату розлива на нём как раз и надо разглядеть. */
+  .guard { grid-template-columns: 1fr; gap: 1.6rem; }
+  .guard-figure { position: static; max-width: 420px; }
+}
+
 /* ---- Возврат на главную (внутренние страницы) ---- */
 .legal-back {
   margin: 3rem 0 0;

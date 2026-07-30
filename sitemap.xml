@@ -76,6 +76,23 @@
   </url>
 
   <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/lab.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/lab.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/lab.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/lab.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stepanceo.github.io/Novoterskiy/lab.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/lab.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/lab.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stepanceo.github.io/Novoterskiy/lab.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://stepanceo.github.io/Novoterskiy/history.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://stepanceo.github.io/Novoterskiy/history.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://stepanceo.github.io/Novoterskiy/history.html?lang=en"/>

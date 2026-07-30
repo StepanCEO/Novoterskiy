@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=hero-v24" />
+<link rel="stylesheet" href="css/style.css?v=hero-v25" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -123,8 +123,8 @@
 
   <!-- Меню в две ступени: структура повторяет старый сайт, но свёрнута до
        5 верхних пунктов. «Главная» отдельным пунктом не нужна — на неё ведёт
-       логотип. Подпункты «О компании» ведут внутрь секции «Доверие и качество»
-       (#production, #lab): отдельных страниц под них нет. -->
+       логотип. Подпункт «Производство» ведёт внутрь секции «Доверие и
+       качество» (#production): отдельной страницы под него нет. -->
   <nav class="site-nav" id="siteNav" aria-label="Основная навигация">
     <div class="nav-item">
       <button class="nav-link nav-toggle" type="button" aria-expanded="false" aria-controls="navSubAbout">
@@ -132,7 +132,7 @@
       </button>
       <ul class="nav-sub" id="navSubAbout">
         <li><a href="#production" data-en="Production">Производство</a></li>
-        <li><a href="#lab" data-en="Laboratory">Лаборатория</a></li>
+        <li><a href="lab.html" data-en="Laboratory">Лаборатория</a></li>
         <li><a data-en="Documents" href="documents.html">Документы</a></li>
         <li><a data-en="Awards" href="awards.html">Награды</a></li>
         <li><a href="history.html" data-en="History">История</a></li>
@@ -254,12 +254,12 @@
           <video class="bottle-video" id="bottleVideo" width="420" height="1402"
                  muted playsinline preload="none" disablepictureinpicture
                  aria-hidden="true"
-                 poster="assets/video/bottle-loop-poster.webp?v=hero-v24"
-                 data-poster-still="assets/video/bottle-loop-poster.webp?v=hero-v24"
-                 data-webm="assets/video/bottle-loop-alpha.webm?v=hero-v24"
-                 data-mp4="assets/video/bottle-loop.mp4?v=hero-v24">
+                 poster="assets/video/bottle-loop-poster.webp?v=hero-v25"
+                 data-poster-still="assets/video/bottle-loop-poster.webp?v=hero-v25"
+                 data-webm="assets/video/bottle-loop-alpha.webm?v=hero-v25"
+                 data-mp4="assets/video/bottle-loop.mp4?v=hero-v25">
             <picture>
-              <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-loop-poster.webp?v=hero-v24" width="420" height="1402" alt="Новотерская Целебная" />
+              <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-loop-poster.webp?v=hero-v25" width="420" height="1402" alt="Новотерская Целебная" />
             </picture>
           </video>
         </div>
@@ -548,8 +548,10 @@
   </ul>
 
   <!-- Process line: 01 → 05 -->
-  <!-- id="production" и id="lab" ниже — цели подпунктов меню «О компании».
-       Отдельных страниц под них нет, поэтому ведём внутрь этой секции. -->
+  <!-- id="production" — цель подпункта «Производство» в меню «О компании»:
+       отдельной страницы под него нет, поэтому ведём внутрь этой секции.
+       У «Лаборатории» страница своя (lab.html), сюда она больше не указывает,
+       но id="lab" оставлен: на старые ссылки с якорем он ещё отвечает. -->
   <ol class="trust-grid" id="production" aria-label="Путь качества">
     <li class="trust-card reveal">
       <span class="trust-num">01</span>
@@ -565,6 +567,7 @@
       <span class="trust-num">03</span>
       <h3 data-en="Quality control">Контроль качества</h3>
       <p data-en="Own laboratory, batch-by-batch testing and safety indicators to GOST R 54316 and TR TS 021/2011.">Собственная лаборатория, контроль каждой партии и показатели безопасности по ГОСТ Р 54316 и ТР ТС 021/2011.</p>
+      <a class="trust-link" href="lab.html" data-en="About the laboratory">О лаборатории</a>
     </li>
     <li class="trust-card reveal">
       <span class="trust-num">04</span>
@@ -780,8 +783,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=hero-v24" defer></script>
-<script src="js/main.js?v=hero-v24" defer></script>
-<script src="js/cms.js?v=hero-v24" defer></script>
+<script src="js/nav.js?v=hero-v25" defer></script>
+<script src="js/main.js?v=hero-v25" defer></script>
+<script src="js/cms.js?v=hero-v25" defer></script>
 </body>
 </html>

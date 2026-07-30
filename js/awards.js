@@ -37,8 +37,15 @@
 
     var nav = document.createElement("div");
     nav.className = "awards-nav";
-    var prev = button(ICON_PREV, "Предыдущие награды", "Previous awards");
-    var next = button(ICON_NEXT, "Следующие награды", "Next awards");
+    /* Подпись кнопок можно переопределить на самой листалке: та же механика
+       листает не только дипломы (например, снимки лаборатории), а «Следующие
+       награды» в скринридере там было бы просто неправдой. */
+    var prev = button(ICON_PREV,
+      slider.getAttribute("data-prev-ru") || "Предыдущие награды",
+      slider.getAttribute("data-prev-en") || "Previous awards");
+    var next = button(ICON_NEXT,
+      slider.getAttribute("data-next-ru") || "Следующие награды",
+      slider.getAttribute("data-next-en") || "Next awards");
 
     /* Счётчик собран из отдельных кусков намеренно: переключатель языка
        переписывает innerHTML у всего с data-en, поэтому сами числа лежат

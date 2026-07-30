@@ -21,7 +21,7 @@
           {
             "label_ru": "Лаборатория",
             "label_en": "Laboratory",
-            "url": "#lab"
+            "url": "lab.html"
           },
           {
             "label_ru": "Документы",
@@ -110,9 +110,9 @@
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
     "background": "assets/video/hero-bg-poster.webp",
-    "video_webm": "assets/video/bottle-loop-alpha.webm?v=hero-v24",
-    "video_mp4": "assets/video/bottle-loop.mp4?v=hero-v24",
-    "video_poster": "assets/video/bottle-loop-poster.webp?v=hero-v24",
+    "video_webm": "assets/video/bottle-loop-alpha.webm?v=hero-v25",
+    "video_mp4": "assets/video/bottle-loop.mp4?v=hero-v25",
+    "video_poster": "assets/video/bottle-loop-poster.webp?v=hero-v25",
     "video_fallback": "assets/products/celebnaya-pet-05.webp",
     "bottle": "assets/products/bottle-splash.webp"
   },
