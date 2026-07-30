@@ -95,6 +95,29 @@
       ' alt="' + esc(altRu) + '" data-en-alt="' + esc(altEn) + '" /></picture>';
   }
 
+  /* Свои ролики лежат в assets/video рядом с обложкой в webp. preload="none" —
+     запись открывается по «Читать полностью», и качать три мегабайта до того,
+     как человек нажал play, незачем. */
+  function clip(item) {
+    if (!item) return "";
+    var src = safeUrl(item.src);
+    if (!src) return "";
+    var poster = safeUrl(item.poster);
+    var caption = String(item.caption_ru || "").trim();
+    return '<figure class="news-clip">' +
+      '<video controls playsinline preload="none"' +
+      (poster ? ' poster="' + esc(poster) + '.webp"' : "") +
+      ' width="' + (parseInt(item.w, 10) || 464) +
+      '" height="' + (parseInt(item.h, 10) || 848) + '">' +
+      '<source src="' + esc(src) + '" type="video/mp4" />' +
+      "</video>" +
+      (caption
+        ? '<figcaption data-en="' + attr(item.caption_en || caption) + '">' +
+          lines(esc(caption)) + "</figcaption>"
+        : "") +
+      "</figure>";
+  }
+
   function render(items) {
     if (!Array.isArray(items) || !items.length) return;
 
@@ -133,6 +156,10 @@
         .filter(Boolean);
       var gallery = shots.length ? '<div class="news-gallery">' + shots.join("") + "</div>" : "";
 
+      var clips = (Array.isArray(item.clips) ? item.clips : [])
+        .map(clip).filter(Boolean);
+      var player = clips.length ? '<div class="news-clips">' + clips.join("") + "</div>" : "";
+
       // Ролики и сайты партнёров — единственное, что уводит с сайта.
       var links = [];
       var video = item.video && safeUrl(item.video.url);
@@ -151,7 +178,7 @@
       var more = links.length ? '<p class="news-more">' + links.join("") + "</p>" : "";
 
       // В свёрнутом виде оставляем первый абзац; всё остальное — под кнопкой.
-      var rest = text.slice(1).join("") + gallery + more;
+      var rest = text.slice(1).join("") + player + gallery + more;
       var body = text.slice(0, 1).join("") + (rest
         ? '<details class="news-full"><summary><span data-en="Read in full">Читать полностью</span>' +
           '<span class="sr-only" data-en=": ' + attr(item.title_en || item.title_ru || "") + '">: ' +

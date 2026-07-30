@@ -899,16 +899,16 @@
       "title_ru": "Новогоднее чудо от «Новотерской»",
       "title_en": "A New Year miracle from Novoterskaya",
       "text_ru": [
-        "Коллектив АО «Кавминводы» накануне новогодних праздников пришёл с вкусными и полезными подарками к воспитанникам детского дома «Золотой ключик» села Розовка Минераловодского района.",
-        "Найти подарок под новогодней ёлкой мечтает каждый ребёнок. Воспитанники «Золотого ключика» тоже ждали чудес, загадывали желания и писали письма Деду Морозу. В этом году добрым Морозом для ребят стало руководство АО «Кавминводы».",
-        "Каждый ребёнок получил именно тот подарок, который просил: книги, игрушки, портативные колонки, наушники, одежду, обувь. Все желания были исполнены.",
-        "Воспитанники детского дома поблагодарили коллектив предприятия и вручили новогодние сувениры, сделанные своими руками. По словам ребят, их подарки заряжены на успех и благополучие."
+        "Под Новый год чуда ждёт каждый ребёнок. Только одни ждут его дома, у своей ёлки, а воспитанники детского дома «Золотой ключик» села Розовка Минераловодского района — всем залом сразу.",
+        "Накануне праздников коллектив АО «Кавминводы» приехал к ребятам с подарками. Не с одинаковыми «на всех», а с теми самыми, из писем Деду Морозу: книги, игрушки, портативные колонки, наушники, одежда, обувь. Каждый получил именно то, что просил.",
+        "На снимке всё видно и без слов: плюшевые медведи ростом с младших ребят, коробки с конструктором и набором для опытов, белые пакеты в каждой руке — и лица, которые не подделать.",
+        "А в ответ дети вручили гостям новогодние сувениры, сделанные своими руками, и сказали, что подарки заряжены на успех и благополучие. У нас нет причин в этом сомневаться."
       ],
       "text_en": [
-        "Just before the New Year holidays the Kavminvody team brought tasty and useful presents to the children of the “Zolotoy Klyuchik” orphanage in the village of Rozovka, Mineralovodsky district.",
-        "Every child dreams of finding a present under the tree. The children of “Zolotoy Klyuchik” were waiting for miracles too — making wishes and writing letters to Father Frost. This year their Father Frost was the management of Kavminvody.",
-        "Each child received exactly what they had asked for: books, toys, portable speakers, headphones, clothes and shoes. Every wish came true.",
-        "The children thanked the company's team and gave them New Year souvenirs made by hand. According to the children, their gifts are charged with success and wellbeing."
+        "Every child waits for a miracle at New Year. Some wait for it at home, by their own tree; the children of the “Zolotoy Klyuchik” orphanage in the village of Rozovka, Mineralovodsky district, wait for it together, a whole hall of them at once.",
+        "Just before the holidays the Kavminvody team came to see them with presents. Not identical ones handed out to everybody, but the very presents from their letters to Father Frost: books, toys, portable speakers, headphones, clothes and shoes. Each child got exactly what they had asked for.",
+        "The photograph says the rest: teddy bears as tall as the youngest children, boxes with a construction set and a science kit, a white bag in every pair of hands — and faces you cannot fake.",
+        "In return the children gave their guests New Year souvenirs made by hand, and said the gifts were charged with success and wellbeing. We have no reason to doubt it."
       ],
       "photo": {
         "src": "assets/news/2023-12-20-novogodnee-chudo-ot-novoters-1",
@@ -918,6 +918,13 @@
         "alt_en": "Children and company staff with presents and soft toys by the tree"
       },
       "gallery": [
+        {
+          "src": "assets/news/2023-12-20-novogodnee-chudo-ot-novoters-4",
+          "w": 640,
+          "h": 480,
+          "alt_ru": "Ребята с подарочными пакетами и плюшевыми медведями у новогодней ёлки",
+          "alt_en": "The children with gift bags and teddy bears by the New Year tree"
+        },
         {
           "src": "assets/news/2023-12-20-novogodnee-chudo-ot-novoters-2",
           "w": 640,
@@ -1023,6 +1030,45 @@
       "video": {
         "url": "https://www.youtube.com/watch?v=ejXWvQcAHuw"
       }
+    },
+    {
+      "title_ru": "Отправка машины на СВО",
+      "title_en": "Sending a vehicle to the front",
+      "text_ru": [
+        "АО «Кавминводы» передало автомобиль бойцам специальной военной операции. На первом ролике внедорожник ещё во дворе предприятия: подписывают документы, отдают ключи.",
+        "На втором его принимают уже на месте — та же машина, только вместо заводской проходной вокруг степь. Дальше она поедет туда, где нужна.",
+        "Питьевую воду предприятие отправляет на фронт регулярно. Теперь к ней добавилась техника."
+      ],
+      "text_en": [
+        "Kavminvody has handed over a vehicle to the servicemen of the special military operation. In the first clip the off-roader is still in the plant yard: the papers are signed, the keys change hands.",
+        "In the second it is received at its destination — the same vehicle, only the plant gate has given way to open steppe. From here it goes where it is needed.",
+        "The company sends drinking water to the front regularly. Now a vehicle has been added to it."
+      ],
+      "photo": {
+        "src": "assets/news/svo-mashina-zavod-poster",
+        "w": 464,
+        "h": 848,
+        "alt_ru": "Тёмный внедорожник у проходной АО «Кавминводы», рядом трое сотрудников",
+        "alt_en": "A dark off-roader at the Kavminvody gate with three members of staff beside it"
+      },
+      "clips": [
+        {
+          "src": "assets/video/svo-mashina-zavod.mp4",
+          "poster": "assets/news/svo-mashina-zavod-poster",
+          "w": 464,
+          "h": 848,
+          "caption_ru": "Передача автомобиля во дворе предприятия",
+          "caption_en": "Handing the vehicle over in the plant yard"
+        },
+        {
+          "src": "assets/video/svo-mashina-front.mp4",
+          "poster": "assets/news/svo-mashina-front-poster",
+          "w": 464,
+          "h": 848,
+          "caption_ru": "Машину принимают на месте",
+          "caption_en": "The vehicle is received at its destination"
+        }
+      ]
     }
   ]
 }
