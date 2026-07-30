@@ -855,7 +855,9 @@ picture { display: contents; }
 .path-line {
   position: absolute;
   z-index: 2;
-  left: 17px;
+  /* Ровно центр кружка: 36px / 2. Иначе на входе и выходе из кружка
+     нитка даёт заметный излом в один пиксель. */
+  left: 18px;
   top: 1.95rem;
   bottom: 2.2rem;
   width: 3px;
@@ -892,13 +894,13 @@ picture { display: contents; }
 
 .path-step {
   position: relative;
+  /* Выше нитки (у неё z-index 2): кружки стихий непрозрачные, и линия
+     должна уходить под них, а не перечёркивать. */
+  z-index: 3;
   display: flex;
   gap: 1.8rem;
   min-height: clamp(60px, 7.5vh, 76px);
   padding: clamp(0.55rem, 1.25vh, 0.85rem) 0 clamp(0.55rem, 1.25vh, 0.85rem) 3.4rem;
-  opacity: 0.42;
-  transform: translateX(0);
-  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.2,.8,.2,1);
 }
 .path-dot {
   position: absolute;
@@ -908,12 +910,14 @@ picture { display: contents; }
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(255,255,255,0.88);
-  backdrop-filter: blur(8px);
+  /* Непрозрачная заливка, а не стекло: сквозь полупрозрачный кружок
+     просвечивала и нитка, и фотография ущелья. Неактивные притушены не
+     прозрачностью, а холодным оттенком — иначе сквозь них снова видно. */
+  background: #f2f7fa;
   color: var(--glacier);
   border: 2px solid rgba(62,122,152,0.28);
   box-shadow: 0 2px 14px rgba(20,49,63,0.12);
-  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.5s ease, box-shadow 0.5s ease, color 0.5s ease;
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.5s ease, box-shadow 0.5s ease, color 0.5s ease, background-color 0.5s ease;
 }
 .path-ic {
   width: 19px; height: 19px;
@@ -927,15 +931,18 @@ picture { display: contents; }
 .path-step.is-active .path-dot {
   transform: scale(1.12);
   border-color: currentColor;
-  background: rgba(255,255,255,0.98);
+  background: #fff;
   box-shadow: 0 6px 22px rgba(20,49,63,0.16), 0 0 0 5px rgba(111,168,196,0.18);
 }
 .path-step.is-active .path-ic { opacity: 1; }
-.path-step.is-past { opacity: 0.62; }
-.path-step.is-active {
-  opacity: 1;
-  transform: translateX(5px);
-}
+/* Притухание пройденных и будущих шагов живёт на тексте, а не на всём
+   шаге: opacity на <li> делала полупрозрачным и кружок, и нитка
+   просвечивала сквозь него. */
+.path-step .path-body { opacity: 0.42; transition: opacity 0.45s ease, transform 0.4s ease; }
+.path-step.is-past .path-body { opacity: 0.62; }
+.path-step.is-active .path-body { opacity: 1; }
+/* Активный шаг подаётся вперёд текстом, а не всей строкой: сдвинь строку —
+   и кружок съедет с нитки, а она теперь уходит под него и излом виден. */
 .path-step[data-stage="air"]    { color: #7fb3cf; }
 .path-step[data-stage="ice"]    { color: var(--glacier); }
 .path-step[data-stage="earth"]  { color: var(--moss); }
@@ -955,7 +962,7 @@ picture { display: contents; }
   padding-top: 0.15rem;
   transition: transform 0.4s ease;
 }
-.path-step.is-active .path-body { transform: translateX(2px); }
+.path-step.is-active .path-body { transform: translateX(6px); }
 .path-body h3 {
   font-family: var(--ff-display);
   font-size: clamp(1.2rem, 2vw, 1.62rem);
@@ -999,7 +1006,7 @@ picture { display: contents; }
     padding: 0.45rem 0 0.45rem 3rem;
   }
   .path-dot { width: 32px; height: 32px; top: 0.5rem; }
-  .path-line { left: 15px; top: 1.5rem; bottom: 1.8rem; width: 2px; }
+  .path-line { left: 16px; top: 1.5rem; bottom: 1.8rem; width: 2px; }
   .path-body h3 { font-size: 1.03rem; overflow-wrap: anywhere; }
   .path-body p { font-size: 0.76rem; line-height: 1.35; overflow-wrap: anywhere; }
 }
@@ -1016,6 +1023,7 @@ picture { display: contents; }
   .path-line-fill { transition: none; }
   .path-drop { display: none; }
   .path-scene, .path-step, .path-dot, .path-ic, .path-body { transition: none; }
+  .path-step .path-body { transition: none; }
   .path-step.is-active .path-ic { animation: none; }
 }
 
