@@ -150,16 +150,15 @@
     bilingual(one(".btn-play-label", heroCtas[1]), hero.secondary_cta_ru, hero.secondary_cta_en);
     setLink(heroCtas[1], hero.secondary_cta_url);
     setImage(one(".hero-bg img"), hero.background);
-    setImage(one(".bottle-photo"), hero.bottle);
-    // Bottle animation video — repurposed video_* keys.
-    // Постер не перезаписываем, если main.js уже подставил запасной кадр:
-    // JSON приезжает позже разметки, и иначе он вернул бы обратно кадр
-    // неудавшегося ролика.
-    var bv = document.getElementById("bottleVideo");
-    if (bv) {
-      if (hero.video_poster && !bv.dataset.posterSwapped) bv.setAttribute("poster", hero.video_poster);
-      if (hero.video_webm)   bv.setAttribute("data-webm", hero.video_webm);
-      if (hero.video_mp4)    bv.setAttribute("data-mp4",  hero.video_mp4);
+    /* Ключи video_* ведут ролик сцены. Раньше они вели отдельный кадр бутылки,
+       но бутылка теперь снята внутри самой сцены, и отдельного слоя нет.
+       Адреса пишем в data-*: сами <source> собирает main.js после window.load
+       (см. пояснение там). */
+    var hv = document.getElementById("heroVideo");
+    if (hv) {
+      if (hero.video_poster) hv.setAttribute("poster", hero.video_poster);
+      if (hero.video_webm)   hv.setAttribute("data-webm", hero.video_webm);
+      if (hero.video_mp4)    hv.setAttribute("data-mp4",  hero.video_mp4);
     }
 
     var elements = data.elements || {};

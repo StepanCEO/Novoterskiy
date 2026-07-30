@@ -25,8 +25,10 @@
     afterPaint(function () { hero.classList.add("loaded"); });
   }
 
-  /* ---- Hero background video: 6с сцена (небо → лёд → дымка → тепло),
-         в конце застывает на последнем кадре до следующей загрузки страницы ---- */
+  /* ---- Ролик сцены: 5с — бутылка на камне и всплеск вокруг неё,
+         в конце застывает на последнем кадре до следующей загрузки страницы.
+         По кругу не гоняем: заказчик просил один проход, поэтому loop нет
+         ни здесь, ни в разметке ---- */
   var heroVideo = document.getElementById("heroVideo");
   if (heroVideo) {
     /* Safari/WebKit на <source type='video/webm; codecs="vp9"'> отвечает
@@ -36,10 +38,10 @@
        следующему <source> не происходят — и событие load страницы не наступает
        вообще. Сторожевой таймер: нет метаданных за 2.5с → берём mp4 напрямую.
        В движках, которые webm читают, метаданные приходят раньше, и таймер
-       снимается, так что размер (277КБ webm против 999КБ mp4) не теряется. */
+       снимается, так что размер (532КБ webm против 684КБ mp4) не теряется. */
     /* Источники собираем здесь, а не в разметке: в Safari <source> внутри
        <video> навсегда удерживает событие load страницы. Плюс так ролик не
-       отбирает канал у снимка бутылки, пока рисуется первый экран. */
+       отбирает канал у постера, а постер и есть первый экран. */
     var heroMp4 = heroVideo.getAttribute("data-mp4");
     var heroWebm = heroVideo.getAttribute("data-webm");
     var startHeroVideo = function () {
@@ -53,7 +55,7 @@
         }, 2500);
         heroVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
       }
-      // Порядок важен: webm лёгкий (277КБ против 999КБ), mp4 — запасной.
+      // Порядок важен: webm лёгкий (532КБ против 684КБ), mp4 — запасной.
       var sources = document.createDocumentFragment();
       [[heroWebm, 'video/webm; codecs="vp9"'], [heroMp4, "video/mp4"]].forEach(function (pair) {
         if (!pair[0]) return;
@@ -94,120 +96,6 @@
         if (heroDone || document.visibilityState !== "visible") return;
         if (!heroVideo.ended && heroVideo.paused) playHero();
       });
-    }
-  }
-
-  /* ---- Bottle animation video: 4с стекающих капель, один проход ---- */
-  var bottleVideo = document.getElementById("bottleVideo");
-  if (bottleVideo) {
-    var bottleMp4  = bottleVideo.getAttribute("data-mp4");
-    var bottleWebm = bottleVideo.getAttribute("data-webm");
-
-    var bottleBox = bottleVideo.closest ? bottleVideo.closest(".bottle") : null;
-
-    /* Ролик проходит один раз и замирает на последнем кадре: капли стекли —
-       и бутылка дальше просто стоит. По кругу его не гоняем, поэтому loop
-       снят и в разметке. Кадр держим сами: без явной остановки у последнего
-       кадра часть движков откатывает картинку к постеру.
-       bottleDone запоминает, что проход уже был: перемотка к последнему кадру
-       сбрасывает флаг ended, и без своей отметки возврат на вкладку запустил
-       бы ролик заново — то самое «начинается по кругу». */
-    var bottleDone = false;
-    var freezeBottleEnd = function () {
-      bottleDone = true;
-      if (!isFinite(bottleVideo.duration)) return;
-      bottleVideo.currentTime = Math.max(0, bottleVideo.duration - 0.05);
-      bottleVideo.pause();
-    };
-    bottleVideo.addEventListener("ended", freezeBottleEnd);
-
-    /* Для тех, кто просил выключить анимации, — неподвижный первый кадр. */
-    var freezeBottleStart = function () {
-      bottleVideo.currentTime = 0;
-      bottleVideo.pause();
-    };
-
-    /* Прозрачность есть только у webm: альфа лежит отдельным каналом VP9.
-       Движки, которые его не читают, уезжают на mp4 — там фон непрозрачный,
-       и для них возвращаем прежнее смешивание darken (см. .bottle.is-flat).
-       Проверяем currentSrc, а не список источников: подмена на mp4 бывает и
-       по сторожевому таймеру ниже. */
-    var markFlatSource = function () {
-      if (!bottleBox) return;
-      bottleBox.classList.toggle("is-flat", /\.mp4(\?|#|$)/i.test(bottleVideo.currentSrc || ""));
-    };
-    bottleVideo.addEventListener("loadedmetadata", markFlatSource);
-    bottleVideo.addEventListener("loadeddata", markFlatSource);
-
-    var startBottleVideo = function () {
-      if (bottleMp4) {
-        var stuckWatch = setTimeout(function () {
-          if (bottleVideo.readyState === 0) {
-            bottleVideo.querySelectorAll("source").forEach(function (n) { n.remove(); });
-            bottleVideo.src = bottleMp4;
-            bottleVideo.load();
-          }
-        }, 2500);
-        bottleVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
-      }
-      /* Постер — первый кадр ролика с прозрачностью: бутылка на первом экране
-         стоит ещё до того, как приедет видео, и подмена на data-poster-still
-         ничего не меняет — там тот же кадр. Ветка оставлена на случай, если
-         в site.json пропишут отдельный запасной кадр.
-         Флаг posterSwapped нужен, чтобы CMS не вернула постер обратно:
-         site.json приезжает асинхронно и тоже пишет этот атрибут. */
-      var posterFallback = bottleVideo.getAttribute("data-poster-still");
-      if (posterFallback) {
-        var stillWatch = setTimeout(function () {
-          if (bottleVideo.readyState < 2) {
-            bottleVideo.dataset.posterSwapped = "1";
-            bottleVideo.setAttribute("poster", posterFallback);
-          }
-        }, 6000);
-        bottleVideo.addEventListener("canplay", function () { clearTimeout(stillWatch); }, { once: true });
-      }
-      var sources = document.createDocumentFragment();
-      [[bottleWebm, 'video/webm; codecs="vp9"'], [bottleMp4, "video/mp4"]].forEach(function (pair) {
-        if (!pair[0]) return;
-        var s = document.createElement("source");
-        s.setAttribute("src", pair[0]);
-        s.setAttribute("type", pair[1]);
-        sources.appendChild(s);
-      });
-      bottleVideo.insertBefore(sources, bottleVideo.firstChild);
-      bottleVideo.load();
-    };
-
-    if (reduceMotion) {
-      // без анимаций: неподвижная бутылка на первом кадре
-      var startStill = function () {
-        startBottleVideo();
-        bottleVideo.addEventListener("loadedmetadata", freezeBottleStart, { once: true });
-      };
-      if (document.readyState === "complete") afterPaint(startStill);
-      else window.addEventListener("load", function () { afterPaint(startStill); }, { once: true });
-    } else {
-      // Ролик стартует вместе с bottleEmerge (0.35 с после .loaded).
-      // Задержка 350 мс совпадает с animation-delay в CSS — менять оба места.
-      var scheduleBottlePlay = function () {
-        setTimeout(function () {
-          startBottleVideo();
-          var playBottle = function () {
-            var p = bottleVideo.play();
-            if (p && p.catch) p.catch(function () {});
-          };
-          if (bottleVideo.readyState >= 2) playBottle();
-          else bottleVideo.addEventListener("canplay", playBottle, { once: true });
-          // Ушли со вкладки на середине — вернулись и досматриваем. Если проход
-          // уже закончился, ничего не трогаем: бутылка стоит на стоп-кадре.
-          document.addEventListener("visibilitychange", function () {
-            if (bottleDone || document.visibilityState !== "visible") return;
-            if (!bottleVideo.ended && bottleVideo.paused) bottleVideo.play();
-          });
-        }, 350);
-      };
-      if (document.readyState === "complete") afterPaint(scheduleBottlePlay);
-      else window.addEventListener("load", function () { afterPaint(scheduleBottlePlay); }, { once: true });
     }
   }
 

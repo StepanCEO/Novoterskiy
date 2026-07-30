@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=brand-v29" />
+<link rel="stylesheet" href="css/style.css?v=rock-v30" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -176,24 +176,26 @@
 <main>
 <!-- ============ 1 · HERO ============ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <!-- Полноэкранная гора в лёгком тумане (правка заказчика) -->
+  <!-- Сцена целиком снята в ролике: бутылка стоит на камне, вокруг всплеск.
+       Отдельного слоя с бутылкой больше нет — он был нужен, пока фоном стояла
+       гора, а бутылку приходилось класть поверх вырезанным по силуэту кадром. -->
   <div class="hero-bg" aria-hidden="true">
     <!-- Адреса ролика лежат в data-*, а не в <source>, и подставляются из
          main.js после window.load. Две причины. Safari: <source> в разметке
          навсегда удерживает событие load страницы — оно не наступает вообще,
-         даже с preload="none". И скорость: четверть мегабайта видео иначе
-         грузится одновременно с кадрами бутылки, а бутылка и есть LCP.
+         даже с preload="none". И скорость: первый экран рисуется по постеру,
+         который теперь и есть LCP, а полмегабайта видео едут следом.
          Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
-    <video class="hero-video" id="heroVideo" width="1920" height="976"
+    <video class="hero-video" id="heroVideo" width="1600" height="900"
            muted playsinline preload="none"
-           poster="assets/video/hero-bg-poster.webp"
-           data-webm="assets/video/hero-bg.webm"
-           data-mp4="assets/video/hero-bg.mp4">
+           poster="assets/video/hero-rock-poster.webp?v=rock-v30"
+           data-webm="assets/video/hero-rock.webm?v=rock-v30"
+           data-mp4="assets/video/hero-rock.mp4?v=rock-v30">
       <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
-           браузеры подтягивали и его, и webp из poster= — 33КБ впустую в самый
-           занятый момент загрузки, ровно когда рисуется бутылка. -->
+           браузеры подтягивали и его, и webp из poster= — лишние килобайты в
+           самый занятый момент загрузки, ровно когда рисуется первый экран. -->
       <picture>
-        <img src="assets/video/hero-bg-poster.webp" width="1920" height="976" alt="" loading="eager" />
+        <img src="assets/video/hero-rock-poster.webp?v=rock-v30" width="1600" height="900" alt="" loading="eager" fetchpriority="high" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
@@ -230,42 +232,6 @@
         </a>
       </div>
     </div>
-
-    <!-- The bottle over the full-bleed mountain, with mist at its base -->
-    <figure class="hero-bottle reveal" aria-label="Бутылка Новотерская">
-      <div class="bottle">
-        <!-- Бутылка живьём: 4 секунды один раз, дальше стоп-кадр — по кругу
-             ролик не гоняем, поэтому здесь нет loop, а main.js по «ended»
-             удерживает последний кадр. Ролик снят на белом циклораме, фон
-             вырезан по силуэту (насыщенность плюс «темнее подложки»), у самого
-             низа альфа сходит на нет — там под бутылкой оставалась блик-лужа
-             от поверхности, и вместо неё теперь ложится туман сцены.
-             WebM несёт настоящий канал прозрачности (alpha_mode=1), кадр
-             кладётся поверх горы как есть, без смешивания. Запасной mp4 альфы
-             не несёт — для него main.js ставит .is-flat, и там включается
-             darken: фон в mp4 белый и под ним уходит в гору.
-             poster — первый кадр ролика, тоже с прозрачностью.
-             Адреса в data-*, а не в <source>: Safari на <source> с VP9
-             навсегда удерживает событие load страницы — см. #heroVideo.
-             .bottle-breath — отдельная обёртка под «дыхание»: у .bottle свой
-             transform, разный на каждом брейкпоинте, и масштаб туда не
-             вписать, а на самом ролике анимация перезапускала бы появление. -->
-        <div class="bottle-breath">
-          <video class="bottle-video" id="bottleVideo" width="420" height="1402"
-                 muted playsinline preload="none" disablepictureinpicture
-                 aria-hidden="true"
-                 poster="assets/video/bottle-loop-poster.webp?v=brand-v29"
-                 data-poster-still="assets/video/bottle-loop-poster.webp?v=brand-v29"
-                 data-webm="assets/video/bottle-loop-alpha.webm?v=brand-v29"
-                 data-mp4="assets/video/bottle-loop.mp4?v=brand-v29">
-            <picture>
-              <img class="bottle-photo" fetchpriority="high" src="assets/video/bottle-loop-poster.webp?v=brand-v29" width="420" height="1402" alt="Новотерская Целебная" />
-            </picture>
-          </video>
-        </div>
-      </div>
-      <div class="hero-mist" aria-hidden="true"></div>
-    </figure>
   </div>
 </section>
 
@@ -796,8 +762,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=brand-v29" defer></script>
-<script src="js/main.js?v=brand-v29" defer></script>
-<script src="js/cms.js?v=brand-v29" defer></script>
+<script src="js/nav.js?v=rock-v30" defer></script>
+<script src="js/main.js?v=rock-v30" defer></script>
+<script src="js/cms.js?v=rock-v30" defer></script>
 </body>
 </html>
