@@ -268,10 +268,13 @@
       bilingual(node, item.label_ru, item.label_en);
       setLink(node, item.url);
     });
-    var privacyLink = one(".footer-legal > a");
+    /* Политика лежит первой ссылкой в .footer-legal-docs — рядом с СОУТ и
+       охраной труда; копирайт — соседний span. Без :not() под копирайт попал бы
+       сам блок документов и три ссылки заменились бы строкой «© АО…». */
+    var privacyLink = one(".footer-legal a");
     bilingual(privacyLink, footer.privacy_ru, footer.privacy_en);
     setLink(privacyLink, footer.privacy_url);
-    bilingual(one(".footer-legal > span"), footer.copyright_ru, footer.copyright_en);
+    bilingual(one(".footer-legal > span:not(.footer-legal-docs)"), footer.copyright_ru, footer.copyright_en);
 
     var cookie = data.cookie || {};
     bilingual(one("#cookie p"), cookie.text_ru, cookie.text_en);

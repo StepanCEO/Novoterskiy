@@ -1842,6 +1842,10 @@ picture { display: contents; }
 .footer-nav a:hover { color: #fff; }
 .footer-legal { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: rgba(255,255,255,0.6); }
 .footer-legal a:hover { color: #fff; }
+/* Политика, СОУТ и охрана труда — списком: колонка подвала около 260px, в
+   строку три длинных названия всё равно не встают. Отступ снизу отделяет их
+   от копирайта, иначе он читается четвёртым пунктом списка. */
+.footer-legal-docs { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.25rem; }
 
 /* ---------- Cookie ---------- */
 .cookie {
@@ -3014,7 +3018,7 @@ picture { display: contents; }
   border: 1px solid rgba(62,122,152,0.18);
   border-radius: 16px;
 }
-.news-photo { width: 232px; }
+.news-photo { display: block; width: 232px; }
 .news-photo img {
   display: block;
   width: 100%;
@@ -3046,14 +3050,81 @@ picture { display: contents; }
   line-height: 1.7;
   color: var(--ink);
 }
-.news-more { margin: 0.9rem 0 0; font-size: 0.94rem; }
-.news-more a { color: var(--glacier-d); text-decoration: none; }
-.news-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.news-text + .news-text { margin-top: 0.75rem; }
+
+/* Свёрнутая запись показывает первый абзац; остальное открывается по кнопке.
+   Три десятка полных новостей подряд читать невозможно, а резать текст на
+   «Подробнее» с уходом на старый сайт нельзя — его не будет. */
+.news-full { margin: 0.85rem 0 0; }
+.news-full > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  font-family: var(--ff-label);
+  font-size: 0.83rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--glacier-d);
+  /* Свой треугольник вместо системного: у Safari он рисуется иначе. */
+  list-style: none;
+}
+.news-full > summary::-webkit-details-marker { display: none; }
+.news-full > summary::after {
+  content: "";
+  width: 0.42rem;
+  height: 0.42rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.12rem) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.news-full[open] > summary::after { transform: translateY(0.06rem) rotate(-135deg); }
+.news-full > summary:hover { color: var(--deep); }
+.news-rest { margin-top: 0.85rem; }
+.news-rest > .news-text:first-child { margin-top: 0; }
+
+/* Полоса кадров: одинаковые плитки, кроп сверху — у грамот и сертификатов
+   узнаваемая часть именно вверху. */
+.news-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+.news-gallery .news-shot { display: block; }
+.news-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+}
+
+.news-more { margin: 0.9rem 0 0; font-size: 0.94rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
+.news-more a,
+.news-link { color: var(--glacier-d); text-decoration: none; }
+.news-more a:hover,
+.news-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* У ссылки на ролик — маленький треугольник «play». */
+.news-link.is-video::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 0.45rem;
+  border-left: 0.55rem solid currentColor;
+  border-top: 0.34rem solid transparent;
+  border-bottom: 0.34rem solid transparent;
+}
 
 @media (max-width: 767px) {
   /* Фото над текстом: 232px рядом с абзацем на 390px не оставляют строке места. */
   .news-item { grid-template-columns: 1fr; gap: 1.1rem; padding: 1.2rem 1.3rem; }
   .news-photo { width: 100%; }
+  .news-gallery { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
 }
 
 /* ── История: полоса времени ─────────────────────────────────────────── */

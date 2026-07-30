@@ -1,6 +1,10 @@
 /* Лента новостей: рисует записи из content/news.json в блок .news-feed.
    Пустое состояние живёт в разметке — если файла нет или раздел пуст,
-   на странице остаётся текст «пока нет записей», а не битая вёрстка. */
+   на странице остаётся текст «пока нет записей», а не битая вёрстка.
+
+   Запись показывается свёрнутой: снимок, дата, заголовок и первый абзац.
+   Остальные абзацы, полоса кадров и ссылка на ролик прячутся в <details> —
+   иначе три десятка полных новостей превращают страницу в простыню. */
 (function () {
   "use strict";
 
@@ -15,11 +19,22 @@
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
+  /* Перевод приезжает в data-en и подставляется через innerHTML, поэтому
+     текст экранируем дважды: один раз для innerHTML, второй — для атрибута. */
+  function attr(value) {
+    return esc(lines(esc(value)));
+  }
+
+  /* Переносы внутри абзаца значимы только в стихах — там они и есть строфа. */
+  function lines(escaped) {
+    return escaped.replace(/\r?\n/g, "<br />");
+  }
+
   /* Те же правила, что в cms.js: пускаем только http(s) и относительные
      адреса, чтобы запись из админки не могла подсунуть javascript:. */
   function safeUrl(value) {
     var url = String(value == null ? "" : value).trim();
-    if (!url || /[\u0000-\u001f\\]/.test(url) || /^\/\//.test(url)) return "";
+    if (!url || /[\x00-\x1f\\]/.test(url) || /^\/\//.test(url)) return "";
     var protocol = url.match(/^([a-z][a-z0-9+.-]*):/i);
     if (protocol && !/^https?$/i.test(protocol[1])) return "";
     return url;
@@ -43,7 +58,7 @@
   }
 
   function formatEn(parts) {
-    var iso = parts.year + "-" + ("0" + (parts.month + 1)).slice(-2) + "-" + ("0" + parts.day).slice(-2);
+    var iso = isoOf(parts);
     // toLocaleDateString с явным UTC — иначе тот же сдвиг на сутки.
     try {
       return new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB",
@@ -55,6 +70,29 @@
 
   function isoOf(parts) {
     return parts.year + "-" + ("0" + (parts.month + 1)).slice(-2) + "-" + ("0" + parts.day).slice(-2);
+  }
+
+  /* Текст записи может прийти одной строкой (старый формат админки) или
+     списком абзацев — приводим к списку и выбрасываем пустое. */
+  function paragraphs(value) {
+    var list = Array.isArray(value) ? value : [value];
+    return list.map(function (item) { return String(item == null ? "" : item).trim(); })
+      .filter(function (item) { return item.length > 0; });
+  }
+
+  /* Снимок отдаём в двух форматах: avif лежит рядом с webp под тем же именем.
+     Размеры проставлены всегда — без них лента прыгает при загрузке. */
+  function picture(photo, className) {
+    if (!photo) return "";
+    var src = safeUrl(photo.src);
+    if (!src) return "";
+    var altRu = photo.alt_ru || "";
+    var altEn = photo.alt_en || altRu;
+    return '<picture class="' + className + '">' +
+      '<source srcset="' + esc(src) + '.avif" type="image/avif" />' +
+      '<img src="' + esc(src) + '.webp" width="' + (parseInt(photo.w, 10) || 640) +
+      '" height="' + (parseInt(photo.h, 10) || 427) + '" loading="lazy" decoding="async"' +
+      ' alt="' + esc(altRu) + '" data-en-alt="' + esc(altEn) + '" /></picture>';
   }
 
   function render(items) {
@@ -77,35 +115,51 @@
           esc(formatEn(parts)) + '">' + esc(formatRu(parts)) + "</time>"
         : "";
 
-      var image = safeUrl(item.image);
-      var alt = item.image_alt_ru || item.title_ru || "";
-      var picture = image
-        ? '<div class="news-photo"><img src="' + esc(image) + '" loading="lazy" width="' +
-          (parseInt(item.image_width, 10) || 800) + '" height="' +
-          (parseInt(item.image_height, 10) || 500) + '" alt="' + esc(alt) +
-          '" data-alt-ru="' + esc(alt) + '" data-alt-en="' + esc(item.image_alt_en || alt) + '" /></div>'
-        : "";
-
       var titleRu = esc(item.title_ru || "");
-      var title = '<h2 class="news-title" data-en="' + esc(esc(item.title_en || item.title_ru || "")) +
+      var title = '<h2 class="news-title" data-en="' + attr(item.title_en || item.title_ru || "") +
         '">' + titleRu + "</h2>";
 
-      var textRu = esc(item.text_ru || "");
-      var text = textRu
-        ? '<p class="news-text" data-en="' + esc(esc(item.text_en || item.text_ru || "")) + '">' + textRu + "</p>"
-        : "";
+      var ru = paragraphs(item.text_ru);
+      var en = paragraphs(item.text_en);
+      if (en.length !== ru.length) en = ru;         // перевод не бьётся — не путаем абзацы
+      var text = ru.map(function (value, index) {
+        return '<p class="news-text" data-en="' + attr(en[index]) + '">' +
+          lines(esc(value)) + "</p>";
+      });
 
-      var link = safeUrl(item.url);
-      // Заголовок ссылки дублируем в sr-only: список из одинаковых «Подробнее»
-      // без контекста бесполезен для скринридера.
-      var more = link
-        ? '<p class="news-more"><a href="' + esc(link) + '" target="_blank" rel="noopener" data-analytics="news-open">' +
-          '<span data-en="Read more">Подробнее</span>' +
-          '<span class="sr-only" data-en=": ' + esc(esc(item.title_en || item.title_ru || "")) + '">: ' + titleRu + "</span></a></p>"
-        : "";
+      var lead = picture(item.photo, "news-photo");
+      var shots = (Array.isArray(item.gallery) ? item.gallery : [])
+        .map(function (shot) { return picture(shot, "news-shot"); })
+        .filter(Boolean);
+      var gallery = shots.length ? '<div class="news-gallery">' + shots.join("") + "</div>" : "";
 
-      return '<li class="news-item">' + picture +
-        '<div class="news-body">' + time + title + text + more + "</div></li>";
+      // Ролики и сайты партнёров — единственное, что уводит с сайта.
+      var links = [];
+      var video = item.video && safeUrl(item.video.url);
+      if (video) {
+        links.push('<a class="news-link is-video" href="' + esc(video) +
+          '" target="_blank" rel="noopener" data-analytics="news-video">' +
+          '<span data-en="Watch the video">Смотреть видео</span></a>');
+      }
+      var extra = item.link && safeUrl(item.link.url);
+      if (extra) {
+        links.push('<a class="news-link" href="' + esc(extra) +
+          '" target="_blank" rel="noopener" data-analytics="news-open"><span data-en="' +
+          attr(item.link.label_en || item.link.label_ru || item.link.url) + '">' +
+          esc(item.link.label_ru || item.link.url) + "</span></a>");
+      }
+      var more = links.length ? '<p class="news-more">' + links.join("") + "</p>" : "";
+
+      // В свёрнутом виде оставляем первый абзац; всё остальное — под кнопкой.
+      var rest = text.slice(1).join("") + gallery + more;
+      var body = text.slice(0, 1).join("") + (rest
+        ? '<details class="news-full"><summary><span data-en="Read in full">Читать полностью</span>' +
+          '<span class="sr-only" data-en=": ' + attr(item.title_en || item.title_ru || "") + '">: ' +
+          titleRu + "</span></summary><div class=\"news-rest\">" + rest + "</div></details>"
+        : "");
+
+      return '<li class="news-item">' + lead +
+        '<div class="news-body">' + time + title + body + "</div></li>";
     }).join("") + "</ul>";
 
     /* Класс .reveal здесь намеренно не ставим: анимацию появления включает

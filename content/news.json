@@ -1,4 +1,1028 @@
 {
-  "newsGeneral": [],
-  "newsCharity": []
+  "newsGeneral": [
+    {
+      "date": "2024-11-19",
+      "title_ru": "АО «Кавминводы» поддержало юных «Новотерцев» на форуме «Разные. Смелые. Молодые»",
+      "title_en": "Kavminvody backed the young “Novotertsy” at the “Different. Bold. Young” forum",
+      "text_ru": [
+        "Команда «Новотерцы» школы №11 посёлка Новотерский завоевала титул лучшей команды форума «Разные. Смелые. Молодые» в Москве. Участие в форуме для десяти ребят и их руководителя стало возможным благодаря содействию АО «Кавминводы».",
+        "Об участии в мероприятии рассказала руководитель команды Диана Стефановна Кирсанова:",
+        "«Ребята полгода шли к победе: выполняли задания марафона, проводили мероприятия, снимали видео, писали сценарии, устраивали концерты. За подготовкой пролетели пять месяцев. И вот пришла пора ехать на итоговый форум в Москву. Я обратилась к руководству АО «Кавминводы» с просьбой посодействовать в покупке авиабилетов, потому что билеты на поезд было уже не купить. Ответ был положительным, не раздумывая. Таким образом вся команда получила возможность лететь в Москву. А на форуме ребят ждал сюрприз: первое место в марафоне!",
+        "Во время мероприятия ребята учились, получали новые навыки в творческих лабораториях, пели, танцевали, играли на сцене, фотографировали, снимали клипы. А ещё они познакомились с такими же, как они, разными, смелыми и молодыми людьми, чьи сердца бьются в унисон. Форум оставил неизгладимый след в их душах. Спасибо АО «Кавминводы» за помощь и поддержку!»",
+        "Итоговый форум по популяризации традиционной культуры народов России и укреплению межкультурного диалога в молодёжной среде от Российского Союза молодёжи завершился 15 ноября. Его участниками стали 300 школьников и студентов колледжей из 29 регионов страны."
+      ],
+      "text_en": [
+        "The “Novotertsy” team from school No. 11 in the village of Novoterskiy won the title of best team at the “Different. Bold. Young” forum in Moscow. Kavminvody made the trip possible for ten students and their teacher.",
+        "Team leader Diana Stefanovna Kirsanova on how it went:",
+        "“The children spent half a year working towards this win: they completed the marathon tasks, ran events, shot videos, wrote scripts and staged concerts. Five months flew by, and then it was time to travel to the final forum in Moscow. I asked the management of Kavminvody to help with plane tickets, because train tickets were already sold out. The answer was yes, without a moment's hesitation, and the whole team was able to fly to Moscow. And a surprise was waiting for them there: first place in the marathon!",
+        "During the forum the children learned, picked up new skills in creative labs, sang, danced, performed on stage, took photographs and filmed clips. They also met young people just like them — different, bold and young, whose hearts beat in unison. The forum left a deep mark on them. Thank you, Kavminvody, for the help and support!”",
+        "The Russian Union of Youth forum, dedicated to the traditional cultures of the peoples of Russia and to intercultural dialogue among young people, closed on 15 November. It brought together 300 school and college students from 29 regions."
+      ],
+      "photo": {
+        "src": "assets/news/2024-11-19-ao-kavminvodi-podderzhalo-yu-1",
+        "w": 640,
+        "h": 480,
+        "alt_ru": "Команда школьников в жёлтых толстовках с флагом школы №11 на площадке форума",
+        "alt_en": "A team of schoolchildren in yellow hoodies with the school No. 11 flag at the forum"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2024-11-19-ao-kavminvodi-podderzhalo-yu-2",
+          "w": 640,
+          "h": 427,
+          "alt_ru": "Три участницы команды у стены с названием форума",
+          "alt_en": "Three team members by the wall bearing the forum's name"
+        },
+        {
+          "src": "assets/news/2024-11-19-ao-kavminvodi-podderzhalo-yu-3",
+          "w": 640,
+          "h": 427,
+          "alt_ru": "Команда с дипломами на сцене",
+          "alt_en": "The team on stage holding their diplomas"
+        },
+        {
+          "src": "assets/news/2024-11-19-ao-kavminvodi-podderzhalo-yu-4",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Ребята на Красной площади у Спасской башни",
+          "alt_en": "The group on Red Square by the Spasskaya Tower"
+        },
+        {
+          "src": "assets/news/2024-11-19-ao-kavminvodi-podderzhalo-yu-5",
+          "w": 640,
+          "h": 427,
+          "alt_ru": "Награждение на сцене форума",
+          "alt_en": "The award ceremony on the forum stage"
+        },
+        {
+          "src": "assets/news/2024-11-19-ao-kavminvodi-podderzhalo-yu-6",
+          "w": 640,
+          "h": 427,
+          "alt_ru": "Участники форума в национальных костюмах разных регионов",
+          "alt_en": "Forum participants in the traditional costumes of different regions"
+        }
+      ]
+    },
+    {
+      "date": "2024-11-18",
+      "title_ru": "«Новотерская» на международной продовольственной выставке «Peterfood-2024»",
+      "title_en": "Novoterskaya at the Peterfood-2024 international food exhibition",
+      "text_ru": [
+        "С 12 по 14 ноября 2024 года в Санкт-Петербурге проходила международная продовольственная выставка «Peterfood-2024», в рамках которой АО «Кавминводы» представило продукцию на стенде «Новотерская целебная». Участники выставки не только попробовали «Новотерскую целебную» и «Новотерскую» питьевую, чтобы лично убедиться в её неизменном качестве, но и обсудили перспективы сотрудничества.",
+        "«Новотерская целебная» получила диплом и золотую медаль победителя конкурса «Выбор сетей Петерфуд-2024».",
+        "Представители «Новотерской» приняли участие в обширной деловой программе, а также провели переговоры о поставках продукции с ведущими отечественными и зарубежными продовольственными ретейлерами.",
+        "Выставка «Peterfood» уже более 33 лет даёт производителям возможность выводить продукты питания на новые рынки. Ежегодно в ней участвуют свыше 250 российских и зарубежных компаний."
+      ],
+      "text_en": [
+        "The Peterfood-2024 international food exhibition ran in St Petersburg from 12 to 14 November 2024, and Kavminvody presented its products there at the Novoterskaya Tselebnaya stand. Visitors tasted both Novoterskaya Tselebnaya mineral water and Novoterskaya drinking water to see for themselves that the quality never changes — and discussed working together.",
+        "Novoterskaya Tselebnaya received a diploma and the gold medal of the “Retail Chains' Choice — Peterfood 2024” competition.",
+        "The company took part in the extensive business programme and held supply talks with leading Russian and international food retailers.",
+        "For more than 33 years Peterfood has been opening new markets to food producers. Over 250 Russian and international companies take part every year."
+      ],
+      "photo": {
+        "src": "assets/news/2024-11-18-novoterskaya-na-mezhdunarodn-1",
+        "w": 640,
+        "h": 853,
+        "alt_ru": "Сотрудники предприятия у фотозоны выставки «Peterfood»",
+        "alt_en": "Company staff at the Peterfood photo wall"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2024-11-18-novoterskaya-na-mezhdunarodn-2",
+          "w": 640,
+          "h": 1135,
+          "alt_ru": "Переговоры за столом у стенда «Новотерская целебная»",
+          "alt_en": "Talks at the table by the Novoterskaya Tselebnaya stand"
+        },
+        {
+          "src": "assets/news/2024-11-18-novoterskaya-na-mezhdunarodn-3",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Витрина стенда: бутылки «Новотерской» в стекле и ПЭТ",
+          "alt_en": "The stand's display case with Novoterskaya in glass and PET"
+        },
+        {
+          "src": "assets/news/2024-11-18-novoterskaya-na-mezhdunarodn-4",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Золотая медаль в футляре и диплом конкурса «Выбор сетей»",
+          "alt_en": "The gold medal in its case beside the “Retail Chains' Choice” diploma"
+        }
+      ]
+    },
+    {
+      "date": "2024-10-14",
+      "title_ru": "Федеральный проект «Маршрут построен»",
+      "title_en": "The federal travel project “Route Planned”",
+      "text_ru": [
+        "14 октября команда проекта «Маршрут построен» посетила завод АО «Кавминводы», где разливается «Новотерская целебная». Съёмка стала частью специального проекта телеканала ОТР, посвящённого туристическим направлениям России.",
+        "«Маршрут построен» знакомит зрителей с богатством культурного и природного наследия страны. В посёлке Новотерский команда прошла по цехам и узнала, как минеральная вода проходит путь от розлива до полки магазина. Ведущий проекта, трёхкратный чемпион России по автоспорту Леонид Панфилов, официально стал нашим амбассадором.",
+        "История курортного дела в этом регионе начинается с XVIII века, когда Пётр I поручил исследование минеральных вод, подчёркивая их важность для здоровья. В 1803 году император Александр I признал государственное значение Кавказских Минеральных Вод, и с тех пор эти источники стали местом исцеления для многих.",
+        "Новотерский — небольшой, но исторически значимый посёлок в сердце Кавказских Минеральных Вод. Благодаря местным источникам он стал важной частью истории курортного дела на Кавказе.",
+        "Что ждёт туристов: удобные маршруты для путешествий, экскурсии по заводу и окружающим достопримечательностям, возможности для спорта и активного отдыха на природе.",
+        "Мы приглашаем всех желающих исследовать Кавказские Минеральные Воды и открыть для себя красоту здешней природы."
+      ],
+      "text_en": [
+        "On 14 October the team of the “Route Planned” project visited the Kavminvody plant, where Novoterskaya Tselebnaya is bottled. The filming was part of a special programme by the OTR channel about travel destinations across Russia.",
+        "“Route Planned” introduces viewers to the country's cultural and natural heritage. In the village of Novoterskiy the team walked the production halls and saw the path the water takes from the bottling line to the shop shelf. The show's host, three-time Russian motorsport champion Leonid Panfilov, officially became our ambassador.",
+        "Spa history in this region goes back to the 18th century, when Peter the Great ordered a survey of the mineral springs, stressing how important they were for health. In 1803 Emperor Alexander I recognised the Caucasian Mineral Waters as a site of national importance, and ever since these springs have been a place of healing for many.",
+        "Novoterskiy is a small but historically significant settlement in the heart of the Caucasian Mineral Waters. Its springs made it an important part of the region's spa history.",
+        "What awaits travellers: convenient routes, tours of the plant and the surrounding sights, and plenty of room for sport and outdoor activity.",
+        "We invite everyone to explore the Caucasian Mineral Waters and discover the beauty of the landscape here."
+      ],
+      "photo": {
+        "src": "assets/news/2024-10-14-federalnii-proekt-marshrut-p-1",
+        "w": 640,
+        "h": 873,
+        "alt_ru": "Ведущий проекта в фирменной спецовке с бутылкой воды на складе готовой продукции",
+        "alt_en": "The show's host in branded workwear holding a bottle in the finished-goods warehouse"
+      }
+    },
+    {
+      "date": "2023-12-04",
+      "title_ru": "Новогодняя выставка-ярмарка",
+      "title_en": "The New Year trade fair",
+      "text_ru": [
+        "С 1 по 3 декабря сотрудники АО «Кавминводы» приняли участие в выставке «Раздолье Ставрополья — 2023. Новогодние сезоны».",
+        "За три дня выставку посетили свыше 15 000 человек. Свою продукцию представили лучшие производители со всего Северного Кавказа и других регионов России.",
+        "Во время выставки каждый желающий мог угоститься всеми любимой «Новотерской целебной».",
+        "Стенд АО «Кавминводы» был отмечен как один из самых интересных и ярких на выставке."
+      ],
+      "text_en": [
+        "From 1 to 3 December the Kavminvody team took part in the “Bounty of Stavropol 2023 — New Year Seasons” exhibition.",
+        "Over three days more than 15,000 people came. The best producers from across the North Caucasus and other Russian regions showed their goods.",
+        "Everyone who stopped by could taste the much-loved Novoterskaya Tselebnaya.",
+        "The Kavminvody stand was named one of the most interesting and striking at the fair."
+      ],
+      "photo": {
+        "src": "assets/news/2023-12-04-novogodnyaya-vistavka-yarmar-1",
+        "w": 640,
+        "h": 853,
+        "alt_ru": "Девушка в русском народном костюме у стенда АО «Кавминводы»",
+        "alt_en": "A woman in traditional Russian costume by the Kavminvody stand"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2023-12-04-novogodnyaya-vistavka-yarmar-2",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Площадь перед выставочным комплексом",
+          "alt_en": "The square in front of the exhibition centre"
+        },
+        {
+          "src": "assets/news/2023-12-04-novogodnyaya-vistavka-yarmar-3",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Стенд с вывеской «АО «Кавминводы». Новотерская целебная» и сотрудницы предприятия",
+          "alt_en": "The stand under the “Kavminvody — Novoterskaya Tselebnaya” sign with company staff"
+        },
+        {
+          "src": "assets/news/2023-12-04-novogodnyaya-vistavka-yarmar-4",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Две девочки у стенда с бутылками",
+          "alt_en": "Two girls by the stand with the bottles"
+        },
+        {
+          "src": "assets/news/2023-12-04-novogodnyaya-vistavka-yarmar-5",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Подсвеченная витрина: бутылки в стекле и ПЭТ на синей подсветке",
+          "alt_en": "The lit display: glass and PET bottles on blue backlighting"
+        }
+      ]
+    },
+    {
+      "date": "2023-11-17",
+      "title_ru": "«Ставропольское качество»",
+      "title_en": "The “Stavropol Quality” award",
+      "text_ru": [
+        "16 ноября генеральный директор АО «Кавминводы» получил награду от губернатора Ставропольского края. Награждались руководители лучших предприятий края по итогам 2023 года.",
+        "«Именно вы создаёте вкусовой бренд Ставрополья. Каждый, кто хоть раз попробует вашу продукцию, влюбляется в неё навсегда. За вас голосует и ритейл, и покупатели. Всё больше места на полках в супермаркетах занимают товары края», — заявил глава Ставрополья."
+      ],
+      "text_en": [
+        "On 16 November the general director of Kavminvody received an award from the governor of the Stavropol Territory. The heads of the region's best companies of 2023 were honoured.",
+        "“You are the ones who create the flavour of Stavropol as a brand. Anyone who tries your products once falls in love with them for good. Both retailers and shoppers vote for you. Goods from our region take up more and more supermarket shelf space,” the governor said."
+      ],
+      "photo": {
+        "src": "assets/news/2023-11-17-stavropolskoe-kachestvo-1",
+        "w": 640,
+        "h": 426,
+        "alt_ru": "Вручение награды генеральному директору предприятия",
+        "alt_en": "The award being presented to the company's general director"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2023-11-17-stavropolskoe-kachestvo-2",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Диплом на подставке рядом с двумя стеклянными бутылками",
+          "alt_en": "The diploma on a stand beside two glass bottles"
+        },
+        {
+          "src": "assets/news/2023-11-17-stavropolskoe-kachestvo-3",
+          "w": 640,
+          "h": 426,
+          "alt_ru": "Полный зал на церемонии награждения",
+          "alt_en": "A full hall at the award ceremony"
+        },
+        {
+          "src": "assets/news/2023-11-17-stavropolskoe-kachestvo-4",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Статуэтка лауреата и красные розы",
+          "alt_en": "The laureate's statuette and red roses"
+        }
+      ]
+    },
+    {
+      "date": "2023-06-16",
+      "title_ru": "Экскурсия для детей из летнего лагеря «Неунываки»",
+      "title_en": "A tour for the children of the “Neunyvaki” summer camp",
+      "text_ru": [
+        "Детство — это когда ты безумно счастлив увидеть, как преформа превращается в бутылку.",
+        "16 июня 2023 года на нашем предприятии прошла экскурсия для детей из летнего лагеря «Неунываки». Ребята узнали, как производится минеральная и питьевая вода, попробовали нашу продукцию, задали вопросы начальнику лаборатории и руководителям цехов. Вкусная и полезная получилась экскурсия!"
+      ],
+      "text_en": [
+        "Childhood is when you are wildly happy just to watch a preform turn into a bottle.",
+        "On 16 June 2023 the children of the “Neunyvaki” summer camp came to our plant. They saw how mineral and drinking water is made, tasted our products and put their questions to the head of the laboratory and the workshop managers. A tasty and useful tour it was!"
+      ],
+      "photo": {
+        "src": "assets/news/2023-06-16-ekskursiya-dlya-detei-iz-let-1",
+        "w": 640,
+        "h": 360,
+        "alt_ru": "Кадр из видео об экскурсии: линия розлива в цеху",
+        "alt_en": "A still from the tour video: the bottling line in the workshop"
+      },
+      "video": {
+        "url": "https://www.youtube.com/watch?v=m3WcrxmtyfQ"
+      }
+    },
+    {
+      "date": "2023-06-16",
+      "title_ru": "АО «Кавминводы» на выставке «Покупай ставропольское»",
+      "title_en": "Kavminvody at the “Buy Stavropol-made” exhibition",
+      "text_ru": [
+        "9 июня 2023 года АО «Кавминводы» приняло участие в торгово-закупочной сессии в рамках проекта «Покупай ставропольское».",
+        "Выставка собрала предприятия пищевой промышленности, а также организации торговли, федеральные и региональные сети, автозаправочные комплексы, операторов бортового питания, оптово-розничные компании.",
+        "Наше предприятие представило и минеральную, и питьевую линейку «Новотерская». Всю продукцию можно было попробовать и тут же обсудить условия взаимовыгодного сотрудничества."
+      ],
+      "text_en": [
+        "On 9 June 2023 Kavminvody took part in a trade and procurement session held under the “Buy Stavropol-made” programme.",
+        "The exhibition brought together food producers along with retailers, federal and regional chains, filling-station operators, in-flight catering companies and wholesalers.",
+        "We presented both the mineral and the drinking Novoterskaya range. Everything could be tasted on the spot, and terms of cooperation discussed there and then."
+      ],
+      "photo": {
+        "src": "assets/news/2023-06-16-ao-kavminvodi-na-vistavke-po-1",
+        "w": 640,
+        "h": 426,
+        "alt_ru": "Бутылка «Новотерской целебной» крупным планом на фоне паллет с продукцией",
+        "alt_en": "A close-up of a Novoterskaya Tselebnaya bottle against pallets of product"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2023-06-16-ao-kavminvodi-na-vistavke-po-2",
+          "w": 640,
+          "h": 426,
+          "alt_ru": "Зал выставки: столы с образцами продукции и посетители",
+          "alt_en": "The exhibition hall: tables of samples and visitors"
+        },
+        {
+          "src": "assets/news/2023-06-16-ao-kavminvodi-na-vistavke-po-3",
+          "w": 640,
+          "h": 426,
+          "alt_ru": "Сотрудники у стенда КМВ с бутылками «Новотерской»",
+          "alt_en": "Staff at the KMV stand with bottles of Novoterskaya"
+        }
+      ]
+    },
+    {
+      "date": "2023-05-24",
+      "title_ru": "«Новотерская» — вода со Знаком качества",
+      "title_en": "Novoterskaya — water with the state Quality Mark",
+      "text_ru": [
+        "16 мая в Республике Дагестан состоялось торжественное вручение государственных Знаков качества лучшей отечественной продукции.",
+        "АО «Кавминводы» вновь получило право маркировать питьевую воду «Новотерская» государственным Знаком качества — пятиугольником со вписанной в него буквой «К».",
+        "Товары, достойные российского Знака качества, определяют по результатам исследований: продукция, купленная в обычных торговых точках страны, проверяется на соответствие действующим стандартам качества и требованиям Российской системы качества."
+      ],
+      "text_en": [
+        "On 16 May the state Quality Marks for the best Russian products were presented in the Republic of Dagestan.",
+        "Kavminvody once again earned the right to mark Novoterskaya drinking water with the state Quality Mark — a pentagon with the letter “К” inside it.",
+        "Products worthy of the Russian Quality Mark are identified through testing: samples bought in ordinary shops around the country are checked against the current quality standards and the requirements of the Russian Quality System."
+      ],
+      "photo": {
+        "src": "assets/news/2023-05-24-novoterskaya-voda-so-znakom-1",
+        "w": 640,
+        "h": 879,
+        "alt_ru": "Награда в раскрытом футляре среди бутылок «Новотерской»",
+        "alt_en": "The award in an open case among bottles of Novoterskaya"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2023-05-24-novoterskaya-voda-so-znakom-2",
+          "w": 640,
+          "h": 427,
+          "alt_ru": "Настольный флажок «Дни ритейла на Северном Кавказе»",
+          "alt_en": "A table flag reading “Retail Days in the North Caucasus”"
+        },
+        {
+          "src": "assets/news/2023-05-24-novoterskaya-voda-so-znakom-3",
+          "w": 640,
+          "h": 426,
+          "alt_ru": "Участники за круглым столом в зале заседаний",
+          "alt_en": "Participants around the conference table"
+        },
+        {
+          "src": "assets/news/2023-05-24-novoterskaya-voda-so-znakom-4",
+          "w": 640,
+          "h": 427,
+          "alt_ru": "Вручение диплома в рамке у государственных флагов",
+          "alt_en": "A framed diploma being presented in front of the state flags"
+        }
+      ]
+    },
+    {
+      "date": "2023-04-04",
+      "title_ru": "Сотрудничество с Китаем",
+      "title_en": "Cooperation with China",
+      "text_ru": [
+        "4 апреля на предприятие АО «Кавминводы» прибыла делегация из Китая — представители компании «Puhuasheng Packaging Technology (PHS)». Компания занимается производством, инженерной установкой и наладкой полного комплекса линий по розливу воды и напитков.",
+        "В рамках визита гости посетили наш завод и обсудили с руководством возможные варианты сотрудничества.",
+        "Запуск новой линии на предприятии позволит создать дополнительные рабочие места и увеличить объём выпускаемой продукции."
+      ],
+      "text_en": [
+        "On 4 April a delegation from China visited Kavminvody — representatives of Puhuasheng Packaging Technology (PHS), a company that manufactures, installs and commissions complete bottling lines for water and soft drinks.",
+        "The guests toured the plant and discussed possible forms of cooperation with our management.",
+        "A new line would create additional jobs and increase output."
+      ],
+      "photo": {
+        "src": "assets/news/2023-04-04-sotrudnichestvo-s-kitaem-1",
+        "w": 640,
+        "h": 422,
+        "alt_ru": "Делегация у входа в здание завода с вывеской «КМВ Кавминводы»",
+        "alt_en": "The delegation at the plant entrance under the “KMV Kavminvody” sign"
+      }
+    },
+    {
+      "date": "2023-01-19",
+      "title_ru": "Крещенские купания в «Новотерской целебной»",
+      "title_en": "Epiphany bathing in Novoterskaya Tselebnaya",
+      "text_ru": [
+        "С 18 на 19 января на территории завода АО «Кавминводы» были организованы Крещенские купания в единственных на Ставрополье купелях с минеральной водой — горячей и холодной.",
+        "Для удобства гостей установили отапливаемые раздевалки и большой шатёр, в котором угощали шулюмом, кашей и горячим чаем.",
+        "В празднике приняли участие более 1200 гостей и жителей Кавказских Минеральных Вод.",
+        "Руководство АО «Кавминводы» получило огромное количество положительных отзывов и слов благодарности и обещало рассмотреть возможность сделать это мероприятие традиционным.",
+        "Пусть крещенская вода даст здоровье на года! С праздником!"
+      ],
+      "text_en": [
+        "On the night of 18–19 January the Kavminvody plant hosted Epiphany bathing in the only mineral-water fonts in the Stavropol Territory — one hot, one cold.",
+        "Heated changing rooms were set up for the guests, along with a large marquee serving shulyum soup, porridge and hot tea.",
+        "More than 1,200 guests and residents of the Caucasian Mineral Waters took part.",
+        "The company received a great many kind words and promised to consider making the event an annual tradition.",
+        "May the Epiphany water bring health for years to come. Happy holiday!"
+      ],
+      "photo": {
+        "src": "assets/news/2023-01-19-kreschenskie-kupaniya-v-novo-1",
+        "w": 640,
+        "h": 480,
+        "alt_ru": "Освещённая площадка с купелями ночью",
+        "alt_en": "The floodlit bathing area at night"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2023-01-19-kreschenskie-kupaniya-v-novo-2",
+          "w": 640,
+          "h": 480,
+          "alt_ru": "Самовары и живой огонь у шатра с угощением",
+          "alt_en": "Samovars and an open fire by the refreshments marquee"
+        },
+        {
+          "src": "assets/news/2023-01-19-kreschenskie-kupaniya-v-novo-3",
+          "w": 640,
+          "h": 480,
+          "alt_ru": "Купели под навесами днём",
+          "alt_en": "The fonts under their canopies by day"
+        },
+        {
+          "src": "assets/news/2023-01-19-kreschenskie-kupaniya-v-novo-4",
+          "w": 640,
+          "h": 480,
+          "alt_ru": "Гости у купелей вечером, рядом наряженная ёлка",
+          "alt_en": "Guests by the fonts in the evening, a decorated fir tree nearby"
+        },
+        {
+          "src": "assets/news/2023-01-19-kreschenskie-kupaniya-v-novo-5",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Стол с самоварами, баранками и сладостями",
+          "alt_en": "A table with samovars, bagels and sweets"
+        },
+        {
+          "src": "assets/news/2023-01-19-kreschenskie-kupaniya-v-novo-6",
+          "w": 640,
+          "h": 480,
+          "alt_ru": "Раздача горячей еды гостям праздника",
+          "alt_en": "Hot food being served to the guests"
+        }
+      ],
+      "video": {
+        "url": "https://www.youtube.com/watch?v=uRS6x0KWXQM"
+      }
+    },
+    {
+      "date": "2022-05-18",
+      "title_ru": "Подтверждение международных стандартов качества",
+      "title_en": "International quality standards confirmed",
+      "text_ru": [
+        "В апреле 2022 года АО «Кавминводы» в очередной раз подтвердило соответствие системы менеджмента безопасности продукции международному стандарту сертификации FSSC 22000 (Food Safety System Certification 22000)."
+      ],
+      "text_en": [
+        "In April 2022 Kavminvody once again confirmed that its product safety management system meets the FSSC 22000 (Food Safety System Certification 22000) standard."
+      ],
+      "photo": {
+        "src": "assets/news/2022-05-18-podtverzhdenie-mezhdunarodni-1",
+        "w": 640,
+        "h": 905,
+        "alt_ru": "Сертификат регистрации ISOQAR по стандарту FSSC 22000",
+        "alt_en": "The ISOQAR registration certificate for FSSC 22000"
+      }
+    },
+    {
+      "date": "2022-04-13",
+      "title_ru": "Новый дизайн питьевой воды",
+      "title_en": "A new look for the drinking water",
+      "text_ru": [
+        "Уважаемые покупатели!",
+        "Представляем вашему вниманию питьевую воду «Новотерская» в обновлённом дизайне. Выбирайте качественную питьевую воду!"
+      ],
+      "text_en": [
+        "Dear customers,",
+        "Here is Novoterskaya drinking water in its new design. Choose quality drinking water!"
+      ],
+      "photo": {
+        "src": "assets/news/2022-04-13-novii-dizain-pitevoi-vodi-1",
+        "w": 640,
+        "h": 959,
+        "alt_ru": "Бутылка питьевой «Новотерской» в новом дизайне",
+        "alt_en": "A bottle of Novoterskaya drinking water in the new design"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2022-04-13-novii-dizain-pitevoi-vodi-2",
+          "w": 640,
+          "h": 959,
+          "alt_ru": "Бутылка питьевой воды другого объёма в новом дизайне",
+          "alt_en": "Another bottle size in the new design"
+        },
+        {
+          "src": "assets/news/2022-04-13-novii-dizain-pitevoi-vodi-3",
+          "w": 640,
+          "h": 959,
+          "alt_ru": "Бутылка обновлённой линейки с синей этикеткой",
+          "alt_en": "A bottle of the updated range with the blue label"
+        },
+        {
+          "src": "assets/news/2022-04-13-novii-dizain-pitevoi-vodi-4",
+          "w": 640,
+          "h": 959,
+          "alt_ru": "Ещё один формат питьевой «Новотерской» в новом дизайне",
+          "alt_en": "One more format of Novoterskaya drinking water in the new design"
+        }
+      ]
+    },
+    {
+      "date": "2021-12-27",
+      "title_ru": "Поздравление с Новым годом!",
+      "title_en": "Happy New Year!",
+      "text_ru": [
+        "Тихой поступью сказка идёт,\nпо сугробам и снежным ухабам.\nИ с собою ведёт Новый год,\nвсем грозя грандиозным масштабом.",
+        "Он несёт всем подарков мешок,\nчто просили, всё точно подарит.\nОн невзгоды сотрёт в порошок,\nлишь двенадцатый только ударит.",
+        "Пусть ваш дом будет полон гостей,\nтех людей, что роднее всех на свете.\nВ Новый год только добрых вестей —\nон шагает уже по планете."
+      ],
+      "text_en": [
+        "A fairy tale walks in on quiet feet,\nover the snowdrifts and the frozen ruts,\nand brings the New Year along with it,\npromising everyone something grand.",
+        "It carries a sack of gifts for all\nand hands over exactly what was asked for.\nIt will grind every misfortune to dust\nthe moment the twelfth stroke sounds.",
+        "May your home be full of guests —\nthe people dearest to you in the world.\nGood news only in the New Year:\nit is already walking the earth."
+      ],
+      "photo": {
+        "src": "assets/news/2021-12-27-pozdravlenie-s-novim-godom-1",
+        "w": 640,
+        "h": 400,
+        "alt_ru": "Новогодняя открытка: еловая ветка с красными шарами, тигрёнок и стихотворное поздравление",
+        "alt_en": "A New Year card: a fir branch with red baubles, a tiger cub and a greeting in verse"
+      }
+    },
+    {
+      "date": "2021-12-27",
+      "title_ru": "Маркировка минеральной воды",
+      "title_en": "Mandatory labelling of mineral water",
+      "text_ru": [
+        "С 1 декабря 2021 года введена обязательная маркировка «Честный ЗНАК» на всю минеральную воду, производимую АО «Кавминводы» и поставляемую на российский рынок.",
+        "Теперь узнать полную информацию о минеральной воде в бутылках на полках магазинов можно с помощью смартфона.",
+        "«Честный ЗНАК» — это национальная система маркировки и прослеживания товаров разных категорий, которая создаёт дополнительный барьер для недобросовестных производителей.",
+        "На каждой бутылке появился специальный код Data Matrix. Отсканировав его в приложении «Честный ЗНАК», вы увидите полную информацию о происхождении товара и его производителе."
+      ],
+      "text_en": [
+        "From 1 December 2021 all mineral water produced by Kavminvody for the Russian market carries the mandatory “Chestny ZNAK” marking.",
+        "You can now check any bottle on the shelf with your smartphone and see its full details.",
+        "“Chestny ZNAK” is the national product marking and traceability system — one more barrier against dishonest producers.",
+        "Every bottle now carries a Data Matrix code. Scan it in the “Chestny ZNAK” app and you will see where the water comes from and who produced it."
+      ]
+    },
+    {
+      "date": "2021-08-27",
+      "title_ru": "«Жизнь как чудо»",
+      "title_en": "“Life as a Miracle”",
+      "text_ru": [
+        "Уважаемые покупатели!",
+        "Сегодня на полках магазинов вы увидите «Новотерскую целебную» с логотипом благотворительного фонда «Жизнь как чудо», партнёром которого АО «Кавминводы» стало в 2021 году.",
+        "Наше предприятие адресно поддержит маленьких пациентов в их борьбе за качественную и полноценную жизнь.",
+        "Фонд помогает детям с тяжёлыми заболеваниями печени вовремя пройти лечение. Его подопечные из разных регионов страны получают регулярную поддержку в оплате обследований, операций, лекарств.",
+        "И «Новотерская» не осталась в стороне. Давайте вместе творить добро!",
+        "Ведь более ценного, чем жизнь детей, нет на этом свете."
+      ],
+      "text_en": [
+        "Dear customers,",
+        "From today you will see Novoterskaya Tselebnaya on the shelves carrying the logo of the “Life as a Miracle” charity foundation, whose partner Kavminvody became in 2021.",
+        "Our company will support young patients directly in their fight for a full life.",
+        "The foundation helps children with severe liver diseases get treatment in time. Its wards across the country receive regular help paying for tests, operations and medicines.",
+        "Novoterskaya could not stand aside. Let us do good together!",
+        "There is nothing in this world more precious than the lives of children."
+      ],
+      "photo": {
+        "src": "assets/news/2021-08-27-zhizn-kak-chudo-1",
+        "w": 640,
+        "h": 1130,
+        "alt_ru": "Бутылка «Новотерской целебной» с логотипом фонда на этикетке",
+        "alt_en": "A bottle of Novoterskaya Tselebnaya with the foundation's logo on the label"
+      },
+      "link": {
+        "url": "https://kakchudo.ru",
+        "label_ru": "Сайт фонда «Жизнь как чудо»",
+        "label_en": "The “Life as a Miracle” foundation website"
+      }
+    },
+    {
+      "date": "2021-06-12",
+      "title_ru": "Завод на грани закрытия!",
+      "title_en": "The plant is on the brink of closure",
+      "text_ru": [
+        "Мы столкнулись с реальной угрозой лишиться рабочих мест и источника существования. Единственный подъездной путь к заводу — улица Бештаугорская посёлка Новотерский — оказался в частной собственности, и проезд для большегрузного транспорта перекрыли шлагбаумом с контрольно-пропускным пунктом и железной рамкой. Из-за этого стабильно работающее предприятие может прекратить деятельность, а более 250 человек — потерять работу."
+      ],
+      "text_en": [
+        "We are facing a real risk of losing our jobs and our livelihood. The only access road to the plant — Beshtaugorskaya Street in the village of Novoterskiy — has passed into private ownership, and heavy goods traffic has been blocked by a barrier with a checkpoint and a height restrictor. Because of this a stable business may have to stop work, and more than 250 people could lose their jobs."
+      ],
+      "video": {
+        "url": "https://www.youtube.com/watch?v=GQoe20O7Zag"
+      }
+    },
+    {
+      "date": "2021-05-07",
+      "title_ru": "Поздравление с Днём Победы!",
+      "title_en": "Happy Victory Day!",
+      "text_ru": [
+        "АО «Кавминводы» от всей души поздравляет с праздником Победы!",
+        "День Победы — наше общее достояние и гордость.",
+        "Пусть память об этой победе будет для всех вечным примером мужества и стойкости. Искренне желаем вам и вашим семьям крепкого здоровья, личного счастья, семейного благополучия и мирного неба над головой!"
+      ],
+      "text_en": [
+        "Kavminvody wholeheartedly congratulates you on Victory Day.",
+        "Victory Day is our shared heritage and our shared pride.",
+        "May the memory of that victory always stand as an example of courage and endurance. We sincerely wish you and your families good health, happiness, family wellbeing and a peaceful sky overhead."
+      ],
+      "photo": {
+        "src": "assets/news/2021-05-07-pozdravlenie-s-dnyom-pobedi-1",
+        "w": 640,
+        "h": 384,
+        "alt_ru": "Открытка ко Дню Победы: георгиевская лента, цифра 9 и красные тюльпаны",
+        "alt_en": "A Victory Day card: the St George ribbon, the figure 9 and red tulips"
+      }
+    },
+    {
+      "date": "2021-05-07",
+      "title_ru": "Подтверждение международных стандартов качества",
+      "title_en": "International quality standards confirmed",
+      "text_ru": [
+        "В апреле 2021 года АО «Кавминводы» подтвердило соответствие системы менеджмента безопасности продукции международному стандарту сертификации FSSC 22000 (Food Safety System Certification 22000).",
+        "Предприятие одним из первых в Российской Федерации сертифицировано по версии 5.1 этого стандарта."
+      ],
+      "text_en": [
+        "In April 2021 Kavminvody confirmed that its product safety management system meets the FSSC 22000 (Food Safety System Certification 22000) standard.",
+        "The company is one of the first in Russia to be certified against version 5.1 of the scheme."
+      ],
+      "photo": {
+        "src": "assets/news/2021-05-07-podtverzhdenie-mezhdunarodni-1",
+        "w": 640,
+        "h": 905,
+        "alt_ru": "Сертификат регистрации ISOQAR по стандарту FSSC 22000",
+        "alt_en": "The ISOQAR registration certificate for FSSC 22000"
+      }
+    },
+    {
+      "date": "2021-04-30",
+      "title_ru": "Эксклюзивная новинка!",
+      "title_en": "An exclusive new product",
+      "text_ru": [
+        "Рады представить эксклюзивную новинку — минеральную воду «Новотерская целебная» без газа. Основной состав воды остаётся стабильно неизменным, она сохраняет все свои свойства и мягко воздействует на органы пищеварения.",
+        "Уверены, вы по достоинству оцените наш новый продукт!"
+      ],
+      "text_en": [
+        "We are glad to present something new — still Novoterskaya Tselebnaya mineral water. Its composition stays exactly the same, it keeps all its properties and treats the digestive system gently.",
+        "We are sure you will appreciate it."
+      ],
+      "photo": {
+        "src": "assets/news/2021-04-30-eksklyuzivnaya-novinka-1",
+        "w": 640,
+        "h": 815,
+        "alt_ru": "«Новотерская целебная» в зелёной стеклянной бутылке",
+        "alt_en": "Novoterskaya Tselebnaya in a green glass bottle"
+      }
+    },
+    {
+      "date": "2021-03-25",
+      "title_ru": "«Новотерская» удостоена знака Роскачества",
+      "title_en": "Novoterskaya awarded the Roskachestvo mark",
+      "text_ru": [
+        "По результатам лабораторных испытаний, проведённых в 2020 году АНО «Российская система качества», питьевая вода «Новотерская» подтвердила своё высокое качество и соответствие требованиям опережающего стандарта СТО 46429990-069-2017 по качеству и безопасности.",
+        "«Новотерская» — стабильно высокое качество!"
+      ],
+      "text_en": [
+        "Laboratory testing carried out in 2020 by the Russian Quality System confirmed that Novoterskaya drinking water meets the advanced quality and safety standard STO 46429990-069-2017.",
+        "Novoterskaya — consistently high quality."
+      ],
+      "photo": {
+        "src": "assets/news/2021-03-25-novoterskaya-udostoena-znaka-1",
+        "w": 640,
+        "h": 905,
+        "alt_ru": "Сертификат соответствия Российской системы качества",
+        "alt_en": "The Russian Quality System certificate of conformity"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2021-03-25-novoterskaya-udostoena-znaka-2",
+          "w": 189,
+          "h": 272,
+          "alt_ru": "Красный знак «Российский Знак Качества. Проверено Роскачеством»",
+          "alt_en": "The red “Russian Quality Mark — verified by Roskachestvo” badge"
+        }
+      ]
+    },
+    {
+      "date": "2020-12-24",
+      "title_ru": "Новые награды",
+      "title_en": "New awards",
+      "text_ru": [
+        "Дорогие друзья!",
+        "Мы рады сообщить, что в декабре 2020 года продукция ТМ «Новотерская» в очередной раз подтвердила своё высокое качество на международном конкурсе «Гарантия качества — 2020».",
+        "Золотых медалей удостоены минеральная вода «Новотерская целебная» 0,5 л в стеклянной бутылке «Элита» и питьевая вода «Новотерская» 5 л в ПЭТ-бутылке."
+      ],
+      "text_en": [
+        "Dear friends,",
+        "We are glad to report that in December 2020 the Novoterskaya trademark again confirmed its quality at the international “Quality Guarantee 2020” competition.",
+        "Gold medals went to Novoterskaya Tselebnaya mineral water, 0.5 l in the “Elita” glass bottle, and Novoterskaya drinking water, 5 l in PET."
+      ],
+      "photo": {
+        "src": "assets/news/2020-12-24-novie-nagradi-1",
+        "w": 640,
+        "h": 960,
+        "alt_ru": "Стеклянная бутылка «Новотерской целебной» 0,5 л «Элита»",
+        "alt_en": "The 0.5 l “Elita” glass bottle of Novoterskaya Tselebnaya"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2020-12-24-novie-nagradi-2",
+          "w": 640,
+          "h": 905,
+          "alt_ru": "Диплом о награждении золотой медалью",
+          "alt_en": "The gold medal diploma"
+        },
+        {
+          "src": "assets/news/2020-12-24-novie-nagradi-3",
+          "w": 640,
+          "h": 905,
+          "alt_ru": "Второй диплом о награждении золотой медалью",
+          "alt_en": "The second gold medal diploma"
+        },
+        {
+          "src": "assets/news/2020-12-24-novie-nagradi-4",
+          "w": 640,
+          "h": 905,
+          "alt_ru": "Пятилитровая ПЭТ-бутылка питьевой «Новотерской»",
+          "alt_en": "The five-litre PET bottle of Novoterskaya drinking water"
+        }
+      ]
+    },
+    {
+      "date": "2020-12-18",
+      "title_ru": "Поздравление с Новым годом и Рождеством!",
+      "title_en": "Merry Christmas and a Happy New Year",
+      "text_ru": [
+        "АО «Кавминводы» душевно поздравляет вас с наступающим Новым годом и Рождеством!",
+        "Пусть 2021 год станет для вас мощным рывком вперёд.",
+        "Желаем упорства в достижении целей, твёрдо стоять на ногах и решительно действовать! Счастливого Нового года и Рождества, друзья!"
+      ],
+      "text_en": [
+        "Kavminvody warmly congratulates you on the coming New Year and Christmas.",
+        "May 2021 be a powerful leap forward for you.",
+        "We wish you persistence in reaching your goals, firm ground under your feet and the resolve to act. Happy New Year and Merry Christmas, friends!"
+      ],
+      "photo": {
+        "src": "assets/news/2020-12-18-pozdravlenie-s-novim-godom-i-1",
+        "w": 640,
+        "h": 426,
+        "alt_ru": "Бутылки «Новотерской» среди украшенных еловых ветвей",
+        "alt_en": "Bottles of Novoterskaya among decorated fir branches"
+      }
+    },
+    {
+      "date": "2020-12-01",
+      "title_ru": "Новогодняя акция «В десяточку 2021»",
+      "title_en": "The New Year promotion “Bullseye 2021”",
+      "text_ru": [
+        "Закажите доставку питьевой воды 19 л в декабре 2020 года — каждый десятый звонок счастливый!",
+        "Получите гарантированный подарок от АО «Кавминводы».",
+        "Акция проходит в Минеральных Водах и Железноводске с 1 по 30 декабря 2020 года."
+      ],
+      "text_en": [
+        "Order a 19-litre bottle of drinking water in December 2020 — every tenth call is a lucky one.",
+        "A guaranteed gift from Kavminvody for the winner.",
+        "The promotion runs in Mineralnye Vody and Zheleznovodsk from 1 to 30 December 2020."
+      ],
+      "photo": {
+        "src": "assets/news/2020-12-01-novogodnyaya-aktsiya-1",
+        "w": 640,
+        "h": 800,
+        "alt_ru": "Бутылка «Новотерской» в руке на фоне наряженной ёлки",
+        "alt_en": "A bottle of Novoterskaya held in front of a decorated tree"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2020-12-01-novogodnyaya-aktsiya-2",
+          "w": 640,
+          "h": 640,
+          "alt_ru": "Сотрудница с подарочным календарём у кулера",
+          "alt_en": "An employee with the gift calendar by a water cooler"
+        },
+        {
+          "src": "assets/news/2020-12-01-novogodnyaya-aktsiya-3",
+          "w": 640,
+          "h": 1138,
+          "alt_ru": "Победительница акции с календарём и водой на улице",
+          "alt_en": "A winner outdoors with the calendar and her water"
+        },
+        {
+          "src": "assets/news/2020-12-01-novogodnyaya-aktsiya-4",
+          "w": 640,
+          "h": 853,
+          "alt_ru": "Календарь и кулер с бутылью 19 л в помещении",
+          "alt_en": "The calendar and a cooler with a 19-litre bottle indoors"
+        }
+      ]
+    },
+    {
+      "date": "2020-12-01",
+      "title_ru": "«Новотерская целебная»: новогодняя серия",
+      "title_en": "Novoterskaya Tselebnaya: the New Year edition",
+      "text_ru": [
+        "Уже на полках магазинов!",
+        "Рады сообщить о выпуске лимитированной серии минеральной воды «Новотерская целебная» в бутылках 1,5 л ПЭТ с этикеткой в новогоднем дизайне.",
+        "Уверены, приобретая нашу новогоднюю продукцию, вы почувствуете приближение праздника."
+      ],
+      "text_en": [
+        "Already on the shelves.",
+        "We are glad to announce a limited edition of Novoterskaya Tselebnaya mineral water in 1.5 l PET bottles with a New Year label.",
+        "We are sure the festive bottle will bring the holiday a little closer."
+      ],
+      "photo": {
+        "src": "assets/news/2020-12-01-novoterskaya-tselebnaya-novo-1",
+        "w": 640,
+        "h": 1081,
+        "alt_ru": "Бутылка 1,5 л с новогодней этикеткой",
+        "alt_en": "The 1.5 l bottle with the New Year label"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2020-12-01-novoterskaya-tselebnaya-novo-2",
+          "w": 640,
+          "h": 1103,
+          "alt_ru": "Новогодняя этикетка крупным планом",
+          "alt_en": "A close-up of the New Year label"
+        }
+      ]
+    },
+    {
+      "date": "2020-11-23",
+      "title_ru": "Народное голосование «Вкусы России»",
+      "title_en": "The “Tastes of Russia” public vote",
+      "text_ru": [
+        "Друзья, началось народное голосование «Вкусы России» — пройдите по ссылке и проголосуйте за «Новотерскую». Голосовать нужно с телефона, чтобы все голоса были учтены."
+      ],
+      "text_en": [
+        "Friends, the “Tastes of Russia” public vote has opened — follow the link and vote for Novoterskaya. Please vote from a phone so that every vote is counted."
+      ],
+      "link": {
+        "url": "https://russiantastes.ru/nominees/3888535/",
+        "label_ru": "Страница голосования",
+        "label_en": "The voting page"
+      }
+    }
+  ],
+  "newsCharity": [
+    {
+      "date": "2024-11-11",
+      "title_ru": "Питьевая вода — на нужды фронта",
+      "title_en": "Drinking water for the front",
+      "text_ru": [
+        "АО «Кавминводы» продолжает оказывать гуманитарную помощь бойцам специальной военной операции.",
+        "Очередную благодарность за передачу большой партии питьевой воды предприятию передают воздушно-десантные войска."
+      ],
+      "text_en": [
+        "Kavminvody continues to send humanitarian aid to the servicemen of the special military operation.",
+        "The airborne troops have sent the company another letter of thanks for a large consignment of drinking water."
+      ],
+      "photo": {
+        "src": "assets/news/2024-11-11-pitevaya-voda-na-nuzhdi-fron-1",
+        "w": 610,
+        "h": 922,
+        "alt_ru": "Военнослужащие у паллет с бутилированной водой",
+        "alt_en": "Servicemen beside pallets of bottled water"
+      }
+    },
+    {
+      "date": "2024-11-03",
+      "title_ru": "Бойцы СВО благодарят за воду",
+      "title_en": "Thanks from the front for the water",
+      "text_ru": [
+        "3 ноября 34-я горно-штурмовая бригада получила гуманитарную помощь от АО «Кавминводы».",
+        "Предприятие в очередной раз передало бойцам крупную партию питьевой воды. Помощь фронту оказывается на регулярной основе.",
+        "Военнослужащие искренне благодарят коллектив и акционеров АО «Кавминводы» за неравнодушие к нуждам фронта и поставку ценнейшего жизненного ресурса."
+      ],
+      "text_en": [
+        "On 3 November the 34th mountain assault brigade received humanitarian aid from Kavminvody.",
+        "The company again handed over a large consignment of drinking water. Aid is sent to the front on a regular basis.",
+        "The servicemen sincerely thank the staff and shareholders of Kavminvody for their care and for supplying the most vital resource of all."
+      ],
+      "photo": {
+        "src": "assets/news/2024-11-03-boitsi-svo-blagodaryat-za-vo-1",
+        "w": 558,
+        "h": 1280,
+        "alt_ru": "Упакованная партия воды, выгруженная в осенней лесополосе",
+        "alt_en": "A wrapped consignment of water unloaded in an autumn treeline"
+      }
+    },
+    {
+      "date": "2024-11-02",
+      "title_ru": "Помогаем местным школам и больницам",
+      "title_en": "Helping local schools and hospitals",
+      "text_ru": [
+        "Для АО «Кавминводы» благотворительность — не разовая акция, а обычное дело. Социальная ответственность компании остаётся естественной и очень важной частью корпоративной жизни.",
+        "Позитивные изменения начинаются с помощи тем, кто рядом: именно поэтому завод поддерживает детские учреждения посёлка Новотерский. В 2023 году для школы-интерната предприятие закупило мебель — это позволило оборудовать кабинет «Точки роста», федеральной сети образовательных центров для детей из сельской местности и малых городов. Кабинету начальной школы АО «Кавминводы» подарило магнитную доску, а школа №11 получила возможность обновить интерьер.",
+        "Не забывает предприятие и о вкладе в здоровье подрастающего поколения: для детского отделения больницы в Минеральных Водах куплено медицинское оборудование.",
+        "Кроме того, АО «Кавминводы» оказало адресную помощь больным детям."
+      ],
+      "text_en": [
+        "For Kavminvody charity is not a one-off campaign but ordinary practice. Social responsibility remains a natural and important part of the company's life.",
+        "Positive change begins with helping those nearby, which is why the plant supports children's institutions in the village of Novoterskiy. In 2023 the company bought furniture for the boarding school, allowing it to equip a “Point of Growth” classroom — part of a federal network of education centres for children in villages and small towns. The primary school received a magnetic board, and school No. 11 was able to refurbish its interior.",
+        "The company also invests in the health of the younger generation: medical equipment was purchased for the children's ward of the hospital in Mineralnye Vody.",
+        "Kavminvody has also given direct help to individual sick children."
+      ],
+      "photo": {
+        "src": "assets/news/2024-11-02-pomogaem-mestnim-shkolam-i-b-1",
+        "w": 640,
+        "h": 480,
+        "alt_ru": "Школьный класс на уроке: дети за партами, работает проектор",
+        "alt_en": "A school classroom during a lesson, children at their desks and the projector on"
+      }
+    },
+    {
+      "date": "2023-12-20",
+      "title_ru": "Новогоднее чудо от «Новотерской»",
+      "title_en": "A New Year miracle from Novoterskaya",
+      "text_ru": [
+        "Коллектив АО «Кавминводы» накануне новогодних праздников пришёл с вкусными и полезными подарками к воспитанникам детского дома «Золотой ключик» села Розовка Минераловодского района.",
+        "Найти подарок под новогодней ёлкой мечтает каждый ребёнок. Воспитанники «Золотого ключика» тоже ждали чудес, загадывали желания и писали письма Деду Морозу. В этом году добрым Морозом для ребят стало руководство АО «Кавминводы».",
+        "Каждый ребёнок получил именно тот подарок, который просил: книги, игрушки, портативные колонки, наушники, одежду, обувь. Все желания были исполнены.",
+        "Воспитанники детского дома поблагодарили коллектив предприятия и вручили новогодние сувениры, сделанные своими руками. По словам ребят, их подарки заряжены на успех и благополучие."
+      ],
+      "text_en": [
+        "Just before the New Year holidays the Kavminvody team brought tasty and useful presents to the children of the “Zolotoy Klyuchik” orphanage in the village of Rozovka, Mineralovodsky district.",
+        "Every child dreams of finding a present under the tree. The children of “Zolotoy Klyuchik” were waiting for miracles too — making wishes and writing letters to Father Frost. This year their Father Frost was the management of Kavminvody.",
+        "Each child received exactly what they had asked for: books, toys, portable speakers, headphones, clothes and shoes. Every wish came true.",
+        "The children thanked the company's team and gave them New Year souvenirs made by hand. According to the children, their gifts are charged with success and wellbeing."
+      ],
+      "photo": {
+        "src": "assets/news/2023-12-20-novogodnee-chudo-ot-novoters-1",
+        "w": 640,
+        "h": 480,
+        "alt_ru": "Дети и сотрудники предприятия с подарками и мягкими игрушками у ёлки",
+        "alt_en": "Children and company staff with presents and soft toys by the tree"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2023-12-20-novogodnee-chudo-ot-novoters-2",
+          "w": 640,
+          "h": 891,
+          "alt_ru": "Благодарственное письмо от детского дома",
+          "alt_en": "The letter of thanks from the orphanage"
+        },
+        {
+          "src": "assets/news/2023-12-20-novogodnee-chudo-ot-novoters-3",
+          "w": 640,
+          "h": 480,
+          "alt_ru": "Сотрудники предприятия с пакетами подарков у автомобиля",
+          "alt_en": "Company staff with bags of presents by the car"
+        }
+      ]
+    },
+    {
+      "date": "2023-04-07",
+      "title_ru": "Чудесная распродажа",
+      "title_en": "The Miracle Sale",
+      "text_ru": [
+        "АО «Кавминводы» стало спонсором самой масштабной за последние пять лет благотворительной распродажи «Miracle Sale», которую организовал благотворительный фонд «Жизнь как чудо».",
+        "По итогам распродажи удалось собрать более 5 800 000 рублей. Все средства пойдут на помощь детям с серьёзными заболеваниями печени.",
+        "Рады быть причастны к такому доброму делу!"
+      ],
+      "text_en": [
+        "Kavminvody sponsored “Miracle Sale”, the largest charity sale of the past five years, organised by the “Life as a Miracle” foundation.",
+        "The sale raised more than 5,800,000 roubles. All of it goes to help children with serious liver diseases.",
+        "We are glad to be part of something so good."
+      ],
+      "photo": {
+        "src": "assets/news/2023-04-07-chudesnaya-rasprodazha-1",
+        "w": 640,
+        "h": 426,
+        "alt_ru": "Бутылки «Новотерской» с розами на столиках зала распродажи",
+        "alt_en": "Bottles of Novoterskaya with roses on the tables of the sale hall"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2023-04-07-chudesnaya-rasprodazha-2",
+          "w": 640,
+          "h": 426,
+          "alt_ru": "Те же столики под другим углом",
+          "alt_en": "The same tables from another angle"
+        },
+        {
+          "src": "assets/news/2023-04-07-chudesnaya-rasprodazha-3",
+          "w": 640,
+          "h": 852,
+          "alt_ru": "Гостья распродажи с бутылкой «Новотерской»",
+          "alt_en": "A guest of the sale holding a bottle of Novoterskaya"
+        },
+        {
+          "src": "assets/news/2023-04-07-chudesnaya-rasprodazha-4",
+          "w": 640,
+          "h": 427,
+          "alt_ru": "Лоты распродажи на вешалках",
+          "alt_en": "Lots on the rails at the sale"
+        },
+        {
+          "src": "assets/news/2023-04-07-chudesnaya-rasprodazha-5",
+          "w": 640,
+          "h": 852,
+          "alt_ru": "Стойка выдачи с фирменным пакетом фонда «Жизнь как чудо»",
+          "alt_en": "The collection desk with a “Life as a Miracle” branded bag"
+        },
+        {
+          "src": "assets/news/2023-04-07-chudesnaya-rasprodazha-6",
+          "w": 640,
+          "h": 904,
+          "alt_ru": "Плакат фонда с портретом подопечной",
+          "alt_en": "The foundation's poster with a portrait of one of its wards"
+        }
+      ]
+    },
+    {
+      "date": "2023-03-17",
+      "title_ru": "Всё произошло случайно, но как и планировалось",
+      "title_en": "It all happened by chance — exactly as planned",
+      "text_ru": [
+        "17 марта 2023 года наш завод посетили директор и административный директор фонда «Жизнь как чудо».",
+        "Фонд занимается оказанием своевременной помощи детям с тяжёлыми заболеваниями печени, а также системной поддержкой обучения и исследований в этой области.",
+        "С 2021 года АО «Кавминводы» является партнёром фонда: предприятие выпускает продукцию, брендированную его логотипом, и перечисляет часть средств от её продажи в помощь подопечным.",
+        "Случайность, а может, просто чудо: именно в день приезда представителей фонда на нашем производстве в очередной раз начался выпуск продукции с обновлённой этикеткой, на которой вы увидите маленький, но такой важный логотип, помогающий дарить жизнь.",
+        "Для гостей была организована экскурсия по предприятию, где они своими глазами увидели все этапы производства минеральной воды.",
+        "Покупая «Новотерскую целебную», вы не только поддерживаете собственное здоровье, но и помогаете фонду «Жизнь как чудо»."
+      ],
+      "text_en": [
+        "On 17 March 2023 our plant was visited by the director and the administrative director of the “Life as a Miracle” foundation.",
+        "The foundation provides timely help to children with severe liver diseases and supports training and research in the field.",
+        "Kavminvody has been a partner of the foundation since 2021: we produce bottles carrying its logo and transfer part of the proceeds to its wards.",
+        "Chance — or perhaps simply a miracle: on the very day the foundation arrived, our line started another run of bottles with the updated label bearing that small but important logo.",
+        "The guests were given a tour of the plant and saw every stage of mineral water production with their own eyes.",
+        "When you buy Novoterskaya Tselebnaya you support your own health and help the “Life as a Miracle” foundation at the same time."
+      ],
+      "photo": {
+        "src": "assets/news/2023-03-17-vsyo-proizoshlo-sluchaino-no-1",
+        "w": 640,
+        "h": 429,
+        "alt_ru": "Гости фонда с сотрудниками у входа в здание завода",
+        "alt_en": "The foundation's guests with company staff at the plant entrance"
+      },
+      "video": {
+        "url": "https://www.youtube.com/watch?v=ejXWvQcAHuw"
+      }
+    }
+  ]
 }

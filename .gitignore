@@ -58,3 +58,9 @@ tools/history-src/sheet.jpg
 # python tools/lab-src/grab.py
 tools/lab-src/raw/
 tools/lab-src/*.html
+
+# Выгрузка новостей и благотворительности со старого сайта: 27МБ дампов HTML,
+# исходных снимков и контактных листов, из которых выписаны тексты и подписи
+# для content/news.json. Скрипты рядом остаются в репо, всё это пересоздаётся:
+# python tools/news-src/grab.py
+tools/news-src/raw/
