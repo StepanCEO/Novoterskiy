@@ -1,6 +1,86 @@
 {
   "newsGeneral": [
     {
+      "date": "2025",
+      "title_ru": "Открытие часовни",
+      "title_en": "Opening of the chapel",
+      "text_ru": [
+        "Фото- и видеорепортаж с церемонии."
+      ],
+      "text_en": [
+        "A photo and video report from the ceremony."
+      ],
+      "photo": {
+        "src": "assets/news/2025-otkrytie-chasovni-1",
+        "w": 1000,
+        "h": 666,
+        "alt_ru": "Священнослужитель окропляет собравшихся святой водой, на заднем плане гора",
+        "alt_en": "A priest sprinkles the gathering with holy water, a mountain in the background"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2025-otkrytie-chasovni-2",
+          "w": 537,
+          "h": 760,
+          "alt_ru": "Часовня из тёмного кирпича с золотым куполом, вокруг новая брусчатка",
+          "alt_en": "The dark-brick chapel with a golden dome, new paving all around"
+        },
+        {
+          "src": "assets/news/2025-otkrytie-chasovni-3",
+          "w": 506,
+          "h": 760,
+          "alt_ru": "Архиерей благословляет прихожанку у входа в часовню",
+          "alt_en": "The bishop blesses a parishioner at the chapel door"
+        },
+        {
+          "src": "assets/news/2025-otkrytie-chasovni-4",
+          "w": 506,
+          "h": 760,
+          "alt_ru": "Архиерей в облачении с напрестольным крестом у стены часовни",
+          "alt_en": "The bishop in vestments holding an altar cross by the chapel wall"
+        },
+        {
+          "src": "assets/news/2025-otkrytie-chasovni-5",
+          "w": 760,
+          "h": 506,
+          "alt_ru": "Гости церемонии стоят на площадке перед зданием предприятия",
+          "alt_en": "Guests of the ceremony standing on the square in front of the plant building"
+        },
+        {
+          "src": "assets/news/2025-otkrytie-chasovni-6",
+          "w": 760,
+          "h": 506,
+          "alt_ru": "Прихожанки в платках у деревьев наблюдают за службой",
+          "alt_en": "Parishioners in headscarves watching the service from under the trees"
+        },
+        {
+          "src": "assets/news/2025-otkrytie-chasovni-7",
+          "w": 506,
+          "h": 760,
+          "alt_ru": "Скрипач играет на площадке рядом с часовней",
+          "alt_en": "A violinist playing on the square beside the chapel"
+        }
+      ],
+      "clips": [
+        {
+          "src": "assets/video/chasovnya-osvyaschenie.mp4",
+          "poster": "assets/news/chasovnya-osvyaschenie-poster",
+          "w": 848,
+          "h": 464,
+          "caption_ru": "Репортаж с церемонии",
+          "caption_en": "A report from the ceremony"
+        },
+        {
+          "src": "assets/video/chasovnya-vnutri.mp4",
+          "poster": "assets/news/chasovnya-vnutri-poster",
+          "w": 464,
+          "h": 848,
+          "caption_ru": "Внутри часовни",
+          "caption_en": "Inside the chapel"
+        }
+      ]
+    },
+    {
       "date": "2024-11-19",
       "title_ru": "АО «Кавминводы» поддержало юных «Новотерцев» на форуме «Разные. Смелые. Молодые»",
       "title_en": "Kavminvody backed the young “Novotertsy” at the “Different. Bold. Young” forum",

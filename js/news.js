@@ -42,34 +42,62 @@
 
   var MONTHS_RU = ["января", "февраля", "марта", "апреля", "мая", "июня",
     "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  /* Именительный падеж нужен, когда числа нет: «октябрь 2025», не «октября». */
+  var MONTHS_RU_NOM = ["январь", "февраль", "март", "апрель", "май", "июнь",
+    "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"];
+
+  function pad(value) { return ("0" + value).slice(-2); }
 
   /* Дату разбираем вручную из YYYY-MM-DD: new Date("2026-03-05") трактуется
-     как UTC, и в минусовых поясах число уезжает на день назад. */
+     как UTC, и в минусовых поясах число уезжает на день назад.
+     Месяц и число необязательны: у части записей известен только год или
+     месяц, и выдуманное число в такой новости было бы неправдой. */
   function parseDate(value) {
-    var match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || "").trim());
+    var match = /^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/.exec(String(value || "").trim());
     if (!match) return null;
-    var month = Number(match[2]) - 1;
-    if (month < 0 || month > 11) return null;
-    return { year: Number(match[1]), month: month, day: Number(match[3]) };
+    var month = match[2] == null ? null : Number(match[2]) - 1;
+    if (month !== null && (month < 0 || month > 11)) return null;
+    var day = match[3] == null ? null : Number(match[3]);
+    if (day !== null && (day < 1 || day > 31)) return null;
+    return { year: Number(match[1]), month: month, day: day };
   }
 
   function formatRu(parts) {
+    if (parts.month === null) return String(parts.year);
+    if (parts.day === null) return MONTHS_RU_NOM[parts.month] + " " + parts.year;
     return parts.day + " " + MONTHS_RU[parts.month] + " " + parts.year;
   }
 
   function formatEn(parts) {
+    if (parts.month === null) return String(parts.year);
     var iso = isoOf(parts);
     // toLocaleDateString с явным UTC — иначе тот же сдвиг на сутки.
+    // Дня нет — берём середину месяца: в вывод она всё равно не попадает.
+    var options = parts.day === null
+      ? { month: "long", year: "numeric", timeZone: "UTC" }
+      : { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" };
     try {
-      return new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB",
-        { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+      return new Date(parts.year + "-" + pad(parts.month + 1) + "-" +
+        pad(parts.day === null ? 15 : parts.day) + "T12:00:00Z")
+        .toLocaleDateString("en-GB", options);
     } catch (error) {
       return iso;
     }
   }
 
+  /* Годится и в datetime: по HTML это валидные значения — год, год-месяц
+     и полная дата. */
   function isoOf(parts) {
-    return parts.year + "-" + ("0" + (parts.month + 1)).slice(-2) + "-" + ("0" + parts.day).slice(-2);
+    if (parts.month === null) return String(parts.year);
+    if (parts.day === null) return parts.year + "-" + pad(parts.month + 1);
+    return parts.year + "-" + pad(parts.month + 1) + "-" + pad(parts.day);
+  }
+
+  /* Для сортировки недостающие месяц и число дополняем нулями: запись без
+     числа встаёт следом за датированными того же года, а не в конец ленты. */
+  function sortKey(parts) {
+    return String(parts.year) + pad(parts.month === null ? 0 : parts.month + 1) +
+      pad(parts.day === null ? 0 : parts.day);
   }
 
   /* Текст записи может прийти одной строкой (старый формат админки) или
@@ -128,7 +156,7 @@
       if (!da && !db) return 0;
       if (!da) return 1;
       if (!db) return -1;
-      return isoOf(db).localeCompare(isoOf(da));
+      return sortKey(db).localeCompare(sortKey(da));
     });
 
     feed.innerHTML = '<ul class="news-list">' + list.map(function (item) {
