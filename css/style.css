@@ -216,13 +216,29 @@ picture { display: contents; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+/* Подпись под названием — часть логотипа, а не отдельная строка текста:
+   с двух сторон её держат тонкие штрихи. Штрихи растянуты на всю свободную
+   ширину колонки (flex: 1), поэтому связка всегда выглядит выровненной по
+   краям, как бы ни менялась длина слова. */
 .brand-tag {
-  font-size: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.42em;
+  font-size: 0.46rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-top: 2px;
+  margin-top: 3px;
+}
+.brand-tag::before,
+.brand-tag::after {
+  content: "";
+  flex: 1 1 0;
+  min-width: 0.5rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
 }
 .site-nav { display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(0.9rem, 1.6vw, 1.6rem); }
 .nav-item { position: relative; }
@@ -557,32 +573,6 @@ picture { display: contents; }
 @keyframes steam {
   0%,100% { opacity: 0.85; transform: translateY(4%) scale(1); }
   50%     { opacity: 1; transform: translateY(0) scale(1.04); }
-}
-
-/* Каменная гряда в правом нижнем углу.
-   z-index 3 — выше сетки героя (2), поэтому основание бутылки уходит за
-   камни. Кадр с прозрачным фоном, гребень растушёван, так что камни просто
-   ложатся поверх горы. Ширина подобрана так, чтобы на бутылку заходила
-   примерно десятая часть её высоты: гряда поднимается к правому краю. */
-.hero-rocks {
-  /* display обязателен: по умолчанию у нас picture { display: contents },
-     и тогда сам <picture> бокса не создаёт, а картинка становится флекс-
-     элементом .hero и сжимает сетку с текстом и бутылкой. */
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  /* Нижняя граница в 340px — ради телефона: там 54% ширины давали в углу
-     оранжевый огрызок, который до бутылки не доставал. */
-  width: clamp(340px, 54%, 800px);
-  pointer-events: none;
-  user-select: none;
-}
-.hero-rocks img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 /* Полноэкранная гора в лёгком тумане */
@@ -1861,8 +1851,27 @@ picture { display: contents; }
   gap: 2rem;
   align-items: start;
 }
-.footer-brand .brand-name { color: #fff; font-size: 1.7rem; }
-.footer-brand p { margin-top: 0.6rem; font-family: var(--ff-display); font-size: 1.15rem; color: rgba(255,255,255,0.7); }
+/* В подвале та же связка, что в шапке: знак, название, подпись со штрихами. */
+.footer-lockup { display: inline-flex; align-items: center; gap: 0.85rem; }
+.footer-brand .brand-name {
+  color: #fff;
+  font-family: var(--ff-serif);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.footer-brand .brand-tag { color: rgba(255,255,255,0.62); font-size: 0.56rem; margin-top: 5px; }
+/* Знак нарисован тёмно-зелёным контуром — на тёмном фоне подвала он бы
+   пропал. Кладём его на светлую подложку, как на фирменной этикетке. */
+.footer-brand .brand-mark {
+  height: 56px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px 8px;
+  box-sizing: content-box;
+}
+.footer-brand p { margin-top: 1rem; font-family: var(--ff-display); font-size: 1.15rem; color: rgba(255,255,255,0.7); }
 .footer-nav { display: flex; flex-direction: column; gap: 0.7rem; }
 .footer-nav a { font-size: 0.9rem; color: rgba(255,255,255,0.75); transition: color 0.3s; }
 .footer-nav a:hover { color: #fff; }
@@ -1970,9 +1979,11 @@ picture { display: contents; }
   :root { --wrap: 1080px; }
   .collection-track { grid-template-columns: repeat(3, 1fr); }
 }
-/* узкие ноутбуки: шапке тесно — компактнее бренд и меню */
+/* узкие ноутбуки: шапке тесно — компактнее бренд и меню.
+   Подпись под названием здесь остаётся, но ужимается: в этой полосе меню ещё
+   горизонтальное, и лишние полсотни пикселей у логотипа его ломают. */
 @media (max-width: 1279px) {
-  .brand-tag { display: none; }
+  .site-header .brand-tag { font-size: 0.4rem; letter-spacing: 0.1em; gap: 0.3em; }
   .site-nav { gap: 0.9rem; }
   .site-nav a { font-size: 0.66rem; letter-spacing: 0.07em; }
 }
@@ -2091,6 +2102,15 @@ picture { display: contents; }
     letter-spacing: 0.03em;
     white-space: nowrap;
   }
+  /* Подпись тянется за названием — иначе на 320px связка стала бы шире
+     самого названия и упёрлась бы в бургер. */
+  .site-header .brand-tag {
+    font-size: clamp(0.36rem, 1.55vw, 0.46rem);
+    letter-spacing: 0.09em;
+    gap: 0.3em;
+  }
+  .footer-brand .brand-mark { height: 44px; }
+  .footer-brand .brand-name { font-size: 1.35rem; }
   .hero { padding-top: 5.5rem; padding-bottom: 1rem; }
   .hero-grid { gap: 0.75rem; }
   .hero-title { font-size: 1.68rem; line-height: 1.25; }
