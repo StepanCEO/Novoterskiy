@@ -1,14 +1,18 @@
 {
   "newsGeneral": [
     {
-      "date": "2025",
-      "title_ru": "Открытие часовни",
-      "title_en": "Opening of the chapel",
+      "date": "2025-09-22",
+      "title_ru": "Великое освящение часовни святой мученицы Натальи",
+      "title_en": "The great consecration of the chapel of Saint Natalia the Martyr",
       "text_ru": [
-        "Фото- и видеорепортаж с церемонии."
+        "22 сентября 2025 года на территории завода АО «Кавминводы» состоялось великое освящение первой часовни святой мученицы Натальи!",
+        "Чин освящения совершил Архиепископ Пятигорский и Черкесский Феофилакт. Его присутствие и молитва придали событию особую духовную значимость и торжественность.",
+        "Этот день навсегда останется в истории нашего завода как символ преемственности поколений, верности традициям и глубокого уважения к наследию тех, кто стоял у истоков нашего общего дела."
       ],
       "text_en": [
-        "A photo and video report from the ceremony."
+        "On 22 September 2025 the great consecration of the first chapel of Saint Natalia the Martyr took place on the grounds of the Kavminvody plant.",
+        "The rite of consecration was performed by Theophylact, Archbishop of Pyatigorsk and Cherkessk. His presence and his prayer gave the occasion a particular spiritual weight and solemnity.",
+        "This day will remain in the history of our plant as a symbol of continuity between generations, of loyalty to tradition and of deep respect for the legacy of those who stood at the origins of our common cause."
       ],
       "photo": {
         "src": "assets/news/2025-otkrytie-chasovni-1",
