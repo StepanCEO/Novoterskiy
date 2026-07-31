@@ -1,6 +1,218 @@
 {
   "newsGeneral": [
     {
+      "date": "2026-06-29",
+      "title_ru": "New Retail опубликовал: «Ашан» зафиксировал рост спроса на ароматизированную воду",
+      "title_en": "New Retail publishes: Auchan records growing demand for flavoured water",
+      "text_ru": [
+        "New Retail опубликовал данные «Ашана»: в июне 2026 года продажи ароматизированной воды выросли на 20% год к году.",
+        "Больше половины покупателей выбирают лимон, дальше идут другие цитрусовые, земляника, манго и гранат. По упаковке: 0,5 литра — 38% продаж, 1 литр — 35%, 1,5 литра — 21%.",
+        "Обычная питьевая вода держится на уровне прошлого года; здесь лидируют бутылки 0,5 литра (34%) и 1,5 литра (29%). Рост ароматизированной воды в сети объясняют спросом на натуральные вкусы без сахара и вниманием к здоровому образу жизни.",
+        "В том же материале упомянут и наш проект: производитель «Новотерской» — АО «Кавминводы» — вкладывает 100 млн рублей в выпуск лимонадов и шорли."
+      ],
+      "text_en": [
+        "New Retail has published figures from Auchan: sales of flavoured water in June 2026 grew by 20 per cent year on year.",
+        "More than half of shoppers pick lemon, followed by other citrus, strawberry, mango and pomegranate. By pack size: 0.5 litre accounts for 38 per cent of sales, 1 litre for 35 per cent and 1.5 litre for 21 per cent.",
+        "Plain drinking water is holding at last year’s level, led by 0.5-litre (34 per cent) and 1.5-litre (29 per cent) bottles. The chain puts the growth of flavoured water down to demand for natural sugar-free flavours and attention to a healthy lifestyle.",
+        "The same article mentions our own project: Kavminvody, the producer of Novoterskaya, is investing 100 million roubles in lemonades and shorle."
+      ],
+      "sources": [
+        {
+          "url": "https://new-retail.ru/novosti/retail/ashan_zafiksiroval_rost_sprosa_na_aromatizirovannuyu_vodu/",
+          "label_ru": "New Retail",
+          "label_en": "New Retail"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "title_ru": "«Коммерсантъ» опубликовал: «Кавминводы» запустят производство лимонадов и шорли",
+      "title_en": "Kommersant reports: Kavminvody to launch lemonades and shorle",
+      "text_ru": [
+        "Газета «Коммерсантъ» вышла с материалом «Шипучая активность»: АО «Кавминводы» вкладывает около 100 млн рублей в новую линейку напитков под маркой «Новотерская» — лимонады на питьевой воде и шорли на минеральной.",
+        "Из этой суммы 50–60 млн рублей идёт на купажный цех, остальное — на вывод новинок в розничные сети. Напитки натуральные и сахаросодержащие, без заменителей и красителей, доля сока — от 40 до 60%.",
+        "В линейке шесть вкусов. Ориентир по цене — 110–120 рублей за бутылку 0,5 литра, это средний ценовой сегмент. На полки федеральных сетей напитки должны выйти в течение полугода, параллельно готовится дистрибуция в Белоруссию и Казахстан.",
+        "Решение выйти в новую категорию генеральный директор АО «Кавминводы» Максим Которов объясняет переменами в спросе: по данным NTech, за январь—март 2026 года продажи сладкой газировки прибавили 4%, а сокосодержащих напитков — потеряли 1%. Компания рассчитывает занять 17–18% рынка качественных лимонадов.",
+        "Материал перепечатали и прокомментировали два десятка изданий и отраслевых каналов — от AdIndex и Retail.ru до New Retail и Sostav."
+      ],
+      "text_en": [
+        "The Kommersant daily has run a piece titled “Fizzy activity”: Kavminvody is investing around 100 million roubles in a new drinks range under the Novoterskaya brand — lemonades made with drinking water and shorle made with mineral water.",
+        "Of that sum, 50–60 million roubles goes into a blending shop, the rest into bringing the new products to retail chains. The drinks are natural and sugar-sweetened, with no substitutes or colourings, and a juice content of 40 to 60 per cent.",
+        "The range has six flavours. The price guide is 110–120 roubles for a 0.5-litre bottle, which places it in the mid segment. The drinks should reach the shelves of federal chains within six months, and distribution to Belarus and Kazakhstan is being prepared in parallel.",
+        "Maxim Kotorov, general director of Kavminvody, explains the move into a new category by a shift in demand: according to NTech, sales of sweet fizzy drinks rose 4 per cent in January–March 2026 while juice-based drinks lost 1 per cent. The company is aiming for 17–18 per cent of the quality lemonade market.",
+        "The story was picked up and commented on by two dozen outlets and trade channels — from AdIndex and Retail.ru to New Retail and Sostav."
+      ],
+      "sources": [
+        {
+          "url": "https://www.kommersant.ru/doc/8765216",
+          "label_ru": "Коммерсантъ",
+          "label_en": "Kommersant"
+        },
+        {
+          "url": "https://www.kommersant.ru/doc/8765455",
+          "label_ru": "Коммерсантъ · новость",
+          "label_en": "Kommersant · news"
+        },
+        {
+          "url": "https://adindex.ru/news/tendencies/2026/06/26/346280.phtml",
+          "label_ru": "AdIndex",
+          "label_en": "AdIndex"
+        },
+        {
+          "url": "https://www.retail.ru/news/ao-kavminvody-vlozhit-100-mln-rubley-v-proizvodstvo-limonadov-i-shorli-26-iyunya-2026-279277/",
+          "label_ru": "Retail.ru",
+          "label_en": "Retail.ru"
+        },
+        {
+          "url": "https://new-retail.ru/novosti/retail/proizvoditel_novoterskoy_vykhodit_na_rynok_limonadov/",
+          "label_ru": "New Retail",
+          "label_en": "New Retail"
+        },
+        {
+          "url": "https://new-retail.ru/novosti/retail/glavnoe_za_nedelyu9861/",
+          "label_ru": "New Retail · главное за неделю",
+          "label_en": "New Retail · weekly digest"
+        },
+        {
+          "url": "https://www.sostav.ru/publication/proizvoditel-novoterskoj-investiruet-100-mln-rublej-v-vypusk-limonadov-i-shorli-84821.html",
+          "label_ru": "Sostav",
+          "label_en": "Sostav"
+        },
+        {
+          "url": "https://retailer.ru/kavminvody-investiruet-100-mln-rublej-v-zapusk-limonadov-i-shorli/",
+          "label_ru": "Retailer.ru",
+          "label_en": "Retailer.ru"
+        },
+        {
+          "url": "https://shoppers.media/news/28860_proizvoditel-vody-novoterskaia-zapustit-proizvodstvo-limonadov-i-sorli",
+          "label_ru": "Shoppers",
+          "label_en": "Shoppers"
+        },
+        {
+          "url": "https://finance.mail.ru/article/shipuchaya-aktivnost-69215020/",
+          "label_ru": "Финансы Mail",
+          "label_en": "Mail Finance"
+        },
+        {
+          "url": "https://logistics.ru/riteyl-tnp/voda-teryaet-spros-proizvoditeli-ischut-marzhu-v-limonadakh",
+          "label_ru": "Logistics.ru",
+          "label_en": "Logistics.ru"
+        },
+        {
+          "url": "https://afnews.ru/proizvoditel-novoterskoy-vlozhit-100-mln-rubley-v-vipusk-limonadov-i-shorli",
+          "label_ru": "AFNews",
+          "label_en": "AFNews"
+        },
+        {
+          "url": "https://www.nakanune.ru/news/2026/06/26/22877409/",
+          "label_ru": "Накануне.RU",
+          "label_en": "Nakanune.RU"
+        },
+        {
+          "url": "https://bloknot-stavropol.ru/news/stavropolskaya-novoterskaya-vlozhit-100-millionov--1986716",
+          "label_ru": "Блокнот Ставрополь",
+          "label_en": "Bloknot Stavropol"
+        },
+        {
+          "url": "https://t.me/kommersant/110185",
+          "label_ru": "Коммерсантъ · Telegram",
+          "label_en": "Kommersant · Telegram"
+        },
+        {
+          "url": "https://t.me/NewRetail/17712",
+          "label_ru": "New Retail · Telegram",
+          "label_en": "New Retail · Telegram"
+        },
+        {
+          "url": "https://t.me/PRORETAILCOMMUNITY/6807",
+          "label_ru": "PRO Retail · Telegram",
+          "label_en": "PRO Retail · Telegram"
+        },
+        {
+          "url": "https://t.me/foodtechonline/6778",
+          "label_ru": "FoodTech · Telegram",
+          "label_en": "FoodTech · Telegram"
+        },
+        {
+          "url": "https://t.me/Beerunion/3495",
+          "label_ru": "Beerunion · Telegram",
+          "label_en": "Beerunion · Telegram"
+        },
+        {
+          "url": "https://vk.com/wall-23482909_4478761",
+          "label_ru": "ВКонтакте",
+          "label_en": "VKontakte"
+        },
+        {
+          "url": "https://vk.com/wall-236486877_1662",
+          "label_ru": "ВКонтакте · репост",
+          "label_en": "VKontakte · repost"
+        },
+        {
+          "url": "https://ok.ru/group/53942273310836/topic/158473345705332",
+          "label_ru": "Одноклассники",
+          "label_en": "Odnoklassniki"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-25",
+      "title_ru": "Retail.ru опубликовал: «Вода за полмиллиона» — космические технологии на ультрапремиальном рынке",
+      "title_en": "Retail.ru publishes: “Water for half a million” — space technology reaches the ultra-premium market",
+      "text_ru": [
+        "Retail.ru опубликовал материал «Вода за полмиллиона: как космические технологии приходят на ультрапремиальный рынок» — о том, как завод «Новотерский» работает над водой для Международной космической станции.",
+        "Разработка идёт по технологиям очистки и реминерализации, применяемым на орбите. Если проект дойдёт до выпуска, это будет первая вода под маркой «Новотерская», созданная по стандартам МКС.",
+        "Отдельная тема материала — ультрапремиальный сегмент, где на упаковку приходится 80–90% итоговой стоимости: хрустальные декантеры ручной работы, муранское стекло, золочёная авторская керамика.",
+        "К каждой такой бутылке прилагается сертификат состава от независимой лаборатории и производственный паспорт — с датой, номером смены и показателями контроля. Типичный заказ — от 100 до 500 единиц.",
+        "Рынок ультрапремиальной воды в России только формируется. Материал вошёл и в июньский дайджест новинок Retail.ru."
+      ],
+      "text_en": [
+        "Retail.ru has published a piece titled “Water for half a million: how space technology is reaching the ultra-premium market”, about the Novotersky plant working on water for the International Space Station.",
+        "The work uses the purification and remineralisation technologies applied in orbit. Should the project reach production, it would be the first water under the Novoterskaya brand made to ISS standards.",
+        "A separate thread of the article is the ultra-premium segment, where packaging accounts for 80–90 per cent of the final price: hand-made crystal decanters, Murano glass, gilded artisan ceramics.",
+        "Every such bottle comes with a composition certificate from an independent laboratory and a production passport carrying the date, the shift number and the control readings. A typical order runs from 100 to 500 units.",
+        "The Russian ultra-premium water market is only taking shape. The article also made it into Retail.ru’s June digest of new products."
+      ],
+      "sources": [
+        {
+          "url": "https://www.retail.ru/rbc/pressreleases/voda-za-polmilliona-kak-kosmicheskie-tekhnologii-prikhodyat-na-ultrapremialnyy-rynok/",
+          "label_ru": "Retail.ru",
+          "label_en": "Retail.ru"
+        },
+        {
+          "url": "https://www.retail.ru/rbc/pressreleases/voda-za-polmilliona-seryy-chizkeyk-i-bouly-s-maskoy-daydzhest-novinki-iyunya-2026/",
+          "label_ru": "Retail.ru · дайджест новинок июня",
+          "label_en": "Retail.ru · June digest"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "title_ru": "«Газета.Ru» опубликовала: почему минеральная вода не вызывает камни в почках",
+      "title_en": "Gazeta.Ru publishes: why mineral water does not cause kidney stones",
+      "text_ru": [
+        "«Газета.Ru» вышла с материалом о давнем мифе: будто из-за кальция в минеральной воде образуются камни в почках. Разбирает его главный технолог минеральной и питьевой воды «Новотерская» Виктория Манаенко.",
+        "Кальций в воде приходит не один — рядом магний и бикарбонаты. Магний мешает солям-провокаторам усваиваться в кишечнике, а бикарбонат снижает кислотность мочи, при которой и образуются кристаллы.",
+        "Кальций из воды, отмечает технолог, усваивается даже лучше, чем из молока, а связь с жёсткостью воды обратная: чем жёстче вода, тем риск ниже.",
+        "Советы в материале простые: пить воду во время еды, а не натощак, держать 1,5–2 литра жидкости в сутки и не увлекаться лечебными водами без назначения врача. Настоящие причины камней — недостаток жидкости, наследственность и питание.",
+        "Вывод: минеральная вода с кальцием — скорее союзник почек, чем угроза."
+      ],
+      "text_en": [
+        "Gazeta.Ru has run a piece on a long-standing myth: that the calcium in mineral water causes kidney stones. It is taken apart by Victoria Manaenko, chief technologist of Novoterskaya mineral and drinking water.",
+        "Calcium in water never comes alone — magnesium and bicarbonates come with it. Magnesium keeps the trouble-making salts from being absorbed in the gut, while bicarbonate lowers the acidity of urine at which crystals form.",
+        "Calcium from water, the technologist notes, is absorbed even better than from milk, and the link with hardness runs the other way: the harder the water, the lower the risk.",
+        "The advice in the article is simple: drink water with meals rather than on an empty stomach, keep to 1.5–2 litres of fluid a day, and do not overdo medicinal waters without a doctor’s prescription. The real causes of stones are too little fluid, heredity and diet.",
+        "The conclusion: mineral water with calcium is an ally of the kidneys rather than a threat."
+      ],
+      "sources": [
+        {
+          "url": "https://www.gazeta.press/style/news/2026/06/24/28755001.shtml",
+          "label_ru": "Газета.Ru",
+          "label_en": "Gazeta.Ru"
+        }
+      ]
+    },
+    {
       "date": "2025-09-22",
       "title_ru": "Великое освящение часовни святой мученицы Натальи",
       "title_en": "The great consecration of the chapel of Saint Natalia the Martyr",
@@ -912,6 +1124,39 @@
     }
   ],
   "newsCharity": [
+    {
+      "date": "2026",
+      "title_ru": "Вместе с фондом «Жизнь как чудо»",
+      "title_en": "Together with the Life as a Miracle foundation",
+      "text_ru": [
+        "АО «Кавминводы» на протяжении длительного времени участвует в благотворительной помощи фонду «Жизнь как чудо».",
+        "Задача фонда «Жизнь как чудо» — снизить уровень детской смертности от тяжёлых заболеваний печени в России.",
+        "Фонд помогает детям, молодым и взрослым, которым поддержка нужна здесь и сейчас: оплачивает лекарства, обследования, специализированное питание, транспортные расходы до места лечения и обратно и многое другое. Делает так, чтобы в трудный момент семьи не оставались один на один с бедой. Фонд поддерживает семьи на протяжении всего пути к выздоровлению, который может продолжаться не один год.",
+        "Фонд оснащает больницы медицинским оборудованием для постановки диагнозов, проводит научные исследования, поддерживает образование врачей и развивает экспертное сообщество, а также создаёт комфортную среду для выздоровления детей, открывая игровые пространства в медицинских учреждениях.",
+        "Логотип фонда «Жизнь как чудо» размещается на этикетках продукции, выпускаемой АО «Кавминводы»."
+      ],
+      "text_en": [
+        "Kavminvody has been supporting the Life as a Miracle charitable foundation for a long time.",
+        "The foundation’s mission is to reduce child mortality from severe liver disease in Russia.",
+        "It helps children, young people and adults who need support here and now: it pays for medicines, examinations, specialised nutrition, travel to the place of treatment and back, and much else. It makes sure that families are not left alone with their trouble at the hardest moment, and stays with them for the whole road to recovery — a road that can take years.",
+        "The foundation equips hospitals with diagnostic medical equipment, funds research, supports the training of doctors and builds up the expert community, and it creates a kinder environment for children to recover in by opening play spaces inside medical institutions.",
+        "The logo of the Life as a Miracle foundation is placed on the labels of products made by Kavminvody."
+      ],
+      "photo": {
+        "src": "assets/news/2026-zhizn-kak-chudo-1",
+        "w": 579,
+        "h": 570,
+        "alt_ru": "Логотип благотворительного фонда «Жизнь как чудо»: сердце, нарисованное одной линией, и фигурка ребёнка",
+        "alt_en": "Logo of the Life as a Miracle charitable foundation: a heart drawn in a single line with a child’s figure"
+      },
+      "sources": [
+        {
+          "url": "https://kakchudo.ru/",
+          "label_ru": "Сайт фонда «Жизнь как чудо»",
+          "label_en": "Life as a Miracle website"
+        }
+      ]
+    },
     {
       "date": "2024-11-11",
       "title_ru": "Питьевая вода — на нужды фронта",

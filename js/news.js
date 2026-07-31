@@ -205,8 +205,23 @@
       }
       var more = links.length ? '<p class="news-more">' + links.join("") + "</p>" : "";
 
+      /* Публикации в СМИ. На одну новость их бывает и два десятка — в общий
+         ряд ссылок такое не влезает, поэтому отдельным блоком плашек. */
+      var chips = (Array.isArray(item.sources) ? item.sources : []).map(function (source) {
+        var url = source && safeUrl(source.url);
+        if (!url) return "";
+        var labelRu = source.label_ru || source.url;
+        return '<a class="news-source" href="' + esc(url) +
+          '" target="_blank" rel="noopener" data-analytics="news-source"><span data-en="' +
+          attr(source.label_en || labelRu) + '">' + esc(labelRu) + "</span></a>";
+      }).filter(Boolean);
+      var sources = chips.length
+        ? '<div class="news-sources"><p class="news-sources-label" data-en="Publications">Публикации</p>' +
+          '<div class="news-source-row">' + chips.join("") + "</div></div>"
+        : "";
+
       // В свёрнутом виде оставляем первый абзац; всё остальное — под кнопкой.
-      var rest = text.slice(1).join("") + player + gallery + more;
+      var rest = text.slice(1).join("") + player + gallery + more + sources;
       var body = text.slice(0, 1).join("") + (rest
         ? '<details class="news-full"><summary><span data-en="Read in full">Читать полностью</span>' +
           '<span class="sr-only" data-en=": ' + attr(item.title_en || item.title_ru || "") + '">: ' +
