@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=rock-v31" />
+<link rel="stylesheet" href="css/style.css?v=rock-v32" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -189,14 +189,14 @@
          Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
     <video class="hero-video" id="heroVideo" width="1920" height="976"
            muted playsinline preload="none"
-           poster="assets/video/hero-bg-poster.webp?v=rock-v31"
-           data-webm="assets/video/hero-bg.webm?v=rock-v31"
-           data-mp4="assets/video/hero-bg.mp4?v=rock-v31">
+           poster="assets/video/hero-bg-poster.webp?v=rock-v32"
+           data-webm="assets/video/hero-bg.webm?v=rock-v32"
+           data-mp4="assets/video/hero-bg.mp4?v=rock-v32">
       <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
            браузеры подтягивали и его, и webp из poster= — лишние килобайты в
            самый занятый момент загрузки, ровно когда рисуется первый экран. -->
       <picture>
-        <img src="assets/video/hero-bg-poster.webp?v=rock-v31" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+        <img src="assets/video/hero-bg-poster.webp?v=rock-v32" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
@@ -204,11 +204,11 @@
          разом — и по горе, и по бутылке. Запасного <img> внутри нет намеренно:
          без JS кадр держит сам poster=, а лишняя картинка в .hero-bg попала бы
          под правила заднего плана. -->
-    <video class="hero-scene" id="sceneVideo" width="1600" height="900"
+    <video class="hero-scene" id="sceneVideo" width="1920" height="1080"
            muted playsinline preload="none"
-           poster="assets/video/hero-rock-poster.webp?v=rock-v31"
-           data-webm="assets/video/hero-rock.webm?v=rock-v31"
-           data-mp4="assets/video/hero-rock.mp4?v=rock-v31"></video>
+           poster="assets/video/hero-rock-poster.webp?v=rock-v32"
+           data-webm="assets/video/hero-rock.webm?v=rock-v32"
+           data-mp4="assets/video/hero-rock.mp4?v=rock-v32"></video>
     <span class="hero-glint"></span>
     <span class="hero-fog"></span>
     <span class="hero-warmth"></span>
@@ -772,8 +772,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=rock-v31" defer></script>
-<script src="js/main.js?v=rock-v31" defer></script>
-<script src="js/cms.js?v=rock-v31" defer></script>
+<script src="js/nav.js?v=rock-v32" defer></script>
+<script src="js/main.js?v=rock-v32" defer></script>
+<script src="js/cms.js?v=rock-v32" defer></script>
 </body>
 </html>

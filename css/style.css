@@ -2141,10 +2141,14 @@ picture { display: contents; }
 @media (max-width: 1023px) and (orientation: portrait) {
   .hero-scene {
     top: auto;
-    height: clamp(300px, 46svh, 430px);
+    /* Полоса чуть выше кадра: у ролика сверху добавлен запас неба под крышку,
+       и без этой прибавки бутылка в полосе выглядела бы мельче прежнего. */
+    height: clamp(320px, 50svh, 450px);
     object-position: 78% center;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 26%);
-    mask-image: linear-gradient(180deg, transparent 0, #000 26%);
+    /* Растушёвка укладывается в тот самый запас неба сверху кадра (13% высоты),
+       поэтому к крышке слой подходит уже полностью непрозрачным. */
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0,0,0,0.6) 8%, #000 15%);
+    mask-image: linear-gradient(180deg, transparent 0, rgba(0,0,0,0.6) 8%, #000 15%);
   }
   .hero-grid { grid-template-columns: 1fr; gap: 0; align-content: start; }
 }
@@ -2184,6 +2188,14 @@ picture { display: contents; }
   .hero-copy { margin: 0; text-align: left; }
   .hero-sub { margin-left: 0; margin-right: 0; }
   .hero-cta { justify-content: flex-start; }
+}
+/* Перевёрнутый телефон — это и 390, и 844 по ширине, поэтому отдельным блоком
+   на всю мобильную ширину. Экран тут шире кадра, кадр режется по высоте:
+   прижимаем его к верху, иначе срез снимает как раз запас неба и крышка
+   уезжает под шапку. Снизу уходит край камня — он и так продолжается за
+   границей экрана. */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .hero-scene { object-position: 70% top; }
 }
 
 
