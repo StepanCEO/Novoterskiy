@@ -25,12 +25,13 @@
     afterPaint(function () { hero.classList.add("loaded"); });
   }
 
-  /* ---- Ролик сцены: 5с — бутылка на камне и всплеск вокруг неё,
-         в конце застывает на последнем кадре до следующей загрузки страницы.
+  /* ---- Ролики героя. Их два и они идут одновременно: сзади панорама
+         ледников, спереди — бутылка на камне со всплеском. Оба в конце
+         застывают на последнем кадре до следующей загрузки страницы.
          По кругу не гоняем: заказчик просил один проход, поэтому loop нет
          ни здесь, ни в разметке ---- */
-  var heroVideo = document.getElementById("heroVideo");
-  if (heroVideo) {
+  function wireHeroVideo(video) {
+    if (!video) return;
     /* Safari/WebKit на <source type='video/webm; codecs="vp9"'> отвечает
        canPlayType → "probably", но VP9 в WebM у него не декодируется: элемент
        навсегда остаётся в readyState 0 при networkState 2 (грузит и грузит).
@@ -38,66 +39,74 @@
        следующему <source> не происходят — и событие load страницы не наступает
        вообще. Сторожевой таймер: нет метаданных за 2.5с → берём mp4 напрямую.
        В движках, которые webm читают, метаданные приходят раньше, и таймер
-       снимается, так что размер (532КБ webm против 684КБ mp4) не теряется. */
+       снимается, так что размер (webm вдвое легче mp4) не теряется. */
     /* Источники собираем здесь, а не в разметке: в Safari <source> внутри
-       <video> навсегда удерживает событие load страницы. Плюс так ролик не
-       отбирает канал у постера, а постер и есть первый экран. */
-    var heroMp4 = heroVideo.getAttribute("data-mp4");
-    var heroWebm = heroVideo.getAttribute("data-webm");
-    var startHeroVideo = function () {
-      if (heroMp4) {
+       <video> навсегда удерживает событие load страницы. Плюс так ролики не
+       отбирают канал у постеров, а постер и есть первый экран. */
+    var mp4 = video.getAttribute("data-mp4");
+    var webm = video.getAttribute("data-webm");
+    var start = function () {
+      if (mp4) {
         var stuckWatch = setTimeout(function () {
-          if (heroVideo.readyState === 0) {
-            heroVideo.querySelectorAll("source").forEach(function (node) { node.remove(); });
-            heroVideo.src = heroMp4;
-            heroVideo.load();
+          if (video.readyState === 0) {
+            video.querySelectorAll("source").forEach(function (node) { node.remove(); });
+            video.src = mp4;
+            video.load();
           }
         }, 2500);
-        heroVideo.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
+        video.addEventListener("loadedmetadata", function () { clearTimeout(stuckWatch); }, { once: true });
       }
-      // Порядок важен: webm лёгкий (532КБ против 684КБ), mp4 — запасной.
+      // Порядок важен: webm лёгкий, mp4 — запасной.
       var sources = document.createDocumentFragment();
-      [[heroWebm, 'video/webm; codecs="vp9"'], [heroMp4, "video/mp4"]].forEach(function (pair) {
+      [[webm, 'video/webm; codecs="vp9"'], [mp4, "video/mp4"]].forEach(function (pair) {
         if (!pair[0]) return;
         var source = document.createElement("source");
         source.setAttribute("src", pair[0]);
         source.setAttribute("type", pair[1]);
         sources.appendChild(source);
       });
-      heroVideo.insertBefore(sources, heroVideo.firstChild);
-      heroVideo.load();
+      video.insertBefore(sources, video.firstChild);
+      video.load();
     };
     // После load и первой отрисовки: сперва кадр, потом занимаем канал.
-    if (document.readyState === "complete") afterPaint(startHeroVideo);
-    else window.addEventListener("load", function () { afterPaint(startHeroVideo); }, { once: true });
+    if (document.readyState === "complete") afterPaint(start);
+    else window.addEventListener("load", function () { afterPaint(start); }, { once: true });
 
-    // heroDone: перемотка к последнему кадру сбрасывает ended, поэтому проход
-    // отмечаем сами — иначе возврат на вкладку пускает панораму заново.
-    var heroDone = false;
-    var freezeHeroEnd = function () {
-      heroDone = true;
-      heroVideo.currentTime = Math.max(0, heroVideo.duration - 0.05);
-      heroVideo.pause();
+    // done: проход отмечаем сами — иначе возврат на вкладку пускает ролик заново.
+    var done = false;
+    // Останавливаемся за кадр до конца, а не по событию ended: паузу видно
+    // сразу, кадр остаётся на экране и перемотка не нужна. Перемотка тут
+    // ненадёжна — если сервер отдаёт файл без Range-запросов, seekable пуст
+    // и любое присвоение currentTime отбрасывает ролик на нулевой кадр.
+    var freeze = function () {
+      done = true;
+      video.pause();
     };
-    heroVideo.addEventListener("ended", freezeHeroEnd);
+    video.addEventListener("timeupdate", function () {
+      if (done || !video.duration) return;
+      if (video.currentTime >= video.duration - 0.08) freeze();
+    });
+    video.addEventListener("ended", freeze);
     if (reduceMotion) {
-      // без анимаций: сразу финальный спокойный кадр
-      heroVideo.addEventListener("loadedmetadata", freezeHeroEnd);
+      // без анимаций: ролик не запускаем вовсе — на экране остаётся постер
+      video.addEventListener("loadedmetadata", freeze);
     } else {
-      var playHero = function () {
-        var p = heroVideo.play();
+      var play = function () {
+        var p = video.play();
         if (p && p.catch) p.catch(function () { /* автоплей запрещён — остаётся постер */ });
       };
-      if (heroVideo.readyState >= 2) playHero();
-      else heroVideo.addEventListener("canplay", playHero, { once: true });
+      if (video.readyState >= 2) play();
+      else video.addEventListener("canplay", play, { once: true });
       // если вкладка была в фоне и браузер приостановил ролик — доигрываем;
-      // после последнего кадра не трогаем, иначе панорама пойдёт заново
+      // после последнего кадра не трогаем, иначе пойдёт заново
       document.addEventListener("visibilitychange", function () {
-        if (heroDone || document.visibilityState !== "visible") return;
-        if (!heroVideo.ended && heroVideo.paused) playHero();
+        if (done || document.visibilityState !== "visible") return;
+        if (!video.ended && video.paused) play();
       });
     }
   }
+  wireHeroVideo(document.getElementById("heroVideo"));
+  wireHeroVideo(document.getElementById("sceneVideo"));
 
   /* ---- Scroll reveals ---- */
   function applyReveals(scope) {
