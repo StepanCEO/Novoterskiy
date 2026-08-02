@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=rock-v38" />
+<link rel="stylesheet" href="css/style.css?v=rock-v39" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -93,8 +93,30 @@
     ym(00000000, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });
   </script>
 ============================================================ -->
+
+  <!-- Занавес из облаков показываем один раз за визит. Решение принимается
+       здесь, до первой отрисовки: если повесить класс из main.js (defer), белое
+       полотно успеет моргнуть на возврате с внутренней страницы. Сам занавес
+       уходит средствами CSS — этот скрипт его не снимает, поэтому упавший или
+       заблокированный JS не оставит человека на белом экране. -->
+  <script>
+    try {
+      if (sessionStorage.getItem("novoIntro")) document.documentElement.className += " no-intro";
+      else sessionStorage.setItem("novoIntro", "1");
+    } catch (e) { /* приватный режим — просто покажем занавес */ }
+  </script>
 </head>
 <body>
+
+<!-- Вход: белизна, сквозь которую расходятся облака. Слои разной глубины
+     разъезжаются в стороны с разной скоростью и растут — так читается пролёт
+     камеры сквозь них, а не раздвигающийся занавес. Пустой aria-hidden блок без
+     текста: на индексацию и на чтение с экрана не влияет. -->
+<div class="intro" aria-hidden="true">
+  <span class="intro-cloud intro-cloud-far"></span>
+  <span class="intro-cloud intro-cloud-l"></span>
+  <span class="intro-cloud intro-cloud-r"></span>
+</div>
 
 <!-- Water thread — the signature line traveling the whole page -->
 <svg class="thread" aria-hidden="true" viewBox="0 0 40 1000" preserveAspectRatio="none">
@@ -189,14 +211,14 @@
          Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
     <video class="hero-video" id="heroVideo" width="1920" height="976"
            muted playsinline preload="none"
-           poster="assets/video/hero-bg-poster.webp?v=rock-v38"
-           data-webm="assets/video/hero-bg.webm?v=rock-v38"
-           data-mp4="assets/video/hero-bg.mp4?v=rock-v38">
+           poster="assets/video/hero-bg-poster.webp?v=rock-v39"
+           data-webm="assets/video/hero-bg.webm?v=rock-v39"
+           data-mp4="assets/video/hero-bg.mp4?v=rock-v39">
       <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
            браузеры подтягивали и его, и webp из poster= — лишние килобайты в
            самый занятый момент загрузки, ровно когда рисуется первый экран. -->
       <picture>
-        <img src="assets/video/hero-bg-poster.webp?v=rock-v38" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+        <img src="assets/video/hero-bg-poster.webp?v=rock-v39" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
@@ -206,9 +228,9 @@
          под правила заднего плана. -->
     <video class="hero-scene" id="sceneVideo" width="1920" height="1080"
            muted playsinline preload="none"
-           poster="assets/video/hero-rock-poster.webp?v=rock-v38"
-           data-webm="assets/video/hero-rock.webm?v=rock-v38"
-           data-mp4="assets/video/hero-rock.mp4?v=rock-v38"></video>
+           poster="assets/video/hero-rock-poster.webp?v=rock-v39"
+           data-webm="assets/video/hero-rock.webm?v=rock-v39"
+           data-mp4="assets/video/hero-rock.mp4?v=rock-v39"></video>
     <span class="hero-glint"></span>
     <span class="hero-fog"></span>
     <span class="hero-warmth"></span>
@@ -645,8 +667,8 @@
     <figure class="final-bottle reveal" aria-label="Новотерская Целебная">
       <span class="final-bottle-halo" aria-hidden="true"></span>
       <picture>
-        <source srcset="assets/products/bottle-front.avif?v=rock-v38" type="image/avif" />
-        <img src="assets/products/bottle-front.webp?v=rock-v38" width="321" height="1195" alt="Бутылка Новотерская Целебная" loading="lazy" />
+        <source srcset="assets/products/bottle-front.avif?v=rock-v39" type="image/avif" />
+        <img src="assets/products/bottle-front.webp?v=rock-v39" width="321" height="1195" alt="Бутылка Новотерская Целебная" loading="lazy" />
       </picture>
       <span class="final-bottle-mist" aria-hidden="true"></span>
     </figure>
@@ -785,8 +807,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=rock-v38" defer></script>
-<script src="js/main.js?v=rock-v38" defer></script>
-<script src="js/cms.js?v=rock-v38" defer></script>
+<script src="js/nav.js?v=rock-v39" defer></script>
+<script src="js/main.js?v=rock-v39" defer></script>
+<script src="js/cms.js?v=rock-v39" defer></script>
 </body>
 </html>

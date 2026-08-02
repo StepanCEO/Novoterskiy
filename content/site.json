@@ -109,13 +109,13 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/video/hero-bg-poster.webp?v=rock-v38",
-    "video_webm": "assets/video/hero-bg.webm?v=rock-v38",
-    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v38",
-    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v38",
-    "scene_webm": "assets/video/hero-rock.webm?v=rock-v38",
-    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v38",
-    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v38"
+    "background": "assets/video/hero-bg-poster.webp?v=rock-v39",
+    "video_webm": "assets/video/hero-bg.webm?v=rock-v39",
+    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v39",
+    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v39",
+    "scene_webm": "assets/video/hero-rock.webm?v=rock-v39",
+    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v39",
+    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v39"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -377,7 +377,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/products/bottle-front.webp?v=rock-v38",
+    "bottle": "assets/products/bottle-front.webp?v=rock-v39",
     "logo": "assets/logo-mark.webp"
   },
   "where": {

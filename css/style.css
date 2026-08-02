@@ -1882,6 +1882,180 @@ picture { display: contents; }
 .cookie.show { transform: translateX(-50%) translateY(0); }
 .cookie p { font-size: 0.86rem; color: var(--ink); }
 .cookie .btn { flex-shrink: 0; }
+
+/* ---------- Вход: пролёт сквозь облака (только главная) ----------
+   Полотно в цвет страницы, поверх — три облачных массива. Ближние два
+   разъезжаются в стороны быстро и сильно растут, дальний почти стоит на месте
+   и тает последним: разная скорость по глубине и читается как пролёт камеры,
+   а не как раздвигающийся занавес.
+
+   Уход целиком на CSS, с forwards. Скрипт занавес не снимает намеренно — иначе
+   упавший или заблокированный JS оставил бы человека на белом экране. Из JS
+   приходит только решение «показывать ли вообще» (класс no-intro).
+
+   Размытия нет сознательно: filter: blur по слою во весь экран — самая дорогая
+   операция ровно в тот момент, когда браузер рисует первый кадр. Мягкость даёт
+   сам градиент, у него край растворяется к 70% радиуса. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 90;                    /* выше шапки (50) и плашки о cookie (60) */
+  /* Единица размера клуба. Все радиусы облаков считаются от неё, поэтому
+     масштаб толщи под узкий экран правится одной строкой, а не в шестидесяти
+     градиентах. */
+  --cl: 1vw;
+  overflow: hidden;               /* облака вылетают за края — не даём им растянуть страницу */
+  pointer-events: none;           /* листать можно, не дожидаясь конца */
+  /* Сам контейнер не гаснет — только убирается из виду, когда отлетело
+     последнее облако. Прозрачность здесь была бы ошибкой: она умножается на
+     прозрачность детей, и облака гасли бы вместе с пеленой, не успев
+     разъехаться. Ровно так и было в первой сборке — к 0.65с экран уже чистый. */
+  animation: introDone 1.8s forwards;
+}
+@keyframes introDone { to { visibility: hidden; } }
+
+/* Пелена — отдельным слоем под облаками, со своей кривой. Уходит раньше них
+   (к 1.2с против 1.75с): иначе гора появляется уже после того, как облака
+   разъехались, и связи между двумя событиями не возникает. Так она проступает
+   именно в расходящуюся прореху.
+
+   Не чистая белизна: на ней белые облака не видны вовсе — первый кадр был
+   ровной молочной заливкой. Холодная дымка сверху вниз светлеет до цвета
+   страницы, так что стык на исходе не читается, а облака на её фоне остаются
+   самым светлым, что есть в кадре. */
+.intro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #C4D9EC 0%, #D7E7F3 48%, var(--paper) 100%);
+  animation: introVeil 0.9s 0.3s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes introVeil { to { opacity: 0; } }
+
+.intro-cloud {
+  position: absolute;
+  top: 50%;
+  height: 150%;
+  transform: translateY(-50%);
+  will-change: transform, opacity;
+}
+/* Ближние массивы: каждый занимает свою половину с заходом на середину, чтобы
+   в первом кадре между ними не было щели.
+
+   У каждого клуба два слоя: белая макушка и холодная подкладка чуть ниже. Без
+   подкладки облако — просто белое пятно, и над снегом Эльбруса оно пропадает
+   бесследно; тень снизу даёт объём и держит форму на любом фоне. В CSS раньше
+   перечисленный слой лежит выше, поэтому белизна идёт первой.
+
+   Радиусы клубов заданы в vw, а не в процентах от блока. Проценты считаются от
+   собственных сторон элемента, и в портрете узкого телефона блок высокий —
+   клубы вытягивались в вертикальные полосы. В vw пропорция одна и та же на
+   любом экране: клуб всегда примерно вдвое шире, чем выше. */
+.intro-cloud-l, .intro-cloud-r { width: 78%; }
+.intro-cloud-l {
+  left: -6%;
+  /* Точка роста — там, где на экране середина, а не в центре самого блока.
+     С родной точкой слой распухал и внутрь тоже, внутренний край стоял на
+     месте, и прореха не раскрывалась — вместо пролёта получалось затухание. */
+  transform-origin: 72% 50%;
+  animation: introFlyL 1.6s cubic-bezier(.45,0,.25,1) forwards;
+  background:
+    radial-gradient(calc(17 * var(--cl)) calc(15 * var(--cl)) at 18% 6%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(13 * var(--cl)) calc(12 * var(--cl)) at 44% 2%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(15 * var(--cl)) calc(13.5 * var(--cl)) at 66% 8%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(19 * var(--cl)) calc(16 * var(--cl)) at 10% 30%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(14 * var(--cl)) calc(12.5 * var(--cl)) at 38% 26%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(17 * var(--cl)) calc(15 * var(--cl)) at 62% 33%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(16 * var(--cl)) calc(14 * var(--cl)) at 22% 54%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(18 * var(--cl)) calc(15.5 * var(--cl)) at 50% 51%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(13 * var(--cl)) calc(12 * var(--cl)) at 72% 57%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(17 * var(--cl)) calc(15 * var(--cl)) at 14% 78%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(14 * var(--cl)) calc(12.5 * var(--cl)) at 42% 75%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(16 * var(--cl)) calc(14 * var(--cl)) at 68% 80%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(36 * var(--cl)) calc(13 * var(--cl)) at 42% 12%, rgba(151,183,209,0.55) 0, rgba(151,183,209,0.42) 42%, transparent 80%),
+    radial-gradient(calc(38 * var(--cl)) calc(14 * var(--cl)) at 34% 36%, rgba(151,183,209,0.58) 0, rgba(151,183,209,0.44) 42%, transparent 80%),
+    radial-gradient(calc(36 * var(--cl)) calc(13 * var(--cl)) at 46% 60%, rgba(151,183,209,0.55) 0, rgba(151,183,209,0.42) 42%, transparent 80%),
+    radial-gradient(calc(36 * var(--cl)) calc(13 * var(--cl)) at 40% 84%, rgba(151,183,209,0.5) 0, rgba(151,183,209,0.38) 42%, transparent 80%),
+    /* Сплошная белизна в основании слоя — самый нижний из фонов. Без неё между
+       клубами просвечивала пелена, и толща читалась решёткой одинаковых пузырей,
+       а не облаком. Теперь клубы работают только на силуэт по краю, а середина
+       ровно белая. */
+    radial-gradient(50% 45% at 50% 50%, #fff 0, #fff 56%, rgba(255,255,255,0) 100%);
+}
+.intro-cloud-r {
+  right: -6%;
+  transform-origin: 28% 50%;
+  animation: introFlyR 1.6s cubic-bezier(.45,0,.25,1) forwards;
+  background:
+    radial-gradient(calc(15 * var(--cl)) calc(13.5 * var(--cl)) at 32% 4%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(17 * var(--cl)) calc(15 * var(--cl)) at 56% 9%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(13 * var(--cl)) calc(12 * var(--cl)) at 80% 3%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(17 * var(--cl)) calc(15 * var(--cl)) at 24% 28%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(19 * var(--cl)) calc(16 * var(--cl)) at 50% 32%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(14 * var(--cl)) calc(12.5 * var(--cl)) at 76% 27%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(13 * var(--cl)) calc(12 * var(--cl)) at 30% 53%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(17 * var(--cl)) calc(15 * var(--cl)) at 56% 56%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(18 * var(--cl)) calc(15.5 * var(--cl)) at 82% 52%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(16 * var(--cl)) calc(14 * var(--cl)) at 26% 77%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(17 * var(--cl)) calc(15 * var(--cl)) at 54% 81%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(14 * var(--cl)) calc(12.5 * var(--cl)) at 78% 76%, #fff 0, #fff 58%, transparent 88%),
+    radial-gradient(calc(36 * var(--cl)) calc(13 * var(--cl)) at 52% 10%, rgba(151,183,209,0.55) 0, rgba(151,183,209,0.42) 42%, transparent 80%),
+    radial-gradient(calc(38 * var(--cl)) calc(14 * var(--cl)) at 46% 38%, rgba(151,183,209,0.58) 0, rgba(151,183,209,0.44) 42%, transparent 80%),
+    radial-gradient(calc(36 * var(--cl)) calc(13 * var(--cl)) at 54% 62%, rgba(151,183,209,0.55) 0, rgba(151,183,209,0.42) 42%, transparent 80%),
+    radial-gradient(calc(36 * var(--cl)) calc(13 * var(--cl)) at 48% 86%, rgba(151,183,209,0.5) 0, rgba(151,183,209,0.38) 42%, transparent 80%),
+    radial-gradient(50% 45% at 50% 50%, #fff 0, #fff 56%, rgba(255,255,255,0) 100%);
+}
+/* Дальний слой — во всю ширину, бледнее и медленнее. */
+.intro-cloud-far {
+  left: -10%;
+  width: 120%;
+  opacity: 0.7;
+  background:
+    radial-gradient(30% 22% at 24% 30%, #fff, transparent 76%),
+    radial-gradient(26% 20% at 72% 26%, #fff, transparent 76%),
+    radial-gradient(34% 24% at 50% 68%, #fff, transparent 78%);
+  animation: introFlyFar 1.75s cubic-bezier(.4,0,.3,1) forwards;
+}
+/* Разлёт начинается почти сразу: в первой сборке первые полсекунды уходили на
+   «едва заметное шевеление», и из шести снятых кадров четыре были одинаково
+   белыми — экран просто держал пустоту, а прореха открывалась в самом конце.
+   Плотность держится до 70% и падает лишь на последней трети: если гасить её
+   равномерно, к середине от облаков остаётся ровная пелена и весь разлёт
+   пропадает. */
+@keyframes introFlyL {
+  0%   { transform: translate3d(0, -50%, 0) scale(1); opacity: 1; }
+  28%  { transform: translate3d(-7%, -51%, 0) scale(1.2); opacity: 1; }
+  70%  { opacity: 0.9; }
+  100% { transform: translate3d(-56%, -58%, 0) scale(2.1); opacity: 0; }
+}
+@keyframes introFlyR {
+  0%   { transform: translate3d(0, -50%, 0) scale(1); opacity: 1; }
+  28%  { transform: translate3d(7%, -51%, 0) scale(1.2); opacity: 1; }
+  70%  { opacity: 0.9; }
+  100% { transform: translate3d(56%, -58%, 0) scale(2.1); opacity: 0; }
+}
+@keyframes introFlyFar {
+  0%   { transform: translate3d(0, -50%, 0) scale(1); opacity: 0.7; }
+  30%  { transform: translate3d(0, -51%, 0) scale(1.08); opacity: 0.7; }
+  70%  { opacity: 0.5; }
+  100% { transform: translate3d(0, -55%, 0) scale(1.5); opacity: 0; }
+}
+/* Повторный заход за тот же визит и системная просьба убавить движение —
+   занавеса нет вовсе. */
+.no-intro .intro { display: none; }
+@media (prefers-reduced-motion: reduce) { .intro { display: none; } }
+/* На телефоне тот же жест, но короче примерно на треть: первый экран там и без
+   занавеса тяжёлый, и терпение у человека с мобильным интернетом другое. */
+@media (max-width: 767px) {
+  /* Клубы крупнее относительно экрана: на 390 px комок в 1vw — это меньше
+     четырёх пикселей, и толща рассыпалась на редкие точки поверх голубого
+     фона вместо сплошной белизны. */
+  .intro { --cl: 1.95vw; animation-duration: 1.35s; }
+  .intro::before { animation-duration: 0.6s; animation-delay: 0.2s; }
+  .intro-cloud-l, .intro-cloud-r { animation-duration: 1.15s; }
+  .intro-cloud-far { animation-duration: 1.25s; }
+}
+
 /* ---------- Reveal on scroll ---------- */
 .reveal {
   opacity: 0;
