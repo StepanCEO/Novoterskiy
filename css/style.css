@@ -1823,6 +1823,42 @@ picture { display: contents; }
    от копирайта, иначе он читается четвёртым пунктом списка. */
 .footer-legal-docs { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.25rem; }
 
+/* ---------- Подпись под подвалом ---------- */
+/* Знак КМВ, уходящий под воду, — последнее, что видно на странице.
+   Кадр показываем целиком: знак занимает почти всю его высоту, и любая
+   обрезка по вертикали срезала бы ему то вершину, то буквы. Поэтому
+   пропорция кадра задана блоку, а не подогнана высота под полосу. */
+/* width задан явно: при `aspect-ratio` и ширине auto любое ограничение по
+   высоте пересчиталось бы обратно в ширину, и блок съехал бы от края окна. */
+.footer-mark {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  /* Цвет верхнего угла снимка — полоса не мигает белым, пока грузится файл. */
+  background: #000d16;
+}
+.footer-mark picture { display: contents; }
+.footer-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+/* Верх кадра почти чёрный, подвал — #14313F: без растушёвки на стыке
+   читалась бы отчётливая линия. Гасим её градиентом цвета подвала. */
+.footer-mark::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: 13%;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--deep) 0%, rgba(20,49,63,0.55) 45%, rgba(20,49,63,0) 100%);
+}
+
 /* ---------- Cookie ---------- */
 .cookie {
   position: fixed;
