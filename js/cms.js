@@ -170,7 +170,10 @@
       var item = (elements.items || [])[index];
       if (!item) return;
       bilingual(one("h3", card), item.title_ru, item.title_en);
-      bilingual(one(".el-cap p", card), item.text_ru, item.text_en);
+      bilingual(one(".el-slogan", card), item.slogan_ru, item.slogan_en);
+      /* :not(.el-slogan) обязательно: слоган в разметке стоит первым абзацем,
+         и простой «.el-cap p» подставлял бы пояснение вместо него. */
+      bilingual(one(".el-cap p:not(.el-slogan)", card), item.text_ru, item.text_en);
       setImage(one(".el-photo", card), item.image, null, item.image_alt_ru, item.image_alt_en);
       setImage(one(".el-icon img", card), item.icon);
     });

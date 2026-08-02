@@ -87,6 +87,8 @@ collections:
                 fields:
                   - { name: title_ru, label: Название RU, widget: string }
                   - { name: title_en, label: Название EN, widget: string }
+                  - { name: slogan_ru, label: Слоган RU, widget: string }
+                  - { name: slogan_en, label: Слоган EN, widget: string }
                   - { name: text_ru, label: Текст RU, widget: text }
                   - { name: text_en, label: Текст EN, widget: text }
                   - { name: image, label: Фото, widget: image }

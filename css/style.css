@@ -591,8 +591,27 @@ picture { display: contents; }
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: #1C4B50;
-  margin: 0.4rem 0 0.65rem;
+  margin: 0.4rem 0 0.34rem;
 }
+/* Слоган стихии — короткий призыв, ради которого зону и запоминают.
+   Стоит вплотную к названию (заголовок и слоган читаются одной строфой),
+   набран антиквой и цветом самой стихии, чтобы не спорить с пояснением. */
+/* Селектор с двумя классами — иначе общее правило `.el-cap p` ниже
+   перебивает слоган по специфичности и красит его в служебный серый. */
+.el-cap .el-slogan {
+  font-family: var(--ff-serif);
+  font-weight: 400;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  letter-spacing: 0.012em;
+  color: var(--glacier-d);
+  max-width: 230px;
+  margin: 0 auto 0.2rem;
+}
+.el-air   .el-slogan { color: #2E6E8C; }
+.el-ice   .el-slogan { color: #24657F; }
+.el-earth .el-slogan { color: #3F6B4C; }
+.el-fire  .el-slogan { color: #A4592A; }
 .el-cap p {
   font-size: 0.85rem;
   line-height: 1.6;
@@ -2101,15 +2120,23 @@ picture { display: contents; }
 .elements .section-head { margin: 0; max-width: none; padding: 1rem var(--gutter) 0.95rem; border-bottom: 1px solid rgba(28, 75, 80, 0.14); }
 .elements .eyebrow, .elements .section-lede { display: none; }
 .elements .section-title { font-size: clamp(0.9rem, 1.3vw, 1.1rem); letter-spacing: 0.12em; }
-.elements-grid { gap: 0; height: clamp(260px, 26vw, 360px); }
+/* Со слоганом подпись стала на строку выше, поэтому и полоса чуть выше:
+   на прежних 260px фотографии оставалось 55px — обрезок, а не кадр. */
+.elements-grid { gap: 0; height: clamp(300px, 29vw, 400px); }
 .el { min-height: 0; overflow: hidden; }
 .el + .el { border-left: 1px solid rgba(255,255,255,0.38); }
 .el-photo-wrap { position: absolute; inset: 0; height: auto; margin: 0; }
 .el-cap { position: relative; z-index: 3; padding: clamp(1.8rem, 3.2vw, 2.7rem) 1rem 0; color: #123f46; text-shadow: 0 1px 8px rgba(255,255,255,0.9); }
-.el-cap h3 { font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: 0.11em; margin: 0 0 0.7rem; color: #0d3f47; text-shadow: 0 1px 8px rgba(255,255,255,0.96); }
+.el-cap h3 { font-size: clamp(1rem, 1.45vw, 1.3rem); letter-spacing: 0.11em; margin: 0 0 0.34rem; color: #0d3f47; text-shadow: 0 1px 8px rgba(255,255,255,0.96); }
 .el-cap p { max-width: 190px; font-size: 0.74rem; font-weight: 600; line-height: 1.5; color: #123f46; text-shadow: 0 1px 8px rgba(255,255,255,0.96); }
+.el-cap .el-slogan {
+  max-width: 200px;
+  font-size: clamp(0.94rem, 1.3vw, 1.16rem);
+  margin-bottom: 0.15rem;
+  text-shadow: 0 1px 8px rgba(255,255,255,0.96);
+}
 .el .el-cap {
-  min-height: 178px;
+  min-height: 208px;
   background: linear-gradient(180deg, rgba(251,247,242,0.98) 0%, rgba(251,247,242,0.92) 68%, rgba(251,247,242,0) 100%);
 }
 .el-photo-wrap::before { background: linear-gradient(180deg, rgba(251,247,242,0.86) 0%, rgba(251,247,242,0.32) 46%, rgba(251,247,242,0.04) 72%); }
@@ -2127,7 +2154,7 @@ picture { display: contents; }
      обрезка по бокам съедала бы её и оставляла в кадре пустой камень. */
   .hero-bg img, .hero-video { object-position: 42% center; }
   .hero-scene { object-position: 70% center; }
-  .elements-grid { grid-template-columns: repeat(4, 1fr); gap: 0; height: 285px; }
+  .elements-grid { grid-template-columns: repeat(4, 1fr); gap: 0; height: 325px; }
   .el-photo-wrap { height: auto; }
 }
 /* Портрет — и телефон, и планшет боком вверх. Передний план 16:9, растянутый
@@ -2164,6 +2191,7 @@ picture { display: contents; }
   .el { min-height: clamp(260px, 56svh, 420px); }
   .el-cap { padding: 1.5rem 0.8rem 0; }
   .el-cap p { font-size: 0.66rem; }
+  .el-cap .el-slogan { font-size: 1rem; }
   .el + .el { border-left: 0; }
   .el + .el { border-top: 1px solid rgba(255,255,255,0.38); }
 }

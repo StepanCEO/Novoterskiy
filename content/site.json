@@ -109,13 +109,13 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/video/hero-bg-poster.webp?v=rock-v33",
-    "video_webm": "assets/video/hero-bg.webm?v=rock-v33",
-    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v33",
-    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v33",
-    "scene_webm": "assets/video/hero-rock.webm?v=rock-v33",
-    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v33",
-    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v33"
+    "background": "assets/video/hero-bg-poster.webp?v=rock-v34",
+    "video_webm": "assets/video/hero-bg.webm?v=rock-v34",
+    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v34",
+    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v34",
+    "scene_webm": "assets/video/hero-rock.webm?v=rock-v34",
+    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v34",
+    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v34"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -128,6 +128,8 @@
       {
         "title_ru": "Воздух",
         "title_en": "Air",
+        "slogan_ru": "Дыши свободно",
+        "slogan_en": "Breathe freely",
         "text_ru": "Чистота высоты. Путь начинается у вершин Эльбруса.",
         "text_en": "The purity of heights. The path begins at the summits of Elbrus.",
         "image": "assets/photos/element-air.webp",
@@ -138,6 +140,8 @@
       {
         "title_ru": "Лёд",
         "title_en": "Ice",
+        "slogan_ru": "Скользи легко",
+        "slogan_en": "Glide with ease",
         "text_ru": "Талая вода медленно проходит сквозь лёд и горные слои.",
         "text_en": "Meltwater slowly passes through ice and mountain strata.",
         "image": "assets/photos/element-ice-arctic.webp",
@@ -148,6 +152,8 @@
       {
         "title_ru": "Земля",
         "title_en": "Earth",
+        "slogan_ru": "Стой твёрдо",
+        "slogan_en": "Stand firm",
         "text_ru": "Горные породы насыщают воду природными минералами.",
         "text_en": "Mountain rock saturates the water with natural minerals.",
         "image": "assets/photos/element-earth-golden.webp",
@@ -158,6 +164,8 @@
       {
         "title_ru": "Огонь",
         "title_en": "Fire",
+        "slogan_ru": "Зажги в себе огонь",
+        "slogan_en": "Light the fire within",
         "text_ru": "Подземное тепло и термальные источники завершают природный процесс.",
         "text_en": "Underground heat and thermal springs complete the natural process.",
         "image": "assets/photos/element-fire.webp",
