@@ -1684,7 +1684,9 @@ picture { display: contents; }
 }
 .final-bottle {
   position: relative;
-  min-height: clamp(480px, 48vw, 650px);
+  /* Заведомо выше самой картинки — иначе она выпирает за фигуру и налезает
+     на соседний блок. */
+  min-height: clamp(510px, 53vw, 700px);
   display: grid;
   place-items: center;
   margin: 0;
@@ -1695,12 +1697,12 @@ picture { display: contents; }
   position: relative;
   z-index: 2;
   width: auto;
-  height: clamp(460px, 46vw, 620px);
+  height: clamp(480px, 50vw, 660px);
   max-width: 100%;
   object-fit: contain;
-  filter: drop-shadow(-18px 34px 34px rgba(28,75,80,0.24));
-  /* Прежний снимок стоял ровно, и наклон ему давал CSS. У нового он свой, снят
-     в кадре, поэтому здесь поворота нет — покачивание ниже идёт от нуля. */
+  /* Бутылка снята строго спереди, поэтому и тень падает вниз, а не в сторону. */
+  filter: drop-shadow(0 30px 30px rgba(28,75,80,0.2));
+  /* Поворота здесь нет: кадр ровный, покачивание ниже идёт от нуля. */
   animation: finalBottleFloat 7s ease-in-out infinite;
 }
 .final-bottle-halo {
@@ -2102,8 +2104,10 @@ picture { display: contents; }
   .final-composition { grid-template-columns: 1fr; gap: 0; }
   /* Карточка с цитатой заходит на бутылку, но меньше, чем прежде: у наклонённого
      снимка внизу справа донышко, и старые -3.5rem срезали его по диагонали. */
-  .final-bottle { min-height: 360px; margin-bottom: -1.1rem; }
-  .final-bottle img { height: clamp(330px, 96vw, 430px); }
+  /* Кадр с бутылкой в полный рост высокий и узкий: на телефоне он перерастал
+     фигуру и уходил под карточку с цитатой. Высоту задаёт сама картинка. */
+  .final-bottle { min-height: 0; margin-bottom: -0.4rem; }
+  .final-bottle img { height: clamp(320px, 92vw, 420px); }
   .final-bottle-halo { width: min(410px, 110%); }
   .final-inner { padding: 2.3rem 1.35rem; }
   .final-quote { font-size: clamp(1.2rem, 5.4vw, 1.55rem); }
