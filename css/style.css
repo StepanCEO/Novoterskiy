@@ -1706,9 +1706,11 @@ picture { display: contents; }
   isolation: isolate;
 }
 .final-bottle picture { display: contents; }
-.final-bottle img {
+.final-bottle img,
+.final-bottle-video {
   position: relative;
   z-index: 2;
+  display: block;
   width: auto;
   height: clamp(480px, 50vw, 660px);
   max-width: 100%;
@@ -2256,7 +2258,7 @@ picture { display: contents; }
   .collection-track { grid-template-columns: repeat(2, 1fr); }
   .final-composition { grid-template-columns: minmax(230px, 0.65fr) minmax(390px, 1.35fr); }
   .final-bottle { min-height: 430px; }
-  .final-bottle img { height: 430px; }
+  .final-bottle img, .final-bottle-video { height: 430px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 /* mobile 320–767 */
@@ -2316,7 +2318,7 @@ picture { display: contents; }
   /* Кадр с бутылкой в полный рост высокий и узкий: на телефоне он перерастал
      фигуру и уходил под карточку с цитатой. Высоту задаёт сама картинка. */
   .final-bottle { min-height: 0; margin-bottom: -0.4rem; }
-  .final-bottle img { height: clamp(320px, 92vw, 420px); }
+  .final-bottle img, .final-bottle-video { height: clamp(320px, 92vw, 420px); }
   .final-bottle-halo { width: min(410px, 110%); }
   .final-inner { padding: 2.3rem 1.35rem; }
   .final-quote { font-size: clamp(1.2rem, 5.4vw, 1.55rem); }
