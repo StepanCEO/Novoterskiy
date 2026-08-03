@@ -2906,6 +2906,71 @@ picture { display: contents; }
   letter-spacing: 0.06em;
   color: var(--muted);
 }
+.channel-mark-stack {
+  gap: 0.28rem;
+}
+.channel-mark-stack img {
+  width: auto;
+  height: 24px;
+  border-radius: 8px;
+}
+
+.retailer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 0.9rem;
+  margin: 1.2rem 0 1.4rem;
+}
+.legal-body .retailer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 166px;
+  padding: 1rem 0.9rem 0.95rem;
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid rgba(62,122,152,0.18);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.68);
+  box-shadow: 0 18px 40px -34px rgba(20,49,63,0.52);
+  transition: transform 0.32s var(--ease), border-color 0.32s var(--ease), box-shadow 0.32s var(--ease);
+}
+.legal-body .retailer-card:hover,
+.legal-body .retailer-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(62,122,152,0.42);
+  box-shadow: 0 20px 38px -28px rgba(20,49,63,0.58);
+}
+.retailer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 76px;
+  width: 100%;
+}
+.retailer-logo img {
+  display: block;
+  max-width: min(150px, 100%);
+  height: auto;
+  max-height: 58px;
+}
+.retailer-name {
+  margin-top: 0.45rem;
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--deep);
+}
+.retailer-action {
+  margin-top: 0.35rem;
+  font-family: var(--ff-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--glacier-d);
+}
 
 /* Карточка магазина: слева адрес и часы, справа карта. Карта — живая, с ней
    можно работать прямо на странице, поэтому она не картинка, а iframe. */
@@ -2980,6 +3045,19 @@ picture { display: contents; }
     margin-bottom: 0;
   }
   .channel-mark img { height: 30px; }
+  .channel-mark-stack {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 92px;
+    gap: 0.18rem;
+  }
+  .channel-mark-stack img { height: 20px; }
+  .retailer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  .legal-body .retailer-card { min-height: 142px; padding: 0.85rem 0.65rem; }
+  .retailer-logo { height: 62px; }
+  .retailer-logo img { max-width: 122px; max-height: 48px; }
+  .retailer-name { font-size: 0.92rem; }
+  .retailer-action { font-size: 0.64rem; letter-spacing: 0.05em; }
   .shop { grid-template-columns: 1fr; padding: 1.1rem; }
   .shop-map iframe { height: 220px; }
 }

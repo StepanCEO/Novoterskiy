@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="72" viewBox="0 0 180 72" role="img" aria-label="Пятёрочка 5">
+  <rect width="180" height="72" rx="18" fill="#E30613"/>
+  <text x="50%" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF" opacity="0.78">Пятёрочка</text>
+  <text x="50%" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#FFFFFF">5</text>
+</svg>
