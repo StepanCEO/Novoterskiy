@@ -10,10 +10,10 @@
       "file": ""
     },
     {
-      "id": "ГОСТ Р 54316",
+      "id": "ГОСТ Р 54316-2020",
       "anchor": "gost",
-      "name": "ГОСТ Р 54316",
-      "name_en": "GOST R 54316",
+      "name": "ГОСТ Р 54316-2020",
+      "name_en": "GOST R 54316-2020",
       "desc": "Природные минеральные воды — государственный стандарт",
       "desc_en": "Natural mineral waters — state standard",
       "file": ""
@@ -25,15 +25,6 @@
       "name_en": "EAEU registration",
       "desc": "RU.77.99.32.006.R.002711.08.22",
       "desc_en": "RU.77.99.32.006.R.002711.08.22",
-      "file": ""
-    },
-    {
-      "id": "Сертификат соответствия",
-      "anchor": "conformity",
-      "name": "Сертификат соответствия",
-      "name_en": "Certificate of conformity",
-      "desc": "№ РОСС RU.11АБ45.00317",
-      "desc_en": "№ РОСС RU.11АБ45.00317",
       "file": ""
     },
     {
@@ -50,8 +41,8 @@
       "anchor": "conformity",
       "name": "Декларация ЕАЭС",
       "name_en": "EAEU declaration",
-      "desc": "N RU Д-RU.РА02.В.96742/22",
-      "desc_en": "N RU Д-RU.РА02.В.96742/22",
+      "desc": "N RU Д-RU.РА03.В.50210/25",
+      "desc_en": "N RU Д-RU.РА03.В.50210/25",
       "file": ""
     },
     {
