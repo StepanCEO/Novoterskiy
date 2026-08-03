@@ -2211,12 +2211,13 @@ picture { display: contents; }
   .nav-sub::before { content: none; }
   /* На iOS :hover после тапа может «залипать». В панели состояние списка
      задаёт только aria-expanded — так подкатегории не пропадают под пальцем. */
+  .nav-item:not(.is-submenu-open) > .nav-sub,
   .nav-toggle[aria-expanded="false"] + .nav-sub {
     max-height: 0;
     visibility: hidden;
     pointer-events: none;
   }
-  .nav-toggle[aria-expanded="true"] + .nav-sub {
+  .site-header.nav-open .nav-item.is-submenu-open > .nav-sub {
     max-height: 320px;
     visibility: visible;
     pointer-events: auto;

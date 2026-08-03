@@ -14,9 +14,15 @@
      на 1023px и ниже. Если разойдётся — на планшете откроются обе схемы. */
   var panelMode = window.matchMedia("(max-width: 1023px)");
 
+  function setSubmenu(toggle, open) {
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    var item = toggle.closest(".nav-item");
+    if (item) item.classList.toggle("is-submenu-open", open);
+  }
+
   function closeSubmenus(except) {
     toggles.forEach(function (toggle) {
-      if (toggle !== except) toggle.setAttribute("aria-expanded", "false");
+      if (toggle !== except) setSubmenu(toggle, false);
     });
   }
 
@@ -33,43 +39,26 @@
 
   function toggleSubmenu(toggle) {
     var open = toggle.getAttribute("aria-expanded") === "true";
+    if (panelMode.matches && !panelOpen()) setPanel(true);
     /* В панели раскрыт один раздел за раз — иначе список не помещается
        на экран и приходится скроллить внутри скролла. На десктопе тоже
        закрываем соседний: два открытых списка перехлёстываются. */
     closeSubmenus(toggle);
-    toggle.setAttribute("aria-expanded", open ? "false" : "true");
+    setSubmenu(toggle, !open);
   }
 
   if (burger) {
-    burger.addEventListener("click", function () {
+    burger.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       setPanel(!panelOpen());
     });
   }
 
-  var lastTouchToggle = null;
-  var lastTouchTime = 0;
-  var now = (window.performance && window.performance.now) ?
-    function () { return window.performance.now(); } :
-    function () { return Date.now(); };
   toggles.forEach(function (toggle) {
-    /* iOS Safari сперва ставит sticky :hover на пункт меню, и обычный click
-       иногда приходит уже после того, как CSS успел схлопнуть аккордеон.
-       Обрабатываем touchend сразу и гасим следующий синтетический click. */
-    toggle.addEventListener("touchend", function (event) {
-      if (!panelMode.matches) return;
-      event.preventDefault();
-      event.stopPropagation();
-      lastTouchToggle = toggle;
-      lastTouchTime = now();
-      toggleSubmenu(toggle);
-    }, false);
-
+    /* В мобильной панели состояние держим через явный класс на родителе.
+       Так iOS sticky :hover не может показать/спрятать список наоборот. */
     toggle.addEventListener("click", function (event) {
-      if (lastTouchToggle === toggle && now() - lastTouchTime < 700) {
-        event.preventDefault();
-        event.stopPropagation();
-        return;
-      }
       event.preventDefault();
       event.stopPropagation();
       toggleSubmenu(toggle);
