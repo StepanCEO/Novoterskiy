@@ -2209,17 +2209,20 @@ picture { display: contents; }
     transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s 0.36s;
   }
   .nav-sub::before { content: none; }
-  /* Mobile menu is not a hidden accordion: subcategories must be visible as
-     soon as the burger opens. This avoids iOS touch/click/sticky-hover state
-     problems that made lists appear only after a second tap. */
+  /* Mobile accordion: closed by default, opened only by tapping the parent
+     category. display:none/block is intentionally used here instead of a
+     max-height animation so iOS Safari cannot get into an inverted state. */
+  .site-header.nav-open .nav-sub,
   .nav-item:not(.is-submenu-open) > .nav-sub,
   .nav-toggle[aria-expanded="false"] + .nav-sub {
+    display: none;
     max-height: 0;
     visibility: hidden;
     pointer-events: none;
   }
-  .site-header.nav-open .nav-sub,
+  .site-header.nav-open .nav-toggle[aria-expanded="true"] + .nav-sub,
   .site-header.nav-open .nav-item.is-submenu-open > .nav-sub {
+    display: block;
     opacity: 1;
     max-height: none;
     visibility: visible;
