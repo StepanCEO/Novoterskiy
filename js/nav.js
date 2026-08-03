@@ -31,20 +31,48 @@
     return header.classList.contains("nav-open");
   }
 
+  function toggleSubmenu(toggle) {
+    var open = toggle.getAttribute("aria-expanded") === "true";
+    /* В панели раскрыт один раздел за раз — иначе список не помещается
+       на экран и приходится скроллить внутри скролла. На десктопе тоже
+       закрываем соседний: два открытых списка перехлёстываются. */
+    closeSubmenus(toggle);
+    toggle.setAttribute("aria-expanded", open ? "false" : "true");
+  }
+
   if (burger) {
     burger.addEventListener("click", function () {
       setPanel(!panelOpen());
     });
   }
 
+  var lastTouchToggle = null;
+  var lastTouchTime = 0;
+  var now = (window.performance && window.performance.now) ?
+    function () { return window.performance.now(); } :
+    function () { return Date.now(); };
   toggles.forEach(function (toggle) {
-    toggle.addEventListener("click", function () {
-      var open = toggle.getAttribute("aria-expanded") === "true";
-      /* В панели раскрыт один раздел за раз — иначе список не помещается
-         на экран и приходится скроллить внутри скролла. На десктопе тоже
-         закрываем соседний: два открытых списка перехлёстываются. */
-      closeSubmenus(toggle);
-      toggle.setAttribute("aria-expanded", open ? "false" : "true");
+    /* iOS Safari сперва ставит sticky :hover на пункт меню, и обычный click
+       иногда приходит уже после того, как CSS успел схлопнуть аккордеон.
+       Обрабатываем touchend сразу и гасим следующий синтетический click. */
+    toggle.addEventListener("touchend", function (event) {
+      if (!panelMode.matches) return;
+      event.preventDefault();
+      event.stopPropagation();
+      lastTouchToggle = toggle;
+      lastTouchTime = now();
+      toggleSubmenu(toggle);
+    }, false);
+
+    toggle.addEventListener("click", function (event) {
+      if (lastTouchToggle === toggle && now() - lastTouchTime < 700) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      toggleSubmenu(toggle);
     });
   });
 

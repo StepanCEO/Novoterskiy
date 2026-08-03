@@ -318,13 +318,21 @@ picture { display: contents; }
 /* :focus-within здесь нет намеренно: после клика по кнопке фокус остаётся на
    ней, и правило держало бы список открытым — повторный клик не закрывал его.
    Клавиатуру ведёт JS через aria-expanded. */
-.nav-item:hover > .nav-sub,
 .nav-toggle[aria-expanded="true"] + .nav-sub {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translate(-50%, 0);
   transition: opacity 0.28s ease, transform 0.28s cubic-bezier(.2,.7,.3,1), visibility 0s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-item:hover > .nav-sub {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+    transition: opacity 0.28s ease, transform 0.28s cubic-bezier(.2,.7,.3,1), visibility 0s;
+  }
 }
 .nav-sub a {
   display: block;
@@ -342,6 +350,11 @@ picture { display: contents; }
 
 /* Бургер: только на узких экранах, ниже переключается в media-запросе. */
 .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 0.35rem; color: var(--deep); }
+.nav-toggle,
+.nav-burger {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
 .burger-box { display: block; width: 22px; }
 .burger-line {
   display: block;
@@ -2196,8 +2209,13 @@ picture { display: contents; }
     transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s 0.36s;
   }
   .nav-sub::before { content: none; }
-  /* Гасим hover-открытие с десктопа: в панели раскрывает только нажатие. */
-  .nav-item:hover > .nav-sub { max-height: 0; visibility: hidden; }
+  /* На iOS :hover после тапа может «залипать». В панели состояние списка
+     задаёт только aria-expanded — так подкатегории не пропадают под пальцем. */
+  .nav-toggle[aria-expanded="false"] + .nav-sub {
+    max-height: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
   .nav-toggle[aria-expanded="true"] + .nav-sub {
     max-height: 320px;
     visibility: visible;
