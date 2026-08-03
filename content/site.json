@@ -109,13 +109,13 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/video/hero-bg-poster.webp?v=rock-v54",
-    "video_webm": "assets/video/hero-bg.webm?v=rock-v54",
-    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v54",
-    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v54",
-    "scene_webm": "assets/video/hero-rock.webm?v=rock-v54",
-    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v54",
-    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v54"
+    "background": "assets/video/hero-bg-poster.webp?v=rock-v55",
+    "video_webm": "assets/video/hero-bg.webm?v=rock-v55",
+    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v55",
+    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v55",
+    "scene_webm": "assets/video/hero-rock.webm?v=rock-v55",
+    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v55",
+    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v55"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -352,8 +352,6 @@
     ],
     "documents_title_ru": "Документы и сертификаты",
     "documents_title_en": "Documents and certificates",
-    "documents_note_ru": "Данные приведены по документации производителя; точные значения по партии указаны на этикетке.",
-    "documents_note_en": "Data based on the manufacturer's specifications; exact values for each batch are shown on the label.",
     "documents_cta_ru": "Открыть документы",
     "documents_cta_en": "Open documents",
     "documents_cta_url": "documents.html"
@@ -377,7 +375,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/voda.webp?v=rock-v54",
+    "bottle": "assets/voda.webp?v=rock-v55",
     "logo": "assets/logo-mark.webp"
   },
   "where": {

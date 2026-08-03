@@ -179,7 +179,6 @@ picture { display: contents; }
 .trust-grid,
 .docs-head,
 .docs-grid,
-.docs-note,
 .collection-track,
 .where-grid,
 .contacts-grid {
@@ -1481,14 +1480,6 @@ picture { display: contents; }
   color: var(--deep);
 }
 .doc-desc { font-size: 0.82rem; line-height: 1.35; color: var(--muted); }
-.docs-note {
-  max-width: 760px;
-  margin: 2rem auto 0;
-  font-size: 0.78rem;
-  font-style: italic;
-  text-align: center;
-  color: var(--muted);
-}
 
 /* ---------- 7 · COLLECTION ---------- */
 .collection {
@@ -3229,7 +3220,9 @@ picture { display: contents; }
   text-transform: uppercase;
   color: var(--muted);
 }
-.docs-more { margin: 1rem 0 0; font-size: 0.95rem; }
+/* Отступ держала снятая подпись под сеткой документов; без неё ссылка на
+   награды прилипала к карточкам. */
+.docs-more { margin: 2.4rem 0 0; font-size: 0.95rem; }
 .docs-more a { color: var(--glacier-d); text-decoration: none; }
 .docs-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* Сколько сканов в кадре. Меньше одного не бывает, а на узком экране два уже
