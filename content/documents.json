@@ -68,8 +68,8 @@
       "anchor": "sout-summary",
       "name": "Сводные данные о результатах СОУТ",
       "name_en": "Summary of the workplace assessment results",
-      "desc": "PDF со старого сайта АО «Кавминводы»",
-      "desc_en": "PDF transferred from the former JSC Kavminvody website",
+      "desc": "",
+      "desc_en": "",
       "file": "assets/documents/sout-summary.pdf"
     },
     {
@@ -77,8 +77,8 @@
       "anchor": "labor-safety-measures",
       "name": "Перечень мероприятий по охране труда",
       "name_en": "Occupational safety action plan",
-      "desc": "PDF со старого сайта АО «Кавминводы»",
-      "desc_en": "PDF transferred from the former JSC Kavminvody website",
+      "desc": "",
+      "desc_en": "",
       "file": "assets/documents/labor-safety-measures.pdf"
     }
   ]

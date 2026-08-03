@@ -458,11 +458,15 @@
       var fallback = "documents.html#" + encodeURIComponent(documentItem.anchor || documentItem.id || "");
       var href = safeUrl(documentItem.file, fallback, false);
       var external = documentItem.file ? ' target="_blank" rel="noopener"' : "";
+      // Подпись рисуем, только если она есть. У документов по охране труда её нет —
+      // пустой span всё равно занимал строку и оставлял под названием дырку.
+      var desc = documentItem.desc
+        ? '<span class="doc-desc" data-en="' + esc(esc(documentItem.desc_en || documentItem.desc)) + '">' + esc(documentItem.desc) + '</span>'
+        : "";
       return '<li class="doc reveal"><a class="doc-link" href="' + esc(href) + '"' + external +
         ' data-analytics="doc-open" data-doc="' + esc(documentItem.id) + '"><span class="doc-mark" aria-hidden="true">✓</span>' +
         '<span class="doc-name" data-en="' + esc(esc(documentItem.name_en || documentItem.name)) + '">' + esc(documentItem.name) + '</span>' +
-        '<span class="doc-desc" data-en="' + esc(esc(documentItem.desc_en || documentItem.desc)) + '">' + esc(documentItem.desc) + '</span>' +
-        '</a></li>';
+        desc + '</a></li>';
     }).join("");
   }
 

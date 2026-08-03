@@ -2911,10 +2911,14 @@ picture { display: contents; }
 .channel-mark-stack {
   gap: 0.28rem;
 }
+/* Три настоящих логотипа рядом: у них своя ширина, и по одной высоте их
+   выставлять нельзя — «Перекрёсток» в семь раз шире «Ленты» и втроём они
+   вылезали за карточку на соседние. Ограничиваем и по ширине тоже. */
 .channel-mark-stack img {
   width: auto;
-  height: 24px;
-  border-radius: 8px;
+  height: auto;
+  max-width: 66px;
+  max-height: 20px;
 }
 
 .retailer-grid {
@@ -2952,12 +2956,21 @@ picture { display: contents; }
   height: 76px;
   width: 100%;
 }
+/* Логотипы настоящие, поэтому пропорции у всех разные: от 3:1 у «Ленты» до
+   10:1 у «АптекиПлюс». Общая ширина выравнивает их по строке, но одной ширины
+   мало — жирный чёрный «Купер» при той же ширине перевешивает соседей, а
+   «Лента» и «Ютека» в родном размере, наоборот, теряются. Ширину этих трёх
+   подобрал на глаз по оптической плотности, а не по геометрии. */
 .retailer-logo img {
   display: block;
-  max-width: min(150px, 100%);
+  width: 150px;
+  max-width: 100%;
   height: auto;
   max-height: 58px;
 }
+.retailer-logo img[src*="lenta"] { width: 118px; }
+.retailer-logo img[src*="uteka"] { width: 132px; }
+.retailer-logo img[src*="kuper"] { width: 122px; }
 .retailer-name {
   margin-top: 0.45rem;
   font-family: var(--ff-display);
@@ -3053,11 +3066,14 @@ picture { display: contents; }
     width: 92px;
     gap: 0.18rem;
   }
-  .channel-mark-stack img { height: 20px; }
+  .channel-mark-stack img { width: auto; height: auto; max-width: 88px; max-height: 18px; }
   .retailer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
   .legal-body .retailer-card { min-height: 142px; padding: 0.85rem 0.65rem; }
   .retailer-logo { height: 62px; }
-  .retailer-logo img { max-width: 122px; max-height: 48px; }
+  .retailer-logo img { width: 122px; max-height: 48px; }
+  .retailer-logo img[src*="lenta"] { width: 96px; }
+  .retailer-logo img[src*="uteka"] { width: 108px; }
+  .retailer-logo img[src*="kuper"] { width: 100px; }
   .retailer-name { font-size: 0.92rem; }
   .retailer-action { font-size: 0.64rem; letter-spacing: 0.05em; }
   .shop { grid-template-columns: 1fr; padding: 1.1rem; }
