@@ -26,10 +26,17 @@
     });
   }
 
+  function openSubmenus() {
+    toggles.forEach(function (toggle) {
+      setSubmenu(toggle, true);
+    });
+  }
+
   function setPanel(open) {
     if (!burger) return;
     header.classList.toggle("nav-open", open);
     burger.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open && panelMode.matches) openSubmenus();
     if (!open) closeSubmenus(null);
   }
 
@@ -38,11 +45,15 @@
   }
 
   function toggleSubmenu(toggle) {
+    if (panelMode.matches) {
+      if (!panelOpen()) setPanel(true);
+      openSubmenus();
+      return;
+    }
+
     var open = toggle.getAttribute("aria-expanded") === "true";
-    if (panelMode.matches && !panelOpen()) setPanel(true);
-    /* В панели раскрыт один раздел за раз — иначе список не помещается
-       на экран и приходится скроллить внутри скролла. На десктопе тоже
-       закрываем соседний: два открытых списка перехлёстываются. */
+    /* On desktop, close the neighboring list to prevent overlap. In the
+       mobile burger panel, all subcategories stay visible. */
     closeSubmenus(toggle);
     setSubmenu(toggle, !open);
   }

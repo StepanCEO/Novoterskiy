@@ -2209,19 +2209,23 @@ picture { display: contents; }
     transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s 0.36s;
   }
   .nav-sub::before { content: none; }
-  /* На iOS :hover после тапа может «залипать». В панели состояние списка
-     задаёт только aria-expanded — так подкатегории не пропадают под пальцем. */
+  /* Mobile menu is not a hidden accordion: subcategories must be visible as
+     soon as the burger opens. This avoids iOS touch/click/sticky-hover state
+     problems that made lists appear only after a second tap. */
   .nav-item:not(.is-submenu-open) > .nav-sub,
   .nav-toggle[aria-expanded="false"] + .nav-sub {
     max-height: 0;
     visibility: hidden;
     pointer-events: none;
   }
+  .site-header.nav-open .nav-sub,
   .site-header.nav-open .nav-item.is-submenu-open > .nav-sub {
-    max-height: 320px;
+    opacity: 1;
+    max-height: none;
     visibility: visible;
     pointer-events: auto;
-    transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s;
+    transform: none;
+    transition: none;
   }
   .nav-sub a { padding: 0.72rem 0; font-size: 0.82rem; border-bottom: 1px solid rgba(20,49,63,0.05); }
   .nav-sub li:last-child a { border-bottom: none; }
