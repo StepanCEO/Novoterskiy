@@ -3027,6 +3027,99 @@ picture { display: contents; }
 .dist-card .dist-line { margin: 0 0 0.5rem; }
 .dist-card .dist-line:last-child { margin-bottom: 0; }
 
+/* ---- Отзывы покупателей (buy.html) ---- */
+/* Отзывы разной длины — от одной строки до четырёх, поэтому карточка тянется
+   по содержимому, а подпись прижата к низу: иначе логотипы площадки в ряду
+   встают на разной высоте и сетка выглядит рваной. */
+.reviews-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0;
+}
+.review-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1.3rem 1.05rem;
+  border: 1px solid rgba(62,122,152,0.18);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.68);
+  box-shadow: 0 18px 40px -34px rgba(20,49,63,0.52);
+  overflow: hidden;
+}
+/* Кавычка — не текст, а фон карточки: крупная, полупрозрачная, обрезается
+   краем. Поэтому aria-hidden не нужен, её нет в дереве доступности.
+   Селектор с .legal-body — чтобы перебить общий маркер списка .legal-body li::before
+   (синяя точка 5×5), иначе он выигрывает по специфичности и рисует точку. */
+.legal-body .review-card::before {
+  content: "«";
+  position: absolute;
+  top: -0.55em;
+  right: 0.1em;
+  left: auto;
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  font-family: var(--ff-serif);
+  font-size: 6rem;
+  line-height: 1;
+  color: rgba(111,168,196,0.13);
+  pointer-events: none;
+}
+.review-stars {
+  font-size: 0.92rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+.review-text {
+  flex: 1;
+  margin: 0.6rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: var(--ink);
+}
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.95rem;
+}
+.review-author {
+  font-family: var(--ff-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--deep);
+}
+.review-date { font-size: 0.82rem; color: var(--muted); }
+/* Пунктир вместо сплошной линии: сплошная в карточке уже есть — рамка, и две
+   одинаковые линии рядом читались как ошибка вёрстки. */
+.review-source {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.8rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(62,122,152,0.24);
+  font-family: var(--ff-label);
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--glacier-d);
+}
+.review-source img {
+  display: block;
+  width: auto;
+  height: 15px;
+}
+.review-source:hover span,
+.review-source:focus-visible span { text-decoration: underline; }
+
 @media (max-width: 767px) {
   /* На телефоне три плитки в ряд ужимаются до нечитаемого — раскладываем их
      в столбец, а внутри каждой: марка слева на обе строки, название и
@@ -3069,6 +3162,9 @@ picture { display: contents; }
   .retailer-action { font-size: 0.64rem; letter-spacing: 0.05em; }
   .shop { grid-template-columns: 1fr; padding: 1.1rem; }
   .shop-map iframe { height: 220px; }
+  .reviews-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+  .review-card { padding: 1.05rem 1.1rem 0.95rem; }
+  .legal-body .review-card::before { font-size: 5rem; }
 }
 
 /* ---- Галерея наград (awards.html) ---- */
