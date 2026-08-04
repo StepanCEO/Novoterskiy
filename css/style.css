@@ -1846,7 +1846,7 @@ picture { display: contents; }
   width: 100%;
   aspect-ratio: 1672 / 941;
   /* Цвет верхнего угла снимка — полоса не мигает белым, пока грузится файл. */
-  background: #67acd1;
+  background: #00a09f;
 }
 .footer-mark picture { display: contents; }
 .footer-mark img {
@@ -1857,19 +1857,19 @@ picture { display: contents; }
   object-fit: cover;
   object-position: center;
 }
-/* Верх кадра — светлое небо (L≈161), подвал — #14313F (L≈45): на стыке
+/* Верх кадра — яркая бирюза (L≈127), подвал — #14313F (L≈45): на стыке
    читалась бы отчётливая линия. Гасим её градиентом цвета подвала.
    Растушёвка длиннее и мягче, чем была под прежним, почти чёрным кадром:
    перепад яркости вырос втрое, и короткого перехода не хватало —
-   вместо линии получалась тёмная полка поперёк неба. */
+   вместо линии получалась тёмная полка поперёк воды. */
 .footer-mark::before {
   content: "";
   position: absolute;
   z-index: 1;
   inset: 0 0 auto;
-  height: 30%;
+  height: 26%;
   pointer-events: none;
-  background: linear-gradient(180deg, var(--deep) 0%, rgba(20,49,63,0.72) 22%, rgba(20,49,63,0.34) 52%, rgba(20,49,63,0.10) 78%, rgba(20,49,63,0) 100%);
+  background: linear-gradient(180deg, var(--deep) 0%, rgba(20,49,63,0.70) 22%, rgba(20,49,63,0.32) 52%, rgba(20,49,63,0.09) 78%, rgba(20,49,63,0) 100%);
 }
 
 /* ---------- Cookie ---------- */
