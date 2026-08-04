@@ -257,8 +257,8 @@
         "symbol": "Mg",
         "title_ru": "Магний",
         "title_en": "Magnesium",
-        "text_ru": "Спутник кальция: их вымывает из одних и тех же пород. Отвечает за лёгкую горчинку, по которой узнают минеральную воду.",
-        "text_en": "Calcium's companion - both are washed out of the same rock. It brings the faint bitterness by which mineral water is recognised.",
+        "text_ru": "Растворяется в тех же породах, что и кальций. Даёт вкусу свежесть и узнаваемый минеральный оттенок.",
+        "text_en": "It dissolves out of the same rock as calcium. It brings freshness to the taste and that recognisable mineral note.",
         "image": "assets/photos/mineral-mg.webp",
         "image_alt_ru": "Магний — природный минерал",
         "image_alt_en": "Magnesium — natural mineral"
