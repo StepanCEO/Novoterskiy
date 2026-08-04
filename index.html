@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=rock-v64" />
+<link rel="stylesheet" href="css/style.css?v=rock-v65" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -211,14 +211,14 @@
          Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
     <video class="hero-video" id="heroVideo" width="1920" height="976"
            muted playsinline preload="none"
-           poster="assets/video/hero-bg-poster.webp?v=rock-v64"
-           data-webm="assets/video/hero-bg.webm?v=rock-v64"
-           data-mp4="assets/video/hero-bg.mp4?v=rock-v64">
+           poster="assets/video/hero-bg-poster.webp?v=rock-v65"
+           data-webm="assets/video/hero-bg.webm?v=rock-v65"
+           data-mp4="assets/video/hero-bg.mp4?v=rock-v65">
       <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
            браузеры подтягивали и его, и webp из poster= — лишние килобайты в
            самый занятый момент загрузки, ровно когда рисуется первый экран. -->
       <picture>
-        <img src="assets/video/hero-bg-poster.webp?v=rock-v64" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+        <img src="assets/video/hero-bg-poster.webp?v=rock-v65" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
@@ -228,9 +228,9 @@
          под правила заднего плана. -->
     <video class="hero-scene" id="sceneVideo" width="1920" height="1080"
            muted playsinline preload="none"
-           poster="assets/video/hero-rock-poster.webp?v=rock-v64"
-           data-webm="assets/video/hero-rock.webm?v=rock-v64"
-           data-mp4="assets/video/hero-rock.mp4?v=rock-v64"></video>
+           poster="assets/video/hero-rock-poster.webp?v=rock-v65"
+           data-webm="assets/video/hero-rock.webm?v=rock-v65"
+           data-mp4="assets/video/hero-rock.mp4?v=rock-v65"></video>
     <span class="hero-glint"></span>
     <span class="hero-fog"></span>
     <span class="hero-warmth"></span>
@@ -547,7 +547,7 @@
     </li>
   </ul>
 
-  <!-- Process line: 01 → 05 -->
+  <!-- Process line: 01 → 06 -->
   <!-- id="production" — цель подпункта «Производство» в меню «О компании»:
        отдельной страницы под него нет, поэтому ведём внутрь этой секции.
        У «Лаборатории» страница своя (lab.html), сюда она больше не указывает,
@@ -579,6 +579,11 @@
       <span class="trust-num">05</span>
       <h3 data-en="Flawless process">Безупречность процесса</h3>
       <p data-en="Two autonomous shops, precise bottling and a composition preserved from source to bottle.">Два автономных цеха, точный розлив и состав, сохранённый от источника до бутылки.</p>
+    </li>
+    <li class="trust-card reveal">
+      <span class="trust-num">06</span>
+      <h3 data-en="Equipment and storage">Оборудование и хранение</h3>
+      <p data-en="Modern measuring and monitoring equipment, and a warehouse with controlled conditions: the quality holds from bottle to dispatch.">Современное контрольно-измерительное оборудование и склад с контролируемым режимом: качество держится от бутылки до отгрузки.</p>
     </li>
   </ol>
 
@@ -654,7 +659,7 @@
   <div class="final-composition">
     <figure class="final-bottle reveal" aria-label="Новотерская Целебная">
       <span class="final-bottle-halo" aria-hidden="true"></span>
-      <img src="assets/voda.webp?v=rock-v64" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
+      <img src="assets/voda.webp?v=rock-v65" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
       <span class="final-bottle-mist" aria-hidden="true"></span>
     </figure>
     <div class="final-inner reveal">
@@ -791,8 +796,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=rock-v64" defer></script>
-<script src="js/main.js?v=rock-v64" defer></script>
-<script src="js/cms.js?v=rock-v64" defer></script>
+<script src="js/nav.js?v=rock-v65" defer></script>
+<script src="js/main.js?v=rock-v65" defer></script>
+<script src="js/cms.js?v=rock-v65" defer></script>
 </body>
 </html>

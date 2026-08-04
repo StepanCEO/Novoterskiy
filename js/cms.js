@@ -266,7 +266,10 @@
     });
     bilingual(one(".docs-title", trustRoot), trust.documents_title_ru, trust.documents_title_en);
     bilingual(one(".docs-note", trustRoot), trust.documents_note_ru, trust.documents_note_en);
-    var docsCta = one(".trust-link", trustRoot);
+    /* Ссылка на документы живёт в блоке .trust-docs. Без этого уточнения селектор
+       забирал первую .trust-link во всей секции — а это ссылка «О лаборатории» в
+       карточке 03, и CMS молча переписывала её на documents.html. */
+    var docsCta = one(".trust-docs .trust-link", trustRoot);
     bilingual(docsCta, trust.documents_cta_ru, trust.documents_cta_en);
     setLink(docsCta, trust.documents_cta_url);
 

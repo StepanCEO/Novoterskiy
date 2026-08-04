@@ -111,13 +111,13 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/video/hero-bg-poster.webp?v=rock-v64",
-    "video_webm": "assets/video/hero-bg.webm?v=rock-v64",
-    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v64",
-    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v64",
-    "scene_webm": "assets/video/hero-rock.webm?v=rock-v64",
-    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v64",
-    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v64"
+    "background": "assets/video/hero-bg-poster.webp?v=rock-v65",
+    "video_webm": "assets/video/hero-bg.webm?v=rock-v65",
+    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v65",
+    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v65",
+    "scene_webm": "assets/video/hero-rock.webm?v=rock-v65",
+    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v65",
+    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v65"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -356,6 +356,12 @@
         "title_en": "Flawless process",
         "text_ru": "Два автономных цеха, точный розлив и состав, сохранённый от источника до бутылки.",
         "text_en": "Two autonomous shops, precise bottling and a composition preserved from source to bottle."
+      },
+      {
+        "title_ru": "Оборудование и хранение",
+        "title_en": "Equipment and storage",
+        "text_ru": "Современное контрольно-измерительное оборудование и склад с контролируемым режимом: качество держится от бутылки до отгрузки.",
+        "text_en": "Modern measuring and monitoring equipment, and a warehouse with controlled conditions: the quality holds from bottle to dispatch."
       }
     ],
     "documents_title_ru": "Документы и сертификаты",
@@ -381,7 +387,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/voda.webp?v=rock-v64",
+    "bottle": "assets/voda.webp?v=rock-v65",
     "logo": "assets/logo-mark.webp"
   },
   "where": {
