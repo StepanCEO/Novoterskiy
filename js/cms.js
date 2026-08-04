@@ -137,10 +137,20 @@
 
     var hero = data.hero || {};
     var heroTitle = one("#hero-title");
+    /* Заголовок — связка из трёх строк: имя и под ним две строки слогана.
+       Имя необязательно: если в JSON его нет, остаются те же две строки,
+       что и раньше, и вёрстка не рассыпается. */
     if (heroTitle && hero.title_line_1_ru != null && hero.title_line_2_ru != null) {
-      heroTitle.innerHTML = '<span class="hero-line">' + esc(hero.title_line_1_ru) + '</span> ' +
+      var brandRu = hero.brand_ru == null ? "" : String(hero.brand_ru).trim();
+      var brandEn = hero.brand_en == null ? brandRu : String(hero.brand_en).trim();
+      var apex = function (value) {
+        return value ? '<span class="hero-brand">' + esc(value) + "</span> " : "";
+      };
+      heroTitle.innerHTML = apex(brandRu) +
+        '<span class="hero-line">' + esc(hero.title_line_1_ru) + '</span> ' +
         '<span class="hero-line">' + esc(hero.title_line_2_ru) + '</span>';
-      heroTitle.setAttribute("data-en", '<span class="hero-line">' + esc(hero.title_line_1_en || "") + '</span> ' +
+      heroTitle.setAttribute("data-en", apex(brandEn) +
+        '<span class="hero-line">' + esc(hero.title_line_1_en || "") + '</span> ' +
         '<span class="hero-line">' + esc(hero.title_line_2_en || "") + '</span>');
     }
     bilingual(one(".hero-sub"), hero.text_ru, hero.text_en);
