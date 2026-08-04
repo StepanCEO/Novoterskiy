@@ -235,8 +235,8 @@
         "symbol": "Si",
         "title_ru": "Кремний",
         "title_en": "Silicon",
-        "text_ru": "Природный компонент минерального состава.",
-        "text_en": "A natural component of the mineral composition.",
+        "text_ru": "Вымывается из вулканических пород Приэльбрусья. В воде живёт как кремниевая кислота — она и даёт мягкость и бархатистый вкус.",
+        "text_en": "Leached from the volcanic rock of the Elbrus foothills. In water it exists as silicic acid — that is what gives the softness and the velvety taste.",
         "image": "assets/photos/mineral-si.webp",
         "image_alt_ru": "Кремний — природный минерал",
         "image_alt_en": "Silicon — natural mineral"
@@ -245,8 +245,8 @@
         "symbol": "Ca",
         "title_ru": "Кальций",
         "title_en": "Calcium",
-        "text_ru": "Природный компонент минерального состава.",
-        "text_en": "A natural component of the mineral composition.",
+        "text_ru": "Вода растворяет его в известняковых слоях. Придаёт вкусу плотность, а вместе с магнием создаёт природную жёсткость.",
+        "text_en": "The water dissolves it out of the limestone strata. It gives the taste its body and, together with magnesium, forms the natural hardness.",
         "image": "assets/photos/mineral-ca.webp",
         "image_alt_ru": "Кальций — природный минерал",
         "image_alt_en": "Calcium — natural mineral"
@@ -255,8 +255,8 @@
         "symbol": "Mg",
         "title_ru": "Магний",
         "title_en": "Magnesium",
-        "text_ru": "Природный компонент минерального состава.",
-        "text_en": "A natural component of the mineral composition.",
+        "text_ru": "Спутник кальция: их вымывает из одних и тех же пород. Отвечает за лёгкую горчинку, по которой узнают минеральную воду.",
+        "text_en": "Calcium's companion - both are washed out of the same rock. It brings the faint bitterness by which mineral water is recognised.",
         "image": "assets/photos/mineral-mg.webp",
         "image_alt_ru": "Магний — природный минерал",
         "image_alt_en": "Magnesium — natural mineral"
@@ -265,8 +265,8 @@
         "symbol": "HCO₃",
         "title_ru": "Гидрокарбонаты",
         "title_en": "Bicarbonates",
-        "text_ru": "Природные соли, формирующие характерный минеральный состав.",
-        "text_en": "Natural salts that shape the characteristic mineral composition.",
+        "text_ru": "Главные соли состава. Рождаются, когда подземная вода с углекислым газом идёт сквозь карбонатные породы, и смягчают вкус.",
+        "text_en": "The principal salts of the composition. They form as groundwater carrying carbon dioxide passes through carbonate rock, and they soften the taste.",
         "image": "assets/photos/mineral-hco3.webp",
         "image_alt_ru": "Гидрокарбонаты — природный минерал",
         "image_alt_en": "Bicarbonates — natural mineral"
