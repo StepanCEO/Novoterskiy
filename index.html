@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=rock-v65" />
+<link rel="stylesheet" href="css/style.css?v=rock-v66" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -211,14 +211,14 @@
          Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
     <video class="hero-video" id="heroVideo" width="1920" height="976"
            muted playsinline preload="none"
-           poster="assets/video/hero-bg-poster.webp?v=rock-v65"
-           data-webm="assets/video/hero-bg.webm?v=rock-v65"
-           data-mp4="assets/video/hero-bg.mp4?v=rock-v65">
+           poster="assets/video/hero-bg-poster.webp?v=rock-v66"
+           data-webm="assets/video/hero-bg.webm?v=rock-v66"
+           data-mp4="assets/video/hero-bg.mp4?v=rock-v66">
       <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
            браузеры подтягивали и его, и webp из poster= — лишние килобайты в
            самый занятый момент загрузки, ровно когда рисуется первый экран. -->
       <picture>
-        <img src="assets/video/hero-bg-poster.webp?v=rock-v65" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
+        <img src="assets/video/hero-bg-poster.webp?v=rock-v66" width="1920" height="976" alt="" loading="eager" fetchpriority="high" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
@@ -228,9 +228,9 @@
          под правила заднего плана. -->
     <video class="hero-scene" id="sceneVideo" width="1920" height="1080"
            muted playsinline preload="none"
-           poster="assets/video/hero-rock-poster.webp?v=rock-v65"
-           data-webm="assets/video/hero-rock.webm?v=rock-v65"
-           data-mp4="assets/video/hero-rock.mp4?v=rock-v65"></video>
+           poster="assets/video/hero-rock-poster.webp?v=rock-v66"
+           data-webm="assets/video/hero-rock.webm?v=rock-v66"
+           data-mp4="assets/video/hero-rock.mp4?v=rock-v66"></video>
     <span class="hero-glint"></span>
     <span class="hero-fog"></span>
     <span class="hero-warmth"></span>
@@ -659,7 +659,7 @@
   <div class="final-composition">
     <figure class="final-bottle reveal" aria-label="Новотерская Целебная">
       <span class="final-bottle-halo" aria-hidden="true"></span>
-      <img src="assets/voda.webp?v=rock-v65" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
+      <img src="assets/voda.webp?v=rock-v66" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
       <span class="final-bottle-mist" aria-hidden="true"></span>
     </figure>
     <div class="final-inner reveal">
@@ -749,6 +749,15 @@
   <svg class="footer-waterline" viewBox="0 0 1440 96" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0 62 C104 66 174 32 286 39 C397 46 450 65 566 47 C688 28 746 61 858 67 C975 73 1030 42 1142 44 C1263 46 1334 68 1440 57 L1440 96 L0 96 Z" />
   </svg>
+    <!-- Знак КМВ под водой открывает подвал: дальше тот же бирюзовый уходит на
+       глубину, и текст ложится под основанием треугольника. Полоса чисто
+       декоративная — alt пустой, файл догружается лениво. -->
+  <div class="footer-mark" aria-hidden="true">
+    <picture>
+      <source srcset="assets/footer-mark-aqua.avif" type="image/avif" />
+      <img src="assets/footer-mark-aqua.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
+    </picture>
+  </div>
   <div class="footer-grid">
     <div class="footer-brand">
       <span class="footer-lockup">
@@ -781,14 +790,6 @@
   </div>
 </footer>
 
-<!-- Подпись сайта: знак КМВ под водой. Полоса чисто декоративная — alt пустой,
-     файл догружается лениво, до низа страницы дочитывают не все. -->
-<div class="footer-mark" aria-hidden="true">
-  <picture>
-    <source srcset="assets/footer-mark-aqua.avif" type="image/avif" />
-    <img src="assets/footer-mark-aqua.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
-  </picture>
-</div>
 
 <!-- Cookie banner -->
 <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie">
@@ -796,8 +797,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=rock-v65" defer></script>
-<script src="js/main.js?v=rock-v65" defer></script>
-<script src="js/cms.js?v=rock-v65" defer></script>
+<script src="js/nav.js?v=rock-v66" defer></script>
+<script src="js/main.js?v=rock-v66" defer></script>
+<script src="js/cms.js?v=rock-v66" defer></script>
 </body>
 </html>

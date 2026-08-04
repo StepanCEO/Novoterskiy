@@ -28,7 +28,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link href="css/style.css?v=rock-v65" rel="stylesheet"/>
+<link href="css/style.css?v=rock-v66" rel="stylesheet"/>
 </head>
 <body class="legal-page news-page">
 <header class="site-header is-solid" id="top">
@@ -95,7 +95,16 @@
 <svg aria-hidden="true" class="footer-waterline" preserveaspectratio="none" viewbox="0 0 1440 96">
 <path d="M0 62 C104 66 174 32 286 39 C397 46 450 65 566 47 C688 28 746 61 858 67 C975 73 1030 42 1142 44 C1263 46 1334 68 1440 57 L1440 96 L0 96 Z"></path>
 </svg>
-<div class="footer-grid">
+  <!-- Знак КМВ под водой открывает подвал: дальше тот же бирюзовый уходит на
+       глубину, и текст ложится под основанием треугольника. Полоса чисто
+       декоративная — alt пустой, файл догружается лениво. -->
+  <div class="footer-mark" aria-hidden="true">
+    <picture>
+      <source srcset="assets/footer-mark-aqua.avif" type="image/avif" />
+      <img src="assets/footer-mark-aqua.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
+    </picture>
+  </div>
+  <div class="footer-grid">
 <div class="footer-brand">
 <span class="footer-lockup">
 <picture>
@@ -127,17 +136,9 @@
 </div>
 </footer>
 
-<!-- Подпись сайта: знак КМВ под водой. Полоса чисто декоративная — alt пустой,
-     файл догружается лениво, до низа страницы дочитывают не все. -->
-<div class="footer-mark" aria-hidden="true">
-  <picture>
-    <source srcset="assets/footer-mark-aqua.avif" type="image/avif" />
-    <img src="assets/footer-mark-aqua.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
-  </picture>
-</div>
 
-<script defer="" src="js/nav.js?v=rock-v65"></script>
-<script defer="" src="js/news.js?v=rock-v65"></script>
-<script defer="" src="js/internal.js?v=rock-v65"></script>
+<script defer="" src="js/nav.js?v=rock-v66"></script>
+<script defer="" src="js/news.js?v=rock-v66"></script>
+<script defer="" src="js/internal.js?v=rock-v66"></script>
 </body>
 </html>

@@ -1811,12 +1811,19 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 }
 
 /* ---------- Footer ---------- */
+/* Подвал — продолжение той же воды, а не тёмная плита под ней. Кадр со знаком
+   КМВ открывает его сверху, дальше бирюза уходит на глубину, и текст ложится
+   под основанием треугольника. Синевы (--deep) здесь больше нет нигде: на
+   стыке снимка и фона она читалась отдельным блоком. */
 .site-footer {
   --footer-wave-height: clamp(58px, 7vw, 92px);
+  /* Цвет нижней строки пикселей самого кадра, но на тон глубже: белый текст на
+     чистой бирюзе даёт всего 3.8:1, а здесь — больше шести. */
+  --footer-deep: #04656b;
   position: relative;
-  background: var(--deep);
-  color: rgba(255,255,255,0.8);
-  padding: clamp(5.5rem, 9vw, 7.5rem) 0 clamp(3rem, 4vw, 4rem);
+  background: var(--footer-deep);
+  color: #fff;
+  padding: 0 0 clamp(3rem, 4vw, 4rem);
 }
 .footer-waterline {
   position: absolute;
@@ -1828,15 +1835,17 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   max-width: none;
   pointer-events: none;
 }
+/* Волна — верхняя кромка подвала, поэтому её цвет равен цвету верхней строки
+   пикселей кадра: страница переливается в бирюзу без стыка. */
 .footer-waterline path {
-  fill: var(--deep);
+  fill: #01a19e;
 }
 .footer-grid {
   position: relative;
   z-index: 2;
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 0 var(--gutter);
+  padding: clamp(2.2rem, 3.4vw, 3.2rem) var(--gutter) 0;
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr;
   gap: 2rem;
@@ -1852,7 +1861,7 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.footer-brand .brand-tag { color: rgba(255,255,255,0.62); font-size: 0.56rem; margin-top: 5px; }
+.footer-brand .brand-tag { color: rgba(255,255,255,0.8); font-size: 0.56rem; margin-top: 5px; }
 /* Знак нарисован тёмно-зелёным контуром — на тёмном фоне подвала он бы
    пропал. Кладём его на светлую подложку, как на фирменной этикетке. */
 .footer-brand .brand-mark {
@@ -1862,19 +1871,20 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   padding: 6px 8px;
   box-sizing: content-box;
 }
-.footer-brand p { margin-top: 1rem; font-family: var(--ff-display); font-size: 1.15rem; color: rgba(255,255,255,0.7); }
+.footer-brand p { margin-top: 1rem; font-family: var(--ff-display); font-size: 1.15rem; color: rgba(255,255,255,0.9); }
 .footer-nav { display: flex; flex-direction: column; gap: 0.7rem; }
-.footer-nav a { font-size: 0.9rem; color: rgba(255,255,255,0.75); transition: color 0.3s; }
+.footer-nav a { font-size: 0.9rem; color: rgba(255,255,255,0.92); transition: color 0.3s; }
 .footer-nav a:hover { color: #fff; }
-.footer-legal { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+.footer-legal { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: rgba(255,255,255,0.86); }
 .footer-legal a:hover { color: #fff; }
 /* Политика, СОУТ и охрана труда — списком: колонка подвала около 260px, в
    строку три длинных названия всё равно не встают. Отступ снизу отделяет их
    от копирайта, иначе он читается четвёртым пунктом списка. */
 .footer-legal-docs { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.25rem; }
 
-/* ---------- Подпись под подвалом ---------- */
-/* Знак КМВ, уходящий под воду, — последнее, что видно на странице.
+/* ---------- Знак КМВ в шапке подвала ---------- */
+/* Знак КМВ, уходящий под воду, открывает подвал: текст ложится сразу под
+   основанием треугольника.
    Кадр показываем целиком: знак занимает почти всю его высоту, и любая
    обрезка по вертикали срезала бы ему то вершину, то буквы. Поэтому
    пропорция кадра задана блоку, а не подогнана высота под полосу. */
@@ -1886,7 +1896,7 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   width: 100%;
   aspect-ratio: 1672 / 941;
   /* Цвет верхнего угла снимка — полоса не мигает белым, пока грузится файл. */
-  background: #00a09f;
+  background: #01a19e;
 }
 .footer-mark picture { display: contents; }
 .footer-mark img {
@@ -1897,19 +1907,19 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   object-fit: cover;
   object-position: center;
 }
-/* Верх кадра — яркая бирюза (L≈127), подвал — #14313F (L≈45): на стыке
-   читалась бы отчётливая линия. Гасим её градиентом цвета подвала.
-   Растушёвка длиннее и мягче, чем была под прежним, почти чёрным кадром:
-   перепад яркости вырос втрое, и короткого перехода не хватало —
-   вместо линии получалась тёмная полка поперёк воды. */
-.footer-mark::before {
+/* Низ кадра — бирюза #009392, поле под текстом — та же бирюза на тон глубже:
+   разница небольшая, но на стыке она всё равно читалась бы линией. Гасим её
+   растушёвкой ко дну кадра. Высота подобрана по самому снимку: основание
+   треугольника лежит примерно на 88% высоты, поэтому затемнение начинается
+   ниже — знак остаётся нетронутым, темнеет только вода под ним. */
+.footer-mark::after {
   content: "";
   position: absolute;
   z-index: 1;
-  inset: 0 0 auto;
-  height: 26%;
+  inset: auto 0 0;
+  height: 16%;
   pointer-events: none;
-  background: linear-gradient(180deg, var(--deep) 0%, rgba(20,49,63,0.70) 22%, rgba(20,49,63,0.32) 52%, rgba(20,49,63,0.09) 78%, rgba(20,49,63,0) 100%);
+  background: linear-gradient(180deg, rgba(4,101,107,0) 0%, rgba(4,101,107,0.34) 40%, rgba(4,101,107,0.76) 74%, var(--footer-deep) 100%);
 }
 
 /* ---------- Cookie ---------- */
