@@ -1127,6 +1127,47 @@
   ],
   "newsCharity": [
     {
+      "date": "2026-08-04",
+      "title_ru": "Отправили воду бойцам",
+      "title_en": "Water on its way to the front",
+      "text_ru": [
+        "4 августа со склада предприятия ушла очередная партия «Новотерской» — воду отправили бойцам специальной военной операции.",
+        "Грузили вместе: заводские подвозили паллеты погрузчиком, ребята в форме принимали их в кузов. Разговоров почти не было — когда всё понятно без слов, работа идёт быстро.",
+        "Машину проводили до ворот. Дальше у неё своя дорога — туда, где эту воду ждут. Помощь фронту предприятие оказывает регулярно, и эта отправка не последняя."
+      ],
+      "text_en": [
+        "On 4 August another consignment of Novoterskaya left the company's warehouse — the water is on its way to the servicemen of the special military operation.",
+        "Everyone loaded it together: the plant crew brought the pallets over on a forklift, the men in uniform took them into the truck. There was almost no talking — when nothing needs explaining, the work goes quickly.",
+        "The truck was seen off to the gates. From there it has a road of its own, to the people waiting for this water. The company sends aid to the front regularly, and this consignment will not be the last."
+      ],
+      "photo": {
+        "src": "assets/news/2026-08-04-voda-boitsam-svo-1",
+        "w": 960,
+        "h": 1280,
+        "alt_ru": "Военнослужащие и рабочие завода грузят паллеты с бутылками «Новотерской» в кузов грузовика под навесом склада",
+        "alt_en": "Servicemen and plant workers loading pallets of Novoterskaya bottles into a truck under the warehouse canopy"
+      },
+      "gallery": [
+        {
+          "src": "assets/news/2026-08-04-voda-boitsam-svo-2",
+          "w": 960,
+          "h": 580,
+          "alt_ru": "Гружёный армейский КамАЗ выезжает с площадки предприятия, за ним зелёные холмы",
+          "alt_en": "The loaded army truck pulling out of the plant yard, green hills behind it"
+        }
+      ],
+      "clips": [
+        {
+          "src": "assets/video/svo-voda-otgruzka.mp4",
+          "poster": "assets/news/svo-voda-otgruzka-poster",
+          "w": 848,
+          "h": 464,
+          "caption_ru": "Погрузка во дворе предприятия",
+          "caption_en": "Loading in the plant yard"
+        }
+      ]
+    },
+    {
       "date": "2026",
       "title_ru": "Вместе с фондом «Жизнь как чудо»",
       "title_en": "Together with the Life as a Miracle foundation",
