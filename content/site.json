@@ -111,13 +111,13 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/video/hero-bg-poster.webp?v=rock-v63",
-    "video_webm": "assets/video/hero-bg.webm?v=rock-v63",
-    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v63",
-    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v63",
-    "scene_webm": "assets/video/hero-rock.webm?v=rock-v63",
-    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v63",
-    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v63"
+    "background": "assets/video/hero-bg-poster.webp?v=rock-v64",
+    "video_webm": "assets/video/hero-bg.webm?v=rock-v64",
+    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v64",
+    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v64",
+    "scene_webm": "assets/video/hero-rock.webm?v=rock-v64",
+    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v64",
+    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v64"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -278,8 +278,14 @@
   "origin": {
     "eyebrow_ru": "Источник",
     "eyebrow_en": "Source",
-    "title_ru": "Десятилетия пути. Тысячи метров сквозь землю. Одна совершенная капля.",
-    "title_en": "Decades of passage. Thousands of meters through the earth. One perfect drop.",
+    "title_ru": "Десятилетия пути. Тысячи метров земли. Одна совершенная капля.",
+    "title_en": "Decades of passage. A thousand metres down. One drop of perfect water.",
+    "title_line_1_ru": "Десятилетия пути.",
+    "title_line_1_en": "Decades of passage.",
+    "title_line_2_ru": "Тысячи метров земли.",
+    "title_line_2_en": "A thousand metres down.",
+    "title_line_3_ru": "Одна совершенная капля.",
+    "title_line_3_en": "One drop of perfect water.",
     "text_ru": "Вода проходит долгий природный путь сквозь горные породы — прежде чем мы бережно её разливаем, сохраняя баланс таким, каким его создала природа.",
     "text_en": "Water travels a long natural path through mountain rock before we carefully bottle it — preserving its balance, just as nature created it.",
     "cta_ru": "Читать историю происхождения",
@@ -375,7 +381,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/voda.webp?v=rock-v63",
+    "bottle": "assets/voda.webp?v=rock-v64",
     "logo": "assets/logo-mark.webp"
   },
   "where": {

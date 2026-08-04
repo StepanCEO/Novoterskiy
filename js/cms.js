@@ -215,7 +215,22 @@
     var origin = data.origin || {};
     var originRoot = one("#origin");
     bilingual(one(".eyebrow", originRoot), origin.eyebrow_ru, origin.eyebrow_en);
-    bilingual(one(".origin-title", originRoot), origin.title_ru, origin.title_en);
+    /* Заголовок «Источника» тоже набран треугольником: три строки, каждая
+       следующая длиннее. Если в JSON строк нет — остаётся обычный заголовок
+       одной строкой, как было раньше. */
+    var originTitle = one(".origin-title", originRoot);
+    if (originTitle && origin.title_line_1_ru != null) {
+      var originLines = function (suffix) {
+        return [1, 2, 3].map(function (n) {
+          var value = origin["title_line_" + n + "_" + suffix];
+          return '<span class="origin-line">' + esc(value == null ? "" : value) + "</span>";
+        }).join(" ");
+      };
+      originTitle.innerHTML = originLines("ru");
+      originTitle.setAttribute("data-en", originLines("en"));
+    } else {
+      bilingual(originTitle, origin.title_ru, origin.title_en);
+    }
     bilingual(one(".origin-fact", originRoot), origin.text_ru, origin.text_en);
     var originCta = one(".link-arrow", originRoot);
     bilingual(originCta, origin.cta_ru, origin.cta_en);

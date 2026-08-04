@@ -1118,16 +1118,20 @@ picture { display: contents; }
     radial-gradient(40% 30% at 20% 20%, rgba(143,195,216,0.2), transparent 70%);
   animation: steam 12s ease-in-out infinite;
 }
+/* Карточка ужата под треугольник заголовка: её ширину задаёт самая длинная,
+   нижняя строка, и лишнего поля справа больше нет. Текст внутри центрован —
+   при выключке влево из треугольника получилась бы лесенка. */
 .origin-inner {
   position: relative;
   z-index: 2;
-  max-width: 560px;
+  max-width: 460px;
   background: rgba(251,252,254,0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: var(--r-lg);
-  padding: clamp(2rem, 4vw, 3.2rem);
+  padding: clamp(1.7rem, 2.8vw, 2.4rem);
   box-shadow: 0 30px 60px -30px rgba(20,49,63,0.35);
+  text-align: center;
 }
 .origin .eyebrow.light { color: var(--glacier-d); }
 .origin-title { color: #1C4B50; }
@@ -1145,21 +1149,42 @@ picture { display: contents; }
 }
 .link-arrow::after { content: "→"; font-size: 1rem; transition: transform 0.35s cubic-bezier(.2,.7,.3,1); }
 .link-arrow:hover::after { transform: translateX(6px); }
+/* Три строки, каждая следующая длиннее предыдущей — тот же треугольник, что и
+   на первом экране. Кегль здесь заметно мельче прежнего: строка должна
+   уместиться целиком, а перенос ломает фигуру. */
 .origin-title {
   font-family: var(--ff-serif);
   font-weight: 400;
-  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
-  line-height: 1.4;
-  margin: 0.5rem 0 2rem;
-  letter-spacing: 0.08em;
+  font-size: calc(clamp(1.02rem, 1.55vw, 1.3rem) * var(--tri-scale, 1));
+  line-height: 1.34;
+  margin: 0.5rem 0 1.5rem;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
+.origin-line { display: block; }
+/* Латиница шире кириллицы: при общем кегле нижняя строка вылезала из карточки. */
+html[lang="en"] .origin-title { --tri-scale: 0.88; }
+/* Абзац уже основания треугольника — иначе фигура тонет в прямоугольнике текста. */
 .origin-fact {
-  max-width: 720px;
-  margin: -0.6rem auto 2rem;
-  font-size: 0.98rem;
-  line-height: 1.55;
+  max-width: 290px;
+  margin: 0 auto 1.6rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: rgba(255,255,255,0.86);
+}
+/* На телефоне кегль считается от ширины экрана: на 320px нижняя строка
+   треугольника при общем кегле переносилась и фигура рассыпалась. Поля
+   карточки здесь же ужимаются — каждый пиксель уходит в кегль. */
+@media (max-width: 767px) {
+  .origin-inner { padding: 1.3rem 1.1rem 1.5rem; }
+  .origin-title { font-size: calc(clamp(0.8rem, 4.15vw, 1.1rem) * var(--tri-scale, 1)); }
+  /* Здесь основание треугольника уже 290px, поэтому абзац меряется от карточки.
+     Кегль абзаца тоже ниже: связка на телефоне мельче, и при общем размере
+     заголовок и текст читались бы одинаково. */
+  .origin-fact { max-width: 84%; font-size: 0.84rem; }
+  /* На 320px подпись ссылки переносилась, и стрелка оставалась одна во второй
+     строке — как будто оторвалась от текста. Ужимаем кегль и разрядку. */
+  .origin .link-arrow { font-size: 0.68rem; letter-spacing: 0.1em; }
 }
 
 /* ---------- 1.5 · ABOUT COMPANY ---------- */
