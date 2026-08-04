@@ -380,8 +380,8 @@
     "default_buy_url": "buy.html"
   },
   "final": {
-    "quote_ru": "Мы не создаем воду. Мы лишь бережно сохраняем путь, который природа проходила десятилетиями.",
-    "quote_en": "We do not create water. We only carefully preserve the path that nature travelled for decades.",
+    "quote_ru": "Эту воду создаёт природа. Мы бережно сохраняем путь, который она проходила десятилетиями.",
+    "quote_en": "Nature creates this water. We carefully preserve the path it travelled for decades.",
     "accent_ru": "Чистота природы. Безупречность производства.",
     "accent_en": "The purity of nature. The perfection of production.",
     "cta_ru": "Попробовать баланс природы",
