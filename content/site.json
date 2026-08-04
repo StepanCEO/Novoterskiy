@@ -197,8 +197,8 @@
         "stage": "ice",
         "title_ru": "Ледник · Лёд",
         "title_en": "Glacier · Ice",
-        "text_ru": "Поток уходит в трещину и опускается сквозь породу.",
-        "text_en": "The stream slips into a fissure and descends through the rock.",
+        "text_ru": "Поток уходит вглубь и опускается сквозь породу.",
+        "text_en": "The stream turns downward and sinks through the rock.",
         "image": "assets/scroll/лед.webp"
       },
       {
