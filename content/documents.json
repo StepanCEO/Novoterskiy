@@ -46,15 +46,6 @@
       "file": ""
     },
     {
-      "id": "Товарные знаки",
-      "anchor": "trademarks",
-      "name": "Товарные знаки",
-      "name_en": "Trademarks",
-      "desc": "Пять свидетельств Роспатента: название, этикетка и бутылка",
-      "desc_en": "Five Rospatent certificates: name, label and bottle",
-      "file": ""
-    },
-    {
       "id": "Сводные данные о результатах СОУТ",
       "anchor": "sout-summary",
       "name": "Сводные данные о результатах СОУТ",
@@ -71,6 +62,18 @@
       "desc": "",
       "desc_en": "",
       "file": "assets/documents/labor-safety-measures.pdf"
+    }
+  ],
+  "_note_hidden": "ВРЕМЕННО СКРЫТО. Записи из hidden на сайте не показываются: сетку документов рисует js/cms.js по массиву items. Чтобы вернуть товарные знаки, перенесите запись обратно в items И раскомментируйте разметку в index.html и documents.html (искать «ВРЕМЕННО СКРЫТО»). Ничего не удалено.",
+  "hidden": [
+    {
+      "id": "Товарные знаки",
+      "anchor": "trademarks",
+      "name": "Товарные знаки",
+      "name_en": "Trademarks",
+      "desc": "Пять свидетельств Роспатента: название, этикетка и бутылка",
+      "desc_en": "Five Rospatent certificates: name, label and bottle",
+      "file": ""
     }
   ]
 }
