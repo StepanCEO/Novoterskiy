@@ -28,7 +28,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link href="css/style.css?v=rock-v75" rel="stylesheet"/>
+<link href="css/style.css?v=rock-v76" rel="stylesheet"/>
 </head>
 <body class="legal-page">
 <header class="site-header is-solid" id="top">
@@ -77,49 +77,53 @@
 <button aria-controls="siteNav" aria-expanded="false" class="nav-burger" id="navBurger" type="button"><span aria-hidden="true" class="burger-box"><span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span></span><span class="sr-only" data-en="Menu">Меню</span></button>
 </div>
 </header>
-<main class="legal legal--story">
-<!-- Первый экран страницы повторяет главную: тот же кадр ледников Эльбруса, с
-     которого начинается сайт. Здесь он стоит картинкой, а не роликом: main.js
-     на внутренние страницы не подключён (за язык и меню тут отвечают
+<main class="legend-page">
+<!-- Вся страница — один экран: кадр горного заката на всю высоту и легенда
+     поверх него, дальше сразу подвал. Кадр стоит картинкой, а не роликом:
+     main.js на внутренние страницы не подключён (за язык и меню тут отвечают
      internal.js и nav.js), а тянуть его сюда ради фона — значит вторым
-     обработчиком сесть на переключатель языка. Постер у ролика на главной и
-     эта картинка — один файл, так что кадр совпадает.
-     Заголовок лежит в нижней трети, где снег ярче всего, и поверх кадра ещё
-     светлая дымка (.story-hero-veil) — тёмный набор читается по фотографии
-     без затемняющей плашки. -->
-<section aria-labelledby="story-title" class="hero story-hero">
-<div aria-hidden="true" class="hero-bg">
+     обработчиком сесть на переключатель языка.
+     Текст лежит слева, над дальними хребтами в дымке: вершина и закат справа
+     остаются открытыми. Под набором — светлая матовая плашка (.legend-panel),
+     сквозь неё пейзаж просвечивает, но тёмный текст держит контраст.
+     В портрете плашку на кадр не положить — 16:9 в вертикальном экране
+     съёжится в полоску. Там фото идёт лентой во всю ширину (целиком, без
+     обрезки), а текст встаёт под ним. -->
+<section aria-labelledby="story-title" class="legend">
+<div aria-hidden="true" class="legend-photo">
 <picture>
-<source srcset="assets/video/hero-bg-poster.avif" type="image/avif"/>
-<img alt="" decoding="async" fetchpriority="high" height="976" loading="eager" src="assets/video/hero-bg-poster.webp?v=rock-v75" width="1920"/>
+<source srcset="assets/photos/story-legend.avif?v=rock-v76" type="image/avif"/>
+<img alt="" decoding="async" fetchpriority="high" height="768" loading="eager" src="assets/photos/story-legend.webp?v=rock-v76" width="1365"/>
 </picture>
-<span class="story-hero-veil"></span>
 </div>
-<div class="story-hero-inner">
+<div class="legend-inner">
+<div class="legend-panel">
 <p class="eyebrow"><span data-en="Brand legend">Легенда бренда</span></p>
-<h1 class="legal-title" id="story-title"><span data-en="Origin story">История происхождения</span></h1>
-<p class="legal-sub"><span data-en="The path that nature has followed for decades">Путь, который природа проходила десятилетиями</span></p>
+<h1 class="legend-title" id="story-title"><span data-en="Origin story">История происхождения</span></h1>
+<p class="legend-lead"><span data-en="The path of every drop begins where the clouds touch the peaks of Elbrus. Beyond that there is only nature: ice, stone and the warmth of the depths.">Путь каждой капли начинается там, где облака касаются вершин Эльбруса. Дальше — только природа: лёд, камень и тепло глубин.</span></p>
+<dl class="legend-elements">
+<div class="legend-el">
+<dt><span data-en="Air">Воздух</span></dt>
+<dd><span data-en="Snow settles on the glacier, and the water’s path begins at the very sky.">Снег ложится на ледник, и путь воды начинается у самого неба.</span></dd>
+</div>
+<div class="legend-el">
+<dt><span data-en="Ice">Лёд</span></dt>
+<dd><span data-en="Meltwater moves slowly. The cold keeps its freshness, the unhurried path keeps its purity.">Талая вода идёт медленно. Холод хранит свежесть, неспешность — чистоту.</span></dd>
+</div>
+<div class="legend-el">
+<dt><span data-en="Earth">Земля</span></dt>
+<dd><span data-en="Through the strata of mountain rock the water takes on natural minerals and finds its taste.">Сквозь толщи горных пород вода забирает природные минералы и обретает вкус.</span></dd>
+</div>
+<div class="legend-el">
+<dt><span data-en="Fire">Огонь</span></dt>
+<dd><span data-en="In the depths it meets the warmth of the earth — and that is where its character is born.">В глубине её встречает подземное тепло — так рождается характер.</span></dd>
+</div>
+</dl>
+<blockquote class="legend-quote"><span data-en="“Nature creates this water. We carefully preserve the path it travelled for decades.”">«Эту воду создаёт природа. Мы бережно сохраняем путь, который она проходила десятилетиями».</span></blockquote>
+<a class="btn btn-primary" href="catalog.html"><span data-en="Try the balance of nature">Попробовать баланс природы</span></a>
+</div>
 </div>
 </section>
-<div class="legal-inner">
-<div class="legal-body">
-<p><span data-en="Novoterskaya is the result of a natural process that lasts for years. The path of each drop begins high, on the peaks of Elbrus, where the air is clean and the snow falls on glaciers that have accumulated cold for centuries.">Новотерская — результат природного процесса, который длится годами. Путь каждой капли начинается высоко, на вершинах Эльбруса, где воздух чист, а снег ложится на ледники, копившие холод веками.</span></p>
-<h2><span data-en="Air is the beginning of the journey">Воздух — начало пути</span></h2>
-<p><span data-en="It all starts from the top. Clouds touch the peaks, snow covers the glacier - purity is born where vanity does not reach. This is the starting point: the path of water begins at the sky.">Всё начинается с высоты. Облака касаются вершин, снег укрывает ледник — чистота рождается там, куда не доходит суета. Это точка отсчёта: путь воды начинается у неба.</span></p>
-<h2><span data-en="Ice - natural purity">Лёд — природная чистота</span></h2>
-<p><span data-en="Glacial melt water slowly seeps through the ice and the first mountain layers. The cold preserves its freshness, and the leisurely path preserves its purity. No stage can be accelerated: nature is in no hurry.">Талая ледниковая вода медленно просачивается сквозь лёд и первые горные слои. Холод хранит её свежесть, а неспешность пути — её чистоту. Ни один этап нельзя ускорить: природа не торопится.</span></p>
-<h2><span data-en="Earth - the power of minerals">Земля — сила минералов</span></h2>
-<p><span data-en="Going into the depths, the water passes through the strata of rocks. Stone by stone, layer by layer, the earth gives it natural minerals, shaping the character and taste of the future water.">Уходя в глубины, вода проходит сквозь толщи горных пород. Камень за камнем, слой за слоем — земля отдаёт ей природные минералы, формируя характер и вкус будущей воды.</span></p>
-<h2><span data-en="Fire - the warmth of the depths">Огонь — тепло глубин</span></h2>
-<p><span data-en="In the very heart of the earth, water meets underground heat - the energy of thermal springs. This is how the natural process ends: cold and heat, sky and depth are united in one drop.">В самом сердце земли воду встречает подземное тепло — энергия термальных источников. Так завершается природный процесс: холод и тепло, небо и глубина соединяются в одной капле.</span></p>
-<h2><span data-en="Source">Источник</span></h2>
-<p><span data-en="Having gone all the way, the water rises to the surface - to where the green forest, moss and clean streams of the Caucasian Mineral Waters are. We bottle it carefully, maintaining the balance as nature created it.">Пройдя весь путь, вода поднимается к поверхности — туда, где зелёный лес, мох и чистые ручьи Кавказских Минеральных Вод. Мы бережно разливаем её, сохраняя баланс таким, каким его создала природа.</span></p>
-<blockquote><span data-en="“Nature creates this water. We carefully preserve the path it travelled for decades.”">«Эту воду создаёт природа. Мы бережно сохраняем путь, который она проходила десятилетиями».</span></blockquote>
-<p><span data-en="This is how the four elements are united - Air, Ice, Earth and Fire. Decades of journey. Thousands of meters through the ground. One perfect drop.">Так соединяются четыре стихии — Воздух, Лёд, Земля и Огонь. Десятилетия пути. Тысячи метров сквозь землю. Одна совершенная капля.</span></p>
-</div>
-<a class="btn btn-primary" href="catalog.html"><span data-en="Try the balance of nature">Попробовать баланс природы</span></a>
-<p style="margin-top:1.2rem"><a href="index.html#origin"><span data-en="← Return to home">← Вернуться на главную</span></a></p>
-</div>
 </main>
 <footer class="site-footer">
 <svg aria-hidden="true" class="footer-waterline" preserveaspectratio="none" viewbox="0 0 1440 96">
@@ -167,7 +171,7 @@
 </footer>
 
 
-<script defer="" src="js/nav.js?v=rock-v75"></script>
-<script defer="" src="js/internal.js?v=rock-v75"></script>
+<script defer="" src="js/nav.js?v=rock-v76"></script>
+<script defer="" src="js/internal.js?v=rock-v76"></script>
 </body>
 </html>
