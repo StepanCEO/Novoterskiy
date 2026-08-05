@@ -3922,6 +3922,21 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
 @media (prefers-reduced-motion: reduce) {
   .legend-photo img { animation: none; }
 }
+/* Ролик ложится ровно поверх фотографии, кадр в кадр: и рамка, и точка обзора
+   у них одинаковые, поэтому подмена не читается. z-index намеренно не задан —
+   позиционированный элемент без него рисуется по порядку в разметке: выше
+   картинки, но ниже ::after, иначе притеняющий градиент ушёл бы под видео. */
+.legend-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+  opacity: 0;
+  transition: opacity 0.45s ease-out;
+}
+.legend-video.is-on { opacity: 1; }
 /* Слева кадр слегка притушен, справа не тронут: под плашкой лежат дальние
    хребты в дымке, а вершина и закат остаются в полную силу. */
 .legend-photo::after {
@@ -4033,9 +4048,11 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   }
   .legend-photo img {
     height: auto;
-    aspect-ratio: 1365 / 768;
+    aspect-ratio: 16 / 9;
     object-fit: contain;
   }
+  /* Высоту ленты задаёт картинка, ролик просто накрывает её. Коробка и ролик
+     оба 16:9, так что cover тут ничего не срезает. */
   .legend-photo::after { display: none; }
   .legend-inner {
     padding: 0 var(--gutter);

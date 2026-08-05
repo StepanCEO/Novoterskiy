@@ -28,7 +28,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link href="css/style.css?v=rock-v76" rel="stylesheet"/>
+<link href="css/style.css?v=rock-v77" rel="stylesheet"/>
 </head>
 <body class="legal-page">
 <header class="site-header is-solid" id="top">
@@ -79,22 +79,26 @@
 </header>
 <main class="legend-page">
 <!-- Вся страница — один экран: кадр горного заката на всю высоту и легенда
-     поверх него, дальше сразу подвал. Кадр стоит картинкой, а не роликом:
-     main.js на внутренние страницы не подключён (за язык и меню тут отвечают
-     internal.js и nav.js), а тянуть его сюда ради фона — значит вторым
-     обработчиком сесть на переключатель языка.
+     поверх него, дальше сразу подвал.
+     Кадр оживает: поверх фотографии лежит ролик, он проходит один раз (облака,
+     туман в долине, свет по вершине) и замирает на последнем кадре. Постоянное
+     движение под текстом мешало бы читать, поэтому петли нет — см. js/legend.js.
+     Фотография под роликом — это его же первый кадр. Она рисуется первой и
+     остаётся единственной, если видео не догрузилось или человек попросил
+     систему не анимировать.
      Текст лежит слева, над дальними хребтами в дымке: вершина и закат справа
      остаются открытыми. Под набором — светлая матовая плашка (.legend-panel),
      сквозь неё пейзаж просвечивает, но тёмный текст держит контраст.
      В портрете плашку на кадр не положить — 16:9 в вертикальном экране
-     съёжится в полоску. Там фото идёт лентой во всю ширину (целиком, без
+     съёжится в полоску. Там кадр идёт лентой во всю ширину (целиком, без
      обрезки), а текст встаёт под ним. -->
 <section aria-labelledby="story-title" class="legend">
 <div aria-hidden="true" class="legend-photo">
 <picture>
-<source srcset="assets/photos/story-legend.avif?v=rock-v76" type="image/avif"/>
-<img alt="" decoding="async" fetchpriority="high" height="768" loading="eager" src="assets/photos/story-legend.webp?v=rock-v76" width="1365"/>
+<source srcset="assets/photos/story-legend.avif?v=rock-v77" type="image/avif"/>
+<img alt="" decoding="async" fetchpriority="high" height="1080" loading="eager" src="assets/photos/story-legend.webp?v=rock-v77" width="1920"/>
 </picture>
+<video class="legend-video" data-mp4="assets/video/legend-bg.mp4?v=rock-v77" data-webm="assets/video/legend-bg.webm?v=rock-v77" disablepictureinpicture="" height="1080" id="legendVideo" muted="" playsinline="" preload="none" width="1920"></video>
 </div>
 <div class="legend-inner">
 <div class="legend-panel">
@@ -171,7 +175,8 @@
 </footer>
 
 
-<script defer="" src="js/nav.js?v=rock-v76"></script>
-<script defer="" src="js/internal.js?v=rock-v76"></script>
+<script defer="" src="js/nav.js?v=rock-v77"></script>
+<script defer="" src="js/internal.js?v=rock-v77"></script>
+<script defer="" src="js/legend.js?v=rock-v77"></script>
 </body>
 </html>
