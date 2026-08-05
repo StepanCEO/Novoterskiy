@@ -111,13 +111,13 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/video/hero-bg-poster.webp?v=rock-v73",
-    "video_webm": "assets/video/hero-bg.webm?v=rock-v73",
-    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v73",
-    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v73",
-    "scene_webm": "assets/video/hero-rock.webm?v=rock-v73",
-    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v73",
-    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v73"
+    "background": "assets/video/hero-bg-poster.webp?v=rock-v74",
+    "video_webm": "assets/video/hero-bg.webm?v=rock-v74",
+    "video_mp4": "assets/video/hero-bg.mp4?v=rock-v74",
+    "video_poster": "assets/video/hero-bg-poster.webp?v=rock-v74",
+    "scene_webm": "assets/video/hero-rock.webm?v=rock-v74",
+    "scene_mp4": "assets/video/hero-rock.mp4?v=rock-v74",
+    "scene_poster": "assets/video/hero-rock-poster.webp?v=rock-v74"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -387,7 +387,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/voda.webp?v=rock-v73",
+    "bottle": "assets/voda.webp?v=rock-v74",
     "logo": "assets/logo-mark.webp"
   },
   "where": {
@@ -395,8 +395,8 @@
     "eyebrow_en": "Where to buy",
     "title_ru": "Официальная дистрибуция",
     "title_en": "Official distribution",
-    "text_ru": "Оптовые поставки и доставка по России через официальных дистрибьюторов.",
-    "text_en": "Wholesale supply and deliveries across Russia through our official distributors."
+    "text_ru": "Официальные дистрибьюторы воды «Новотерская».",
+    "text_en": "Official distributors of “Novoterskaya” water."
   },
   "contacts": {
     "eyebrow_ru": "Контакты",
