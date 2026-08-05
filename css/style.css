@@ -3877,3 +3877,86 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   .tl-year { margin-bottom: 0.8rem; }
   .tl-figure { margin-bottom: 1.1rem; }
 }
+
+/* ==================================================================
+   Легенда бренда (story.html) — первый экран с кадром главной
+   ==================================================================
+   Секция берёт разметку и слои героя главной страницы, но это не главная:
+   на весь экран её растягивать незачем — под ней сразу идёт статья. Поэтому
+   высота ограничена, содержимое прижато к низу кадра, а фотография внизу
+   растворяется в бумаге страницы. */
+main.legal--story {
+  padding: 0 0 5rem;
+  background: var(--paper);
+}
+.story-hero {
+  min-height: clamp(320px, 56svh, 520px);
+  align-items: flex-end;
+  padding: calc(var(--gutter) + 5rem) var(--gutter) clamp(2.2rem, 5vw, 3.6rem);
+}
+/* Облака-подложка героя главной здесь только мешают фотографии — приглушаем,
+   плотность даёт .story-hero-veil. */
+.story-hero::before { opacity: 0.45; }
+/* На главной кадр проявляется анимацией, которую включает main.js классом
+   .hero.loaded. Здесь main.js нет — без этой строки фотография так и осталась
+   бы с opacity 0. Вместо проявления даём короткий наплыв самой секцией. */
+.story-hero .hero-bg img {
+  opacity: 1;
+  animation: bgIn 1.6s 0.05s ease-out both;
+  /* Кадр 1920x976 в полосу 1440x500 обрезается по высоте на четверть. При
+     центрировании обрезка съедала обе вершины — сдвигаем окно вверх, к небу.
+     Нижняя кромка растворяется маской: без неё последняя строка пикселей
+     давала тонкую серую линию на стыке с бумагой страницы. */
+  object-position: 50% 20%;
+  -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 88%, transparent 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-hero .hero-bg img { animation: none; }
+}
+/* Светлая дымка. Сверху — едва заметная синева, чтобы небо не выгорало;
+   снизу — пятно бумаги ровно под текстом (тёмный набор ложится на почти белое)
+   и полное растворение кадра в фоне страницы, без видимого стыка. */
+.story-hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(20,49,63,0.12) 0%, transparent 30%),
+    radial-gradient(96% 64% at 50% 106%, rgba(251,252,254,0.97) 0%, rgba(251,252,254,0.78) 40%, transparent 72%),
+    linear-gradient(180deg, transparent 46%, rgba(251,252,254,0.5) 76%, var(--paper) 100%);
+}
+.story-hero-inner {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+.story-hero .eyebrow { color: var(--glacier-d); }
+.story-hero .legal-title {
+  margin: 0.4rem 0 0.5rem;
+  text-shadow: 0 1px 26px rgba(251,252,254,0.9);
+}
+.story-hero .legal-sub {
+  margin: 0 auto;
+  max-width: 46ch;
+  opacity: 0.92;
+  text-shadow: 0 1px 20px rgba(251,252,254,0.85);
+}
+/* Горизонтальные поля ушли вместе с padding у main — возвращаем их вокруг
+   колонки текста, не сужая саму колонку (box-sizing: border-box). */
+main.legal--story .legal-inner {
+  max-width: calc(820px + var(--gutter) * 2);
+  padding: clamp(2.4rem, 5vw, 3.6rem) var(--gutter) 0;
+}
+@media (max-width: 767px) {
+  /* На узком экране кадр обрезан сильнее, гора уходит вбок — снижаем полосу,
+     чтобы заголовок не уезжал за первый экран. */
+  .story-hero {
+    min-height: clamp(300px, 48svh, 420px);
+    padding-top: calc(var(--gutter) + 4rem);
+  }
+}

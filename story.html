@@ -28,7 +28,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link href="css/style.css?v=rock-v74" rel="stylesheet"/>
+<link href="css/style.css?v=rock-v75" rel="stylesheet"/>
 </head>
 <body class="legal-page">
 <header class="site-header is-solid" id="top">
@@ -77,11 +77,31 @@
 <button aria-controls="siteNav" aria-expanded="false" class="nav-burger" id="navBurger" type="button"><span aria-hidden="true" class="burger-box"><span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span></span><span class="sr-only" data-en="Menu">Меню</span></button>
 </div>
 </header>
-<main class="legal">
-<div class="legal-inner">
+<main class="legal legal--story">
+<!-- Первый экран страницы повторяет главную: тот же кадр ледников Эльбруса, с
+     которого начинается сайт. Здесь он стоит картинкой, а не роликом: main.js
+     на внутренние страницы не подключён (за язык и меню тут отвечают
+     internal.js и nav.js), а тянуть его сюда ради фона — значит вторым
+     обработчиком сесть на переключатель языка. Постер у ролика на главной и
+     эта картинка — один файл, так что кадр совпадает.
+     Заголовок лежит в нижней трети, где снег ярче всего, и поверх кадра ещё
+     светлая дымка (.story-hero-veil) — тёмный набор читается по фотографии
+     без затемняющей плашки. -->
+<section aria-labelledby="story-title" class="hero story-hero">
+<div aria-hidden="true" class="hero-bg">
+<picture>
+<source srcset="assets/video/hero-bg-poster.avif" type="image/avif"/>
+<img alt="" decoding="async" fetchpriority="high" height="976" loading="eager" src="assets/video/hero-bg-poster.webp?v=rock-v75" width="1920"/>
+</picture>
+<span class="story-hero-veil"></span>
+</div>
+<div class="story-hero-inner">
 <p class="eyebrow"><span data-en="Brand legend">Легенда бренда</span></p>
-<h1 class="legal-title"><span data-en="Origin story">История происхождения</span></h1>
+<h1 class="legal-title" id="story-title"><span data-en="Origin story">История происхождения</span></h1>
 <p class="legal-sub"><span data-en="The path that nature has followed for decades">Путь, который природа проходила десятилетиями</span></p>
+</div>
+</section>
+<div class="legal-inner">
 <div class="legal-body">
 <p><span data-en="Novoterskaya is the result of a natural process that lasts for years. The path of each drop begins high, on the peaks of Elbrus, where the air is clean and the snow falls on glaciers that have accumulated cold for centuries.">Новотерская — результат природного процесса, который длится годами. Путь каждой капли начинается высоко, на вершинах Эльбруса, где воздух чист, а снег ложится на ледники, копившие холод веками.</span></p>
 <h2><span data-en="Air is the beginning of the journey">Воздух — начало пути</span></h2>
@@ -147,7 +167,7 @@
 </footer>
 
 
-<script defer="" src="js/nav.js?v=rock-v74"></script>
-<script defer="" src="js/internal.js?v=rock-v74"></script>
+<script defer="" src="js/nav.js?v=rock-v75"></script>
+<script defer="" src="js/internal.js?v=rock-v75"></script>
 </body>
 </html>
