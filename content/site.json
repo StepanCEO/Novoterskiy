@@ -101,7 +101,7 @@
     "brand_en": "Novoterskaya",
     "title_line_1_ru": "Рожденная ледниками.",
     "title_line_1_en": "Born of the glaciers.",
-    "title_line_2_ru": "Закаленная сердцем земли.",
+    "title_line_2_ru": "Закалённая сердцем земли.",
     "title_line_2_en": "Tempered by the earth's heart.",
     "text_ru": "Путь каждой капли начинается на вершинах Эльбруса и продолжается в глубинах земли, где холод, тепло и горные породы создают природный баланс.",
     "text_en": "The journey of every drop begins at the summits of Elbrus and continues into the depths of the earth, where cold, heat and mountain rock create a natural balance.",
@@ -111,10 +111,10 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/photos/hero-bottle-poster.webp?v=rock-v84",
-    "video_webm": "assets/video/hero-bottle.webm?v=rock-v84",
-    "video_mp4": "assets/video/hero-bottle.mp4?v=rock-v84",
-    "video_poster": "assets/photos/hero-bottle-poster.webp?v=rock-v84"
+    "background": "assets/photos/hero-bottle-poster.webp?v=rock-v85",
+    "video_webm": "assets/video/hero-bottle.webm?v=rock-v85",
+    "video_mp4": "assets/video/hero-bottle.mp4?v=rock-v85",
+    "video_poster": "assets/photos/hero-bottle-poster.webp?v=rock-v85"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -384,7 +384,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/voda.webp?v=rock-v84",
+    "bottle": "assets/voda.webp?v=rock-v85",
     "logo": "assets/logo-mark.webp"
   },
   "where": {
@@ -402,7 +402,7 @@
     "title_en": "Get in touch"
   },
   "footer": {
-    "text_ru": "Рожденная ледниками. Закаленная сердцем земли.",
+    "text_ru": "Рожденная ледниками. Закалённая сердцем земли.",
     "text_en": "Born of glaciers. Tempered by the heart of the earth.",
     "nav": [
       {
