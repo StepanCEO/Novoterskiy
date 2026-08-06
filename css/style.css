@@ -3863,12 +3863,18 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   display: flex;
   align-items: center;
   /* Ровно один экран: svh, а не vh, чтобы адресная строка мобильного браузера
-     не срезала низ плашки. */
-  min-height: 100svh;
+     не срезала низ плашки. Волна подвала нарисована ВЫШЕ своей секции
+     (.footer-waterline сидит на bottom: 100%), поэтому она наезжала на низ
+     кадра. Отдаём ей её высоту сверх экрана: первые 100svh — только легенда,
+     бирюза начинается ровно за сгибом. */
+  --legend-wave: clamp(58px, 7vw, 92px);
+  min-height: calc(100svh + var(--legend-wave));
   /* Сверху ровно столько, чтобы уйти из-под шапки (она fixed, 4.5rem), плюс
      небольшой воздух: полноценный gutter выталкивал плашку за высоту экрана,
-     а весь смысл страницы — один экран. */
-  padding: calc(4.5rem + 1rem) var(--gutter) clamp(1.5rem, 3vw, 2.5rem);
+     а весь смысл страницы — один экран. Нижний отступ включает волну, иначе
+     центрирование увело бы текст под неё. */
+  padding: calc(4.5rem + 1rem) var(--gutter)
+           calc(clamp(1.5rem, 3vw, 2.5rem) + var(--legend-wave));
   overflow: hidden;
   background: var(--deep);
 }
@@ -4035,7 +4041,9 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   .legend {
     display: block;
     min-height: 0;
-    padding: 4.5rem 0 clamp(2rem, 6vw, 3rem);
+    /* Волна подвала и здесь наезжает сверху на секцию — оставляем ей место,
+       иначе она срезает последние строки. */
+    padding: 4.5rem 0 calc(clamp(2rem, 6vw, 3rem) + var(--legend-wave));
     background: var(--paper);
   }
   .legend-photo {
