@@ -10,9 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# Отменять уже начатую публикацию нельзя: Pages остаётся с недоделанным
+# деплоем, и следующий запуск висит до таймаута. Ставим в очередь.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -28,3 +30,8 @@ jobs:
           path: .
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Сайт весит ~80 МБ, и Pages не укладывается в стандартные 10 минут:
+          # три последних деплоя упали с «Timeout reached, aborting!».
+          timeout: 1800000
+          error_count: 10
