@@ -28,10 +28,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
+      # Таймаут ожидания Pages поднять нельзя: 600000 мс — жёсткий потолок
+      # самого действия. Значит единственный рычаг — вес артефакта.
       - id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # Сайт весит ~80 МБ, и Pages не укладывается в стандартные 10 минут:
-          # три последних деплоя упали с «Timeout reached, aborting!».
-          timeout: 1800000
-          error_count: 10
