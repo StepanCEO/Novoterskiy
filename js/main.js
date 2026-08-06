@@ -106,7 +106,6 @@
     }
   }
   wireHeroVideo(document.getElementById("heroVideo"));
-  wireHeroVideo(document.getElementById("sceneVideo"));
 
   /* ---- Scroll reveals ---- */
   function applyReveals(scope) {

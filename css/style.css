@@ -479,7 +479,9 @@ picture { display: contents; }
   max-width: 340px;
   font-size: 0.92rem;
   line-height: 1.75;
-  color: #506169; /* darkened for AA contrast over the lighter sky */
+  /* Затемнён под контраст AA: абзац мелкий, ему нужны 4.5:1, а лежит он на
+     светлом склоне. С новым кадром прежний #506169 давал 4.36. */
+  color: #47585F;
 }
 .hero-cta { margin-top: 2.4rem; display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; }
 
@@ -517,27 +519,15 @@ picture { display: contents; }
   overflow: hidden;
 }
 .hero-bg img,
-.hero-video,
-.hero-scene {
+.hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
 }
-/* Передний план: бутылка на камне. Кадр опаковый и во всю ширину, но левая
-   его половина — пустое небо, и под заголовком нам нужна гора, а не оно.
-   Поэтому слева слой сведён маской на нет; растушёвка широкая (четверть
-   экрана), чтобы стык читался как наплыв дымки, а не как обрез кадра.
-   Полностью непрозрачным слой становится к 46% — левее самой левой капли
-   всплеска, иначе брызги уходили бы в полупрозрачность. */
-.hero-scene {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  object-position: 62% center;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, transparent 20%, rgba(0,0,0,0.55) 34%, #000 46%);
-  mask-image: linear-gradient(90deg, transparent 0, transparent 20%, rgba(0,0,0,0.55) 34%, #000 46%);
-}
+/* Абсолютом, а не потоком: в портрете кадр становится полосой у нижней кромки,
+   и без этого top/bottom там просто нечего было бы двигать. */
+.hero-video { position: absolute; inset: 0; }
 /* Лёгкий туман: слева плотнее (текст читается, WCAG AA),
    справа гора проглядывает, снизу растворение в фон страницы.
    Плотность слева подобрана под кадр заката: у него под заголовком лежит
@@ -2166,14 +2156,10 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 .hero.loaded .hero-cta   { animation: heroIn 1s 1.2s forwards cubic-bezier(.2,.7,.3,1); }
 @keyframes heroIn { to { opacity: 1; transform: none; } }
 
-/* 0–1.5s · гора проявляется из белизны, следом — бутылка на камне */
-.hero-bg img, .hero-video, .hero-scene { opacity: 0; }
+/* 0–1.5s · кадр проявляется из белизны */
+.hero-bg img, .hero-video { opacity: 0; }
 .hero.loaded .hero-bg img,
 .hero.loaded .hero-video { animation: bgIn 1.8s 0.1s ease-out forwards; }
-/* Передний план чуть позже и без наезда: масштаб у него уже есть свой, внутри
-   ролика, и второе увеличение поверх читалось бы рывком. */
-.hero.loaded .hero-scene { animation: sceneIn 1.4s 0.7s ease-out forwards; }
-@keyframes sceneIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes bgIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: none; } }
 .hero.loaded .hero-clouds { animation: cloudIn 1.6s 0.4s ease-out forwards, cloudDrift 16s ease-in-out 2s infinite; }
 @keyframes cloudIn { from { opacity: 0; } to { opacity: 0.85; } }
@@ -2489,48 +2475,27 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
      внутри неё центрован: связка набрана треугольником. */
   .hero { min-height: 100svh; padding-top: 5.6rem; padding-bottom: 0; }
   .hero-copy { margin: 0; }
-  /* Гору в узком окне держим по центру, а передний план сдвигаем к бутылке:
-     обрезка по бокам съедала бы её и оставляла в кадре пустой камень. */
-  .hero-bg img, .hero-video { object-position: 42% center; }
-  .hero-scene { object-position: 70% center; }
+  /* В узком окне кадр режется по бокам. Сдвигаем окно вправо: слева уходят
+     дальние хребты, зато в кадре остаются и вершина, и бутылка на камне. */
+  .hero-bg img, .hero-video { object-position: 58% center; }
   .elements-grid { grid-template-columns: repeat(4, 1fr); gap: 0; height: 325px; }
   .el-photo-wrap { height: auto; }
 }
-/* Портрет — и телефон, и планшет боком вверх. Передний план 16:9, растянутый
-   на вытянутое окно, обрезается так сильно, что бутылка раздувается и лезет
-   под текст: на 768×1024 у неё срезало половину этикетки. Поэтому в портрете
-   она садится полосой у нижней кромки — ровно там, где раньше стоял отдельный
-   кадр бутылки. Полоса сама почти 16:9, так что кадр показывается целиком.
-   Гора при этом остаётся на всю высоту: текст, как и раньше, лежит на ней.
-   Боковую маску здесь снимаем — текст уже не сбоку, а сверху, — и вместо неё
-   растворяем верхнюю кромку полосы, чтобы стык с горой не читался линией. */
+/* Портрет — и телефон, и планшет боком вверх. Кадр 16:9, растянутый на всё
+   вытянутое окно, режется по ширине до четверти панорамы: не остаётся ни
+   вершины, ни бутылки — только кусок склона. Поэтому в портрете кадр садится
+   полосой у нижней кромки. Полоса почти 16:9, кадр ужимается по высоте целиком
+   и по ширине теряет мало: в неё попадают и вершина, и бутылка на камне.
+   Текст встаёт над полосой, а не на ней, — так он читается без плотной пелены.
+   Верхняя кромка полосы растворяется, чтобы стык не читался обрезом. */
 @media (max-width: 1023px) and (orientation: portrait) {
-  .hero-scene {
-    top: auto;
-    /* Полоса чуть выше кадра: у ролика сверху добавлен запас неба под крышку,
-       и без этой прибавки бутылка в полосе выглядела бы мельче прежнего. */
-    height: clamp(320px, 50svh, 450px);
-    object-position: 78% center;
-    /* Растушёвка укладывается в тот самый запас неба сверху кадра (13% высоты),
-       поэтому к крышке слой подходит уже полностью непрозрачным. */
-    -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0,0,0,0.6) 8%, #000 15%);
-    mask-image: linear-gradient(180deg, transparent 0, rgba(0,0,0,0.6) 8%, #000 15%);
-  }
-  /* Гора в портрете тоже полосой, а не во весь экран. Кадр 16:9 при
-     object-fit: cover в окно 390x844 масштабируется по высоте, и по ширине от
-     него остаётся четверть панорамы — без вершины и без неба, поэтому на
-     телефоне ролика было просто не видно. Полоса высотой в половину экрана
-     почти квадратная, кадр ужимается вдвое слабее: в 390px влезает уже больше
-     половины ширины — с вершиной, небом и хребтами под ней.
-     Нижняя кромка растворяется в фоне страницы, чтобы полоса не читалась
-     обрезом; ниже её подхватывает полоса с бутылкой. */
   .hero-video {
-    top: 0;
-    bottom: auto;
-    height: clamp(300px, 48svh, 430px);
-    object-position: 32% center;
-    -webkit-mask-image: linear-gradient(180deg, #000 0, #000 58%, transparent 100%);
-    mask-image: linear-gradient(180deg, #000 0, #000 58%, transparent 100%);
+    top: auto;
+    bottom: 0;
+    height: clamp(340px, 58svh, 620px);
+    object-position: 60% center;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0,0,0,0.55) 9%, #000 19%);
+    mask-image: linear-gradient(180deg, transparent 0, rgba(0,0,0,0.55) 9%, #000 19%);
   }
   /* Прежний туман (0.86 сверху) выбеливал гору до ровного молока — с ним полоса
      теряет смысл. Разрежаем его и возвращаем контраст тексту цветом, а не
@@ -2583,18 +2548,16 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
    экрана она легла бы прямо на бутылку, которая в ландшафте стоит в середине
    кадра; сам текст внутри колонки остаётся центрованным. */
 @media (max-width: 767px) and (max-height: 700px) and (orientation: portrait) {
-  .hero-scene { height: clamp(230px, 40svh, 300px); }
+  .hero-video { height: clamp(240px, 42svh, 310px); }
 }
 @media (max-width: 767px) and (orientation: landscape) {
   .hero-copy { margin: 0; }
 }
 /* Перевёрнутый телефон — это и 390, и 844 по ширине, поэтому отдельным блоком
    на всю мобильную ширину. Экран тут шире кадра, кадр режется по высоте:
-   прижимаем его к верху, иначе срез снимает как раз запас неба и крышка
-   уезжает под шапку. Снизу уходит край камня — он и так продолжается за
-   границей экрана. */
+   прижимаем срез к низу, иначе с кадра уходит камень и бутылка повисает. */
 @media (max-width: 1023px) and (orientation: landscape) {
-  .hero-scene { object-position: 70% top; }
+  .hero-video { object-position: 58% 64%; }
 }
 /* Тот же перевёрнутый телефон, но правило цепляется за высоту: по ширине он
    бывает и 844, и 932, а низким остаётся всегда. Бутылка в ландшафте стоит
@@ -2618,7 +2581,7 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
     transition-duration: 0.001ms !important;
   }
   .reveal, .hero .reveal { opacity: 1 !important; transform: none !important; }
-  .hero-bg img, .hero-video, .hero-scene { opacity: 1 !important; transform: none !important; }
+  .hero-bg img, .hero-video { opacity: 1 !important; transform: none !important; }
   .hero-clouds { opacity: 0.85 !important; }
   .hero-glint { opacity: 0 !important; }
   .hero-warmth { opacity: 1 !important; }

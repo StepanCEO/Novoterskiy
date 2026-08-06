@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=rock-v78" />
+<link rel="stylesheet" href="css/style.css?v=rock-v79" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -198,13 +198,13 @@
 <main>
 <!-- ============ 1 · HERO ============ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <!-- Два ролика друг за другом. Сзади — заснеженный хребет на закате (тот же
-       ролик, что и на «Легенде бренда»: один файл на две страницы, второй раз
-       он уже в кеше), спереди — бутылка на камне со всплеском. У переднего
-       кадра слева пустое небо, и ровно эту половину мы снимаем маской
-       (.hero-scene в style.css): под ней остаётся гора, на которой лежит
-       заголовок. Оба ролика проходят один раз и замирают на последнем кадре —
-       см. wireHeroVideo в main.js. -->
+  <!-- Один ролик на весь кадр: заснеженный хребет на закате, а справа на камне
+       переднего плана стоит бутылка. Раньше здесь лежали два видео друг на
+       друге, и у верхнего было своё непрозрачное небо — оно закрывало правую
+       половину хребта. Теперь бутылка вырезана из белого фона и вклеена в кадр
+       заранее, одним файлом: горы видно целиком, а грузится он вместо двух.
+       Ролик проходит один раз и замирает на последнем кадре — см. wireHeroVideo
+       в main.js. -->
   <div class="hero-bg" aria-hidden="true">
     <!-- Адреса ролика лежат в data-*, а не в <source>, и подставляются из
          main.js после window.load. Две причины. Safari: <source> в разметке
@@ -214,26 +214,17 @@
          Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
     <video class="hero-video" id="heroVideo" width="1920" height="1080"
            muted playsinline preload="none"
-           poster="assets/photos/story-legend.webp?v=rock-v78"
-           data-webm="assets/video/legend-bg.webm?v=rock-v78"
-           data-mp4="assets/video/legend-bg.mp4?v=rock-v78">
+           poster="assets/photos/hero-bottle-poster.webp?v=rock-v79"
+           data-webm="assets/video/hero-bottle.webm?v=rock-v79"
+           data-mp4="assets/video/hero-bottle.mp4?v=rock-v79">
       <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
            браузеры подтягивали и его, и webp из poster= — лишние килобайты в
            самый занятый момент загрузки, ровно когда рисуется первый экран. -->
       <picture>
-        <img src="assets/photos/story-legend.webp?v=rock-v78" width="1920" height="1080" alt="" loading="eager" fetchpriority="high" />
+        <img src="assets/photos/hero-bottle-poster.webp?v=rock-v79" width="1920" height="1080" alt="" loading="eager" fetchpriority="high" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
-    <!-- Передний план. Стоит до .hero-glint, чтобы блик проходил по всему кадру
-         разом — и по горе, и по бутылке. Запасного <img> внутри нет намеренно:
-         без JS кадр держит сам poster=, а лишняя картинка в .hero-bg попала бы
-         под правила заднего плана. -->
-    <video class="hero-scene" id="sceneVideo" width="1920" height="1080"
-           muted playsinline preload="none"
-           poster="assets/video/hero-rock-poster.webp?v=rock-v78"
-           data-webm="assets/video/hero-rock.webm?v=rock-v78"
-           data-mp4="assets/video/hero-rock.mp4?v=rock-v78"></video>
     <span class="hero-glint"></span>
     <span class="hero-fog"></span>
     <span class="hero-warmth"></span>
@@ -669,7 +660,7 @@
   <div class="final-composition">
     <figure class="final-bottle reveal" aria-label="Новотерская Целебная">
       <span class="final-bottle-halo" aria-hidden="true"></span>
-      <img src="assets/voda.webp?v=rock-v78" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
+      <img src="assets/voda.webp?v=rock-v79" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
       <span class="final-bottle-mist" aria-hidden="true"></span>
     </figure>
     <div class="final-inner reveal">
@@ -808,8 +799,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=rock-v78" defer></script>
-<script src="js/main.js?v=rock-v78" defer></script>
-<script src="js/cms.js?v=rock-v78" defer></script>
+<script src="js/nav.js?v=rock-v79" defer></script>
+<script src="js/main.js?v=rock-v79" defer></script>
+<script src="js/cms.js?v=rock-v79" defer></script>
 </body>
 </html>
