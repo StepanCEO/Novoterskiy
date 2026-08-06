@@ -3906,13 +3906,24 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   transition: opacity 0.45s ease-out;
 }
 .legend-video.is-on { opacity: 1; }
-/* Слева кадр слегка притушен, справа не тронут: под плашкой лежат дальние
-   хребты в дымке, а вершина и закат остаются в полную силу. */
+/* Плашки под текстом нет — набор лежит прямо на кадре, поэтому читаемость
+   держит сам кадр: слева он уходит в глубокую тень, справа не тронут вовсе.
+   Тень тянется до 72% ширины и гаснет плавно, без видимой кромки, — вершина
+   и закат остаются в полную силу. Второй градиент подбирает низ: там светлый
+   освещённый камень, на нём цитата и кнопка иначе теряются. */
 .legend-photo::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(20,49,63,0.28) 0%, rgba(20,49,63,0.10) 38%, transparent 62%);
+  background:
+    linear-gradient(96deg,
+      rgba(6,24,33,0.93) 0%,
+      rgba(6,24,33,0.90) 34%,
+      rgba(6,24,33,0.82) 50%,
+      rgba(6,24,33,0.46) 62%,
+      rgba(6,24,33,0.14) 72%,
+      transparent 82%),
+    linear-gradient(0deg, rgba(6,24,33,0.42) 0%, transparent 34%);
 }
 .legend-inner {
   position: relative;
@@ -3920,37 +3931,54 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   width: min(var(--wrap), 100%);
   margin: 0 auto;
 }
-/* Матовое стекло вместо затемняющей плашки: пейзаж сквозь него виден, но
-   основа под текстом почти белая — тёмный набор держит контраст выше 4.5:1.
-   backdrop-filter поддержан не везде, поэтому в @supports ниже стекло
-   подменяется просто более плотной бумагой. */
+/* Никакой коробки: ни фона, ни рамки, ни скругления, ни тени. Текст стоит
+   прямо на кадре и держится только на левой шторке (.legend-photo::after) —
+   так экран читается плакатом, а не выноской поверх фотографии.
+   Единственный «каркас» — волосяная линия слева: она гаснет к обоим концам,
+   поэтому читается типографской чертой, а не кромкой плашки. */
 .legend-panel {
+  position: relative;
   width: min(560px, 100%);
-  padding: clamp(1.5rem, 2.6vw, 2.3rem) clamp(1.4rem, 2.4vw, 2.1rem);
-  border-radius: var(--r-lg);
-  border: 1px solid rgba(255,255,255,0.65);
-  background: rgba(251,252,254,0.86);
-  -webkit-backdrop-filter: blur(16px) saturate(1.06);
-  backdrop-filter: blur(16px) saturate(1.06);
-  box-shadow: 0 30px 70px -34px rgba(20,49,63,0.65);
+  padding-left: clamp(1.1rem, 2.2vw, 1.75rem);
+  /* Фирменное золото (--gold) на затенённом кадре даёт около 2:1 — для набора
+     мелким кеглем этого мало. Берём его же светлый замес: тон читается тем же,
+     контраст выходит за 5:1. В портрете переменная меняется на тёмную. */
+  --legend-accent: #EFDCAE;
 }
-@supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
-  .legend-panel { background: rgba(251,252,254,0.95); }
+.legend-panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 1px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(255,255,255,0.50) 14%,
+    rgba(255,255,255,0.50) 86%,
+    transparent 100%);
 }
-.legend-panel .eyebrow { margin-bottom: 0.5rem; }
+.legend-panel .eyebrow {
+  margin-bottom: 0.5rem;
+  color: var(--legend-accent);
+}
 .legend-title {
   font-family: var(--ff-serif);
-  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
   font-weight: 400;
   line-height: 1.14;
-  color: var(--deep);
-  margin: 0 0 0.6rem;
+  color: #FFFFFF;
+  margin: 0 0 0.7rem;
+  /* Кадр под набором живой — он ещё и оживает роликом. Мягкая тень страхует
+     те кадры, где по левому краю проходит светлое облако. */
+  text-shadow: 0 2px 24px rgba(6,22,30,0.55);
 }
 .legend-lead {
   margin: 0;
-  font-size: clamp(0.96rem, 1.15vw, 1.05rem);
+  font-size: clamp(0.98rem, 1.2vw, 1.1rem);
   line-height: 1.6;
-  color: var(--ink);
+  color: rgba(255,255,255,0.94);
+  text-shadow: 0 1px 16px rgba(6,22,30,0.5);
 }
 .legend-elements {
   margin: clamp(1rem, 2vw, 1.4rem) 0 clamp(1rem, 2vw, 1.35rem);
@@ -3963,7 +3991,7 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   gap: 0.2rem 0.9rem;
   align-items: baseline;
   padding-top: 0.5rem;
-  border-top: 1px solid rgba(62,122,152,0.2);
+  border-top: 1px solid rgba(255,255,255,0.18);
 }
 .legend-el:first-child {
   padding-top: 0;
@@ -3975,29 +4003,28 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  /* Названия стихий — не декор, а сам текст легенды, поэтому не бирюзовый
-     акцент (--glacier-d даёт на этой плашке 3.4 при норме 4.5 для мелкого
-     кегля), а самый тёмный из фирменных: 9.7. */
-  color: var(--deep);
+  /* Тёплое золото по холодному кадру: названия стихий отделяются от описаний
+     цветом, а не размером. */
+  color: var(--legend-accent);
 }
 .legend-el dd {
   margin: 0;
   font-size: clamp(0.88rem, 1.05vw, 0.96rem);
   line-height: 1.5;
-  /* Не --muted: плашка полупрозрачная, и под ней слева уходит в тень дальний
-     хребет — серый текст на таком фоне давал контраст 3.7 при норме 4.5.
-     Тот же --ink, что и у лида, чуть притушенный. */
-  color: var(--ink);
-  opacity: 0.84;
+  /* Не полупрозрачный серый: под текстом живой кадр, и всё, что ниже 0.9
+     белого, на светлых участках облаков проваливается ниже нормы 4.5. */
+  color: rgba(255,255,255,0.94);
+  text-shadow: 0 1px 14px rgba(6,22,30,0.5);
 }
 .legend-quote {
   margin: 0 0 clamp(1.1rem, 2vw, 1.4rem);
   padding-left: 0.9rem;
-  border-left: 2px solid var(--glacier);
+  border-left: 2px solid rgba(217,184,118,0.75);
   font-family: var(--ff-serif);
   font-size: clamp(0.98rem, 1.2vw, 1.08rem);
   line-height: 1.5;
-  color: var(--ink);
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 1px 16px rgba(6,22,30,0.5);
 }
 .legend-panel .btn { margin: 0; }
 
@@ -4025,17 +4052,41 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   .legend-photo::after { display: none; }
   .legend-inner {
     padding: 0 var(--gutter);
-    margin-top: clamp(-3rem, -5vw, -1.6rem);
+    margin-top: clamp(1.2rem, 4vw, 1.9rem);
   }
-  /* На узком экране лента кадра уже съела верх — набор поджимаем, чтобы
-     легенда уместилась почти без прокрутки. */
+  /* Здесь под текстом уже не кадр, а бумага: шторки нет, наезжать на
+     фотографию нечем — значит и набор возвращается к тёмному. Волосяная
+     черта слева остаётся, только меняет цвет на бирюзовый. */
   .legend-panel {
     width: 100%;
-    padding: 1.35rem 1.25rem;
+    padding-left: 1.1rem;
+    --legend-accent: var(--glacier-d);
   }
-  .legend-title { font-size: clamp(1.7rem, 7vw, 2.1rem); }
+  .legend-panel::before {
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(62,122,152,0.45) 12%,
+      rgba(62,122,152,0.45) 88%,
+      transparent 100%);
+  }
+  .legend-title {
+    font-size: clamp(1.7rem, 7vw, 2.1rem);
+    color: var(--deep);
+    text-shadow: none;
+  }
+  .legend-lead { color: var(--ink); text-shadow: none; }
   .legend-elements { gap: 0.35rem; }
-  .legend-el { padding-top: 0.42rem; }
+  .legend-el {
+    padding-top: 0.42rem;
+    border-top-color: rgba(62,122,152,0.2);
+  }
+  .legend-el dt { color: var(--deep); }
+  .legend-el dd { color: var(--ink); opacity: 0.84; text-shadow: none; }
+  .legend-quote {
+    border-left-color: var(--glacier);
+    color: var(--ink);
+    text-shadow: none;
+  }
 }
 @media (max-width: 420px) {
   .legend-el { grid-template-columns: 1fr; }
