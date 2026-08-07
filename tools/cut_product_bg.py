@@ -79,6 +79,53 @@ MATTE_JOBS = [
     (f"{TG}/pv-15-gas-bottle.jpg", "pityevaya-pet-15-gas"),
 ]
 
+# Уровни для таких кадров. Одной маски мало: сквозь прозрачный корпус видна
+# циклорама, и вместе с ней в вырезку переезжает её цвет — бутылка выходит
+# серой и плоской рядом со студийными. Поэтому кадр делится на модель фона:
+# деление разом убирает и градиент, и тёплый оттенок, а у прозрачных пикселей
+# оставляет то, что и нужно, — долю пропущенного света.
+#
+# Дальше доля растягивается в яркость. Границы взяты по гистограмме студийных
+# бутылок каталога (10/50/90 перцентили — 110/204/214): при этих числах новая
+# бутылка даёт 167/198/221 и в ряду не выбивается. Поднимать белую точку выше
+# нельзя — корпус уходит в пересвет и теряет рёбра.
+MATTE_BLACK = 0.35   # доля от фона, ниже которой пиксель считается чёрным
+MATTE_WHITE = 1.03   # доля, выше которой — белым
+MATTE_PEAK = 222     # яркость этого белого
+
+# Затравка для модели фона: поля кадра, где предмета заведомо нет. Дальше
+# область уточняется — всё, что легло на модель, тоже признаётся фоном.
+MATTE_MARGINS = (0.22, 0.20, 0.12)   # слева, справа, сверху — доли кадра
+MATTE_TOLERANCE = 12                 # отклонение от модели, ещё считающееся фоном
+
+
+def background_surface(rgb):
+    """Фон как гладкая поверхность: кубический полином по каждому каналу.
+
+    Медиана по рамке описывает только ровный фон. Здесь свет падает сбоку, и
+    циклорама уходит с 202 слева до 100 справа — одним числом это не задать.
+    """
+    height, width, _ = rgb.shape
+    ys, xs = np.mgrid[0:height, 0:width].astype(np.float32)
+    ys /= height
+    xs /= width
+    terms = np.stack([np.ones_like(xs), xs, ys, xs * xs, xs * ys, ys * ys,
+                      xs ** 3, xs * xs * ys, xs * ys * ys, ys ** 3], axis=-1)
+    flat = terms.reshape(-1, terms.shape[-1])
+
+    left, right, top = MATTE_MARGINS
+    seed = np.zeros((height, width), bool)
+    seed[:, :int(width * left)] = True
+    seed[:, int(width * (1 - right)):] = True
+    seed[:int(height * top)] = True
+
+    surface = None
+    for _ in range(4):
+        coefficients = np.linalg.lstsq(terms[seed], rgb[seed], rcond=None)[0]
+        surface = (flat @ coefficients).reshape(rgb.shape)
+        seed = np.abs(rgb - surface).max(axis=2) < MATTE_TOLERANCE
+    return surface
+
 
 def background_color(rgb):
     """Медиана по рамке кадра: устойчива к попавшему в край предмету."""
@@ -126,10 +173,19 @@ def cut(path, name, shape_threshold, edge_threshold):
 
 
 def matte(path, name):
-    """То же самое, но маску даёт rembg — для кадров с неровным фоном."""
+    """То же самое, но маску даёт rembg, а тон выправляется по модели фона."""
     import rembg  # тяжёлая зависимость, нужна ровно одному снимку
 
-    return finish(rembg.remove(Image.open(path).convert("RGB")), name)
+    source = Image.open(path).convert("RGB")
+    alpha = np.asarray(rembg.remove(source))[..., 3].astype(np.float32) / 255
+
+    rgb = np.asarray(source).astype(np.float32)
+    share = rgb / np.maximum(background_surface(rgb), 1)
+    out_rgb = np.clip((share - MATTE_BLACK) / (MATTE_WHITE - MATTE_BLACK), 0, 1) * MATTE_PEAK
+
+    image = Image.fromarray(
+        np.dstack([out_rgb, alpha * 255]).round().clip(0, 255).astype(np.uint8), "RGBA")
+    return finish(image, name)
 
 
 def finish(image, name):
