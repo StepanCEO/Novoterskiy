@@ -166,11 +166,23 @@ def replace(html, opening, closing, body):
     return html[:start] + "\n" + body + "\n" + html[end:], end - start
 
 
+# Границы линейки. Раньше конец искался по строке «  </div>», но эта же
+# последовательность встречается внутри карточки — в «      </div>» у
+# .product-photo. Замена обрывалась на первой карточке, а хвост прежней
+# линейки оставался в разметке: он вываливался из .collection-track прямо в
+# секцию и рисовался под каталогом столбиком из чужих карточек. Теперь конец
+# привязан к следующему блоку — промахнуться мимо него нельзя.
+TRACK = re.compile(r'(<div class="collection-track">).*?(\n  </div>\s*\n\s*<div class="catalog-foot)', re.S)
+
+
 def main():
     products = json.load(open(PRODUCTS, encoding="utf-8"))["items"]
     html = open(CATALOG, encoding="utf-8").read()
     html, _ = replace(html, '<script type="application/ld+json">', "</script>", jsonld(products))
-    html, _ = replace(html, '<div class="collection-track">', "  </div>", track_markup(products))
+    html, hit = TRACK.subn(lambda m: m.group(1) + "\n" + track_markup(products) + m.group(2),
+                           html, count=1)
+    if hit != 1:
+        raise SystemExit(f"{CATALOG}: не нашёл границы .collection-track")
     open(CATALOG, "w", encoding="utf-8", newline="\n").write(html)
     print(f"{CATALOG}: {len(products)} позиций")
 

@@ -4,13 +4,13 @@
       "id": "celebnaya-glass-elita-05",
       "title": "Новотерская целебная 0.5",
       "title_en": "Novoterskaya Tselebnaya 0.5",
-      "type": "Газированная · стекло «Элита»",
-      "type_en": "Sparkling · glass «Elita»",
+      "type": "Газированная · стекло",
+      "type_en": "Sparkling · glass",
       "photo": "assets/products/celebnaya-glass-elita-05.webp",
       "photo_width": 218,
       "photo_height": 815,
-      "alt_ru": "Новотерская Целебная 0,5 л, стекло «Элита»",
-      "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle",
+      "alt_ru": "Новотерская Целебная 0,5 л, стекло",
+      "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle",
       "photo_caption_ru": "Бутылка",
       "photo_caption_en": "Bottle",
       "gallery": [
@@ -20,8 +20,8 @@
           "photo_height": 815,
           "caption_ru": "Две бутылки",
           "caption_en": "Two bottles",
-          "alt_ru": "Новотерская Целебная 0,5 л, стекло «Элита» — две бутылки",
-          "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle - two bottles"
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло — две бутылки",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - two bottles"
         },
         {
           "photo": "assets/products/celebnaya-glass-elita-05-3.webp",
@@ -29,8 +29,8 @@
           "photo_height": 793,
           "caption_ru": "Упаковка",
           "caption_en": "Pack",
-          "alt_ru": "Новотерская Целебная 0,5 л, стекло «Элита» — упаковка",
-          "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle - pack"
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло — упаковка",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - pack"
         },
         {
           "photo": "assets/products/celebnaya-glass-elita-05-4.webp",
@@ -38,8 +38,8 @@
           "photo_height": 815,
           "caption_ru": "Упаковка, ракурс",
           "caption_en": "Pack, angled",
-          "alt_ru": "Новотерская Целебная 0,5 л, стекло «Элита» — упаковка, ракурс",
-          "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle - pack, angled"
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло — упаковка, ракурс",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - pack, angled"
         },
         {
           "photo": "assets/products/celebnaya-glass-elita-05-5.webp",
@@ -47,8 +47,17 @@
           "photo_height": 815,
           "caption_ru": "Короб",
           "caption_en": "Tray",
-          "alt_ru": "Новотерская Целебная 0,5 л, стекло «Элита» — короб",
-          "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle - tray"
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло — короб",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - tray"
+        },
+        {
+          "photo": "assets/products/celebnaya-glass-euro-05.webp",
+          "photo_width": 900,
+          "photo_height": 772,
+          "caption_ru": "Короб, 12 бутылок",
+          "caption_en": "Tray of 12",
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло — короб, 12 бутылок",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - tray of 12"
         },
         {
           "photo": "assets/products/celebnaya-glass-elita-05-6.webp",
@@ -56,26 +65,10 @@
           "photo_height": 815,
           "caption_ru": "Контрэтикетка",
           "caption_en": "Back label",
-          "alt_ru": "Новотерская Целебная 0,5 л, стекло «Элита» — контрэтикетка",
-          "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle - back label"
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло — контрэтикетка",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - back label"
         }
       ],
-      "buy_url": "buy.html"
-    },
-    {
-      "id": "celebnaya-glass-euro-05",
-      "title": "Новотерская целебная 0.5",
-      "title_en": "Novoterskaya Tselebnaya 0.5",
-      "type": "Газированная · стекло «Евро»",
-      "type_en": "Sparkling · glass «Euro»",
-      "photo": "assets/products/celebnaya-glass-euro-05.webp",
-      "photo_width": 900,
-      "photo_height": 772,
-      "alt_ru": "Новотерская Целебная 0,5 л, стекло «Евро» — короб, 12 бутылок",
-      "alt_en": "Novoterskaya Tselebnaya 0.5 L, Euro glass bottle - tray of 12",
-      "photo_caption_ru": "Короб, 12 бутылок",
-      "photo_caption_en": "Tray of 12",
-      "gallery": [],
       "buy_url": "buy.html"
     },
     {
@@ -411,13 +404,23 @@
       "type": "Газированная · ПЭТ",
       "type_en": "Sparkling · PET",
       "photo": "assets/products/pityevaya-pet-15-gas.webp",
-      "photo_width": 707,
+      "photo_width": 239,
       "photo_height": 815,
-      "alt_ru": "Новотерская Питьевая газированная 1,5 л, ПЭТ — упаковка, шесть бутылок",
-      "alt_en": "Novoterskaya Sparkling Drinking Water 1.5 L, PET bottle - pack of six",
-      "photo_caption_ru": "Упаковка, шесть бутылок",
-      "photo_caption_en": "Pack of six",
-      "gallery": [],
+      "alt_ru": "Новотерская Питьевая газированная 1,5 л, ПЭТ",
+      "alt_en": "Novoterskaya Sparkling Drinking Water 1.5 L, PET bottle",
+      "photo_caption_ru": "Бутылка",
+      "photo_caption_en": "Bottle",
+      "gallery": [
+        {
+          "photo": "assets/products/pityevaya-pet-15-gas-2.webp",
+          "photo_width": 707,
+          "photo_height": 815,
+          "caption_ru": "Упаковка, шесть бутылок",
+          "caption_en": "Pack of six",
+          "alt_ru": "Новотерская Питьевая газированная 1,5 л, ПЭТ — упаковка, шесть бутылок",
+          "alt_en": "Novoterskaya Sparkling Drinking Water 1.5 L, PET bottle - pack of six"
+        }
+      ],
       "buy_url": "buy.html"
     },
     {

@@ -64,3 +64,7 @@ tools/lab-src/*.html
 # для content/news.json. Скрипты рядом остаются в репо, всё это пересоздаётся:
 # python tools/news-src/grab.py
 tools/news-src/raw/
+# Присланные заказчиком исходники упаковки: архив «ФОТО упаковки» и снимки из
+# Telegram, всего под 300МБ студийных JPEG. В репо лежат готовые вырезки в
+# assets/products/. Пересоздаются: python tools/cut_product_bg.py
+tools/_pack/

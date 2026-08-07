@@ -10,6 +10,9 @@
 поэтому цвет фона берётся медианой по рамке кадра, а не задаётся константой.
 Тень отсекается порогом: у бутылок контраст с фоном 40+, у тени — меньше 25.
 
+Кадры, снятые не на заводской съёмке, этим способом не берутся вовсе — для них
+есть MATTE_JOBS и rembg, подробности в комментарии к списку.
+
 Готовые файлы кладутся в assets/products/ с высотой 815 px — так же, как уже
 лежащие карточки, иначе в сетке каталога бутылки поедут по размеру.
 
@@ -32,6 +35,7 @@ BORDER = 24            # толщина рамки, по которой счит
 
 SRC = "tools/_pack/ФОТО упаковки"
 FIVE = "tools/_pack/5l/tg"
+TG = "tools/_pack/tg"
 
 # (исходник, имя в assets/products, порог формы, порог мягкого края)
 #
@@ -49,7 +53,7 @@ JOBS = [
     (f"{SRC}/МВ 1л уп..JPG", "celebnaya-pet-1-2", 40, 18),
     (f"{SRC}/Три бут_.JPG", "celebnaya-pet-1-3", 30, 12),
     # Питьевая 1,5 л, газированная
-    (f"{SRC}/ПВ 1,5л газ уп.JPG", "pityevaya-pet-15-gas", 26, 11),
+    (f"{SRC}/ПВ 1,5л газ уп.JPG", "pityevaya-pet-15-gas-2", 26, 11),
     # Питьевая 1,5 л, негазированная
     (f"{SRC}/ПВ  1,5л НГ уп.JPG", "pityevaya-pet-15", 26, 11),
     # Целебная 0,5 л, стекло «Евро»
@@ -61,6 +65,18 @@ JOBS = [
     (f"{FIVE}/b.jpg", "pityevaya-pet-5", 18, 7),
     (f"{FIVE}/a.jpg", "pityevaya-pet-5-2", 26, 11),
     (f"{FIVE}/c.jpg", "pityevaya-pet-5-3", 26, 11),
+]
+
+# Кадры, снятые не на заводской циклораме. Здесь фон уходит градиентом (у
+# присланной бутылки 1,5 л — от 202 слева до 100 справа), и медиана по рамке
+# больше ничего не описывает. Хуже того, прозрачный корпус по яркости совпадает
+# с фоном за ним: расхождение внутри бутылки — 5.6, разброс самого фона — 7.5,
+# разделить их порогом нельзя ни при каком значении. Такие снимки матует
+# нейросеть (rembg, U^2-Net), она отделяет предмет по форме, а не по цвету.
+MATTE_JOBS = [
+    # Одиночная бутылка 1,5 л газированной: заказчик прислал её отдельно и
+    # попросил показывать первой.
+    (f"{TG}/pv-15-gas-bottle.jpg", "pityevaya-pet-15-gas"),
 ]
 
 
@@ -106,8 +122,18 @@ def cut(path, name, shape_threshold, edge_threshold):
 
     image = Image.fromarray(
         np.dstack([out_rgb, alpha * 255]).round().clip(0, 255).astype(np.uint8), "RGBA")
+    return finish(image, name)
 
-    # 4. Обрезаем пустоту и приводим к высоте карточки.
+
+def matte(path, name):
+    """То же самое, но маску даёт rembg — для кадров с неровным фоном."""
+    import rembg  # тяжёлая зависимость, нужна ровно одному снимку
+
+    return finish(rembg.remove(Image.open(path).convert("RGB")), name)
+
+
+def finish(image, name):
+    """Обрезает пустоту, приводит к высоте карточки и пишет webp."""
     box = image.getbbox()
     if box:
         left, top, right, bottom = box
@@ -127,6 +153,9 @@ def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     for path, name, shape_threshold, edge_threshold in JOBS:
         target, size = cut(path, name, shape_threshold, edge_threshold)
+        print(f"{target}  {size[0]}x{size[1]}")
+    for path, name in MATTE_JOBS:
+        target, size = matte(path, name)
         print(f"{target}  {size[0]}x{size[1]}")
 
 
