@@ -729,7 +729,7 @@
     <div class="contact-card contact-card--reach reveal">
       <span class="contact-card-label" data-en="Direct line">Прямая связь</span>
       <p class="contact-lead">
-        <span class="contact-lead-label" data-en="Phone / fax">Телефон / факс</span>
+        <span class="contact-lead-label" data-en="Phone">Телефон</span>
         <a class="contact-lead-link" href="tel:+78792271409" data-contact="phone">+7 (87922) 7-14-09</a>
       </p>
       <p class="contact-lead">
@@ -745,24 +745,28 @@
 
     <div class="contact-card contact-card--legal reveal">
       <span class="contact-card-label" data-en="Company details">Реквизиты завода</span>
+      <!-- Подпись стоит над значением, а не слева: в колонке подписей шириной
+           в треть карточки адрес рвался на четыре строки, а имя директора —
+           на две. Короткие поля идут парой в одну строку сетки, длинные
+           занимают всю ширину. -->
       <dl class="contact-rows">
-        <div class="contact-row">
+        <div class="contact-row contact-row--pair">
           <dt data-en="Manufacturer">Производитель</dt>
           <dd data-contact="company" data-en="AO «Kavminvody»">АО «Кавминводы»</dd>
         </div>
-        <div class="contact-row">
+        <div class="contact-row contact-row--pair">
+          <dt data-en="Tax ID (INN)">ИНН</dt>
+          <dd class="contact-num" data-contact="inn">2630016660</dd>
+        </div>
+        <div class="contact-row contact-row--wide">
           <dt data-en="CEO">Генеральный директор</dt>
           <dd data-contact="director" data-en="Maxim A. Kotorov">Которов Максим Анатольевич</dd>
         </div>
-        <div class="contact-row">
+        <div class="contact-row contact-row--wide">
           <dt data-en="Registered address">Юридический адрес</dt>
           <dd data-contact="address" data-en="Bldg 1, Beshtaugorskaya St., Novotersky settlement, Mineralovodsky district, Stavropol Krai, 357242">
             357242, Ставропольский край, Минераловодский р-н, п. Новотерский, ул. Бештаугорская, зд. 1
           </dd>
-        </div>
-        <div class="contact-row">
-          <dt data-en="Tax ID (INN)">ИНН</dt>
-          <dd class="contact-num" data-contact="inn">2630016660</dd>
         </div>
       </dl>
     </div>

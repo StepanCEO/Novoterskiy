@@ -1349,27 +1349,35 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 .contact-chip:hover { color: #fff; background: var(--glacier-d); border-color: var(--glacier-d); }
 
 /* --- правая карточка: реквизиты строками --- */
-.contact-rows { margin: 0; }
-.contact-row {
+/* Колонки без зазора: разделитель рисуется border-top на самих ячейках, и с
+   column-gap линия под парой «производитель — ИНН» была бы разорвана. Отступ
+   между колонками даёт padding внутри второй ячейки. */
+.contact-rows {
+  margin: 0;
   display: grid;
-  grid-template-columns: 11.5rem 1fr;
-  gap: 0.4rem 1.2rem;
-  padding: 0.7rem 0;
-  border-top: 1px solid rgba(20,49,63,0.08);
+  grid-template-columns: 1fr 1fr;
 }
-.contact-row:first-child { border-top: 0; padding-top: 0; }
+.contact-row { padding: 0.85rem 0; border-top: 1px solid rgba(20,49,63,0.08); }
+.contact-row--wide { grid-column: 1 / -1; }
+.contact-row--pair:first-child { border-top: 0; padding-top: 0; }
+.contact-row--pair:first-child + .contact-row--pair {
+  border-top: 0;
+  padding-top: 0;
+  padding-left: 1.4rem;
+}
 .contact-row dt {
+  display: block;
   font-family: var(--ff-label);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  padding-top: 0.18rem;
+  margin-bottom: 0.3rem;
 }
 .contact-row dd {
   margin: 0;
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--deep);
 }
 .contact-num { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
@@ -2384,7 +2392,7 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   .trust-stats { grid-template-columns: repeat(3, 1fr); }
   .docs-grid { grid-template-columns: repeat(2, 1fr); }
   /* Две карточки контактов в ряд перестают помещаться раньше остальных сеток:
-     у реквизитов слева колонка подписей в 11,5rem. */
+     адрес в половине планшетной ширины уходит в четыре строки. */
   .contacts-grid { grid-template-columns: 1fr; }
   .collection-track { grid-template-columns: repeat(2, 1fr); }
   .final-composition { grid-template-columns: minmax(230px, 0.65fr) minmax(390px, 1.35fr); }
@@ -2430,8 +2438,14 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   .about-inner { grid-template-columns: 1fr; }
   .where-grid { grid-template-columns: 1fr; }
   .contacts-grid { grid-template-columns: 1fr; }
-  .contact-row { grid-template-columns: 1fr; gap: 0.15rem; }
-  .contact-row dt { padding-top: 0; }
+  /* На узком экране пара «производитель — ИНН» рядом не встаёт: ИНН уезжает
+     под подпись соседа. Все реквизиты идут одной колонкой. */
+  .contact-rows { grid-template-columns: 1fr; }
+  .contact-row--pair:first-child + .contact-row--pair {
+    border-top: 1px solid rgba(20,49,63,0.08);
+    padding-top: 0.85rem;
+    padding-left: 0;
+  }
   .collection-track {
     grid-auto-flow: column;
     grid-template-columns: none;
