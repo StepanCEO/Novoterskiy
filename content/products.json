@@ -63,6 +63,22 @@
       "buy_url": "buy.html"
     },
     {
+      "id": "celebnaya-glass-euro-05",
+      "title": "Новотерская целебная 0.5",
+      "title_en": "Novoterskaya Tselebnaya 0.5",
+      "type": "Газированная · стекло «Евро»",
+      "type_en": "Sparkling · glass «Euro»",
+      "photo": "assets/products/celebnaya-glass-euro-05.webp",
+      "photo_width": 900,
+      "photo_height": 772,
+      "alt_ru": "Новотерская Целебная 0,5 л, стекло «Евро» — короб, 12 бутылок",
+      "alt_en": "Novoterskaya Tselebnaya 0.5 L, Euro glass bottle - tray of 12",
+      "photo_caption_ru": "Короб, 12 бутылок",
+      "photo_caption_en": "Tray of 12",
+      "gallery": [],
+      "buy_url": "buy.html"
+    },
+    {
       "id": "celebnaya-pet-05",
       "title": "Новотерская целебная 0.5",
       "title_en": "Novoterskaya Tselebnaya 0.5",
@@ -134,6 +150,41 @@
       "buy_url": "buy.html"
     },
     {
+      "id": "celebnaya-pet-1",
+      "title": "Новотерская целебная 1",
+      "title_en": "Novoterskaya Tselebnaya 1",
+      "type": "Газированная · ПЭТ",
+      "type_en": "Sparkling · PET",
+      "photo": "assets/products/celebnaya-pet-1.webp",
+      "photo_width": 214,
+      "photo_height": 815,
+      "alt_ru": "Новотерская Целебная 1 л, ПЭТ",
+      "alt_en": "Novoterskaya Tselebnaya 1 L, PET bottle",
+      "photo_caption_ru": "Бутылка",
+      "photo_caption_en": "Bottle",
+      "gallery": [
+        {
+          "photo": "assets/products/celebnaya-pet-1-2.webp",
+          "photo_width": 625,
+          "photo_height": 815,
+          "caption_ru": "Упаковка, шесть бутылок",
+          "caption_en": "Pack of six",
+          "alt_ru": "Новотерская Целебная 1 л, ПЭТ — упаковка, шесть бутылок",
+          "alt_en": "Novoterskaya Tselebnaya 1 L, PET bottle - pack of six"
+        },
+        {
+          "photo": "assets/products/celebnaya-pet-1-3.webp",
+          "photo_width": 621,
+          "photo_height": 815,
+          "caption_ru": "Линейка 0,5 / 1 / 1,5 л",
+          "caption_en": "Range: 0.5 / 1 / 1.5 L",
+          "alt_ru": "Новотерская Целебная в ПЭТ — 0,5, 1 и 1,5 литра рядом",
+          "alt_en": "Novoterskaya Tselebnaya in PET - 0.5, 1 and 1.5 litre side by side"
+        }
+      ],
+      "buy_url": "buy.html"
+    },
+    {
       "id": "celebnaya-pet-15",
       "title": "Новотерская целебная 1.5",
       "title_en": "Novoterskaya Tselebnaya 1.5",
@@ -191,6 +242,68 @@
           "caption_en": "Pack of six",
           "alt_ru": "Новотерская Целебная 1,5 л, ПЭТ — упаковка, шесть бутылок",
           "alt_en": "Novoterskaya Tselebnaya 1.5 L, PET bottle - pack of six"
+        }
+      ],
+      "buy_url": "buy.html"
+    },
+    {
+      "id": "pityevaya-pet-033",
+      "title": "Новотерская питьевая 0.33",
+      "title_en": "Novoterskaya Drinking 0.33",
+      "type": "Негазированная · ПЭТ",
+      "type_en": "Still · PET",
+      "photo": "assets/products/pityevaya-pet-033.webp",
+      "photo_width": 353,
+      "photo_height": 815,
+      "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ",
+      "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle",
+      "photo_caption_ru": "Бутылка",
+      "photo_caption_en": "Bottle",
+      "gallery": [
+        {
+          "photo": "assets/products/pityevaya-pet-033-2.webp",
+          "photo_width": 700,
+          "photo_height": 815,
+          "caption_ru": "Две бутылки",
+          "caption_en": "Two bottles",
+          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — две бутылки",
+          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - two bottles"
+        },
+        {
+          "photo": "assets/products/pityevaya-pet-033-3.webp",
+          "photo_width": 876,
+          "photo_height": 658,
+          "caption_ru": "Три бутылки",
+          "caption_en": "Three bottles",
+          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — три бутылки",
+          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - three bottles"
+        },
+        {
+          "photo": "assets/products/pityevaya-pet-033-4.webp",
+          "photo_width": 663,
+          "photo_height": 815,
+          "caption_ru": "Упаковка",
+          "caption_en": "Pack",
+          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — упаковка",
+          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - pack"
+        },
+        {
+          "photo": "assets/products/pityevaya-pet-033-5.webp",
+          "photo_width": 666,
+          "photo_height": 815,
+          "caption_ru": "Упаковка, ракурс",
+          "caption_en": "Pack, angled",
+          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — упаковка, ракурс",
+          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - pack, angled"
+        },
+        {
+          "photo": "assets/products/pityevaya-pet-033-6.webp",
+          "photo_width": 691,
+          "photo_height": 815,
+          "caption_ru": "Упаковка, шесть бутылок",
+          "caption_en": "Pack of six",
+          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — упаковка, шесть бутылок",
+          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - pack of six"
         }
       ],
       "buy_url": "buy.html"
@@ -276,63 +389,68 @@
       "buy_url": "buy.html"
     },
     {
-      "id": "pityevaya-pet-033",
-      "title": "Новотерская питьевая 0.33",
-      "title_en": "Novoterskaya Drinking 0.33",
+      "id": "pityevaya-pet-15",
+      "title": "Новотерская питьевая 1.5",
+      "title_en": "Novoterskaya Drinking 1.5",
       "type": "Негазированная · ПЭТ",
       "type_en": "Still · PET",
-      "photo": "assets/products/pityevaya-pet-033.webp",
-      "photo_width": 353,
+      "photo": "assets/products/pityevaya-pet-15.webp",
+      "photo_width": 632,
       "photo_height": 815,
-      "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ",
-      "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle",
+      "alt_ru": "Новотерская Питьевая негазированная 1,5 л, ПЭТ — упаковка, шесть бутылок",
+      "alt_en": "Novoterskaya Still Drinking Water 1.5 L, PET bottle - pack of six",
+      "photo_caption_ru": "Упаковка, шесть бутылок",
+      "photo_caption_en": "Pack of six",
+      "gallery": [],
+      "buy_url": "buy.html"
+    },
+    {
+      "id": "pityevaya-pet-15-gas",
+      "title": "Новотерская питьевая 1.5",
+      "title_en": "Novoterskaya Drinking 1.5",
+      "type": "Газированная · ПЭТ",
+      "type_en": "Sparkling · PET",
+      "photo": "assets/products/pityevaya-pet-15-gas.webp",
+      "photo_width": 707,
+      "photo_height": 815,
+      "alt_ru": "Новотерская Питьевая газированная 1,5 л, ПЭТ — упаковка, шесть бутылок",
+      "alt_en": "Novoterskaya Sparkling Drinking Water 1.5 L, PET bottle - pack of six",
+      "photo_caption_ru": "Упаковка, шесть бутылок",
+      "photo_caption_en": "Pack of six",
+      "gallery": [],
+      "buy_url": "buy.html"
+    },
+    {
+      "id": "pityevaya-pet-5",
+      "title": "Новотерская питьевая 5",
+      "title_en": "Novoterskaya Pityevaya 5",
+      "type": "Негазированная · ПЭТ",
+      "type_en": "Still · PET",
+      "photo": "assets/products/pityevaya-pet-5.webp",
+      "photo_width": 364,
+      "photo_height": 815,
+      "alt_ru": "Бутылка «Новотерская питьевая» 5 л, ПЭТ с ручкой",
+      "alt_en": "Novoterskaya Pityevaya still water, 5 L PET bottle with handle",
       "photo_caption_ru": "Бутылка",
       "photo_caption_en": "Bottle",
       "gallery": [
         {
-          "photo": "assets/products/pityevaya-pet-033-2.webp",
-          "photo_width": 700,
-          "photo_height": 815,
-          "caption_ru": "Две бутылки",
-          "caption_en": "Two bottles",
-          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — две бутылки",
-          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - two bottles"
+          "photo": "assets/products/pityevaya-pet-5-2.webp",
+          "photo_width": 900,
+          "photo_height": 719,
+          "caption_ru": "Короб, три бутылки",
+          "caption_en": "Tray of three",
+          "alt_ru": "Транспортный короб «Новотерская питьевая» 3 × 5 л",
+          "alt_en": "Novoterskaya Pityevaya shipping case, 3 × 5 L"
         },
         {
-          "photo": "assets/products/pityevaya-pet-033-3.webp",
-          "photo_width": 876,
-          "photo_height": 658,
-          "caption_ru": "Три бутылки",
-          "caption_en": "Three bottles",
-          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — три бутылки",
-          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - three bottles"
-        },
-        {
-          "photo": "assets/products/pityevaya-pet-033-4.webp",
-          "photo_width": 663,
-          "photo_height": 815,
-          "caption_ru": "Упаковка",
-          "caption_en": "Pack",
-          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — упаковка",
-          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - pack"
-        },
-        {
-          "photo": "assets/products/pityevaya-pet-033-5.webp",
-          "photo_width": 666,
-          "photo_height": 815,
-          "caption_ru": "Упаковка, ракурс",
-          "caption_en": "Pack, angled",
-          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — упаковка, ракурс",
-          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - pack, angled"
-        },
-        {
-          "photo": "assets/products/pityevaya-pet-033-6.webp",
-          "photo_width": 691,
-          "photo_height": 815,
-          "caption_ru": "Упаковка, шесть бутылок",
-          "caption_en": "Pack of six",
-          "alt_ru": "Новотерская Питьевая 0,33 л, ПЭТ — упаковка, шесть бутылок",
-          "alt_en": "Novoterskaya Drinking Water 0.33 L, PET bottle - pack of six"
+          "photo": "assets/products/pityevaya-pet-5-3.webp",
+          "photo_width": 900,
+          "photo_height": 422,
+          "caption_ru": "Короб сверху",
+          "caption_en": "Tray from above",
+          "alt_ru": "Открытый короб с тремя бутылками «Новотерская питьевая» 5 л, вид сверху",
+          "alt_en": "Open case with three 5 L Novoterskaya Pityevaya bottles, top view"
         }
       ],
       "buy_url": "buy.html"
