@@ -450,14 +450,20 @@
 
   function hydrateContacts(data) {
     if (!data) return;
-    var blocks = all("#contacts .contact-block");
-    bilingual(one(".contact-val", blocks[0]), data.company, data.company_en || data.company);
-    bilingual(one(".contact-val", blocks[1]), data.address, data.address_en || data.address);
-    var phone = one(".contact-val a", blocks[2]);
+    /* Поиск по data-contact, а не по индексу блока: карточки контактов можно
+       переставлять и дополнять, не трогая этот код. */
+    var section = one("#contacts");
+    function field(name) { return one('[data-contact="' + name + '"]', section); }
+    bilingual(field("company"), data.company, data.company_en || data.company);
+    bilingual(field("director"), data.director, data.director_en || data.director);
+    bilingual(field("address"), data.address, data.address_en || data.address);
+    var inn = field("inn");
+    if (inn && data.inn) inn.textContent = String(data.inn);
+    var phone = field("phone");
     if (phone && data.phone) { phone.textContent = String(data.phone); phone.href = safeUrl("tel:" + String(data.phone).replace(/[^+\d]/g, ""), phone.href, true); }
-    var email = one(".contact-val a", blocks[3]);
+    var email = field("email");
     if (email && data.email) { email.textContent = String(data.email); email.href = safeUrl("mailto:" + data.email, email.href, true); }
-    var socials = all(".contact-social a", blocks[4]);
+    var socials = all("a", field("social"));
     [[data.telegram, socials[0]], [data.vk, socials[1]], [data.ok, socials[2]]].forEach(function (pair) {
       if (pair[1] && pair[0]) pair[1].href = safeUrl(pair[0], pair[1].href, true);
     });

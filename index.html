@@ -44,7 +44,7 @@
      аккуратная. <noscript> — для случая, когда onload не отработает. -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" media="print" onload="this.media='all';this.onload=null" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Prata&amp;display=swap&amp;subset=cyrillic,latin" rel="stylesheet" /></noscript>
-<link rel="stylesheet" href="css/style.css?v=rock-v86" />
+<link rel="stylesheet" href="css/style.css?v=rock-v87" />
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -59,9 +59,15 @@
   "areaServed": "RU",
   "email": "zavod@novoterskaya.ru",
   "telephone": "+7-87922-7-14-09",
+  "taxID": "2630016660",
+  "employee": {
+    "@type": "Person",
+    "name": "Которов Максим Анатольевич",
+    "jobTitle": "Генеральный директор"
+  },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "ул. Бештаугорская, 1",
+    "streetAddress": "ул. Бештаугорская, зд. 1",
     "addressLocality": "пос. Новотерский",
     "addressRegion": "Ставропольский край",
     "postalCode": "357242",
@@ -214,14 +220,14 @@
          Без JS остаётся poster — первый экран от ролика не зависит (ТЗ п.14). -->
     <video class="hero-video" id="heroVideo" width="1920" height="1080"
            muted playsinline preload="none"
-           poster="assets/photos/hero-bottle-poster.webp?v=rock-v86"
-           data-webm="assets/video/hero-bottle.webm?v=rock-v86"
-           data-mp4="assets/video/hero-bottle.mp4?v=rock-v86">
+           poster="assets/photos/hero-bottle-poster.webp?v=rock-v87"
+           data-webm="assets/video/hero-bottle.webm?v=rock-v87"
+           data-mp4="assets/video/hero-bottle.mp4?v=rock-v87">
       <!-- Совсем древний движок без <video>. AVIF-источника здесь нет намеренно:
            браузеры подтягивали и его, и webp из poster= — лишние килобайты в
            самый занятый момент загрузки, ровно когда рисуется первый экран. -->
       <picture>
-        <img src="assets/photos/hero-bottle-poster.webp?v=rock-v86" width="1920" height="1080" alt="" loading="eager" fetchpriority="high" />
+        <img src="assets/photos/hero-bottle-poster.webp?v=rock-v87" width="1920" height="1080" alt="" loading="eager" fetchpriority="high" />
       </picture>
     </video>
     <span class="hero-clouds"></span>
@@ -660,7 +666,7 @@
   <div class="final-composition">
     <figure class="final-bottle reveal" aria-label="Новотерская Целебная">
       <span class="final-bottle-halo" aria-hidden="true"></span>
-      <img src="assets/voda.webp?v=rock-v86" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
+      <img src="assets/voda.webp?v=rock-v87" width="1095" height="1436" alt="Новотерская Целебная" loading="lazy" />
       <span class="final-bottle-mist" aria-hidden="true"></span>
     </figure>
     <div class="final-inner reveal">
@@ -716,32 +722,49 @@
     <h2 class="section-title" id="contacts-title" data-en="Get in touch">Связаться с нами</h2>
   </div>
 
+  <!-- Две карточки вместо пяти одинаковых плиток: слева то, по чему звонят и
+       пишут, справа — юридические реквизиты завода. Значения помечены
+       data-contact, cms.js ищет их по имени, а не по порядку блоков. -->
   <div class="contacts-grid">
-    <div class="contact-block reveal">
-      <span class="contact-label" data-en="Manufacturer">Производитель</span>
-      <p class="contact-val" data-en="AO «Kavminvody»">АО «Кавминводы»</p>
-    </div>
-    <div class="contact-block reveal">
-      <span class="contact-label" data-en="Address">Адрес</span>
-      <p class="contact-val" data-en="357242, Stavropol Krai, Mineralovodsky district, Novotersky settlement, Beshtaugorskaya st., 1">
-        357242, Ставропольский край, Минераловодский р-н, пос. Новотерский, ул. Бештаугорская, 1
+    <div class="contact-card contact-card--reach reveal">
+      <span class="contact-card-label" data-en="Direct line">Прямая связь</span>
+      <p class="contact-lead">
+        <span class="contact-lead-label" data-en="Phone / fax">Телефон / факс</span>
+        <a class="contact-lead-link" href="tel:+78792271409" data-contact="phone">+7 (87922) 7-14-09</a>
       </p>
-    </div>
-    <div class="contact-block reveal">
-      <span class="contact-label" data-en="Phone / fax">Телефон / факс</span>
-      <p class="contact-val"><a href="tel:+78792271409">8 (87922) 7-14-09</a></p>
-    </div>
-    <div class="contact-block reveal">
-      <span class="contact-label" data-en="E-mail">E-mail</span>
-      <p class="contact-val"><a href="mailto:zavod@novoterskaya.ru">zavod@novoterskaya.ru</a></p>
-    </div>
-    <div class="contact-block reveal">
-      <span class="contact-label" data-en="Social">Соцсети</span>
-      <p class="contact-val contact-social">
-        <a href="https://t.me/novoterskayaru" target="_blank" rel="noopener">Telegram</a>
-        <a href="https://vk.com/novoterskayaru" target="_blank" rel="noopener">VK</a>
-        <a href="https://m.ok.ru/group/70000009159562" target="_blank" rel="noopener">OK</a>
+      <p class="contact-lead">
+        <span class="contact-lead-label" data-en="E-mail">Электронная почта</span>
+        <a class="contact-lead-link" href="mailto:zavod@novoterskaya.ru" data-contact="email">zavod@novoterskaya.ru</a>
       </p>
+      <div class="contact-social" data-contact="social">
+        <a class="contact-chip" href="https://t.me/novoterskayaru" target="_blank" rel="noopener">Telegram</a>
+        <a class="contact-chip" href="https://vk.com/novoterskayaru" target="_blank" rel="noopener">VK</a>
+        <a class="contact-chip" href="https://m.ok.ru/group/70000009159562" target="_blank" rel="noopener">OK</a>
+      </div>
+    </div>
+
+    <div class="contact-card contact-card--legal reveal">
+      <span class="contact-card-label" data-en="Company details">Реквизиты завода</span>
+      <dl class="contact-rows">
+        <div class="contact-row">
+          <dt data-en="Manufacturer">Производитель</dt>
+          <dd data-contact="company" data-en="AO «Kavminvody»">АО «Кавминводы»</dd>
+        </div>
+        <div class="contact-row">
+          <dt data-en="CEO">Генеральный директор</dt>
+          <dd data-contact="director" data-en="Maxim A. Kotorov">Которов Максим Анатольевич</dd>
+        </div>
+        <div class="contact-row">
+          <dt data-en="Registered address">Юридический адрес</dt>
+          <dd data-contact="address" data-en="Bldg 1, Beshtaugorskaya St., Novotersky settlement, Mineralovodsky district, Stavropol Krai, 357242">
+            357242, Ставропольский край, Минераловодский р-н, п. Новотерский, ул. Бештаугорская, зд. 1
+          </dd>
+        </div>
+        <div class="contact-row">
+          <dt data-en="Tax ID (INN)">ИНН</dt>
+          <dd class="contact-num" data-contact="inn">2630016660</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
@@ -799,8 +822,8 @@
   <button class="btn btn-sm" id="cookieOk" type="button" data-en="Accept">Принять</button>
 </div>
 
-<script src="js/nav.js?v=rock-v86" defer></script>
-<script src="js/main.js?v=rock-v86" defer></script>
-<script src="js/cms.js?v=rock-v86" defer></script>
+<script src="js/nav.js?v=rock-v87" defer></script>
+<script src="js/main.js?v=rock-v87" defer></script>
+<script src="js/cms.js?v=rock-v87" defer></script>
 </body>
 </html>

@@ -1271,29 +1271,108 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   margin: 0 auto;
   padding: 0 var(--gutter);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
+  grid-template-columns: 1.02fr 1fr;
+  gap: 1.4rem;
+  align-items: stretch;
 }
-.contact-block {
-  padding: 1.5rem 1.4rem;
+.contact-card {
+  position: relative;
+  padding: clamp(1.6rem, 3vw, 2.3rem);
   background: #fff;
-  border: 1px solid rgba(20,49,63,0.06);
-  border-radius: var(--r);
+  border: 1px solid rgba(20,49,63,0.07);
+  border-radius: var(--r-lg);
   box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
-.contact-label {
+/* Полоска сверху — тот же приём, что у карточек наград: холодная вода слева,
+   тёплое золото справа. */
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--glacier), var(--gold));
+  opacity: 0.85;
+}
+/* Карточки тянутся по высоте самой длинной — у «прямой связи» строк меньше,
+   поэтому кнопки соцсетей прижаты к низу, а не висят в середине пустоты. */
+.contact-card--reach {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(165deg, #fff 45%, var(--paper-2));
+}
+.contact-card-label {
   display: block;
   font-family: var(--ff-label);
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.15rem;
 }
-.contact-val { font-size: 0.98rem; line-height: 1.5; color: var(--deep); margin: 0; }
-.contact-val a { color: var(--glacier-d); }
-.contact-val a:hover { text-decoration: underline; }
-.contact-social { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* --- левая карточка: телефон и почта крупно --- */
+.contact-lead { margin: 0 0 1.5rem; }
+.contact-lead-label {
+  display: block;
+  font-family: var(--ff-label);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.contact-lead-link {
+  display: inline-block;
+  font-family: var(--ff-serif);
+  font-size: clamp(1.25rem, 2.3vw, 1.7rem);
+  line-height: 1.25;
+  color: var(--deep);
+  word-break: break-word;
+  border-bottom: 1px solid rgba(62,122,152,0.28);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.contact-lead-link:hover { color: var(--glacier-d); border-color: var(--glacier-d); }
+.contact-social { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; padding-top: 1.6rem; }
+.contact-chip {
+  font-family: var(--ff-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--glacier-d);
+  padding: 0.5rem 1.05rem;
+  border: 1px solid rgba(62,122,152,0.28);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.7);
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.contact-chip:hover { color: #fff; background: var(--glacier-d); border-color: var(--glacier-d); }
+
+/* --- правая карточка: реквизиты строками --- */
+.contact-rows { margin: 0; }
+.contact-row {
+  display: grid;
+  grid-template-columns: 11.5rem 1fr;
+  gap: 0.4rem 1.2rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid rgba(20,49,63,0.08);
+}
+.contact-row:first-child { border-top: 0; padding-top: 0; }
+.contact-row dt {
+  font-family: var(--ff-label);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 0.18rem;
+}
+.contact-row dd {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--deep);
+}
+.contact-num { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
 
 /* ---------- 6 · TRUST ---------- */
 .trust { padding: clamp(5rem, 9vw, 8rem) 0; }
@@ -2304,7 +2383,9 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-stats { grid-template-columns: repeat(3, 1fr); }
   .docs-grid { grid-template-columns: repeat(2, 1fr); }
-  .contacts-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Две карточки контактов в ряд перестают помещаться раньше остальных сеток:
+     у реквизитов слева колонка подписей в 11,5rem. */
+  .contacts-grid { grid-template-columns: 1fr; }
   .collection-track { grid-template-columns: repeat(2, 1fr); }
   .final-composition { grid-template-columns: minmax(230px, 0.65fr) minmax(390px, 1.35fr); }
   .final-bottle { min-height: 430px; }
@@ -2349,6 +2430,8 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   .about-inner { grid-template-columns: 1fr; }
   .where-grid { grid-template-columns: 1fr; }
   .contacts-grid { grid-template-columns: 1fr; }
+  .contact-row { grid-template-columns: 1fr; gap: 0.15rem; }
+  .contact-row dt { padding-top: 0; }
   .collection-track {
     grid-auto-flow: column;
     grid-template-columns: none;
