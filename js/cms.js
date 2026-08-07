@@ -121,7 +121,9 @@
       var item = navItems[index];
       if (!item) return;
       var isGroup = node.classList.contains("nav-item");
-      var label = isGroup ? one(".nav-label", node) : node;
+      /* Подпись всегда во вложенном .nav-label: рядом с ней лежит иконка, и
+         запись текста в сам пункт стёрла бы её. */
+      var label = one(".nav-label", node) || node;
       bilingual(label, item.label_ru, item.label_en);
       if (!isGroup) {
         setLink(node, item.url);
@@ -134,6 +136,19 @@
         setLink(link, sub.url);
       });
     });
+
+    /* «Где купить» вынесена из меню в кнопку справа, поэтому и в site.json
+       она лежит отдельным полем — иначе сдвинулись бы номера пунктов.
+       Экземпляров в разметке два (в плашке и в панели меню), но виден всегда
+       один — правим оба, чтобы после переименования в админке они не
+       разошлись. */
+    var cta = header.cta;
+    if (cta) {
+      all(".header-cta").forEach(function (ctaLink) {
+        bilingual(ctaLink, cta.label_ru, cta.label_en);
+        setLink(ctaLink, cta.url);
+      });
+    }
 
     var hero = data.hero || {};
     var heroTitle = one("#hero-title");

@@ -455,6 +455,21 @@
   var langToggle = document.getElementById("langToggle");
   var htmlEl = document.documentElement;
   var ruStore = new WeakMap();
+  var ruAttrs = new WeakMap();
+
+  /* Атрибуты переводим тем же приёмом, что internal.js на внутренних
+     страницах: у логотипа в шапке подпись живёт в aria-label и alt, а не в
+     тексте, и без этого она оставалась бы русской на английской версии. */
+  function setAttrLang(selector, attribute, dataAttribute, toEn) {
+    document.querySelectorAll(selector).forEach(function (el) {
+      var store = ruAttrs.get(el) || {};
+      if (!(attribute in store)) {
+        store[attribute] = el.getAttribute(attribute) || "";
+        ruAttrs.set(el, store);
+      }
+      el.setAttribute(attribute, toEn ? el.getAttribute(dataAttribute) : store[attribute]);
+    });
+  }
 
   function setLang(lang) {
     var toEn = lang === "en";
@@ -465,6 +480,8 @@
     document.querySelectorAll("[data-alt-en]").forEach(function (el) {
       el.setAttribute("alt", toEn ? el.getAttribute("data-alt-en") : (el.getAttribute("data-alt-ru") || ""));
     });
+    setAttrLang("[data-en-aria-label]", "aria-label", "data-en-aria-label", toEn);
+    setAttrLang("[data-en-alt]", "alt", "data-en-alt", toEn);
     htmlEl.setAttribute("lang", toEn ? "en" : "ru");
     if (langToggle) {
       langToggle.querySelectorAll(".lang-opt").forEach(function (o) {

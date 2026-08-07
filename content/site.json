@@ -85,16 +85,16 @@
         "url": "#origin"
       },
       {
-        "label_ru": "Где купить",
-        "label_en": "Where to buy",
-        "url": "buy.html"
-      },
-      {
         "label_ru": "Контакты",
         "label_en": "Contacts",
         "url": "#contacts"
       }
-    ]
+    ],
+    "cta": {
+      "label_ru": "Где купить",
+      "label_en": "Where to buy",
+      "url": "buy.html"
+    }
   },
   "hero": {
     "brand_ru": "Новотерская",

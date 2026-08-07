@@ -38,9 +38,16 @@
   --r: 16px;
   --r-lg: 26px;
 
-  /* Высота фиксированной шапки: мобильная панель меню отступает на неё,
-     чтобы не выезжать из-под логотипа. */
-  --header-h: 68px;
+  /* Плашка шапки: отступ от краёв экрана и её собственный радиус. Панель меню
+     на планшете встаёт по этим же значениям, поэтому они здесь, а не в
+     .site-header. */
+  --plate-x: clamp(12px, 2.2vw, 28px);
+  --plate-y: 12px;
+  --r-plate: 24px;
+
+  /* Полная высота, которую занимает шапка (отступ сверху + плашка): мобильная
+     панель меню отступает на неё, чтобы не выезжать из-под логотипа. */
+  --header-h: 80px;
 
   /* Elemental gradient used as the metallic shimmer accent */
   --shimmer: linear-gradient(100deg, var(--silver), #fff 42%, var(--gold) 70%, var(--silver));
@@ -186,26 +193,36 @@ picture { display: contents; }
   z-index: 2;
 }
 /* ---------- Header ---------- */
+/* Шапка — не полоса во всю ширину, а плашка, висящая с отступом от краёв.
+   Так она читается отдельным предметом поверх видео первого экрана, а её
+   скруглённый низ не режет кадр пополам. Отступ и радиус вынесены в
+   переменные: их же берёт выезжающая панель меню, иначе на планшете панель
+   и плашка встали бы по разным линиям. */
 .site-header {
   position: fixed;
-  inset: 0 0 auto 0;
+  inset: var(--plate-y) var(--plate-x) auto;
   z-index: 50;
-  display: flex;
+  /* Три колонки, а не space-between: логотип и правая группа разной ширины,
+     и при выключке по краям меню съезжало от центра плашки на четыре десятка
+     пикселей. Крайние колонки равны, поэтому «auto» посередине всегда стоит
+     ровно по оси. */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.9rem var(--gutter);
-  background: rgba(251,252,254,0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.4s, background 0.4s, box-shadow 0.4s;
+  gap: clamp(0.6rem, 2vw, 2rem);
+  padding: 0.5rem 0.55rem 0.5rem clamp(0.85rem, 1.5vw, 1.4rem);
+  border-radius: var(--r-plate);
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  box-shadow: 0 10px 30px -20px rgba(20,49,63,0.5), 0 0 0 1px rgba(20,49,63,0.05);
+  transition: background 0.4s, box-shadow 0.4s;
 }
 .site-header.scrolled {
-  border-bottom-color: rgba(20,49,63,0.08);
-  box-shadow: 0 6px 24px -18px rgba(20,49,63,0.4);
+  background: #fff;
+  box-shadow: 0 18px 40px -24px rgba(20,49,63,0.55), 0 0 0 1px rgba(20,49,63,0.06);
 }
-.brand { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--deep); }
+.brand { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--deep); min-width: 0; }
 .brand-mark { height: 40px; width: auto; display: block; }
 .brand-col { display: flex; flex-direction: column; line-height: 1.15; white-space: nowrap; }
 .brand-name {
@@ -239,46 +256,56 @@ picture { display: contents; }
   background: currentColor;
   opacity: 0.55;
 }
-.site-nav { display: flex; flex-wrap: nowrap; align-items: center; gap: clamp(0.9rem, 1.6vw, 1.6rem); }
-.nav-item { position: relative; }
-/* Верхний уровень: и ссылки, и кнопки с подменю выглядят одинаково —
-   разницу выдаёт только галочка. */
+.site-nav { display: flex; flex-wrap: nowrap; align-items: stretch; gap: clamp(0.1rem, 0.9vw, 0.7rem); }
+.nav-item { position: relative; display: flex; }
+/* Верхний уровень: пиктограмма над подписью. Прописная подпись вместо капса —
+   в два яруса капс с разрядкой становится шире иконки и связка распадается на
+   две несвязанные строки. */
 .nav-link {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.32rem;
+  justify-content: center;
+  gap: 0.28rem;
   font-family: inherit;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
   white-space: nowrap;
-  color: var(--muted);
+  color: var(--ink);
   background: none;
   border: none;
+  border-radius: 13px;
   cursor: pointer;
   position: relative;
-  padding: 0.2rem 0;
-  transform: scale(0.94);
-  transform-origin: center;
-  transition: color 0.3s ease, transform 0.3s cubic-bezier(.2,.7,.3,1);
+  padding: 0.32rem 0.62rem;
+  transition: color 0.3s ease, background 0.3s ease;
 }
+.nav-ico { display: block; color: var(--glacier-d); transition: color 0.3s, transform 0.35s cubic-bezier(.2,.7,.3,1); }
+.nav-ico svg { display: block; width: 22px; height: 22px; }
+.nav-text { display: inline-flex; align-items: center; gap: 0.26rem; }
 .nav-link:hover,
 .nav-item:hover > .nav-toggle,
 .nav-toggle[aria-expanded="true"] {
-  color: var(--ink);
-  transform: scale(1.04);
+  color: var(--deep);
+  background: var(--paper-2);
 }
+/* Иконка приподнимается на наведении — единственное движение в плашке,
+   поэтому подпись остаётся на месте и строка пунктов не «дышит». */
+.nav-link:hover .nav-ico,
+.nav-item:hover > .nav-toggle .nav-ico,
+.nav-toggle[aria-expanded="true"] .nav-ico { transform: translateY(-2px); }
 .nav-link[aria-current="page"] { color: var(--deep); }
 .nav-caret {
   width: 5px;
   height: 5px;
   border-right: 1.4px solid currentColor;
   border-bottom: 1.4px solid currentColor;
-  transform: translateY(-1px) rotate(45deg);
+  transform: translateY(-2px) rotate(45deg);
   transition: transform 0.3s cubic-bezier(.2,.7,.3,1);
 }
-.nav-toggle[aria-expanded="true"] .nav-caret { transform: translateY(1px) rotate(-135deg); }
+.nav-toggle[aria-expanded="true"] .nav-caret { transform: translateY(0) rotate(-135deg); }
 
 /* Подменю. visibility, а не display: анимация появления и отсутствие в
    фокусной последовательности, пока список закрыт. */
@@ -367,10 +394,25 @@ picture { display: contents; }
 .nav-burger[aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; }
 .nav-burger[aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.6px) rotate(-45deg); }
 
-.header-actions { display: flex; align-items: center; gap: 1rem; }
+.header-actions { display: flex; align-items: center; justify-content: flex-end; gap: clamp(0.45rem, 1vw, 0.9rem); }
+/* Кнопка в плашке набрана строчными, как и подписи пунктов: капс с разрядкой
+   рядом с «Источник» и «Контакты» выглядел бы заимствованным с другого сайта. */
+.header-cta {
+  --_pad: 0.85em 1.55em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  white-space: nowrap;
+}
+/* Второй экземпляр той же кнопки лежит в конце меню и до появления бургера
+   не показывается. */
+.nav-cta { display: none; }
 .lang-toggle {
   display: inline-flex;
   gap: 0.35rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 100px;
   background: none;
   border: none;
   font-family: var(--ff-label);
@@ -378,7 +420,9 @@ picture { display: contents; }
   letter-spacing: 0.08em;
   color: var(--muted);
   cursor: pointer;
+  transition: background 0.3s;
 }
+.lang-toggle:hover { background: var(--paper-2); }
 .lang-opt { transition: color 0.3s; }
 .lang-opt.is-active { color: var(--deep); font-weight: 500; }
 .lang-sep { color: var(--silver); }
@@ -2280,8 +2324,10 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
    горизонтальное, и лишние полсотни пикселей у логотипа его ломают. */
 @media (max-width: 1279px) {
   .site-header .brand-tag { font-size: 0.4rem; letter-spacing: 0.1em; gap: 0.3em; }
-  .site-nav { gap: 0.9rem; }
-  .site-nav a { font-size: 0.66rem; letter-spacing: 0.07em; }
+  .site-nav { gap: 0.05rem; }
+  .nav-link { font-size: 0.64rem; padding-inline: 0.42rem; }
+  .nav-ico svg { width: 20px; height: 20px; }
+  .header-cta { --_pad: 0.8em 1.2em; font-size: 0.68rem; }
 }
 /* tablet 768–1023 */
 @media (max-width: 1023px) {
@@ -2289,50 +2335,88 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
      Раньше здесь скрывалось всё кроме «Каталога» — из-за этого на 320–390px
      название бренда налезало на единственную оставшуюся ссылку. */
   .nav-burger { display: inline-flex; }
+  /* Меню уходит из потока в панель, средняя колонка сетки схлопывается —
+     возвращаем выключку по краям, иначе правая группа встала бы по левому
+     краю своей трети. */
+  .site-header { display: flex; justify-content: space-between; }
+  /* У плашки есть backdrop-filter, а значит она сама служит containing block
+     для fixed-потомков: 0 по краям здесь означает «ровно по ширине плашки»,
+     а не по экрану, и панель не нужно выравнивать вручную. Верх заходит под
+     плашку на радиус — её скруглённый низ заливается белым панели, и вместе
+     они читаются одним выросшим вниз прямоугольником. */
   .site-nav {
     position: fixed;
-    inset: 0 0 auto 0;
+    inset: calc(100% - var(--r-plate)) 0 auto 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: calc(var(--header-h, 68px) + 0.5rem) var(--gutter) 1.6rem;
-    background: rgba(251,252,254,0.97);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(20,49,63,0.09);
+    padding: calc(var(--r-plate) + 0.5rem) 1.2rem 1.3rem;
+    background: #fff;
+    border-radius: 0 0 var(--r-plate) var(--r-plate);
     box-shadow: 0 26px 50px -30px rgba(20,49,63,0.5);
     /* Панель едет вверх за пределы экрана, а не гасится display — так у неё
        есть анимация, и пока она закрыта, ссылки выпадают из фокуса. */
     transform: translateY(-102%);
     visibility: hidden;
     transition: transform 0.42s cubic-bezier(.2,.7,.3,1), visibility 0.42s;
-    max-height: 100vh;
+    max-height: calc(100vh - var(--header-h) - 1rem);
     overflow-y: auto;
     z-index: -1;
   }
   .site-header.nav-open .site-nav { transform: translateY(0); visibility: visible; }
-  .nav-item { position: static; }
-  .nav-link {
-    justify-content: space-between;
-    width: 100%;
-    padding: 0.95rem 0;
+  /* Пока панель открыта, тень плашки лежала бы поперёк неё светлой полосой. */
+  .site-header.nav-open { box-shadow: 0 0 0 1px rgba(20,49,63,0.06); }
+  .nav-item { position: static; display: block; }
+  /* «Где купить» переезжает из плашки в панель. В строке с логотипом, языком
+     и бургером на кнопку остаётся полсотни пикселей, и три её слова встают
+     столбиком; в панели она разворачивается во всю ширину. Видна всегда
+     ровно одна из двух — вторая скрыта. */
+  .header-actions .header-cta { display: none; }
+  .nav-cta {
+    display: block;
+    margin-top: 1.1rem;
+    padding: 0.95rem 1rem;
+    border-radius: 100px;
+    text-align: center;
     font-size: 0.86rem;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--glacier-d), var(--glacier));
+    box-shadow: var(--shadow-soft);
+  }
+  /* В списке иконка встаёт слева от подписи: два яруса нужны только тесной
+     горизонтальной строке, а в столбце они растянули бы меню на два экрана. */
+  .nav-link {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0.85rem 0.3rem;
+    border-radius: 12px;
+    font-size: 0.86rem;
+    letter-spacing: 0.02em;
     color: var(--deep);
-    transform: none;
     border-bottom: 1px solid rgba(20,49,63,0.07);
   }
   .nav-link:hover,
   .nav-item:hover > .nav-toggle,
-  .nav-toggle[aria-expanded="true"] { transform: none; }
-  .nav-caret { width: 6px; height: 6px; }
+  .nav-toggle[aria-expanded="true"] { background: none; }
+  .nav-link:hover .nav-ico,
+  .nav-item:hover > .nav-toggle .nav-ico,
+  .nav-toggle[aria-expanded="true"] .nav-ico { transform: none; }
+  .nav-text { flex: 1; justify-content: space-between; }
+  .nav-ico svg { width: 20px; height: 20px; }
+  .nav-caret { width: 6px; height: 6px; transform: translateY(-2px) rotate(45deg); }
   /* В панели подменю — аккордеон: раскрывается только по нажатию, наведение
      на тач-экране «залипает» и открывало бы список само. */
   .nav-sub {
     position: static;
     min-width: 0;
     margin: 0;
-    padding: 0 0 0 1rem;
+    /* Отступ равен ширине иконки с зазором — подпункты встают ровно под
+       подписью родителя, а не под его пиктограммой. */
+    padding: 0 0 0 2rem;
     background: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -2403,9 +2487,9 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 /* mobile 320–767 */
 @media (max-width: 767px) {
   :root { --gutter: 20px; }
-  /* Кнопки в шапке больше нет — остаётся переключатель языка и «Каталог» в меню. */
-  .header-actions { gap: 0.7rem; }
-  .header-actions .btn { --_pad: 0.62em 0.95em; font-size: 0.62rem; }
+  /* В плашке остаются логотип, язык и бургер — кнопка уже в панели меню. */
+  .header-actions { gap: 0.4rem; }
+  .lang-toggle { padding: 0.3rem 0.2rem; font-size: 0.68rem; }
   /* Антиква Prata шире прежней: на 320–414px «НОВОТЕРСКАЯ» дотягивалась до
      переключателя языка и налезала на него. Знак и название ужимаются вместе
      с шириной экрана, nowrap держит название одной строкой. */
@@ -2722,10 +2806,11 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
    Legal / document pages (privacy policy)
    ================================================================== */
 .legal-page { background: var(--paper); }
+/* На внутренних страницах под плашкой нет ни видео, ни фотографии — полупрозрачное
+   стекло там просто мутит ровный фон, поэтому плашка сразу плотная. */
 .site-header.is-solid {
-  background: rgba(251,252,254,0.92);
-  border-bottom-color: rgba(20,49,63,0.08);
-  box-shadow: 0 6px 24px -18px rgba(20,49,63,0.4);
+  background: #fff;
+  box-shadow: 0 18px 40px -24px rgba(20,49,63,0.55), 0 0 0 1px rgba(20,49,63,0.06);
 }
 .legal {
   padding: calc(var(--gutter) + 4.5rem) var(--gutter) 5rem;
