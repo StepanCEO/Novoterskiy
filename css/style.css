@@ -3259,6 +3259,7 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
 .retailer-logo img[src*="lenta"] { width: 118px; }
 .retailer-logo img[src*="uteka"] { width: 132px; }
 .retailer-logo img[src*="kuper"] { width: 122px; }
+.retailer-logo img[src*="globus"] { width: auto; height: 58px; }
 .retailer-name {
   margin-top: 0.45rem;
   font-family: var(--ff-display);
@@ -3455,6 +3456,7 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   .retailer-logo img[src*="lenta"] { width: 96px; }
   .retailer-logo img[src*="uteka"] { width: 108px; }
   .retailer-logo img[src*="kuper"] { width: 100px; }
+  .retailer-logo img[src*="globus"] { width: auto; height: 48px; }
   .retailer-name { font-size: 0.92rem; }
   .retailer-action { font-size: 0.64rem; letter-spacing: 0.05em; }
   .shop { grid-template-columns: 1fr; padding: 1.1rem; }
