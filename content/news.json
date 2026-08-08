@@ -215,6 +215,7 @@
       ]
     },
     {
+      "id": "osvyaschenie-chasovni",
       "date": "2025-09-22",
       "title_ru": "Великое освящение часовни святой мученицы Натальи",
       "title_en": "The great consecration of the chapel of Saint Natalia the Martyr",
@@ -229,13 +230,20 @@
         "This day will remain in the history of our plant as a symbol of continuity between generations, of loyalty to tradition and of deep respect for the legacy of those who stood at the origins of our common cause."
       ],
       "photo": {
-        "src": "assets/news/2025-otkrytie-chasovni-1",
-        "w": 1000,
-        "h": 666,
-        "alt_ru": "Священнослужитель окропляет собравшихся святой водой, на заднем плане гора",
-        "alt_en": "A priest sprinkles the gathering with holy water, a mountain in the background"
+        "src": "assets/news/2025-otkrytie-chasovni-glavnoe",
+        "w": 1054,
+        "h": 1492,
+        "alt_ru": "Часовня святой мученицы Натальи: тёмный кирпич, золотой купол с крестом, открытая дверь",
+        "alt_en": "The chapel of Saint Natalia the Martyr: dark brick, a golden dome with a cross, the door standing open"
       },
       "gallery": [
+        {
+          "src": "assets/news/2025-otkrytie-chasovni-1",
+          "w": 1000,
+          "h": 666,
+          "alt_ru": "Священнослужитель окропляет собравшихся святой водой, на заднем плане гора",
+          "alt_en": "A priest sprinkles the gathering with holy water, a mountain in the background"
+        },
         {
           "src": "assets/news/2025-otkrytie-chasovni-2",
           "w": 537,

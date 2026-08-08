@@ -3742,6 +3742,16 @@ html[lang="en"] .hero-brand { font-size: 1.28em; }
   background: rgba(255,255,255,0.62);
   border: 1px solid rgba(62,122,152,0.18);
   border-radius: 16px;
+  /* На запись ссылаются снаружи (кнопка «Фоторепортаж» в хронике). Без отступа
+     шапка накрыла бы дату и заголовок — человек попал бы точно в новость и не
+     понял, в какую. */
+  scroll-margin-top: calc(var(--header-h) + 1.2rem);
+}
+/* Пришли по прямой ссылке — подсвечиваем нужную запись, иначе в ленте из трёх
+   десятков одинаковых карточек непонятно, ради какой всё затевалось. */
+.news-item.is-targeted {
+  border-color: rgba(62,122,152,0.55);
+  box-shadow: 0 0 0 3px rgba(62,122,152,0.12);
 }
 .news-photo { display: block; width: 232px; }
 .news-photo img {

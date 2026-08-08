@@ -40,6 +40,16 @@
     return url;
   }
 
+  /* Якорь записи. На неё ссылаются с других страниц (например, из хроники на
+     history.html), поэтому id берём из поля записи, а не из её номера в ленте:
+     номер меняется, как только выйдет новая новость. Разрешаем только
+     латиницу, цифры и дефис — остальное в CSS-селекторе пришлось бы
+     экранировать. */
+  function anchorOf(item) {
+    var id = String(item && item.id != null ? item.id : "").trim();
+    return /^[a-z0-9][a-z0-9-]*$/i.test(id) ? "post-" + id : "";
+  }
+
   var MONTHS_RU = ["января", "февраля", "марта", "апреля", "мая", "июня",
     "июля", "августа", "сентября", "октября", "ноября", "декабря"];
   /* Именительный падеж нужен, когда числа нет: «октябрь 2025», не «октября». */
@@ -228,7 +238,8 @@
           titleRu + "</span></summary><div class=\"news-rest\">" + rest + "</div></details>"
         : "");
 
-      return '<li class="news-item">' + lead +
+      var anchor = anchorOf(item);
+      return '<li class="news-item"' + (anchor ? ' id="' + esc(anchor) + '"' : "") + ">" + lead +
         '<div class="news-body">' + time + title + body + "</div></li>";
     }).join("") + "</ul>";
 
@@ -239,7 +250,27 @@
     /* Записи дорисованы после старта, поэтому переключатель языка их ещё не
        видел: при выбранном EN они остались бы по-русски. */
     document.dispatchEvent(new CustomEvent("novo:contentadded", { detail: { root: feed } }));
+
+    /* Тем же запозданием объясняется и хэш: браузер отработал переход по
+       адресу вида news.html#post-…, когда ленты ещё не существовало, и никуда
+       не прокрутил. Доводим сами. */
+    focusAnchored();
   }
+
+  /* Ссылка снаружи ведёт не на ленту вообще, а на конкретную запись — значит
+     человек пришёл читать именно её: раскрываем «Читать полностью» сразу. */
+  function focusAnchored() {
+    var id = String(window.location.hash || "").slice(1);
+    if (!/^post-[a-z0-9-]+$/i.test(id)) return;
+    var item = document.getElementById(id);
+    if (!item) return;
+    var full = item.querySelector(".news-full");
+    if (full) full.open = true;
+    item.classList.add("is-targeted");
+    item.scrollIntoView({ block: "start" });
+  }
+
+  window.addEventListener("hashchange", focusAnchored);
 
   fetch("content/news.json", { cache: "no-cache" })
     .then(function (response) {
