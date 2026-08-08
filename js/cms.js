@@ -309,7 +309,21 @@
     sectionHead(one("#contacts"), data.contacts || {}, false);
 
     var footer = data.footer || {};
-    bilingual(one(".footer-brand p"), footer.text_ru, footer.text_en);
+    /* Слоган набран треугольником — двумя строками, как на первом экране, — и
+       строки должны остаться строками. bilingual() пишет textContent и снёс бы
+       разметку, поэтому здесь свой разбор; text_ru/text_en остаются запасным
+       вариантом на случай, если раздельных строк в JSON нет. */
+    var footerSlogan = one(".footer-brand p");
+    if (footerSlogan && footer.line_1_ru != null && footer.line_2_ru != null) {
+      var footerLines = function (first, second) {
+        return '<span class="footer-line">' + esc(first || "") + "</span> " +
+               '<span class="footer-line">' + esc(second || "") + "</span>";
+      };
+      footerSlogan.innerHTML = footerLines(footer.line_1_ru, footer.line_2_ru);
+      footerSlogan.setAttribute("data-en", footerLines(footer.line_1_en, footer.line_2_en));
+    } else {
+      bilingual(footerSlogan, footer.text_ru, footer.text_en);
+    }
     all(".footer-nav a").forEach(function (node, index) {
       var item = (footer.nav || [])[index];
       if (!item) return;

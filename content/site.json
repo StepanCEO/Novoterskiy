@@ -111,10 +111,10 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/photos/hero-bottle-poster.webp?v=rock-v91",
-    "video_webm": "assets/video/hero-bottle.webm?v=rock-v91",
-    "video_mp4": "assets/video/hero-bottle.mp4?v=rock-v91",
-    "video_poster": "assets/photos/hero-bottle-poster.webp?v=rock-v91"
+    "background": "assets/photos/hero-bottle-poster.webp?v=rock-v92",
+    "video_webm": "assets/video/hero-bottle.webm?v=rock-v92",
+    "video_mp4": "assets/video/hero-bottle.mp4?v=rock-v92",
+    "video_poster": "assets/photos/hero-bottle-poster.webp?v=rock-v92"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -384,7 +384,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/voda.webp?v=rock-v91",
+    "bottle": "assets/voda.webp?v=rock-v92",
     "logo": "assets/logo-mark.webp"
   },
   "where": {
@@ -404,6 +404,10 @@
   "footer": {
     "text_ru": "Рожденная ледниками. Закалённая сердцем земли.",
     "text_en": "Born of glaciers. Tempered by the heart of the earth.",
+    "line_1_ru": "Рожденная ледниками.",
+    "line_1_en": "Born of glaciers.",
+    "line_2_ru": "Закалённая сердцем земли.",
+    "line_2_en": "Tempered by the heart of the earth.",
     "nav": [
       {
         "label_ru": "Продукция",
