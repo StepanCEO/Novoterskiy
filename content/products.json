@@ -51,13 +51,22 @@
           "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - tray"
         },
         {
+          "photo": "assets/products/celebnaya-glass-elita-05-7.webp",
+          "photo_width": 826,
+          "photo_height": 815,
+          "caption_ru": "Короб «Элита», 12 бутылок",
+          "caption_en": "Elita tray of 12",
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло «Элита» — короб на 12 бутылок",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, Elita glass bottle - tray of 12"
+        },
+        {
           "photo": "assets/products/celebnaya-glass-euro-05.webp",
           "photo_width": 900,
           "photo_height": 772,
-          "caption_ru": "Короб, 12 бутылок",
-          "caption_en": "Tray of 12",
-          "alt_ru": "Новотерская Целебная 0,5 л, стекло — короб, 12 бутылок",
-          "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - tray of 12"
+          "caption_ru": "Короб «Евро», 12 бутылок",
+          "caption_en": "Euro tray of 12",
+          "alt_ru": "Новотерская Целебная 0,5 л, стекло «Евро» — короб на 12 бутылок",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, Euro glass bottle - tray of 12"
         },
         {
           "photo": "assets/products/celebnaya-glass-elita-05-6.webp",
@@ -138,6 +147,15 @@
           "caption_en": "Pack, angled",
           "alt_ru": "Новотерская Целебная 0,5 л, ПЭТ — упаковка, ракурс",
           "alt_en": "Novoterskaya Tselebnaya 0.5 L, PET bottle - pack, angled"
+        },
+        {
+          "photo": "assets/products/celebnaya-pet-05-8.webp",
+          "photo_width": 234,
+          "photo_height": 815,
+          "caption_ru": "Контрэтикетка",
+          "caption_en": "Back label",
+          "alt_ru": "Новотерская Целебная 0,5 л, ПЭТ — контрэтикетка с составом",
+          "alt_en": "Novoterskaya Tselebnaya 0.5 L, PET bottle - back label"
         }
       ],
       "buy_url": "buy.html"
@@ -156,6 +174,15 @@
       "photo_caption_ru": "Бутылка",
       "photo_caption_en": "Bottle",
       "gallery": [
+        {
+          "photo": "assets/products/celebnaya-pet-1-4.webp",
+          "photo_width": 214,
+          "photo_height": 815,
+          "caption_ru": "Бутылка, лицевая этикетка",
+          "caption_en": "Bottle, front label",
+          "alt_ru": "Новотерская Целебная 1 л, ПЭТ — лицевая этикетка со знаком КМВ",
+          "alt_en": "Novoterskaya Tselebnaya 1 L, PET bottle - front label"
+        },
         {
           "photo": "assets/products/celebnaya-pet-1-2.webp",
           "photo_width": 625,
