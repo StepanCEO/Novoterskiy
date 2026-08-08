@@ -2353,132 +2353,8 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   .nav-ico svg { width: 20px; height: 20px; }
   .header-cta { --_pad: 0.8em 1.2em; font-size: 0.68rem; }
 }
-/* tablet 768–1023 */
+/* tablet 768–1023 — только раскладка; меню остаётся горизонтальным */
 @media (max-width: 1023px) {
-  /* Пять пунктов в строку не влезают: меню уезжает в панель под бургер.
-     Раньше здесь скрывалось всё кроме «Каталога» — из-за этого на 320–390px
-     название бренда налезало на единственную оставшуюся ссылку. */
-  .nav-burger { display: inline-flex; }
-  /* Меню уходит из потока в панель, средняя колонка сетки схлопывается —
-     возвращаем выключку по краям, иначе правая группа встала бы по левому
-     краю своей трети. */
-  .site-header { display: flex; justify-content: space-between; }
-  /* У плашки есть backdrop-filter, а значит она сама служит containing block
-     для fixed-потомков: 0 по краям здесь означает «ровно по ширине плашки»,
-     а не по экрану, и панель не нужно выравнивать вручную. Верх заходит под
-     плашку на радиус — её скруглённый низ заливается белым панели, и вместе
-     они читаются одним выросшим вниз прямоугольником. */
-  .site-nav {
-    position: fixed;
-    inset: calc(100% - var(--r-plate)) 0 auto 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: calc(var(--r-plate) + 0.5rem) 1.2rem 1.3rem;
-    background: #fff;
-    border-radius: 0 0 var(--r-plate) var(--r-plate);
-    box-shadow: 0 26px 50px -30px rgba(20,49,63,0.5);
-    /* Панель едет вверх за пределы экрана, а не гасится display — так у неё
-       есть анимация, и пока она закрыта, ссылки выпадают из фокуса. */
-    transform: translateY(-102%);
-    visibility: hidden;
-    transition: transform 0.42s cubic-bezier(.2,.7,.3,1), visibility 0.42s;
-    max-height: calc(100vh - var(--header-h) - 1rem);
-    overflow-y: auto;
-    z-index: -1;
-  }
-  .site-header.nav-open .site-nav { transform: translateY(0); visibility: visible; }
-  /* Пока панель открыта, тень плашки лежала бы поперёк неё светлой полосой. */
-  .site-header.nav-open { box-shadow: 0 0 0 1px rgba(20,49,63,0.06); }
-  .nav-item { position: static; display: block; }
-  /* «Где купить» переезжает из плашки в панель. В строке с логотипом, языком
-     и бургером на кнопку остаётся полсотни пикселей, и три её слова встают
-     столбиком; в панели она разворачивается во всю ширину. Видна всегда
-     ровно одна из двух — вторая скрыта. */
-  .header-actions .header-cta { display: none; }
-  .nav-cta {
-    display: block;
-    margin-top: 1.1rem;
-    padding: 0.95rem 1rem;
-    border-radius: 100px;
-    text-align: center;
-    font-size: 0.86rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: #fff;
-    background: linear-gradient(135deg, var(--glacier-d), var(--glacier));
-    box-shadow: var(--shadow-soft);
-  }
-  /* В списке иконка встаёт слева от подписи: два яруса нужны только тесной
-     горизонтальной строке, а в столбце они растянули бы меню на два экрана. */
-  .nav-link {
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 0.8rem;
-    width: 100%;
-    padding: 0.85rem 0.3rem;
-    border-radius: 12px;
-    font-size: 0.86rem;
-    letter-spacing: 0.02em;
-    color: var(--deep);
-    border-bottom: 1px solid rgba(20,49,63,0.07);
-  }
-  .nav-link:hover,
-  .nav-item:hover > .nav-toggle,
-  .nav-toggle[aria-expanded="true"] { background: none; }
-  .nav-link:hover .nav-ico,
-  .nav-item:hover > .nav-toggle .nav-ico,
-  .nav-toggle[aria-expanded="true"] .nav-ico { transform: none; }
-  .nav-text { flex: 1; justify-content: space-between; }
-  .nav-ico svg { width: 20px; height: 20px; }
-  .nav-caret { width: 6px; height: 6px; transform: translateY(-2px) rotate(45deg); }
-  /* В панели подменю — аккордеон: раскрывается только по нажатию, наведение
-     на тач-экране «залипает» и открывало бы список само. */
-  .nav-sub {
-    position: static;
-    min-width: 0;
-    margin: 0;
-    /* Отступ равен ширине иконки с зазором — подпункты встают ровно под
-       подписью родителя, а не под его пиктограммой. */
-    padding: 0 0 0 2rem;
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    transform: none;
-    opacity: 1;
-    visibility: hidden;
-    pointer-events: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s 0.36s;
-  }
-  .nav-sub::before { content: none; }
-  /* Mobile accordion: closed by default, opened only by tapping the parent
-     category. display:none/block is intentionally used here instead of a
-     max-height animation so iOS Safari cannot get into an inverted state. */
-  .site-header.nav-open .nav-sub,
-  .nav-item:not(.is-submenu-open) > .nav-sub,
-  .nav-toggle[aria-expanded="false"] + .nav-sub {
-    display: none;
-    max-height: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-  .site-header.nav-open .nav-toggle[aria-expanded="true"] + .nav-sub,
-  .site-header.nav-open .nav-item.is-submenu-open > .nav-sub {
-    display: block;
-    opacity: 1;
-    max-height: none;
-    visibility: visible;
-    pointer-events: auto;
-    transform: none;
-    transition: none;
-  }
-  .nav-sub a { padding: 0.72rem 0; font-size: 0.82rem; border-bottom: 1px solid rgba(20,49,63,0.05); }
-  .nav-sub li:last-child a { border-bottom: none; }
   .hero { padding-top: 6.5rem; text-align: center; }
   /* Туман здесь плотнее, чем на десктопе: текст идёт прямо по горе. Но к низу
      и вправо он должен сойти на нет — там стоит бутылка, и прежняя равномерная
@@ -2510,6 +2386,105 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 }
 /* mobile 320–767 */
 @media (max-width: 767px) {
+  /* Пять пунктов в строку не влезают — меню уходит в панель под бургер. */
+  .nav-burger { display: inline-flex; }
+  .site-header { display: flex; justify-content: space-between; }
+  .site-nav {
+    position: fixed;
+    inset: calc(100% - var(--r-plate)) 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: calc(var(--r-plate) + 0.5rem) 1.2rem 1.3rem;
+    background: #fff;
+    border-radius: 0 0 var(--r-plate) var(--r-plate);
+    box-shadow: 0 26px 50px -30px rgba(20,49,63,0.5);
+    transform: translateY(-102%);
+    visibility: hidden;
+    transition: transform 0.42s cubic-bezier(.2,.7,.3,1), visibility 0.42s;
+    max-height: calc(100vh - var(--header-h) - 1rem);
+    overflow-y: auto;
+    z-index: -1;
+  }
+  .site-header.nav-open .site-nav { transform: translateY(0); visibility: visible; }
+  .site-header.nav-open { box-shadow: 0 0 0 1px rgba(20,49,63,0.06); }
+  .nav-item { position: static; display: block; }
+  /* «Где купить» переезжает из плашки в панель. */
+  .header-actions .header-cta { display: none; }
+  .nav-cta {
+    display: block;
+    margin-top: 1.1rem;
+    padding: 0.95rem 1rem;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #fff;
+    background: linear-gradient(135deg, var(--glacier-d), var(--glacier));
+    box-shadow: var(--shadow-soft);
+  }
+  .nav-link {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0.85rem 0.3rem;
+    border-radius: 12px;
+    font-size: 0.86rem;
+    letter-spacing: 0.02em;
+    color: var(--deep);
+    border-bottom: 1px solid rgba(20,49,63,0.07);
+  }
+  .nav-link:hover,
+  .nav-item:hover > .nav-toggle,
+  .nav-toggle[aria-expanded="true"] { background: none; }
+  .nav-link:hover .nav-ico,
+  .nav-item:hover > .nav-toggle .nav-ico,
+  .nav-toggle[aria-expanded="true"] .nav-ico { transform: none; }
+  .nav-text { flex: 1; justify-content: space-between; }
+  .nav-ico svg { width: 20px; height: 20px; }
+  .nav-caret { width: 6px; height: 6px; transform: translateY(-2px) rotate(45deg); }
+  .nav-sub {
+    position: static;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0 0 2rem;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.36s cubic-bezier(.2,.7,.3,1), visibility 0s 0.36s;
+  }
+  .nav-sub::before { content: none; }
+  .site-header.nav-open .nav-sub,
+  .nav-item:not(.is-submenu-open) > .nav-sub,
+  .nav-toggle[aria-expanded="false"] + .nav-sub {
+    display: none;
+    max-height: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .site-header.nav-open .nav-toggle[aria-expanded="true"] + .nav-sub,
+  .site-header.nav-open .nav-item.is-submenu-open > .nav-sub {
+    display: block;
+    opacity: 1;
+    max-height: none;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+  }
+  .nav-sub a { padding: 0.72rem 0; font-size: 0.82rem; border-bottom: 1px solid rgba(20,49,63,0.05); }
+  .nav-sub li:last-child a { border-bottom: none; }
   :root { --gutter: 20px; }
   /* В плашке остаются логотип, язык и бургер — кнопка уже в панели меню. */
   .header-actions { gap: 0.4rem; }
