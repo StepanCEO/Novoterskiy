@@ -25,8 +25,6 @@ collections:
             fields:
               - { name: name_ru, label: Название RU, widget: string }
               - { name: name_en, label: Название EN, widget: string }
-              - { name: tagline_ru, label: Подпись RU, widget: string }
-              - { name: tagline_en, label: Подпись EN, widget: string }
               - { name: logo, label: Логотип, widget: image }
           - name: header
             label: Шапка и навигация

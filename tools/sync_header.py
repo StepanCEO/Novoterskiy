@@ -127,7 +127,6 @@ def header_markup(page):
         "</picture>",
         '<span class="brand-col">',
         '<span class="brand-name"><span data-en="Novoterskaya">Новотерская</span></span>',
-        '<span class="brand-tag"><span data-en="Born of four elements">Рожденная четырьмя стихиями</span></span>',
         "</span>",
         "</a>",
         '<nav aria-label="Основная навигация" class="site-nav" id="siteNav">',

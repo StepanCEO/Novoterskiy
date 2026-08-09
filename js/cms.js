@@ -107,7 +107,6 @@
     all(".brand-name").forEach(function (node) { bilingual(node, brand.name_ru, brand.name_en); });
     /* Логотип теперь и в подвале — правим оба вхождения, иначе после смены
        картинки в админке шапка и подвал разъехались бы. */
-    all(".brand-tag").forEach(function (node) { bilingual(node, brand.tagline_ru, brand.tagline_en); });
     all(".brand-mark").forEach(function (node) { setImage(node, brand.logo); });
 
     /* Меню двухуровневое, поэтому идём по верхним пунктам, а не по всем

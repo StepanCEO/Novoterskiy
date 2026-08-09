@@ -232,30 +232,6 @@ picture { display: contents; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-/* Подпись под названием — часть логотипа, а не отдельная строка текста:
-   с двух сторон её держат тонкие штрихи. Штрихи растянуты на всю свободную
-   ширину колонки (flex: 1), поэтому связка всегда выглядит выровненной по
-   краям, как бы ни менялась длина слова. */
-.brand-tag {
-  display: flex;
-  align-items: center;
-  gap: 0.42em;
-  font-size: 0.46rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 3px;
-}
-.brand-tag::before,
-.brand-tag::after {
-  content: "";
-  flex: 1 1 0;
-  min-width: 0.5rem;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.55;
-}
 .site-nav { display: flex; flex-wrap: nowrap; align-items: stretch; gap: clamp(0.1rem, 0.9vw, 0.7rem); }
 .nav-item { position: relative; display: flex; }
 /* Верхний уровень: пиктограмма над подписью. Прописная подпись вместо капса —
@@ -1994,7 +1970,6 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.footer-brand .brand-tag { color: rgba(255,255,255,0.8); font-size: 0.56rem; margin-top: 5px; }
 /* Знак нарисован тёмно-зелёным контуром — на тёмном фоне подвала он бы
    пропал. Кладём его на светлую подложку, как на фирменной этикетке. */
 .footer-brand .brand-mark {
@@ -2343,11 +2318,8 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   :root { --wrap: 1080px; }
   .collection-track { grid-template-columns: repeat(3, 1fr); }
 }
-/* узкие ноутбуки: шапке тесно — компактнее бренд и меню.
-   Подпись под названием здесь остаётся, но ужимается: в этой полосе меню ещё
-   горизонтальное, и лишние полсотни пикселей у логотипа его ломают. */
+/* узкие ноутбуки: шапке тесно — компактнее бренд и меню. */
 @media (max-width: 1279px) {
-  .site-header .brand-tag { font-size: 0.4rem; letter-spacing: 0.1em; gap: 0.3em; }
   .site-nav { gap: 0.05rem; }
   .nav-link { font-size: 0.64rem; padding-inline: 0.42rem; }
   .nav-ico svg { width: 20px; height: 20px; }
@@ -2499,26 +2471,12 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
     letter-spacing: 0.03em;
     white-space: nowrap;
   }
-  /* Подпись тянется за названием — иначе на 320px связка стала бы шире
-     самого названия и упёрлась бы в бургер. */
-  .site-header .brand-tag {
-    font-size: clamp(0.36rem, 1.55vw, 0.46rem);
-    letter-spacing: 0.09em;
-    gap: 0.3em;
-  }
   .footer-brand .brand-mark { height: 44px; }
-  /* Связка в подвале набрана в nowrap, поэтому её ширину задаёт кегль, а не
-     колонка: на 320px под неё оставалось 186px, а название с подписью просили
-     193–205 — страница разъезжалась вбок на 12px, и это тянулось на все
-     двенадцать страниц. Кегли считаем от ширины экрана, как в шапке, и
-     считаем оба: название и подпись по очереди перетягивают одеяло на себя —
-     в русском шире подпись, в английском («NOVOTERSKAYA») название. */
+  /* Название в подвале набрано в nowrap, поэтому его ширину задаёт кегль, а не
+     колонка: на 320px под связку оставалось 186px, а она просила больше —
+     страница разъезжалась вбок, и это тянулось на все двенадцать страниц.
+     Кегль считаем от ширины экрана, как в шапке. */
   .footer-brand .brand-name { font-size: clamp(1.15rem, 5.6vw, 1.35rem); }
-  .footer-brand .brand-tag {
-    font-size: clamp(0.42rem, 2.05vw, 0.56rem);
-    letter-spacing: 0.1em;
-    gap: 0.32em;
-  }
   /* Нижняя строка треугольника — самая длинная, и в английском она вдвое
      длиннее русской («Tempered by the heart of the earth.»). На 320px при
      десктопном кегле она переносилась бы, а перенос ломает фигуру. */
