@@ -415,13 +415,23 @@
       "type": "Негазированная · ПЭТ",
       "type_en": "Still · PET",
       "photo": "assets/products/pityevaya-pet-15.webp",
-      "photo_width": 632,
+      "photo_width": 213,
       "photo_height": 815,
-      "alt_ru": "Новотерская Питьевая негазированная 1,5 л, ПЭТ — упаковка, шесть бутылок",
-      "alt_en": "Novoterskaya Still Drinking Water 1.5 L, PET bottle - pack of six",
-      "photo_caption_ru": "Упаковка, шесть бутылок",
-      "photo_caption_en": "Pack of six",
-      "gallery": [],
+      "alt_ru": "Новотерская Питьевая негазированная 1,5 л, ПЭТ",
+      "alt_en": "Novoterskaya Still Drinking Water 1.5 L, PET bottle",
+      "photo_caption_ru": "Бутылка",
+      "photo_caption_en": "Bottle",
+      "gallery": [
+        {
+          "photo": "assets/products/pityevaya-pet-15-2.webp",
+          "photo_width": 632,
+          "photo_height": 815,
+          "caption_ru": "Упаковка, шесть бутылок",
+          "caption_en": "Pack of six",
+          "alt_ru": "Новотерская Питьевая негазированная 1,5 л, ПЭТ — упаковка, шесть бутылок",
+          "alt_en": "Novoterskaya Still Drinking Water 1.5 L, PET bottle - pack of six"
+        }
+      ],
       "buy_url": "buy.html"
     },
     {
