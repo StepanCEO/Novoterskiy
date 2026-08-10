@@ -186,7 +186,7 @@ picture { display: contents; }
 .trust-grid,
 .docs-head,
 .docs-grid,
-.collection-track,
+.collection-lines,
 .where-grid,
 .contacts-grid {
   position: relative;
@@ -1631,13 +1631,15 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   padding: clamp(5rem, 9vw, 8rem) 0;
   background: linear-gradient(180deg, var(--paper-2), var(--paper));
 }
-.collection-track {
+/* Каталог собран не сеткой из девяти карточек, а разворотами по линейкам:
+   «Целебная» и «Питьевая» идут друг под другом, у каждой своя витрина. Девять
+   бутылок в один ряд читались размерной линейкой, а не двумя семействами. */
+.collection-lines {
   max-width: var(--wrap);
   margin: 0 auto;
   padding: 0 var(--gutter);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.3rem;
+  gap: clamp(3.5rem, 8vw, 7rem);
 }
 /* Референс: чистые бутылки без карточек-коробок */
 .product {
@@ -1777,23 +1779,10 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 .pdot:hover::before { background: rgba(62,122,152,0.5); }
 .pdot.is-on::before { background: var(--glacier-d); transform: scale(1.35); }
 .pdot:focus-visible { outline: 2px solid var(--glacier-d); outline-offset: 1px; border-radius: 50%; }
-/* Индикатор мобильной карусели (ТЗ п.10) — точки создаёт main.js */
-.collection-dots {
-  display: none;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 1.1rem;
-}
-.collection-dots .cdot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: rgba(62,122,152,0.25);
-  transition: background 0.3s, transform 0.3s;
-}
-.collection-dots .cdot.on { background: var(--glacier-d); transform: scale(1.3); }
-/* Уровень заголовка карточки зависит от страницы: на catalog.html «Каталог» —
-   это h1, поэтому товары там h2 (иначе разрыв уровней), а внутри секции на
-   главной остаётся h3. Вид одинаковый, поэтому стилизуем оба. */
+/* Уровень заголовка карточки зависит от вложенности: на catalog.html «Каталог» —
+   это h1, название линейки h2, поэтому бутылка внутри линейки h3. Если секция
+   когда-нибудь переедет внутрь h2, лестница сдвинется на ступень. Вид у всех
+   уровней одинаковый, поэтому стилизуем оба. */
 .product h2,
 .product h3 {
   font-family: var(--ff-serif);
@@ -1816,6 +1805,165 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   color: var(--muted);
   margin: 0.4rem 0 1.4rem;
 }
+
+/* ---------- 7.1 · Линейка каталога (разворот) ----------
+   Один разворот: витрина с бутылками слева, название и описание справа.
+   Название вынесено в отдельную ячейку сетки, а не убрано внутрь правой
+   колонки: на узком экране колонки складываются в одну, и оно должно встать
+   над витриной, а описание с кнопкой — под ней. */
+.line-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-areas:
+    "stage title"
+    "stage copy";
+  align-items: center;
+  column-gap: clamp(1.5rem, 4vw, 3.5rem);
+  row-gap: 1.3rem;
+}
+.line-title {
+  grid-area: title;
+  align-self: end;
+  margin: 0;
+  font-family: var(--ff-serif);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 4.2vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1C4B50;
+}
+/* Слова названия — по строке на каждое, второе выключено вправо: так набрана
+   шапка линейки в референсе, и связка из двух слов держится блоком, а не
+   расплывается строкой. */
+.line-title span { display: block; }
+.line-title span + span { text-align: right; color: var(--glacier-d); }
+.line-copy { grid-area: copy; align-self: start; }
+.line-text {
+  margin: 0 0 1.6rem;
+  max-width: 42ch;
+  font-size: clamp(0.98rem, 1.3vw, 1.1rem);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* Витрина. Полоса прокручивается сама: scroll-snap даёт и свайп пальцем, и
+   колесо, и клавиатуру; main.js только выясняет, кто оказался в центре, и
+   переставляет на него плашку, точки и кнопку «Купить». */
+.line-stage {
+  grid-area: stage;
+  min-width: 0;
+  --stage-item: 58%;
+}
+.stage-view {
+  position: relative;   /* от неё main.js считает offsetLeft бутылок */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.stage-view::-webkit-scrollbar { display: none; }
+.stage-track { display: flex; }
+/* Поля по краям обязательны: без них первую и последнюю бутылку невозможно
+   вывести в центр витрины. Считаются полями крайних элементов, а не padding
+   у полосы: правый padding прокручиваемого flex-контейнера часть браузеров
+   до сих пор съедает, а margin крайнего элемента уважают все. */
+.stage-item:first-child { margin-left: calc((100% - var(--stage-item)) / 2); }
+.stage-item:last-child { margin-right: calc((100% - var(--stage-item)) / 2); }
+.stage-item {
+  flex: 0 0 var(--stage-item);
+  scroll-snap-align: center;
+  position: relative;
+  opacity: 0.38;
+  transform: scale(0.62);
+  transform-origin: center bottom;
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(.2,.7,.3,1);
+}
+/* Подскок карточки от .product внутри витрины лишний: он сбивал бы масштаб
+   уменьшенных соседей. Наведение здесь ничего не двигает. */
+.stage-item:hover { transform: scale(0.62); }
+.stage-item.is-on,
+.stage-item.is-on:hover { opacity: 1; transform: none; }
+.stage-item:not(.is-on) { cursor: pointer; }
+/* У соседей стрелки и точки кадров прятать нужно, но не выкидывать из потока:
+   иначе при переключении витрина меняла бы высоту. */
+.stage-item:not(.is-on) .pnav,
+.stage-item:not(.is-on) .product-dots { visibility: hidden; }
+.stage-item .product-photo {
+  height: clamp(250px, 29vw, 420px);
+  margin-bottom: 1.1rem;
+}
+
+/* Плашка с литражом — та же белая «пилюля», что у бутылки в референсе: висит
+   у горлышка справа и всплывает только у той бутылки, что стоит в центре. */
+.stage-vol {
+  position: absolute;
+  z-index: 3;
+  top: 7%;
+  right: 2%;
+  display: inline-block;
+  text-align: left;
+  padding: 0.4rem 0.95rem 0.5rem;
+  border-radius: 27px;
+  background: #fff;
+  box-shadow: 0 12px 28px -14px rgba(20,49,63,0.5);
+  color: var(--glacier-d);
+  font-family: var(--ff-label);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.stage-item.is-on .stage-vol { opacity: 1; transform: none; }
+.vol-num { font-size: 1.35rem; font-weight: 700; }
+.vol-unit { font-size: 1.35rem; font-weight: 400; margin-left: 0.16em; }
+.vol-sub {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Ряд плашек под витриной: и указатель, и переключатель — так же, как полоса
+   миниатюр в референсе, только литражом вместо картинок. Для линейки, где
+   бутылки различаются одним числом, число и есть самая понятная миниатюра. */
+.stage-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.pick {
+  padding: 0.42rem 0.95rem 0.5rem;
+  border: 1px solid rgba(20,49,63,0.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.66);
+  color: var(--ink);
+  font-family: var(--ff-label);
+  line-height: 1.05;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.pick .vol-num,
+.pick .vol-unit { font-size: 0.95rem; }
+.pick .vol-num { font-weight: 600; }
+.pick .vol-sub { margin-top: 0.22rem; font-size: 0.56rem; }
+.pick:hover { background: #fff; border-color: rgba(20,49,63,0.3); }
+.pick.is-on {
+  background: var(--glacier-d);
+  border-color: var(--glacier-d);
+  color: #fff;
+}
+.pick.is-on .vol-sub { color: rgba(255,255,255,0.8); }
+.pick:focus-visible { outline: 2px solid var(--glacier-d); outline-offset: 2px; }
 
 /* ---------- 8 · FINAL ---------- */
 .final {
@@ -2348,7 +2496,9 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 /* laptop 1024–1439 */
 @media (max-width: 1439px) {
   :root { --wrap: 1080px; }
-  .collection-track { grid-template-columns: repeat(3, 1fr); }
+  /* Витрина сузилась вместе с колонкой — соседним бутылкам оставляем меньше
+     места, иначе центральная перестаёт быть главной. */
+  .line-stage { --stage-item: 62%; }
 }
 /* узкие ноутбуки: шапке тесно — компактнее бренд и меню. */
 @media (max-width: 1279px) {
@@ -2382,7 +2532,20 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   /* Две карточки контактов в ряд перестают помещаться раньше остальных сеток:
      адрес в половине планшетной ширины уходит в четыре строки. */
   .contacts-grid { grid-template-columns: 1fr; }
-  .collection-track { grid-template-columns: repeat(2, 1fr); }
+  /* В половине планшетной ширины витрине уже тесно: бутылка в полный рост и
+     описание рядом обе становятся мелкими. Разворот раскладывается в столбик —
+     название, витрина, описание, — как та же страница на телефоне. */
+  .line-body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "title" "stage" "copy";
+    row-gap: 1.6rem;
+    justify-items: center;
+  }
+  .line-title span,
+  .line-title span + span { text-align: center; }
+  .line-stage { --stage-item: 52%; width: 100%; }
+  .line-copy { text-align: center; }
+  .line-text { margin-inline: auto; }
   .final-composition { grid-template-columns: minmax(230px, 0.65fr) minmax(390px, 1.35fr); }
   .final-bottle { min-height: 430px; }
   .final-bottle img, .final-bottle-video { height: 430px; }
@@ -2541,17 +2704,11 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
     padding-top: 0.85rem;
     padding-left: 0;
   }
-  .collection-track {
-    grid-auto-flow: column;
-    grid-template-columns: none;
-    grid-auto-columns: 78%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 1rem;
-    -webkit-overflow-scrolling: touch;
-  }
-  .product { scroll-snap-align: center; }
-  .collection-dots { display: flex; }
+  /* На телефоне витрина занимает всю ширину, соседи только выглядывают из-за
+     краёв — иначе центральная бутылка получается размером с палец. */
+  .line-stage { --stage-item: 72%; }
+  .stage-vol { top: 4%; right: 0; padding: 0.32rem 0.75rem 0.4rem; }
+  .vol-num, .vol-unit { font-size: 1.1rem; }
   .final { min-height: auto; padding-top: 4rem; }
   .final-composition { grid-template-columns: 1fr; gap: 0; }
   /* Карточка с цитатой заходит на бутылку, но меньше, чем прежде: у наклонённого

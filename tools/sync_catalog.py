@@ -1,10 +1,14 @@
 """Пересобирает каталог по content/products.json.
 
 В catalog.html лежат две копии линейки: разметка-заглушка внутри
-.collection-track (её видит поисковик и пользователь с выключенным JS) и
+.collection-lines (её видит поисковик и пользователь с выключенным JS) и
 ItemList в JSON-LD. Обе повторяют то, что cms.js рисует из products.json, и
 расходятся при каждой правке руками — этот скрипт переписывает их из одного
 источника.
+
+Каталог сгруппирован по линейкам (products.json → lines[]): у каждой свой
+разворот — витрина с бутылками слева, название и описание справа. Порядок
+позиций внутри линейки задаёт lines[].items, а не порядок в items[].
 
     python tools/sync_catalog.py
 """
@@ -81,46 +85,105 @@ def seo_name(product, ambiguous):
     return name
 
 
-def track_markup(products):
-    out = []
-    for product in products:
-        pictures = shots(product)
-        head_ru, vol = volume(product["title"])
-        head_en, _ = volume(product.get("title_en") or product["title"])
-        title_ru = f"{esc(head_ru)} <em>{esc(vol)}</em>" if vol else esc(head_ru)
-        title_en = f"{esc(head_en)} <em>{esc(vol)}</em>" if vol else esc(head_en)
+def vol_label(product):
+    """Литраж для плашки: «0.5» из названия превращается в «0,5»."""
+    return volume(product["title"])[1].replace(".", ",")
 
-        out.append('    <article class="product reveal">')
-        out.append('      <div class="product-photo">')
+
+def product_markup(product, active, indent):
+    """Одна бутылка витрины: плашка с литражом, кадры, точки, подпись."""
+    pad = " " * indent
+    pictures = shots(product)
+    head_ru, vol = volume(product["title"])
+    head_en, _ = volume(product.get("title_en") or product["title"])
+    # Разделитель дробной части у языков разный: по-русски запятая, по-английски точка.
+    title_ru = f"{esc(head_ru)} <em>{esc(vol.replace('.', ','))}</em>" if vol else esc(head_ru)
+    title_en = f"{esc(head_en)} <em>{esc(vol.replace(',', '.'))}</em>" if vol else esc(head_en)
+
+    out = [f'{pad}<article class="product stage-item{" is-on" if active else ""}" '
+           f'data-product="{esc(product["id"])}">']
+    # Литраж дублирует заголовок ниже, поэтому от скринридера он спрятан:
+    # иначе позиция озвучивалась бы дважды.
+    out.append(f'{pad}  <span class="stage-vol" aria-hidden="true">{vol_pill(product)}</span>')
+    out.append(f'{pad}  <div class="product-photo">')
+    for index, shot in enumerate(pictures):
+        base = os.path.splitext(shot["photo"])[0]
+        out.append(f'{pad}    <picture class="pshot{" is-on" if not index else ""}">')
+        out.append(f'{pad}      <source srcset="{esc(base)}.avif" type="image/avif" />')
+        out.append(f'{pad}      <img src="{esc(shot["photo"])}" width="{shot["width"]}" '
+                   f'height="{shot["height"]}" loading="lazy" alt="{esc(shot["alt_ru"])}" '
+                   f'data-alt-ru="{esc(shot["alt_ru"])}" data-alt-en="{esc(shot["alt_en"])}" />')
+        out.append(f'{pad}    </picture>')
+    if len(pictures) > 1:
+        for direction, ru, en in (("prev", "Предыдущее фото", "Previous photo"),
+                                  ("next", "Следующее фото", "Next photo")):
+            out.append(f'{pad}    <button class="pnav pnav-{direction}" type="button">{CHEVRON}'
+                       f'<span class="sr-only" data-en="{esc(en)}">{esc(ru)}</span></button>')
+    out.append(f'{pad}  </div>')
+    if len(pictures) > 1:
+        out.append(f'{pad}  <div class="product-dots">')
         for index, shot in enumerate(pictures):
-            base = os.path.splitext(shot["photo"])[0]
-            out.append(f'        <picture class="pshot{" is-on" if not index else ""}">')
-            out.append(f'          <source srcset="{esc(base)}.avif" type="image/avif" />')
-            out.append(f'          <img src="{esc(shot["photo"])}" width="{shot["width"]}" '
-                       f'height="{shot["height"]}" loading="lazy" alt="{esc(shot["alt_ru"])}" '
-                       f'data-alt-ru="{esc(shot["alt_ru"])}" data-alt-en="{esc(shot["alt_en"])}" />')
-            out.append('        </picture>')
-        if len(pictures) > 1:
-            for direction, ru, en in (("prev", "Предыдущее фото", "Previous photo"),
-                                      ("next", "Следующее фото", "Next photo")):
-                out.append(f'        <button class="pnav pnav-{direction}" type="button">{CHEVRON}'
-                           f'<span class="sr-only" data-en="{esc(en)}">{esc(ru)}</span></button>')
-        out.append('      </div>')
-        if len(pictures) > 1:
-            out.append('      <div class="product-dots">')
-            for index, shot in enumerate(pictures):
-                ru = shot["caption_ru"] or f"Фото {index + 1}"
-                en = shot["caption_en"] or f"Photo {index + 1}"
-                out.append(f'        <button class="pdot{" is-on" if not index else ""}" type="button" '
-                           f'aria-pressed="{"true" if not index else "false"}">'
-                           f'<span class="sr-only" data-en="{esc(en)}">{esc(ru)}</span></button>')
-            out.append('      </div>')
-        out.append(f'      <h2 data-en="{esc(title_en)}">{title_ru}</h2>')
-        out.append(f'      <p class="product-type" data-en="{esc(product.get("type_en") or product["type"])}">'
-                   f'{esc(product["type"])}</p>')
-        out.append(f'      <a class="btn btn-outline" href="{esc(product.get("buy_url") or "buy.html")}" '
-                   f'data-analytics="product-buy" data-product="{esc(product["id"])}" '
+            ru = shot["caption_ru"] or f"Фото {index + 1}"
+            en = shot["caption_en"] or f"Photo {index + 1}"
+            out.append(f'{pad}    <button class="pdot{" is-on" if not index else ""}" type="button" '
+                       f'aria-pressed="{"true" if not index else "false"}">'
+                       f'<span class="sr-only" data-en="{esc(en)}">{esc(ru)}</span></button>')
+        out.append(f'{pad}  </div>')
+    out.append(f'{pad}  <h3 data-en="{esc(title_en)}">{title_ru}</h3>')
+    out.append(f'{pad}  <p class="product-type" data-en="{esc(product.get("type_en") or product["type"])}">'
+               f'{esc(product["type"])}</p>')
+    out.append(f'{pad}</article>')
+    return out
+
+
+def vol_pill(product):
+    """Содержимое плашки: число, единица и уточнение тары, если оно есть."""
+    # По-русски дробная часть отделяется запятой, по-английски — точкой, поэтому
+    # число тоже переключается вместе с языком, а не только единица измерения.
+    number = vol_label(product)
+    parts = [f'<span class="vol-num" data-en="{esc(number.replace(",", "."))}">{esc(number)}</span>',
+             '<span class="vol-unit" data-en="L">л</span>']
+    if product.get("badge_ru"):
+        parts.append(f'<span class="vol-sub" data-en="{esc(product.get("badge_en") or product["badge_ru"])}">'
+                     f'{esc(product["badge_ru"])}</span>')
+    return "".join(parts)
+
+
+def track_markup(lines, by_id):
+    out = []
+    for line in lines:
+        products = [by_id[pid] for pid in line["items"]]
+        title_ru = "".join(f"<span>{esc(word)}</span>" for word in line["title_ru"])
+        title_en = "".join(f"<span>{esc(word)}</span>" for word in (line.get("title_en") or line["title_ru"]))
+        buy_url = esc(line.get("buy_url") or "buy.html")
+
+        out.append(f'    <article class="line reveal" id="line-{esc(line["id"])}">')
+        out.append('      <div class="line-body">')
+        out.append(f'        <h2 class="line-title" data-en="{esc(title_en)}">{title_ru}</h2>')
+        out.append('        <div class="line-stage">')
+        out.append('          <div class="stage-view">')
+        out.append('            <div class="stage-track">')
+        for index, product in enumerate(products):
+            out.extend(product_markup(product, not index, 14))
+        out.append('            </div>')
+        out.append('          </div>')
+        # Ряд плашек под витриной — и указатель, и переключатель: тот же приём,
+        # что у полосы миниатюр в референсе, только литражом вместо картинок.
+        out.append('          <div class="stage-picker" role="group" aria-label="Объём" '
+                   'data-en-aria-label="Volume">')
+        for index, product in enumerate(products):
+            out.append(f'            <button class="pick{" is-on" if not index else ""}" type="button" '
+                       f'aria-pressed="{"true" if not index else "false"}">{vol_pill(product)}</button>')
+        out.append('          </div>')
+        out.append('        </div>')
+        out.append('        <div class="line-copy">')
+        out.append(f'          <p class="line-text" data-en="{esc(line.get("text_en") or line["text_ru"])}">'
+                   f'{esc(line["text_ru"])}</p>')
+        out.append(f'          <a class="btn btn-primary line-buy" href="{buy_url}" '
+                   f'data-analytics="product-buy" data-product="{esc(products[0]["id"])}" '
                    f'data-en="Buy">Купить</a>')
+        out.append('        </div>')
+        out.append('      </div>')
         out.append('    </article>')
     return "\n".join(out)
 
@@ -166,25 +229,34 @@ def replace(html, opening, closing, body):
     return html[:start] + "\n" + body + "\n" + html[end:], end - start
 
 
-# Границы линейки. Раньше конец искался по строке «  </div>», но эта же
-# последовательность встречается внутри карточки — в «      </div>» у
-# .product-photo. Замена обрывалась на первой карточке, а хвост прежней
-# линейки оставался в разметке: он вываливался из .collection-track прямо в
-# секцию и рисовался под каталогом столбиком из чужих карточек. Теперь конец
-# привязан к следующему блоку — промахнуться мимо него нельзя.
-TRACK = re.compile(r'(<div class="collection-track">).*?(\n  </div>\s*\n\s*<div class="catalog-foot)', re.S)
+# Границы линейки. Конец нельзя искать по строке «  </div>»: эта же
+# последовательность встречается внутри разворота линейки. Поэтому он привязан
+# к следующему блоку — промахнуться мимо него нельзя.
+TRACK = re.compile(r'(<div class="collection-lines">).*?(\n  </div>\s*\n\s*<div class="catalog-foot)', re.S)
 
 
 def main():
-    products = json.load(open(PRODUCTS, encoding="utf-8"))["items"]
+    data = json.load(open(PRODUCTS, encoding="utf-8"))
+    by_id = {product["id"]: product for product in data["items"]}
+    lines = data["lines"]
+    missing = [pid for line in lines for pid in line["items"] if pid not in by_id]
+    if missing:
+        raise SystemExit(f"{PRODUCTS}: в lines[] позиции, которых нет в items[]: {missing}")
+    orphans = [pid for pid in by_id if pid not in {p for line in lines for p in line["items"]}]
+    if orphans:
+        raise SystemExit(f"{PRODUCTS}: позиции не попали ни в одну линейку: {orphans}")
+    # Порядок в JSON-LD берём по линейкам: ItemList должен совпадать с тем, что
+    # человек видит на странице, иначе позиции в разметке и в вёрстке разъедутся.
+    products = [by_id[pid] for line in lines for pid in line["items"]]
+
     html = open(CATALOG, encoding="utf-8").read()
     html, _ = replace(html, '<script type="application/ld+json">', "</script>", jsonld(products))
-    html, hit = TRACK.subn(lambda m: m.group(1) + "\n" + track_markup(products) + m.group(2),
+    html, hit = TRACK.subn(lambda m: m.group(1) + "\n" + track_markup(lines, by_id) + m.group(2),
                            html, count=1)
     if hit != 1:
-        raise SystemExit(f"{CATALOG}: не нашёл границы .collection-track")
+        raise SystemExit(f"{CATALOG}: не нашёл границы .collection-lines")
     open(CATALOG, "w", encoding="utf-8", newline="\n").write(html)
-    print(f"{CATALOG}: {len(products)} позиций")
+    print(f"{CATALOG}: {len(lines)} линеек, {len(products)} позиций")
 
 
 if __name__ == "__main__":

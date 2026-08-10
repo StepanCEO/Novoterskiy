@@ -342,23 +342,26 @@
     bilingual(one("#cookieOk"), cookie.button_ru, cookie.button_en);
   }
 
-  /* Уровень заголовка карточки — на одну ступень ниже заголовка секции.
-     На catalog.html «Каталог» это h1, значит товары h2; если секция когда-нибудь
-     вернётся на главную внутрь h2 — товары станут h3. Уровень читаем из
-     .section-head, чтобы не считать заголовки самих карточек. */
-  function productHeading() {
+  /* Уровни заголовков считаем от заголовка секции: на catalog.html «Каталог» —
+     это h1, значит название линейки h2, а бутылка внутри линейки h3. Уровень
+     читаем из .section-head, чтобы не считать заголовки самих карточек: если
+     секция когда-нибудь переедет внутрь h2, вся лестница сдвинется сама.
+     step — на сколько ступеней ниже секции (1 — линейка, 2 — товар). */
+  function headingTag(step) {
     var head = one(".collection .section-head h1, .collection .section-head h2, .collection .section-head h3");
     var level = head ? Number(head.tagName.charAt(1)) : 2;
-    return "h" + Math.min(level + 1, 6);
+    return "h" + Math.min(level + step, 6);
   }
 
   /* В названии товара объём набран отдельно — «Целебная <em>0.5</em>». В JSON
      он лежит одной строкой, поэтому последнее слово-число оборачиваем сами:
      иначе после перерисовки из CMS карточка теряет акцент на литраже. */
-  function productTitle(title) {
+  /* Литраж в названии хранится как «0.5», а разделитель дробной части у языков
+     разный: по-русски запятая, по-английски точка. */
+  function productTitle(title, separator) {
     var m = String(title).match(/^(.*\S)\s+([\d.,]+)$/);
     if (!m) return esc(title);
-    return esc(m[1]) + " <em>" + esc(m[2]) + "</em>";
+    return esc(m[1]) + " <em>" + esc(m[2].replace(/[.,]/, separator || ",")) + "</em>";
   }
 
   /* У товара несколько снимков: бутылка, две бутылки, упаковка, контрэтикетка.
@@ -439,26 +442,79 @@
     }).join("") + '</div>';
   }
 
+  /* Плашка с литражом: «0,5 л» и, если позиций с одним объёмом две, уточнение
+     тары («стекло» / «ПЭТ») или газации. Уточнение лежит в badge_ru/badge_en —
+     вывести его правилом нельзя: из типа «Газированная · стекло» непонятно,
+     какая половина отличает позицию от соседней. */
+  function volPill(product) {
+    var vol = String(product.title).match(/([\d.,]+)\s*$/);
+    var number = vol ? vol[1] : "";
+    // По-русски дробная часть отделяется запятой, по-английски — точкой, поэтому
+    // число тоже переключается вместе с языком, а не только единица измерения.
+    var out = '<span class="vol-num" data-en="' + esc(number.replace(",", ".")) + '">' +
+      esc(number.replace(".", ",")) + '</span>' +
+      '<span class="vol-unit" data-en="L">л</span>';
+    if (product.badge_ru) {
+      out += '<span class="vol-sub" data-en="' + esc(esc(product.badge_en || product.badge_ru)) +
+        '">' + esc(product.badge_ru) + '</span>';
+    }
+    return out;
+  }
+
+  function stageItemMarkup(product, index) {
+    var shots = productShots(product);
+    var hx = headingTag(2);
+    return '<article class="product stage-item' + (index === 0 ? " is-on" : "") +
+      '" data-product="' + esc(product.id) + '">' +
+      // Литраж дублирует заголовок ниже, поэтому от скринридера он спрятан.
+      '<span class="stage-vol" aria-hidden="true">' + volPill(product) + '</span>' +
+      '<div class="product-photo">' + shots.map(shotMarkup).join("") + navMarkup(shots) + '</div>' +
+      dotsMarkup(shots) +
+      '<' + hx + ' data-en="' + esc(productTitle(product.title_en || product.title, ".")) + '">' +
+      productTitle(product.title, ",") + '</' + hx + '>' +
+      '<p class="product-type" data-en="' + esc(esc(product.type_en || product.type)) + '">' +
+      esc(product.type) + '</p></article>';
+  }
+
+  function lineMarkup(line, products, collection) {
+    var href = safeUrl(resolveHash(line.buy_url), resolveHash(collection.default_buy_url) || "buy.html", true);
+    var hx = headingTag(1);
+    function title(words) {
+      return (words || []).map(function (word) { return "<span>" + esc(word) + "</span>"; }).join("");
+    }
+    return '<article class="line reveal" id="line-' + esc(line.id) + '"><div class="line-body">' +
+      '<' + hx + ' class="line-title" data-en="' + esc(title(line.title_en || line.title_ru)) + '">' +
+      title(line.title_ru) + '</' + hx + '>' +
+      '<div class="line-stage"><div class="stage-view"><div class="stage-track">' +
+      products.map(stageItemMarkup).join("") +
+      '</div></div><div class="stage-picker" role="group" aria-label="Объём" data-en-aria-label="Volume">' +
+      products.map(function (product, index) {
+        return '<button class="pick' + (index === 0 ? " is-on" : "") + '" type="button" aria-pressed="' +
+          (index === 0 ? "true" : "false") + '">' + volPill(product) + '</button>';
+      }).join("") +
+      '</div></div><div class="line-copy">' +
+      '<p class="line-text" data-en="' + esc(esc(line.text_en || line.text_ru)) + '">' + esc(line.text_ru) + '</p>' +
+      '<a class="btn btn-primary line-buy" href="' + esc(href) + '" data-analytics="product-buy" data-product="' +
+      esc(products[0].id) + '" data-en="' + esc(esc(collection.buy_en || "Buy")) + '">' +
+      esc(collection.buy_ru || "Купить") + '</a></div></div></article>';
+  }
+
   function hydrateProducts(data) {
-    var track = one(".collection-track");
+    var track = one(".collection-lines");
     if (!track || !data || !Array.isArray(data.items) || !data.items.length) return;
     var collection = siteContent.collection || {};
-    track.innerHTML = data.items.map(function (product) {
-      var href = safeUrl(resolveHash(product.buy_url), resolveHash(collection.default_buy_url) || "buy.html", true);
-      var titleEn = productTitle(product.title_en || product.title);
-      var typeEn = esc(product.type_en || product.type);
-      var shots = productShots(product);
-      // На каталоге заголовок страницы — h1, поэтому карточки идут h2:
-      // h3 после h1 даёт разрыв в уровнях (heading-order). На главной этот
-      // список живёт внутри секции со своим h2, и там уровень задаёт headingLevel.
-      var hx = productHeading();
-      return '<article class="product reveal"><div class="product-photo">' +
-        shots.map(shotMarkup).join("") + navMarkup(shots) + '</div>' + dotsMarkup(shots) +
-        '<' + hx + ' data-en="' + esc(titleEn) + '">' + productTitle(product.title) + '</' + hx + '>' +
-        '<p class="product-type" data-en="' + esc(typeEn) + '">' + esc(product.type) + '</p>' +
-        '<a class="btn btn-outline" href="' + esc(href) + '" data-analytics="product-buy" data-product="' +
-        esc(product.id) + '" data-en="' + esc(esc(collection.buy_en || "Buy")) + '">' + esc(collection.buy_ru || "Купить") + '</a></article>';
-    }).join("");
+    var byId = {};
+    data.items.forEach(function (product) { byId[product.id] = product; });
+
+    // Линейки — основной вид каталога. Если lines[] в JSON нет или он битый,
+    // разметку-заглушку не трогаем: там уже лежит собранный каталог, и пустая
+    // страница вместо него была бы хуже устаревшей.
+    var lines = (Array.isArray(data.lines) ? data.lines : []).map(function (line) {
+      var products = (line.items || []).map(function (id) { return byId[id]; }).filter(Boolean);
+      return products.length ? lineMarkup(line, products, collection) : "";
+    }).filter(Boolean);
+    if (!lines.length) return;
+    track.innerHTML = lines.join("");
 
     // Страховка для фото, загруженных через CMS: у них нет пары .avif, а
     // <picture> при неудачной загрузке <source> не откатывается на <img>, а

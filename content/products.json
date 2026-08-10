@@ -1,4 +1,45 @@
 {
+  "lines": [
+    {
+      "id": "celebnaya",
+      "title_ru": [
+        "Новотерская",
+        "целебная"
+      ],
+      "title_en": [
+        "Novoterskaya",
+        "Tselebnaya"
+      ],
+      "text_ru": "Минеральная природная газированная — с плотными, звонкими пузырьками. Стекло «Элита» для стола и ПЭТ, который берут с собой: 0,5, 1 и 1,5 литра.",
+      "text_en": "Natural sparkling mineral water with a dense, ringing bead. Elita glass for the table and PET for the road: 0.5, 1 and 1.5 litres.",
+      "items": [
+        "celebnaya-glass-elita-05",
+        "celebnaya-pet-05",
+        "celebnaya-pet-1",
+        "celebnaya-pet-15"
+      ]
+    },
+    {
+      "id": "pityevaya",
+      "title_ru": [
+        "Новотерская",
+        "питьевая"
+      ],
+      "title_en": [
+        "Novoterskaya",
+        "Drinking water"
+      ],
+      "text_ru": "Вода на каждый день — негазированная и газированная. От карманных 0,33 до пятилитровой бутыли с ручкой: в рюкзак, на рабочий стол и домой на кухню.",
+      "text_en": "Everyday water, still and sparkling. From a pocket 0.33 to a five-litre bottle with a handle - for a backpack, a desk, a kitchen.",
+      "items": [
+        "pityevaya-pet-033",
+        "pityevaya-pet-05",
+        "pityevaya-pet-15",
+        "pityevaya-pet-15-gas",
+        "pityevaya-pet-5"
+      ]
+    }
+  ],
   "items": [
     {
       "id": "celebnaya-glass-elita-05",
@@ -78,7 +119,9 @@
           "alt_en": "Novoterskaya Tselebnaya 0.5 L, glass bottle - back label"
         }
       ],
-      "buy_url": "buy.html"
+      "buy_url": "buy.html",
+      "badge_ru": "стекло",
+      "badge_en": "glass"
     },
     {
       "id": "celebnaya-pet-05",
@@ -158,7 +201,9 @@
           "alt_en": "Novoterskaya Tselebnaya 0.5 L, PET bottle - back label"
         }
       ],
-      "buy_url": "buy.html"
+      "buy_url": "buy.html",
+      "badge_ru": "ПЭТ",
+      "badge_en": "PET"
     },
     {
       "id": "celebnaya-pet-1",
@@ -423,7 +468,9 @@
           "alt_en": "Novoterskaya Still Drinking Water 1.5 L, PET bottle - pack of six"
         }
       ],
-      "buy_url": "buy.html"
+      "buy_url": "buy.html",
+      "badge_ru": "без газа",
+      "badge_en": "still"
     },
     {
       "id": "pityevaya-pet-15-gas",
@@ -449,12 +496,14 @@
           "alt_en": "Novoterskaya Sparkling Drinking Water 1.5 L, PET bottle - pack of six"
         }
       ],
-      "buy_url": "buy.html"
+      "buy_url": "buy.html",
+      "badge_ru": "с газом",
+      "badge_en": "sparkling"
     },
     {
       "id": "pityevaya-pet-5",
       "title": "Новотерская питьевая 5",
-      "title_en": "Novoterskaya Pityevaya 5",
+      "title_en": "Novoterskaya Drinking 5",
       "type": "Негазированная · ПЭТ",
       "type_en": "Still · PET",
       "photo": "assets/products/pityevaya-pet-5.webp",

@@ -357,38 +357,77 @@
     statVals.forEach(function (el) { cntIo.observe(el); });
   }
 
-  /* ---- Индикатор мобильной карусели коллекции (ТЗ п.10) ---- */
-  function initCollectionDots() {
-    var track = document.querySelector(".collection-track");
-    var section = document.getElementById("collection");
-    if (!track || !section) return;
-    var old = section.querySelector(".collection-dots");
-    if (old) old.remove();
-    var items = track.children.length;
-    if (items < 2) return;
-    var dots = document.createElement("div");
-    dots.className = "collection-dots";
-    dots.setAttribute("aria-hidden", "true");
-    for (var i = 0; i < items; i++) {
-      var d = document.createElement("span");
-      d.className = "cdot" + (i === 0 ? " on" : "");
-      dots.appendChild(d);
-    }
-    section.appendChild(dots);
-    var dotEls = dots.querySelectorAll(".cdot");
-    var dotTick = false;
-    track.addEventListener("scroll", function () {
-      if (dotTick) return;
-      dotTick = true;
-      requestAnimationFrame(function () {
-        var max = track.scrollWidth - track.clientWidth;
-        var idx = max > 0 ? Math.round(track.scrollLeft / max * (items - 1)) : 0;
-        dotEls.forEach(function (el, j) { el.classList.toggle("on", j === idx); });
-        dotTick = false;
+  /* ---- Витрина линейки на каталоге ----
+     В линейке бутылки лежат одной прокручиваемой полосой: та, что ближе к
+     центру витрины, показана в полный рост, соседние — уменьшены и притушены
+     (CSS по классу .is-on). Пролистывание отдано браузеру — scroll-snap даёт и
+     свайп пальцем, и колесо, и клавиатуру; здесь только выясняется, кто оказался
+     в центре, и на него переставляются плашка литража, точки и кнопка «Купить».
+     Плашки под витриной работают и указателем, и переключателем. */
+  function initCatalogLines() {
+    document.querySelectorAll(".collection-lines .line").forEach(function (line) {
+      // cms.js перерисовывает линейки целиком, так что на новом узле флага нет
+      // и обработчики вешаются заново.
+      if (line.dataset.stage) return;
+      var view = line.querySelector(".stage-view");
+      var items = line.querySelectorAll(".stage-item");
+      var picks = line.querySelectorAll(".stage-picker .pick");
+      if (!view || items.length < 2 || picks.length !== items.length) return;
+      line.dataset.stage = "on";
+      var buy = line.querySelector(".line-buy");
+
+      function mark(index) {
+        items.forEach(function (item, i) { item.classList.toggle("is-on", i === index); });
+        picks.forEach(function (pick, i) {
+          pick.classList.toggle("is-on", i === index);
+          pick.setAttribute("aria-pressed", i === index ? "true" : "false");
+        });
+        // Кнопка на линейку одна, но в аналитику должна уходить та позиция,
+        // которую человек смотрел, когда нажал.
+        var id = items[index].getAttribute("data-product");
+        if (buy && id) buy.setAttribute("data-product", id);
+      }
+
+      function center(index) {
+        var item = items[index];
+        var left = item.offsetLeft - (view.clientWidth - item.offsetWidth) / 2;
+        if (view.scrollTo) view.scrollTo({ left: left, behavior: "smooth" });
+        else view.scrollLeft = left;
+        mark(index); // не дожидаясь конца прокрутки: нажатие должно отзываться сразу
+      }
+
+      picks.forEach(function (pick, index) {
+        pick.addEventListener("click", function () { center(index); });
       });
-    }, { passive: true });
+
+      // По уменьшенному соседу тоже можно щёлкнуть — он выйдет в центр. У той
+      // бутылки, что уже в центре, клик не перехватываем: там свои стрелки и
+      // точки кадров.
+      items.forEach(function (item, index) {
+        item.addEventListener("click", function () {
+          if (!item.classList.contains("is-on")) center(index);
+        });
+      });
+
+      var tick = false;
+      view.addEventListener("scroll", function () {
+        if (tick) return;
+        tick = true;
+        requestAnimationFrame(function () {
+          tick = false;
+          var middle = view.scrollLeft + view.clientWidth / 2;
+          var best = 0;
+          var bestDistance = Infinity;
+          items.forEach(function (item, i) {
+            var distance = Math.abs(item.offsetLeft + item.offsetWidth / 2 - middle);
+            if (distance < bestDistance) { bestDistance = distance; best = i; }
+          });
+          mark(best);
+        });
+      }, { passive: true });
+    });
   }
-  initCollectionDots();
+  initCatalogLines();
 
   /* ---- Галерея внутри карточки товара ----
      Все снимки одного товара лежат в одной .product-photo, показан один;
@@ -592,7 +631,7 @@
     // прежнюю статическую версию после переключения EN → RU.
     ruStore = new WeakMap();
     applyReveals(document);
-    initCollectionDots(); // карусель перерисована из JSON — пересобираем точки
+    initCatalogLines(); // линейки перерисованы из JSON — вешаем витрины заново
     initProductGalleries();
     if (htmlEl.getAttribute("lang") === "en") setLang("en");
   });
