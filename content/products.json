@@ -379,15 +379,6 @@
       "photo_caption_en": "Bottle",
       "gallery": [
         {
-          "photo": "assets/products/pityevaya-pet-05-2.webp",
-          "photo_width": 459,
-          "photo_height": 815,
-          "caption_ru": "Две бутылки",
-          "caption_en": "Two bottles",
-          "alt_ru": "Новотерская Питьевая 0,5 л, ПЭТ — две бутылки",
-          "alt_en": "Novoterskaya Drinking Water 0.5 L, PET bottle - two bottles"
-        },
-        {
           "photo": "assets/products/pityevaya-pet-05-3.webp",
           "photo_width": 708,
           "photo_height": 815,
