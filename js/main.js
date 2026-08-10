@@ -375,6 +375,15 @@
       if (!view || items.length < 2 || picks.length !== items.length) return;
       line.dataset.stage = "on";
       var buy = line.querySelector(".line-buy");
+      var track = line.querySelector(".stage-track");
+
+      function syncStageEdge() {
+        if (!track || !items[0]) return;
+        var edge = Math.max(0, (view.clientWidth - items[0].offsetWidth) / 2);
+        track.style.setProperty("--stage-edge", edge.toFixed(2) + "px");
+      }
+      syncStageEdge();
+      window.addEventListener("resize", syncStageEdge, { passive: true });
 
       function mark(index) {
         items.forEach(function (item, i) { item.classList.toggle("is-on", i === index); });
@@ -388,16 +397,44 @@
         if (buy && id) buy.setAttribute("data-product", id);
       }
 
-      function center(index) {
+      var forcedIndex = null;
+      var forcedTimer = 0;
+
+      function targetLeft(index) {
         var item = items[index];
+        if (!item) return view.scrollLeft || 0;
         var left = item.offsetLeft - (view.clientWidth - item.offsetWidth) / 2;
-        // Clamp the target so the last volume (1.5 L) cannot be rejected by
-        // the browser when the calculated center is outside scroll bounds.
         var maxLeft = Math.max(0, view.scrollWidth - view.clientWidth);
-        left = Math.max(0, Math.min(left, maxLeft));
-        if (view.scrollTo) view.scrollTo({ left: left, behavior: "smooth" });
-        else view.scrollLeft = left;
-        mark(index); // не дожидаясь конца прокрутки: нажатие должно отзываться сразу
+        return Math.max(0, Math.min(left, maxLeft));
+      }
+
+      function releaseForcedIndex(index) {
+        if (forcedTimer) window.clearTimeout(forcedTimer);
+        forcedTimer = window.setTimeout(function () {
+          // Final auto-scroll is required for edge volumes: after the active
+          // card changes, some browsers stop smooth scrolling before the last
+          // snap point and the scroll handler can restore the previous volume.
+          mark(index);
+          var left = targetLeft(index);
+          if (view.scrollTo) view.scrollTo({ left: left, behavior: "auto" });
+          else view.scrollLeft = left;
+          forcedIndex = null;
+        }, 620);
+      }
+
+      function center(index) {
+        if (!items[index]) return;
+        forcedIndex = index;
+        // Mark the requested volume first, then calculate the target: the
+        // active card can affect scrollWidth when a title/image is wider.
+        mark(index); // respond immediately to the click, before scroll ends
+        releaseForcedIndex(index);
+        requestAnimationFrame(function () {
+          var left = targetLeft(index);
+          if (view.scrollTo) view.scrollTo({ left: left, behavior: "smooth" });
+          else view.scrollLeft = left;
+          mark(index);
+        });
       }
 
       picks.forEach(function (pick, index) {
@@ -419,6 +456,10 @@
         tick = true;
         requestAnimationFrame(function () {
           tick = false;
+          if (forcedIndex !== null) {
+            mark(forcedIndex);
+            return;
+          }
           var middle = view.scrollLeft + view.clientWidth / 2;
           var best = 0;
           var bestDistance = Infinity;

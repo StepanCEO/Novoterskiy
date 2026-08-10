@@ -1864,15 +1864,26 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
   -webkit-overflow-scrolling: touch;
 }
 .stage-view::-webkit-scrollbar { display: none; }
-.stage-track { display: flex; }
-/* Поля по краям обязательны: без них первую и последнюю бутылку невозможно
-   вывести в центр витрины. Считаются полями крайних элементов, а не padding
-   у полосы: правый padding прокручиваемого flex-контейнера часть браузеров
-   до сих пор съедает, а margin крайнего элемента уважают все. */
-.stage-item:first-child { margin-left: calc((100% - var(--stage-item)) / 2); }
-.stage-item:last-child { margin-right: calc((100% - var(--stage-item)) / 2); }
+.stage-track { display: flex; min-width: 0; }
+/* Edge spacers are required: without them the first and last bottles cannot
+   be brought to the center. Use real flex spacers instead of margins because
+   some browsers exclude the last item's margin from scrollWidth; that made
+   1.5 l and 5 l snap back to the previous volume. */
+.stage-track::before,
+.stage-track::after {
+  content: "";
+  flex: 0 0 var(--stage-edge, calc((100% - var(--stage-item)) / 2));
+  min-width: var(--stage-edge, calc((100% - var(--stage-item)) / 2));
+  pointer-events: none;
+}
+.stage-item:first-child { margin-left: 0; }
+.stage-item:last-child { margin-right: 0; }
 .stage-item {
   flex: 0 0 var(--stage-item);
+  width: var(--stage-item);
+  min-width: 0;
+  max-width: var(--stage-item);
+  box-sizing: border-box;
   scroll-snap-align: center;
   position: relative;
   opacity: 0.38;
@@ -1891,6 +1902,7 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 .stage-item:not(.is-on) .pnav,
 .stage-item:not(.is-on) .product-dots { visibility: hidden; }
 .stage-item .product-photo {
+  min-width: 0;
   height: clamp(250px, 29vw, 420px);
   margin-bottom: 1.1rem;
 }
