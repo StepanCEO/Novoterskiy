@@ -391,6 +391,10 @@
       function center(index) {
         var item = items[index];
         var left = item.offsetLeft - (view.clientWidth - item.offsetWidth) / 2;
+        // Clamp the target so the last volume (1.5 L) cannot be rejected by
+        // the browser when the calculated center is outside scroll bounds.
+        var maxLeft = Math.max(0, view.scrollWidth - view.clientWidth);
+        left = Math.max(0, Math.min(left, maxLeft));
         if (view.scrollTo) view.scrollTo({ left: left, behavior: "smooth" });
         else view.scrollLeft = left;
         mark(index); // не дожидаясь конца прокрутки: нажатие должно отзываться сразу
