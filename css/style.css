@@ -1681,6 +1681,11 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 .product-photo img {
   width: auto;
   height: calc(100% * var(--pscale, 1));
+  /* --plift приподнимает товар над общей линией низа. Нужен только самой
+     мелкой таре: у 0,33 л над бутылкой оставалось полбокса воздуха, и она
+     проваливалась вниз карточки. Отступ снизу, а не transform, — иначе его
+     затрёт наклон по наведению. */
+  margin-bottom: var(--plift, 0px);
   max-width: 100%;
   object-fit: contain;
   /* Упаковка шире бутылки: при height:100% её обрезает max-width, и внутри

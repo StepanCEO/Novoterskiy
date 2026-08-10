@@ -456,7 +456,11 @@
       // пятилитровой канистрой. Значение живёт в products.json, CSS читает
       // его как --pscale; при отсутствии или мусоре остаётся прежняя единица.
       var scale = parseFloat(product.scale);
-      var style = scale > 0 && scale <= 1 && scale !== 1 ? ' style="--pscale:' + scale + '"' : "";
+      var lift = parseFloat(product.lift);
+      var rules = [];
+      if (scale > 0 && scale < 1) rules.push("--pscale:" + scale);
+      if (lift > 0 && lift < 200) rules.push("--plift:" + lift + "px");
+      var style = rules.length ? ' style="' + rules.join(";") + '"' : "";
       return '<article class="product reveal"' + style + '><div class="product-photo">' +
         shots.map(shotMarkup).join("") + navMarkup(shots) + '</div>' + dotsMarkup(shots) +
         '<' + hx + ' data-en="' + esc(titleEn) + '">' + productTitle(product.title) + '</' + hx + '>' +

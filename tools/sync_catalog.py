@@ -93,7 +93,13 @@ def track_markup(products):
         # --pscale задаёт долю высоты бокса: она же читается из products.json
         # в cms.js, так что заглушка и живая разметка совпадают.
         scale = product.get("scale")
-        style = f' style="--pscale:{scale:g}"' if scale and scale != 1 else ""
+        lift = product.get("lift")
+        rules = []
+        if scale and scale != 1:
+            rules.append(f"--pscale:{scale:g}")
+        if lift:
+            rules.append(f"--plift:{lift:g}px")
+        style = f' style="{";".join(rules)}"' if rules else ""
         out.append(f'    <article class="product reveal"{style}>')
         out.append('      <div class="product-photo">')
         for index, shot in enumerate(pictures):
