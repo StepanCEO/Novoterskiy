@@ -451,7 +451,7 @@
       "title_en": "Novoterskaya Drinking 1.5",
       "type": "Газированная · ПЭТ",
       "type_en": "Sparkling · PET",
-      "photo": "assets/1.5gaz.jpg",
+      "photo": "assets/1.5gaz.webp",
       "photo_width": 600,
       "photo_height": 600,
       "alt_ru": "Новотерская Питьевая газированная 1,5 л, ПЭТ",
@@ -471,7 +471,8 @@
       ],
       "buy_url": "buy.html",
       "badge_ru": "с газом",
-      "badge_en": "sparkling"
+      "badge_en": "sparkling",
+      "photo_avif": "assets/1.5gaz.avif"
     },
     {
       "id": "pityevaya-pet-5",
