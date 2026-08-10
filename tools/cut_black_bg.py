@@ -13,7 +13,9 @@
 
 Тон приводится к уже лежащим карточкам: у соседей по каталогу медиана корпуса
 около 200, 90-й перцентиль около 215. Без этого шага новая бутылка выходит
-заметно светлее ряда и выбивается из сетки.
+заметно светлее ряда и выбивается из сетки. Кадрам, где почти вся бутылка —
+прозрачный корпус, этот шаг вредит, и в JOBS он выключается (см. комментарий
+к списку).
 
     python tools/cut_black_bg.py
 """
@@ -39,10 +41,16 @@ TONE_P90 = 216
 
 DOWNLOADS = os.path.expanduser("~/Downloads")
 
-# (исходник, имя в assets/products)
+# (исходник, имя в assets/products, приводить ли тон к соседям)
+#
+# Тон приводится не всегда. У питьевой 0,5 л корпус прозрачный почти целиком, и
+# разброс яркости внутри бутылки — это и есть вода: рёбра, стенки, линия налива.
+# Кривая match_tone сжимает разброс с 146 уровней до 82, и вместо воды остаётся
+# ровная светлая масса — бутылка выглядит мутной. Пусть она будет контрастнее
+# ряда: в витрине каталога в фокусе всё равно одна позиция.
 JOBS = [
-    (f"{DOWNLOADS}/1.5 газированная питьевая.png", "pityevaya-pet-15-gas"),
-    (f"{DOWNLOADS}/0.5 питьевая негазированная.png", "pityevaya-pet-05"),
+    (f"{DOWNLOADS}/1.5 газированная питьевая.png", "pityevaya-pet-15-gas", True),
+    (f"{DOWNLOADS}/0.5 питьевая негазированная.png", "pityevaya-pet-05", False),
 ]
 
 
@@ -109,7 +117,7 @@ def match_tone(rgb, alpha):
     return np.clip(rgb * (dst / src)[..., None], 0, 255)
 
 
-def process(src, name):
+def process(src, name, tone=True):
     rgb = np.array(Image.open(src).convert("RGB")).astype(float)
     lum = rgb.max(axis=2)   # max-канал: цветная крышка не проваливается
 
@@ -117,7 +125,8 @@ def process(src, name):
     alpha = build_alpha(lum, shape)
 
     rgb = unpremultiply(rgb, alpha)
-    rgb = match_tone(rgb, alpha)
+    if tone:
+        rgb = match_tone(rgb, alpha)
 
     ys, xs = np.where(shape)
     y0 = max(ys.min() - PAD, 0)
@@ -146,5 +155,5 @@ def process(src, name):
 
 
 if __name__ == "__main__":
-    for src, name in JOBS:
-        process(src, name)
+    for src, name, tone in JOBS:
+        process(src, name, tone)
