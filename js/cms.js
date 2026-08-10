@@ -452,7 +452,12 @@
       // h3 после h1 даёт разрыв в уровнях (heading-order). На главной этот
       // список живёт внутри секции со своим h2, и там уровень задаёт headingLevel.
       var hx = productHeading();
-      return '<article class="product reveal"><div class="product-photo">' +
+      // Доля высоты бокса под товар: 0,33 л не должна вставать вровень с
+      // пятилитровой канистрой. Значение живёт в products.json, CSS читает
+      // его как --pscale; при отсутствии или мусоре остаётся прежняя единица.
+      var scale = parseFloat(product.scale);
+      var style = scale > 0 && scale <= 1 && scale !== 1 ? ' style="--pscale:' + scale + '"' : "";
+      return '<article class="product reveal"' + style + '><div class="product-photo">' +
         shots.map(shotMarkup).join("") + navMarkup(shots) + '</div>' + dotsMarkup(shots) +
         '<' + hx + ' data-en="' + esc(titleEn) + '">' + productTitle(product.title) + '</' + hx + '>' +
         '<p class="product-type" data-en="' + esc(typeEn) + '">' + esc(product.type) + '</p>' +
