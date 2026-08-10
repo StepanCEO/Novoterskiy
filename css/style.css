@@ -2018,7 +2018,10 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 .footer-brand p {
   grid-area: tagline;
   justify-self: center;
-  margin-top: 1rem;
+  /* Отбивка почти нулевая: воздух под названием и так есть — знак в первой
+     строке выше названия, и разница уходит ему под низ. С отбивкой в 1rem
+     слоган отрывался от «Новотерской» и читался отдельным блоком. */
+  margin-top: 0.15rem;
   font-family: var(--ff-display);
   font-size: 1.15rem;
   line-height: 1.35;
