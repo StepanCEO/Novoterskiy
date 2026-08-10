@@ -109,10 +109,10 @@
     "secondary_cta_ru": "Узнать историю",
     "secondary_cta_en": "Discover the story",
     "secondary_cta_url": "#origin",
-    "background": "assets/photos/hero-bottle-poster.webp?v=rock-v110",
-    "video_webm": "assets/video/hero-bottle.webm?v=rock-v110",
-    "video_mp4": "assets/video/hero-bottle.mp4?v=rock-v110",
-    "video_poster": "assets/photos/hero-bottle-poster.webp?v=rock-v110"
+    "background": "assets/photos/hero-bottle-poster.webp?v=rock-v111",
+    "video_webm": "assets/video/hero-bottle.webm?v=rock-v111",
+    "video_mp4": "assets/video/hero-bottle.mp4?v=rock-v111",
+    "video_poster": "assets/photos/hero-bottle-poster.webp?v=rock-v111"
   },
   "elements": {
     "eyebrow_ru": "Легенда",
@@ -382,7 +382,7 @@
     "cta_ru": "Попробовать баланс природы",
     "cta_en": "Taste the balance of nature",
     "cta_url": "catalog.html",
-    "bottle": "assets/voda.webp?v=rock-v110",
+    "bottle": "assets/voda.webp?v=rock-v111",
     "logo": "assets/logo-mark.webp"
   },
   "where": {
