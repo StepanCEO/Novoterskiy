@@ -1545,6 +1545,58 @@ html[lang="en"] .origin-title { --tri-scale: 0.88; }
 }
 .trust-link:hover::after { opacity: 1; }
 
+/* Короткий живой взгляд на производство: видео не спорят с карточками пути
+   качества, а продолжают их одной спокойной лентой с тем же ритмом и рамкой. */
+.production-media {
+  max-width: var(--wrap);
+  margin: clamp(3.5rem, 7vw, 6rem) auto 0;
+  padding: 0 var(--gutter);
+}
+.production-media-head { max-width: 42rem; }
+.production-media-head h3 {
+  margin: 0.35rem 0 0.85rem;
+  color: var(--deep);
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.1;
+}
+.production-media-head > p:last-child { color: var(--muted); max-width: 38rem; }
+.production-videos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: clamp(1.6rem, 3vw, 2.5rem);
+}
+.production-video {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(20,49,63,0.1);
+  border-radius: 1rem;
+  background: #e7f0f5;
+  box-shadow: 0 1rem 2.5rem rgba(16,55,77,0.08);
+}
+.production-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 31rem;
+  object-fit: cover;
+  background: #17384c;
+}
+.production-video figcaption {
+  padding: 0.85rem 1rem 0.95rem;
+  color: var(--deep);
+  font-family: var(--ff-label);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (max-width: 700px) {
+  .production-videos { grid-template-columns: repeat(3, minmax(10rem, 1fr)); overflow-x: auto; padding-bottom: 0.5rem; }
+  .production-video video { max-height: 22rem; }
+}
+
 /* documents & certificates */
 .trust-docs {
   max-width: var(--wrap);
