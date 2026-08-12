@@ -46,22 +46,31 @@
       "file": ""
     },
     {
-      "id": "Сводные данные о результатах СОУТ",
+      "id": "Сводная ведомость СОУТ",
       "anchor": "sout-summary",
-      "name": "Сводные данные о результатах СОУТ",
-      "name_en": "Summary of the workplace assessment results",
+      "name": "Сводная ведомость результатов СОУТ",
+      "name_en": "Summary statement of workplace assessment results",
       "desc": "",
       "desc_en": "",
       "file": "assets/documents/sout-summary.pdf"
     },
     {
-      "id": "Перечень мероприятий по охране труда",
+      "id": "Перечень рекомендуемых мероприятий по улучшению условий труда",
       "anchor": "labor-safety-measures",
-      "name": "Перечень мероприятий по охране труда",
-      "name_en": "Occupational safety action plan",
+      "name": "Перечень рекомендуемых мероприятий по улучшению условий труда",
+      "name_en": "Recommended measures for improving working conditions",
       "desc": "",
       "desc_en": "",
       "file": "assets/documents/labor-safety-measures.pdf"
+    },
+    {
+      "id": "Сводная таблица рабочих мест",
+      "anchor": "sout-workplace-table",
+      "name": "Сводная таблица рабочих мест",
+      "name_en": "Summary table of workplaces",
+      "desc": "По состоянию на 03.08.2026",
+      "desc_en": "As of 3 August 2026",
+      "file": "assets/documents/sout-workplace-table.pdf"
     }
   ],
   "_note_hidden": "ВРЕМЕННО СКРЫТО. Записи из hidden на сайте не показываются: сетку документов рисует js/cms.js по массиву items. Чтобы вернуть товарные знаки, перенесите запись обратно в items И раскомментируйте разметку в index.html и documents.html (искать «ВРЕМЕННО СКРЫТО»). Ничего не удалено.",
