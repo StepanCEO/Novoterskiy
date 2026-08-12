@@ -29,14 +29,15 @@
         "Novoterskaya",
         "Drinking water"
       ],
-      "text_ru": "Вода на каждый день — негазированная и газированная. От карманных 0,33 до пятилитровой бутыли с ручкой: в рюкзак, на рабочий стол и домой на кухню.",
-      "text_en": "Everyday water, still and sparkling. From a pocket 0.33 to a five-litre bottle with a handle - for a backpack, a desk, a kitchen.",
+      "text_ru": "Вода на каждый день — негазированная и газированная. От карманных 0,33 до большой 19-литровой бутыли: в рюкзак, на рабочий стол и домой на кухню.",
+      "text_en": "Everyday water, still and sparkling. From a pocket 0.33 to a large 19-litre bottle — for a backpack, a desk and the kitchen at home.",
       "items": [
         "pityevaya-pet-033",
         "pityevaya-pet-05",
         "pityevaya-pet-15",
         "pityevaya-pet-15-gas",
-        "pityevaya-pet-5"
+        "pityevaya-pet-5",
+        "pityevaya-pet-19"
       ]
     }
   ],
@@ -507,6 +508,22 @@
           "alt_en": "Open case with three 5 L Novoterskaya Pityevaya bottles, top view"
         }
       ],
+      "buy_url": "buy.html"
+    },
+    {
+      "id": "pityevaya-pet-19",
+      "title": "Новотерская питьевая 19",
+      "title_en": "Novoterskaya Drinking 19",
+      "type": "Негазированная · ПЭТ",
+      "type_en": "Still · PET",
+      "photo": "assets/products/pityevaya-pet-19.webp",
+      "photo_avif": "assets/products/pityevaya-pet-19.avif",
+      "photo_width": 590,
+      "photo_height": 1280,
+      "alt_ru": "Бутыль «Новотерская питьевая» 19 л, ПЭТ",
+      "alt_en": "Novoterskaya Drinking Water 19 L PET bottle",
+      "photo_caption_ru": "Бутыль 19 л",
+      "photo_caption_en": "19 L bottle",
       "buy_url": "buy.html"
     }
   ]
