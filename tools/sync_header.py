@@ -87,15 +87,6 @@ def nav_markup(page, prefix):
     out = []
     for key, ru, en, sub_id, target in NAV:
         label = f'<span class="nav-label" data-en="{en}">{ru}</span>'
-        # «О компании» ведёт сразу на самостоятельную страницу производства.
-        # Остальные разделы компании остаются доступны по прямым ссылкам сайта,
-        # а первый пункт меню теперь открывает ровно тот экран, который ожидает
-        # посетитель, а не прокручивает главную к блоку «Доверие и качество».
-        if key == "about":
-            href = "production.html"
-            out.append(f'<a class="nav-link" href="{href}"{current(href, page)}>{icon(key)}'
-                       f'<span class="nav-text">{label}</span></a>')
-            continue
         if sub_id is None:
             href = target.format(p=prefix)
             out.append(f'<a class="nav-link" href="{href}"{current(href, page)}>{icon(key)}'
