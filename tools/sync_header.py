@@ -41,7 +41,7 @@ ICONS = {
 # подписи по номеру, а не по тексту.
 NAV = [
     ("about", "О компании", "About us", "navSubAbout", [
-        ("Производство", "Production", "{p}#production"),
+        ("Производство", "Production", "production.html"),
         ("Лаборатория", "Laboratory", "lab.html"),
         ("Документы", "Documents", "documents.html"),
         ("Награды", "Awards", "awards.html"),
