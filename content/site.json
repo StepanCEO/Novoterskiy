@@ -14,7 +14,7 @@
           {
             "label_ru": "Производство",
             "label_en": "Production",
-            "url": "#production"
+            "url": "production.html"
           },
           {
             "label_ru": "Лаборатория",
@@ -297,10 +297,10 @@
     "text_en": "The rational case behind the legend: preparation, materials, control and standards.",
     "stats": [
       {
-        "value": "2",
+        "value": "5",
         "suffix": "",
-        "label_ru": "Автономных производственных цеха",
-        "label_en": "Autonomous production lines"
+        "label_ru": "Современных оборудованных линий",
+        "label_en": "Modern production lines"
       },
       {
         "value": "500",
@@ -349,8 +349,8 @@
       {
         "title_ru": "Безупречность процесса",
         "title_en": "Flawless process",
-        "text_ru": "Два автономных цеха, точный розлив и состав, сохранённый от источника до бутылки.",
-        "text_en": "Two autonomous shops, precise bottling and a composition preserved from source to bottle."
+        "text_ru": "Пять современных оборудованных линий, точный розлив и состав, сохранённый от источника до бутылки.",
+        "text_en": "Five modern production lines, precise bottling and a composition preserved from source to bottle."
       },
       {
         "title_ru": "Оборудование и хранение",

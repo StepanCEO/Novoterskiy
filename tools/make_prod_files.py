@@ -10,12 +10,16 @@
    на github.io.
 2. Имена картинок ленты «Воздух — Лёд — Земля — Огонь — Источник». В репозитории
    они кириллицей, на хостинге лежат латиницей: кириллические имена там отдают
-   404. Ссылки в кириллице сломали бы пять картинок в разделе.
+   404. Ссылки в кириллице сломали бы пять картинок в разделе. Имена приходят с
+   двух сторон — из разметки index.html и из content/site.json, откуда cms.js
+   переписывает картинки поверх неё, — так что править надо оба файла.
 
 Скрипт берёт текущие файлы репозитория, применяет обе поправки и кладёт
-результат в OUT_DIR — оттуда их и заливать, ничего больше не правя руками.
+результат в OUT_DIR, повторяя путь внутри проекта: content/site.json попадёт в
+tools/prod-upload/content/site.json — то есть структура папок совпадает с
+хостингом, и заливать можно не думая, что куда.
 
-    python tools/make_prod_files.py index.html production.html
+    python tools/make_prod_files.py index.html production.html content/site.json
 """
 
 import os
@@ -50,8 +54,8 @@ def convert(name):
         source = handle.read()
     result = to_prod(source)
 
-    os.makedirs(OUT_DIR, exist_ok=True)
-    out = os.path.join(OUT_DIR, os.path.basename(name))
+    out = os.path.join(OUT_DIR, name.replace("\\", "/"))
+    os.makedirs(os.path.dirname(out) or OUT_DIR, exist_ok=True)
     with open(out, "w", encoding="utf-8", newline="") as handle:
         handle.write(result)
 
@@ -63,5 +67,5 @@ def convert(name):
 
 
 if __name__ == "__main__":
-    for target in sys.argv[1:] or ["index.html", "production.html"]:
+    for target in sys.argv[1:] or ["index.html", "production.html", "content/site.json"]:
         convert(target)
